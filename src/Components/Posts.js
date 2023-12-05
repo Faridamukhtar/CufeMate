@@ -1,11 +1,12 @@
 import React, {} from "react";
 import './Posts.css';
 
+
 function Post(props)
 {
     return(
         <div className="Post">
-            <div className="categories">
+            <div className="Categories">
                 <h5 className="Major">
                     {props.Major}
                 </h5>
@@ -17,8 +18,22 @@ function Post(props)
     );
 }
 
-function Posts()
+//TO DO: create button: Write if Rep, Request to Write if student, then add it to posts
+function WriteType(props)
 {
+
+}
+
+//TO DO: create filters
+function Filters()
+{
+
+}
+
+//Fetch Posts
+function Posts(props)
+{
+    
     return (
         <div className="PostsWrapper">
             <div className="LatestPostsTitle">
@@ -27,6 +42,9 @@ function Posts()
                 </h3>
             </div>
             <hr className="postHR"/>
+            <div className="filters">
+
+            </div>
             <div className="Posts">
 
             </div>

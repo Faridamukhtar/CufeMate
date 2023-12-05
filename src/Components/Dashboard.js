@@ -3,25 +3,27 @@ import ChooseHeader from "./Header.js";
 import './Dashboard.css';
 import Posts from './Posts';
 
-function StudentBody()
+function StudentBody(props)
 {
     return (
         <div className='StudentBody'>
-            <Posts/>
+            <Posts DashboardType={props.DashboardType}/>
        </div>
     );
 }
 
 function DashboardBody(props)
 {
-    if (props.DashboardType==='student')
+    if (props.DashboardType==='student' || props.DashboardType==='studentRep')
     {
         return (
             <>
-                <StudentBody/>
+                <StudentBody DashboardType={props.DashboardType}/>
             </>
         );
     }
+
+
 }
 
 function Dashboard(props)
