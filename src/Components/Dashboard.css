@@ -1,0 +1,11 @@
+.DashboardPage
+{
+    min-height: 100vh;
+    width: 100%;
+    padding: 5%;
+}
+
+.DashboardBody
+{
+    margin-block: 6%;
+}

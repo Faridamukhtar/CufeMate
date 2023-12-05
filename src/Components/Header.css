@@ -1,0 +1,22 @@
+.StudentHeader
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: linear-gradient(180deg, #231E3F 0%, #322958 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.Info
+{
+    padding-top: 2%;
+}
+.greeting
+{
+    align-self: center;
+}
+.StudentName
+{
+    font-weight: 800;
+}

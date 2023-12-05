@@ -1,0 +1,28 @@
+.PostsWrapper
+{
+    border-radius: 16px;
+    border: 1px solid #FFF;
+    background: #FFF;
+    padding: 3%;
+    box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.10);
+    width: 95%;
+    min-height: 100vh;
+}
+
+.Post
+{
+    border-radius: 16px;
+    border: 1px solid #AD9EF4;
+    background: #FFF;
+}
+
+.postHR
+{
+    border-color: #5030E5;
+}
+
+.LatestPostsTitle
+{
+    color: #0D062D;
+    padding-bottom: 20px;
+}
