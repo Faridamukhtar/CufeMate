@@ -49,8 +49,25 @@ h5
     font-weight: 400;
 }
 
+.Mobile
+{
+  display: none;
+}
+
+
 @media only screen and (max-width: 600px) {
   .App{
     display: none;
+  }
+  .Mobile
+  {
+    background: linear-gradient(265deg, rgba(229, 224, 254, 0.39) -9.03%, rgba(221, 213, 255, 0.41) 44.9%, rgba(244, 241, 255, 0.62) 96.87%);
+    display: flex;
+    flex: 1;
+    margin: auto;
+    align-content: center;
+    justify-content: center;
+    padding-top:50vh;
+    height: 100vw;
   }
 }

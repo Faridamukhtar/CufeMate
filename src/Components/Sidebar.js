@@ -34,7 +34,7 @@ function StudentSidebar()
                     </div>
                     <div className="SidebarLabel">
                         <h5>
-                            File A Complaint
+                            Complaints
                         </h5>
                     </div>
                 </div>

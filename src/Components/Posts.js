@@ -1,14 +1,18 @@
 import React, {} from "react";
 import './Posts.css';
 
-
 function Post(props)
 {
     return(
         <div className="Post">
-            <h5 className="CourseName">
-                Course
-            </h5>
+            <div className="categories">
+                <h5 className="Major">
+                    {props.Major}
+                </h5>
+                <h5 className="Course">
+                    {props.Course}
+                </h5>           
+            </div>
         </div>
     );
 }

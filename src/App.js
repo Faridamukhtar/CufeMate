@@ -5,9 +5,16 @@ import StudentDashboard from './pages/StudentDashboard.js'
 
 function App() {
   return (
-    <div className='App'>
-      <StudentDashboard />
-    </div>
+    <>
+      <div className='App'>
+        <StudentDashboard />
+      </div>
+      <div className='Mobile'>
+        <h2>
+          Mobile Version Under Development. Please Use a Laptop/PC.
+        </h2>
+      </div>
+    </>
   );
 }
 
