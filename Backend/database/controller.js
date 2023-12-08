@@ -38,7 +38,6 @@ const getPostCourse = (course)=>
 
 
 export const getPosts = async (req, res) => {
-  req.body = { author: 'Mohamed', major:'', course: ''};
   
   const { author, major, course } = req.body;
 
