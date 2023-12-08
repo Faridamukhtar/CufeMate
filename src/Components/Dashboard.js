@@ -2,6 +2,7 @@ import React from "react";
 import ChooseHeader from "./Header.js";
 import './Dashboard.css';
 import Posts from './Posts';
+import Contacts from './Contacts';
 
 function StudentBody(props)
 {
@@ -12,6 +13,16 @@ function StudentBody(props)
     );
 }
 
+function RepsContactsBody(props)
+{
+    return (
+        <div className='RepsContactsBody'>
+            <Contacts DashboardType={props.DashboardType}/>
+        </div>
+
+    );
+} 
+
 function DashboardBody(props)
 {
     if (props.DashboardType==='student' || props.DashboardType==='studentRep')
@@ -20,6 +31,15 @@ function DashboardBody(props)
             <>
                 <StudentBody DashboardType={props.DashboardType}/>
             </>
+        );
+    }
+    if (props.DashboardType==='reps_contacts')
+    {
+        return(
+            <>
+                <RepsContactsBody DashboardType={props.DashboardType}/>
+            </>
+
         );
     }
 

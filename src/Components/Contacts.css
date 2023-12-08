@@ -1,0 +1,36 @@
+.Container
+{
+    width: 1022px;
+    height: 166px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    border: 1px solid #AD9EF4;
+    background: #FFF;
+}
+
+.Name
+{
+    width: 200.488px;
+    height: 26.657px;
+    flex-shrink: 0;
+    color: #231E3F;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.Email
+{
+    width: 650px;
+    height: 36px;
+    flex-shrink: 0;
+    color: #000;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
