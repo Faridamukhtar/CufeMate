@@ -41,7 +41,7 @@ function Posts(props)
                     Latest Posts
                 </h3>
             </div>
-            <hr className="postHR"/>
+            <hr className="LineUnderPost"/>
             <div className="filters">
 
             </div>
