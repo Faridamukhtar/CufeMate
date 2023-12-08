@@ -3,6 +3,38 @@ import ChooseHeader from "./Header.js";
 import './SettingsBoard.css';
 import TextInput from './TextInput';
 
+
+
+const UpdatePassword =() => {
+    const [Cpass, setCpass] = useState('');
+    const [Npass, setNpass] = useState('');
+    const [conpass, setconpass] = useState('');
+
+    //To BE DONE BACKEND (UPDATE PASSWORD)
+    const handleClick = () => {
+        if (Npass !== conpass) {
+          alert("New password and confirm password don't match.");
+           return;
+         }
+        
+
+    };
+
+
+    return (
+            <div>
+                <TextInput Title= "Current Password" placeholderText="Current Password" isPassword={true} setInputValue={setCpass} inputValue={Cpass}/>
+                <TextInput Title= "New Password" placeholderText="New Password" isPassword={true} setInputValue={setNpass} inputValue={Npass} />
+                <TextInput Title= "Confirm Password" placeholderText="Confirm Password" isPassword={true} setInputValue={setconpass} inputValue={conpass} />
+                <button className="button-clicked" onClick={handleClick}>
+                <span className="label-clicked ">Update password</span>
+                </button>
+            </div>
+        );
+}
+
+
+
 //Student Settings 
 function StudentBody(props)
 {
@@ -13,25 +45,13 @@ function StudentBody(props)
         setSelectedButton(button);
       };
 
-    //To BE DONE BACKEND (UPDATE PASSWORD)
-    const handleClick = () => {
-        
-    };
-
     // Content to render based on the selected button
     const renderContent = () => 
     {
         switch (selectedButton) {
         case 'Button1':
             return (
-                <div>
-                    <TextInput Title= "Current Password" placeholderText="Current Password" isPassword={true} />
-                    <TextInput Title= "New Password" placeholderText="New Password" isPassword={true} />
-                    <TextInput Title= "Confirm Password" placeholderText="Confirm Password" isPassword={true} />
-                    <button className="button-clicked" onClick={handleClick}>
-                    <span className="label-clicked ">Update password</span>
-                    </button>
-                </div>
+                <UpdatePassword/>
             );
 
         case 'Button2':

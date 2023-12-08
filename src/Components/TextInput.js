@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import './TextInput.css';
 
 
-const TextInput = ({ Title ,placeholderText, isPassword }) => {
-  const [inputValue, setInputValue] = useState('');
+const TextInput = ({ Title ,placeholderText, isPassword , setInputValue , inputValue}) => {
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
+
+ 
 
   return (
     <div>
