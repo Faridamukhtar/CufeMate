@@ -1,11 +1,5 @@
 import { db } from "./connection";
 
-const updateStudentPassword = (studentId, newPassword) => {
-    let currentQuery = "UPDATE student SET passw = '" + newPassword + "' WHERE std_id = " + studentId;
-    return (currentQuery);
-  };
-  
-
 const getPostMajor=(major)=>
 {
     CurrentQuery="SELECT major_id FROM post, related_to_major, major WHERE related_to_major.major_id=major.major_id ";
