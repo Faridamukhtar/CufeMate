@@ -38,7 +38,7 @@ const getPostCourse = (course)=>
 
 
 export const getPosts = async (req, res) => {
-  
+
   const { author, major, course } = req.body;
 
   let CurrentQuery= "SELECT DISTINCT post.post_id FROM post ";
