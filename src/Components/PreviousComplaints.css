@@ -1,0 +1,94 @@
+.Title
+{
+    font-family: Inter;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1.44px;
+    text-transform: capitalize;
+    background: linear-gradient(180deg, #231E3F 0%, #322958 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.ComplaintRect
+{
+    width: 1022px;
+    height: 127px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    border: 1px solid #AD9EF4;
+    background: #FFF;
+
+}
+
+.ComplaintTitle
+{
+    width: 283px;
+    height: 27px;
+    flex-shrink: 0;
+    color: #0D062D;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.PendingRect
+{
+    width: 96.304px;
+    height: 27.869px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    background: rgba(223, 168, 116, 0.20);
+}
+
+.PendingText
+{
+    width: 80.253px;
+    height: 18.175px;
+    flex-shrink: 0;
+    color: #D58D49;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.ReadRect
+{
+    width: 96.304px;
+    height: 27.869px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    background: rgba(109, 221, 143, 0.2);
+}
+
+.ReadText
+{
+    width: 80.253px;
+    height: 18.175px;
+    flex-shrink: 0;
+    color: rgb(14, 71, 35);
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.Date
+{
+    color: #000;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

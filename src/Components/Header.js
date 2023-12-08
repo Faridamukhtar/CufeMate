@@ -25,6 +25,29 @@ function StudentHeader()
     );
 }
 
+function ComplaintHeader()
+{
+    return (
+        <div>
+            <div className="StudentHeader">
+                <h1>
+                    Complaints
+                </h1>
+            </div>
+            <div className="Info">
+                <h4 className='StudentName'>
+                    Name
+                </h4>
+                <h4>
+                    Class of XXXX
+                </h4>
+            </div>
+        </div>
+
+    );
+}
+
+
 function ChooseHeader(props)
 {
     if (props.DashboardType==='student')
@@ -32,6 +55,15 @@ function ChooseHeader(props)
         return (
             <>
                 <StudentHeader/>
+            </>
+        );
+    }
+
+    else if (props.DashboardType==='complaint')
+    {
+        return (
+            <>
+                <ComplaintHeader/>
             </>
         );
     }

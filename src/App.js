@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import StudentDashboard from './pages/StudentDashboard.js'
+import ComplaintDashboard from './pages/ComplaintDashboard.js'
 
 
 function App() {
   return (
     <>
       <div className='App'>
-        <StudentDashboard />
+        <ComplaintDashboard/>
       </div>
       <div className='Mobile'>
         <h2>
