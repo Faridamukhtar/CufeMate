@@ -1,6 +1,6 @@
-import React, {} from "react";
+import React, {useState, useEffect} from "react";
 import './Posts.css';
-
+import getposts from "../hooks/getposts";
 
 function Post(props)
 {
@@ -30,10 +30,32 @@ function Filters()
 
 }
 
-//Fetch Posts
-function Posts(props)
+
+function DisplayPosts(props)
 {
+    if (props.postArray.post_id>0)
+    {
+        const listItems = props.postArray.map((post) => <li><Post Major={post.major} Content={post.content} Course={post.course} FAuthor={post.Fname} LAuthor={post.Lname}/></li>);
+        return listItems;
+    }
+    else
+    {
+        return " ";
+    }
+
+}
+
+
+//Fetch Posts
+function PostSection(props)
+{
+    const [postsContent, setPostsContent]=useState({fname:"",lname:"",post_date:"",content:"",post_id:0,course_name:""});
     
+    useEffect(()=>
+    {
+        getposts('', 'CCE', '', setPostsContent);
+    },[]);
+
     return (
         <div className="PostsWrapper">
             <div className="LatestPostsTitle">
@@ -46,11 +68,11 @@ function Posts(props)
 
             </div>
             <div className="Posts">
-
+                <ul><DisplayPosts postArray={postsContent}/></ul>
             </div>
         </div>
     );
 }
 
 
-export default Posts;
+export default PostSection;

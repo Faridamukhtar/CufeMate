@@ -3,6 +3,6 @@ import { getPosts } from "../database/controller.js";
 
 const router = express.Router();
 
-router.use("/getposts", getPosts);
+router.post("/getposts", getPosts);
 
 export default router;
