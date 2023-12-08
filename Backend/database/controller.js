@@ -1,51 +1,92 @@
-import { db } from "./connection";
+import { db } from "./connection.js";
+
+const dbInstance = await db();
+
+const getPostAuthor = (author) =>
+{
+  let CurrentQuery=`SELECT DISTINCT post.post_id
+  FROM post, student, requests_to_write
+  WHERE (requests_to_write.std_id = student.std_id AND requests_to_write.post_id = post.post_id AND requests_to_write.flagstatus = 1 AND (strpos(Fname,'${author}')>0 OR strpos(Lname,'${author}')>0)) 
+  UNION
+  SELECT DISTINCT post.post_id
+  FROM post, student, writes
+  WHERE (writes.std_id = student.std_id AND writes.post_id = post.post_id AND (strpos(Fname,'${author}')>0 OR strpos(Lname,'${author}')>0))` 
+  
+  return (CurrentQuery);
+}
 
 const getPostMajor=(major)=>
 {
-    CurrentQuery="SELECT major_id FROM post, related_to_major, major WHERE related_to_major.major_id=major.major_id ";
-    CurrentQuery+="AND post.post_id=related_to_major.post_id";
-    if (major!=="")
-    {
-        CurrentQuery+=" AND major.major_name = " +  major;
-    }
-    return (CurrentQuery);
+  let CurrentQuery=`SELECT DISTINCT post.post_id
+  FROM post, related_to_major, major
+  WHERE related_to_major.post_id = post.post_id AND related_to_major.major_id= major.major_id 
+  AND major.major_name = '${major}'` 
+  
+  return (CurrentQuery);
+
 }
 
 const getPostCourse = (course)=>
 {
-    CurrentQuery="SELECT course_id FROM post, related_to_course, course WHERE related_to_course.post_id = post.post_id AND";
-    CurrentQuery+="related_to_course.course_id= course.course_id";
-    if (course!=="")
-    {
-        CurrentQuery+=" AND course.course_name = " +  course;
-    }
-    return (CurrentQuery);
+  let CurrentQuery=`SELECT DISTINCT post.post_id
+  FROM post, related_to_course, course
+  WHERE related_to_course.post_id = post.post_id AND related_to_course.course_id= course.course_id 
+  AND course.course_name = '${course}'` 
+  
+  return (CurrentQuery);
 }
 
-const getPostAuthor = (author) =>
-{
-    CurrentQuery="SELECT std_id FROM student, writes, requests_to_write WHERE (writes.std_id = student.std_id AND writes.post_id = post.post_id)";
-    CurrentQuery+="OR (requests_to_write.std_id = student.std_id AND requests_to_write.post_id = post.post_id AND requests_to_write.FlagStatus = 1) ";
-    if (author!=="")
-    {
-        CurrentQuery+="AND ((strpos(Fname," + author + ")>0) OR (strpos(Lname," + author + ")>0))";
-    }
-    return (CurrentQuery);
+
+export const getPosts = async (req, res) => {
+  req.body = { author: 'Mohamed', major:'', course: ''};
+  
+  const { author, major, course } = req.body;
+
+  let CurrentQuery= "SELECT DISTINCT post.post_id FROM post ";
+
+  if (course!==undefined && course!=="")
+  {
+    CurrentQuery+= `INTERSECT ${getPostCourse(course)} `;
+  }
+
+  if (major!==undefined && major!=="")
+  {
+    CurrentQuery+= `INTERSECT ${getPostMajor(major)} `;
+  }
+
+  if (author!==undefined && author!=="")
+  {
+    CurrentQuery+= `INTERSECT ${getPostAuthor(author)} `;
+  }
+
+  let Query= `SELECT DISTINCT s.Fname, s.Lname, p.post_date, p.content, p.post_id, c.course_name
+  FROM post p
+  INNER JOIN writes w ON p.post_id = w.post_id
+  INNER JOIN student s ON w.std_id = s.std_id
+  LEFT OUTER JOIN related_to_course rtc ON p.post_id = rtc.post_id
+  LEFT OUTER JOIN course c ON rtc.course_id = c.course_id
+  LEFT OUTER JOIN related_to_major rtm ON p.post_id = rtm.post_id
+  LEFT OUTER JOIN major m ON rtm.major_id = m.major_id
+  WHERE p.post_id IN (${CurrentQuery})
+  UNION
+  SELECT DISTINCT s.Fname, s.Lname, p.post_date, p.content, p.post_id, c.course_name
+  FROM post p
+  INNER JOIN requests_to_write rtw ON p.post_id = rtw.post_id
+  INNER JOIN student s ON rtw.std_id = s.std_id
+  LEFT OUTER JOIN related_to_course rtc ON p.post_id = rtc.post_id
+  LEFT OUTER JOIN course c ON rtc.course_id = c.course_id
+  LEFT OUTER JOIN related_to_major rtm ON p.post_id = rtm.post_id
+  LEFT OUTER JOIN major m ON rtm.major_id = m.major_id
+  WHERE rtw.flagstatus = 1 AND p.post_id IN (${CurrentQuery});
+  `;
+  
+  try {
+    const result = await dbInstance.query(Query);
+    res.status(200).json({ success: true, message: 'Getting Posts By Course', result: result.rows});
+  } 
+  
+  catch (err) {
+    console.error('Error:', err.message);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
 }
-
-export const getPosts=(author="", major="", course="")=>
-{
-    CurrentQuery = "SELECT DISTINCT Fname, Lname, post_date, content, major_name, course_name ";
-    CurrentQuery += "FROM student, course, major, post";
-    CurrentQuery += "WHERE (student.std_id in (" + getPostAuthor(author) + ")) AND ";
-    CurrentQuery += "((course.course_id in (" + getPostCourse(course) +")) OR (major.major_id in (" + getPostMajor(major) + ")))";
-
-    db.query(CurrentQuery, (err,res)=>
-    {
-        err ? console.log(err.stack): ()=>
-        {
-            return (res);
-        }
-    });
-}
-
