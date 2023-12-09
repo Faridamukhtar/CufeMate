@@ -1,29 +1,26 @@
 import React from "react";
-import API from "../api.js";
 
-const getposts = async (author="", major="", course="", setPostsContent) =>
-{
-  console.log('ay 7aga');
-    try 
-    {
-        const response = await fetch(`${API}/getposts/`, {
-            method: "POST",
-            header:{},
-            body: {
-              "author": `${author}`,
-              "major": `${major}`,
-              "course": `${course}`
-            },
-          });
-        const data = await response.json();
-        console.log(data);
-        setPostsContent(data);
-        return (data);
-    }
-    catch (error)
-    {
-        console.log(error)
-    }
-}
+const getposts = async (author = "", major = "", course = "") => {
+  try {
+    const response = await fetch("http://localhost:8080/api/getPosts/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        author: author || "",
+        major: major || "",
+        course: course || "",
+      }),
+    });
+
+    const data = await response.json();
+    console.log("ay 7aga");
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export default getposts;

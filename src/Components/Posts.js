@@ -33,7 +33,7 @@ function Filters()
 
 function DisplayPosts(props)
 {
-    if (props.postArray.post_id>0)
+    if (props.postArray?.post_id>0)
     {
         const listItems = props.postArray.map((post) => <li><Post Major={post.major} Content={post.content} Course={post.course} FAuthor={post.Fname} LAuthor={post.Lname}/></li>);
         return listItems;
@@ -53,7 +53,14 @@ function PostSection(props)
     
     useEffect(()=>
     {
-        getposts('', 'CCE', '', setPostsContent);
+        const setPosts= async () =>
+        {
+            const data = await getposts('', 'CCE', '');
+            setPostsContent(data);
+        }
+
+        setPosts();
+
     },[]);
 
     return (

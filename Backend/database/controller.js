@@ -37,25 +37,29 @@ const getPostCourse = (course)=>
 }
 
 
-export const getPosts = async (req, res) => {
-  req.body = { author: 'Mohamed', major:'', course: ''};
-  
-  const { author, major, course } = req.body;
+export const getPosts = async (req, res) => { 
+  console.log('req body', req.body);
+  const author = req.body.author;
+  const major = req.body.major;
+  const course = req.body.course;
 
   let CurrentQuery= "SELECT DISTINCT post.post_id FROM post ";
 
   if (course!==undefined && course!=="")
   {
+    console.log('course:', course);
     CurrentQuery+= `INTERSECT ${getPostCourse(course)} `;
   }
 
   if (major!==undefined && major!=="")
   {
+    console.log('major:', major);
     CurrentQuery+= `INTERSECT ${getPostMajor(major)} `;
   }
 
   if (author!==undefined && author!=="")
   {
+    console.log('author:', author);
     CurrentQuery+= `INTERSECT ${getPostAuthor(author)} `;
   }
 
@@ -82,7 +86,7 @@ export const getPosts = async (req, res) => {
   
   try {
     const result = await dbInstance.query(Query);
-    res.status(200).json({ success: true, message: 'Getting Posts By Course', result: result.rows});
+    res.status(200).json({ success: true, message: 'Getting Posts', result: result});
   } 
   
   catch (err) {

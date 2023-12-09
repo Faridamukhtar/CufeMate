@@ -17,6 +17,6 @@ export const db = async () =>
       console.log('Connected to the database');
     }
   });
-
+  
   return client;  
 }
