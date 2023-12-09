@@ -10,14 +10,18 @@ const UpdatePassword =() => {
     const [Npass, setNpass] = useState('');
     const [conpass, setconpass] = useState('');
 
+    
+
     //To BE DONE BACKEND (UPDATE PASSWORD)
     const handleClick = () => {
         if (Npass !== conpass) {
           alert("New password and confirm password don't match.");
            return;
          }
-        
-
+        // If current pass equal el pass f3lan 
+        // Get current pass mn el api
+        // update pass api 
+ 
     };
 
 

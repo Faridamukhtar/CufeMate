@@ -2,8 +2,8 @@ import express from 'express';
 import posts from './routes/posts.js';
 import bodyParser from "body-parser";
 import cors from 'cors';
-
-import { Update_Pass } from './database/Settings.js';
+import { Update_Pass } from './database/UpdatePass.js';
+import {Pass_router} from "./database/GetCurrentpass.js"
 import { db } from './database/connection.js';
 
 const port = 8080;
@@ -26,7 +26,7 @@ app.use(
     await db(); // Call the db function to establish the database connection
     app.use('/', posts);
     app.use('/', Update_Pass);
-
+    app.use('/', Pass_router);
     
 
     app.listen(port, () => {
