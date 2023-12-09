@@ -3,7 +3,7 @@ import { db } from "./connection.js";
 import bodyParser from 'body-parser';
 
 const signup_router = express.Router();
-
+const dbInstance = await db();
 // Middleware to parse incoming requests
 signup_router.use(bodyParser.json());
 
@@ -14,7 +14,7 @@ signup_router.post('/api/signup/student', async (req, res) => {
   
     try {
       // Check if the username or email is already taken
-      const existingUser = await db.query('SELECT * FROM users WHERE email = $1', [Email]);
+      const existingUser = await dbInstance.query('SELECT * FROM users WHERE email = $1', [Email]);
   
       if (existingUser.rows.length > 0) {
         return res.status(400).json({ success: false, message: 'user already exists' });

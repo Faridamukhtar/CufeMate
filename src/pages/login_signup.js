@@ -10,7 +10,7 @@ const LoginSignup = () => {
         const majorsData = await response.json();
 
         const options = majorsData.map((major) => (
-          <option value={major.Major_ID}>{major.Major_Name}</option>
+          <option value={major.major_id}>{major.major_name}</option>
         ));
 
         setMajorOptions(options);

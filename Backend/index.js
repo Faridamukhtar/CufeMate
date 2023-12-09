@@ -1,24 +1,26 @@
-import express from "express";
+import express from 'express';
 import posts from './routes/posts.js';
-import {login_router} from "./database/login.js"
-import {signup_router} from "./database/signup.js"
-import {major_router} from "./database/majors.js"
+import { login_router } from './database/login.js';
+import { signup_router } from './database/signup.js';
+import { major_router } from './database/majors.js';
+import { db } from './database/connection.js';
 
 const port = 8080;
+const app = express();
 
-const app=express();
+// Use async/await to wait for the database connection before starting the server
+(async () => {
+  try {
+    await db(); // Call the db function to establish the database connection
+    app.use('/', posts);
+    app.use('/', signup_router);
+    app.use('/', login_router);
+    app.use('/', major_router);
 
-app.use('/', posts);
-
-// Use the signup routes for requests related to signup
-app.use('/', signup_router);
-
-// Use the login routes for requests related to login
-app.use('/', login_router);
-
-// Use the majors routes for requests related to majors
-app.use('/', major_router);
-  
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-  });
+    app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+    });
+  } catch (error) {
+    console.error('Failed to establish database connection:', error);
+  }
+})();
