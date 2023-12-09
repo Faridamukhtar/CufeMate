@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
-import StudentDashboard from './pages/StudentDashboard.js'
+import StudentDashboard from './pages/StudentDashboard.js';
+import StudentSetting from './pages/StudentSettings.js';
+
 
 function App() {
   return (
