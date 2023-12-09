@@ -16,8 +16,8 @@ const getposts = async (author = "", major = "", course = "") => {
 
     const data = await response.json();
     console.log("ay 7aga");
-    console.log(data);
-    return data;
+    console.log(data.result);
+    return data.result;
   } catch (error) {
     console.log(error);
   }

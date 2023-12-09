@@ -6,13 +6,29 @@ function Post(props)
 {
     return(
         <div className="Post">
-            <div className="Categories">
-                <h5 className="Major">
-                    {props.Major}
-                </h5>
-                <h5 className="Course">
-                    {props.Course}
-                </h5>           
+            <div className="PostHeader">
+                <div className="Title">
+                    <h2>
+                        {props.Course}
+                    </h2>                
+                </div>
+                <div className="Categories">
+                    <div className="Course">
+                        <h6>
+                            {props.Course}
+                        </h6> 
+                    </div>
+                    <div className="Author">
+                        <h6>
+                            {props.FAuthor} {props.LAuthor}
+                        </h6> 
+                    </div>
+                </div>
+            </div>
+            <div class='Content'>
+                <h5>
+                    {props.Content}
+                </h5>   
             </div>
         </div>
     );
@@ -33,9 +49,10 @@ function Filters()
 
 function DisplayPosts(props)
 {
-    if (props.postArray?.post_id>0)
+    if (props?.postArray[0]?.post_id>0)
     {
-        const listItems = props.postArray.map((post) => <li><Post Major={post.major} Content={post.content} Course={post.course} FAuthor={post.Fname} LAuthor={post.Lname}/></li>);
+        console.log('AAAAA');
+        const listItems = props.postArray.map((post) => <li><Post Major={post.major_id} Content={post.content} Course={post.course_name} FAuthor={post.fname} LAuthor={post.lname}/></li>);
         return listItems;
     }
     else
@@ -47,9 +64,9 @@ function DisplayPosts(props)
 
 
 //Fetch Posts
-function PostSection(props)
+function PostSection()
 {
-    const [postsContent, setPostsContent]=useState({fname:"",lname:"",post_date:"",content:"",post_id:0,course_name:""});
+    const [postsContent, setPostsContent]=useState([{fname:"",lname:"",post_date:"",content:"",post_id:0,course_name:""}]);
     
     useEffect(()=>
     {
