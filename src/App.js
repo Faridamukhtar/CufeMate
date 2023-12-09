@@ -3,11 +3,12 @@ import './App.css';
 import StudentDashboard from './pages/StudentDashboard.js';
 import StudentSetting from './pages/StudentSettings.js';
 
+
 function App() {
   return (
     <>
       <div className='App'>
-        <StudentSetting />
+        <StudentDashboard />
       </div>
       <div className='Mobile'>
         <h2>

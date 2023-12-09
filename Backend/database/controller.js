@@ -1,51 +1,89 @@
-import { db } from "./connection";
+import { db } from "./connection.js";
 
-const getPostMajor=(major)=>
+const dbInstance = await db();
+
+const getPostAuthor = (author) =>
 {
-    CurrentQuery="SELECT major_id FROM post, related_to_major, major WHERE related_to_major.major_id=major.major_id ";
-    CurrentQuery+="AND post.post_id=related_to_major.post_id";
-    if (major!=="")
-    {
-        CurrentQuery+=" AND major.major_name = " +  major;
-    }
+  if (author!=='')
+  {
+    let CurrentQuery=`AND ((strpos(Fname,'${author}')>0) OR (strpos(Lname,'${author}')>0)) `
+    return (CurrentQuery); 
+  }
+  else{
+    return ("");
+  }
+}
+
+const getPostMajor = (major)=>
+{
+  if (major!=='')
+  {
+    let CurrentQuery=`AND m.major_id = '${major}' ` 
     return (CurrentQuery);
+  }
+  else
+  {
+    return ("");
+  }
+
 }
 
 const getPostCourse = (course)=>
 {
-    CurrentQuery="SELECT course_id FROM post, related_to_course, course WHERE related_to_course.post_id = post.post_id AND";
-    CurrentQuery+="related_to_course.course_id= course.course_id";
-    if (course!=="")
-    {
-        CurrentQuery+=" AND course.course_name = " +  course;
-    }
+  if (course!=='')
+  {
+    let CurrentQuery=`AND c.course_name = '${course}' ` 
     return (CurrentQuery);
+  }
+  else
+  {
+    return ("");
+  }
 }
 
-const getPostAuthor = (author) =>
+const QueryWrites=(author, major, course)=>
 {
-    CurrentQuery="SELECT std_id FROM student, writes, requests_to_write WHERE (writes.std_id = student.std_id AND writes.post_id = post.post_id)";
-    CurrentQuery+="OR (requests_to_write.std_id = student.std_id AND requests_to_write.post_id = post.post_id AND requests_to_write.FlagStatus = 1) ";
-    if (author!=="")
-    {
-        CurrentQuery+="AND ((strpos(Fname," + author + ")>0) OR (strpos(Lname," + author + ")>0))";
-    }
-    return (CurrentQuery);
+  return(`SELECT DISTINCT s.Fname, s.Lname, p.post_date, p.content, p.post_id, c.course_name, m.major_id
+  FROM post p
+  INNER JOIN writes w ON p.post_id = w.post_id
+  INNER JOIN student s ON w.std_id = s.std_id
+  LEFT OUTER JOIN related_to_course rtc ON p.post_id = rtc.post_id
+  LEFT OUTER JOIN course c ON rtc.course_id = c.course_id
+  LEFT OUTER JOIN related_to_major rtm ON p.post_id = rtm.post_id
+  LEFT OUTER JOIN major m ON rtm.major_id = m.major_id
+  WHERE (p.post_id <> 0) ${getPostAuthor(author)} ${getPostMajor(major)} ${getPostCourse(course)}`);
 }
 
-export const getPosts=(author="", major="", course="")=>
+const QueryRequestsToWrite=(author, major, course)=>
 {
-    CurrentQuery = "SELECT DISTINCT Fname, Lname, post_date, content, major_name, course_name ";
-    CurrentQuery += "FROM student, course, major, post";
-    CurrentQuery += "WHERE (student.std_id in (" + getPostAuthor(author) + ")) AND ";
-    CurrentQuery += "((course.course_id in (" + getPostCourse(course) +")) OR (major.major_id in (" + getPostMajor(major) + ")))";
-
-    db.query(CurrentQuery, (err,res)=>
-    {
-        err ? console.log(err.stack): ()=>
-        {
-            return (res);
-        }
-    });
+  return (`
+  SELECT DISTINCT s.Fname, s.Lname, p.post_date, p.content, p.post_id, c.course_name, m.major_id
+  FROM post p
+  INNER JOIN requests_to_write rtw ON p.post_id = rtw.post_id
+  INNER JOIN student s ON rtw.std_id = s.std_id
+  LEFT OUTER JOIN related_to_course rtc ON p.post_id = rtc.post_id
+  LEFT OUTER JOIN course c ON rtc.course_id = c.course_id
+  LEFT OUTER JOIN related_to_major rtm ON p.post_id = rtm.post_id
+  LEFT OUTER JOIN major m ON rtm.major_id = m.major_id
+  WHERE (rtw.flagstatus=1) ${getPostAuthor(author)} ${getPostMajor(major)} ${getPostCourse(course)}`);
 }
 
+export const getPosts = async (req, res) => { 
+  //req.body = {author:"", major:"CCE", course:""};
+  console.log('req body', req.body);
+  const author = req.body.author;
+  const major = req.body.major;
+  const course = req.body.course;
+  let Query = `${QueryRequestsToWrite(author, major, course)}`;
+
+  console.log(Query);
+  try {
+    const result = await dbInstance.query(Query);
+    res.status(200).json({ success: true, message: 'Getting Posts', result: result.rows});
+  } 
+  
+  catch (err) {
+    console.error('Error:', err.message);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+}
