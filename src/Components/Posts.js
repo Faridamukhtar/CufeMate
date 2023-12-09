@@ -1,18 +1,34 @@
-import React, {} from "react";
+import React, {useState, useEffect} from "react";
 import './Posts.css';
-
+import getposts from "../hooks/getposts";
 
 function Post(props)
 {
     return(
         <div className="Post">
-            <div className="Categories">
-                <h5 className="Major">
-                    {props.Major}
-                </h5>
-                <h5 className="Course">
-                    {props.Course}
-                </h5>           
+            <div className="PostHeader">
+                <div className="Title">
+                    <h2>
+                        {props.Course}
+                    </h2>                
+                </div>
+                <div className="Categories">
+                    <div className="Course">
+                        <h6>
+                            {props.Course}
+                        </h6> 
+                    </div>
+                    <div className="Author">
+                        <h6>
+                            {props.FAuthor} {props.LAuthor}
+                        </h6> 
+                    </div>
+                </div>
+            </div>
+            <div class='Content'>
+                <h5>
+                    {props.Content}
+                </h5>   
             </div>
         </div>
     );
@@ -30,10 +46,40 @@ function Filters()
 
 }
 
-//Fetch Posts
-function Posts(props)
+
+function DisplayPosts(props)
 {
+    if (props?.postArray[0]?.post_id>0)
+    {
+        console.log('AAAAA');
+        const listItems = props.postArray.map((post) => <li><Post Major={post.major_id} Content={post.content} Course={post.course_name} FAuthor={post.fname} LAuthor={post.lname}/></li>);
+        return listItems;
+    }
+    else
+    {
+        return " ";
+    }
+
+}
+
+
+//Fetch Posts
+function PostSection()
+{
+    const [postsContent, setPostsContent]=useState([{fname:"",lname:"",post_date:"",content:"",post_id:0,course_name:""}]);
     
+    useEffect(()=>
+    {
+        const setPosts= async () =>
+        {
+            const data = await getposts('', 'CCE', '');
+            setPostsContent(data);
+        }
+
+        setPosts();
+
+    },[]);
+
     return (
         <div className="PostsWrapper">
             <div className="LatestPostsTitle">
@@ -46,11 +92,11 @@ function Posts(props)
 
             </div>
             <div className="Posts">
-
+                <ul><DisplayPosts postArray={postsContent}/></ul>
             </div>
         </div>
     );
 }
 
 
-export default Posts;
+export default PostSection;
