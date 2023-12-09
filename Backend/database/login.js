@@ -8,11 +8,11 @@ const dbInstance = await db();
 login_router.use(bodyParser.json());
 
 // Login API
-login_router.get('/api/login/student/:email/:password', async (req, res) => {
-  const { email, password } = req.params;
+login_router.get('/api/login/student', async (req, res) => {
+  const {email, password} = req.body;
 
   try {
-    const result = await dbInstance.query('SELECT * FROM Students WHERE email = $1 AND password = $2', [email, password]);
+    const result = await dbInstance.query('SELECT * FROM Student WHERE email = $1 AND passw = $2', [email, password]);
 
     if (result.rows.length === 1) {
       res.json({ success: true, message: 'Login successful' });
@@ -25,5 +25,21 @@ login_router.get('/api/login/student/:email/:password', async (req, res) => {
   }
 });
 
-
 export { login_router };
+
+/* login_router.get('/api/login/student/:email/:password', async (req, res) => {
+  const { email, password } = req.params;
+
+  try {
+    const result = await dbInstance.query('SELECT * FROM Student WHERE email = $1 AND passw = $2', [email, password]);
+
+    if (result.rows.length === 1) {
+      res.json({ success: true, message: 'Login successful' });
+    } else {
+      res.status(401).json({ success: false, message: 'Invalid username or password' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, error: 'Internal Server Error' });
+  }
+}); */
