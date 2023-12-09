@@ -6,13 +6,11 @@ const LoginSignup = () => {
   useEffect(() => {
     const fetchMajors = async () => {
       try {
-        const response = await fetch('/api/majors'); 
+        const response = await fetch('http://localhost:8080/api/majors'); 
         const majorsData = await response.json();
-
+        console.log(majorsData);
         const options = majorsData.map((major) => (
-          <option value={major.major_id}>{major.major_name}</option>
-        ));
-
+        <option value={major.major_id}>{major.major_name}</option>));
         setMajorOptions(options);
       } catch (error) {
         console.error('Error fetching majors:', error);
@@ -37,11 +35,13 @@ const LoginSignup = () => {
 
   const [majorOptions, setMajorOptions] = useState([]);
 
-  const handleLogin = async () => {
-    //calling the get fn in login route
-        try {
-          // Make a GET request to login API endpoint
-          const response = await fetch('/api/login/student'); 
+  const handleLogin = async (email, password) => {
+    try {
+      // Construct the URL with actual values for email and password
+      const url = `http://localhost:8080/api/login/student/${encodeURIComponent(email)}/${encodeURIComponent(password)}`;
+  
+      // Make a GET request to the constructed URL
+          const response = await fetch(url); 
           const result = await response.json();
           // Handle the login result as needed
           console.log(result);
@@ -52,20 +52,21 @@ const LoginSignup = () => {
         console.log("Login clicked");
   };
 
-  const handleSignup = async () => {
-    //calling the get fn in signup route
+  const handleSignup = async (std_id, fname, lname, email, passw, major_id, studentClass) => {
+    // calling the get fn in signup route
     try {
-        // Make a GET request to login API endpoint
-        const response = await fetch('/api/signup/student'); 
-        const result = await response.json();
-        // Handle the login result as needed
-        console.log(result);
-      } 
-      catch (error) {
-        console.error('Error during login:', error);
-      }
+      const url = `http://localhost:8080/api/signup/student/${encodeURIComponent(std_id)}/${encodeURIComponent(fname)}/${encodeURIComponent(lname)}/${encodeURIComponent(email)}/${encodeURIComponent(passw)}/${encodeURIComponent(major_id)}/${encodeURIComponent(studentClass)}`;
+      // Make a GET request to the signup API endpoint
+      const response = await fetch(url);
+      const result = await response.json();
+      // Handle the signup result as needed
+      console.log(result);
+    } catch (error) {
+      console.error('Error during signup:', error);
+    }
     console.log("Signup clicked");
   };
+  
 
   return (
     <div className="login_signup">
@@ -92,7 +93,7 @@ const LoginSignup = () => {
             value={loginPassword}
             onChange={(e) => setLoginPassword(e.target.value)}
           />
-          <button onClick={handleLogin}>Login</button>
+          <button onClick={() => handleLogin(loginEmail, loginPassword)}>Login</button>
         </div>
       </div>
       <div className="right">
@@ -146,7 +147,7 @@ const LoginSignup = () => {
           <option value="Class 2024">2024</option>
           {/*Classes to be updated annually*/}
         </select>
-        <button onClick={handleSignup}>Signup</button>
+        <button onClick={() => handleSignup(signupStudentId, signupFirstName, signupLastName, signupEmail, signupPassword, signupMajor, signupClass)}>Signup</button>
       </div>
       </div>
       </div>

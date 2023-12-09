@@ -4,10 +4,19 @@ import { login_router } from './database/login.js';
 import { signup_router } from './database/signup.js';
 import { major_router } from './database/majors.js';
 import { db } from './database/connection.js';
+import cors from 'cors';
+import bodyParser from "body-parser";
 
 const port = 8080;
 const app = express();
-
+app.use(cors({
+  origin: 'http://localhost:3000'
+}));
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
+  }),
+);
 // Use async/await to wait for the database connection before starting the server
 (async () => {
   try {

@@ -8,7 +8,7 @@ const dbInstance = await db();
 login_router.use(bodyParser.json());
 
 // Login API
-login_router.get('/api/login/student', async (req, res) => {
+/*login_router.get('/api/login/student', async (req, res) => {
   const {email, password} = req.body;
 
   try {
@@ -23,11 +23,8 @@ login_router.get('/api/login/student', async (req, res) => {
     console.error(error);
     res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
-});
-
-export { login_router };
-
-/* login_router.get('/api/login/student/:email/:password', async (req, res) => {
+});*/
+login_router.get('/api/login/student/:email/:password', async (req, res) => {
   const { email, password } = req.params;
 
   try {
@@ -42,4 +39,6 @@ export { login_router };
     console.error(error);
     res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
-}); */
+});
+export { login_router };
+
