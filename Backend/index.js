@@ -3,6 +3,7 @@ import posts from './routes/posts.js';
 import bodyParser from "body-parser";
 import cors from 'cors';
 import { Update_Pass } from './database/UpdatePass.js';
+import { Delete_acc } from './database/DeleteAcc.js';
 import {Pass_router} from "./database/GetCurrentpass.js"
 import { db } from './database/connection.js';
 
@@ -27,7 +28,7 @@ app.use(
     app.use('/', posts);
     app.use('/', Update_Pass);
     app.use('/', Pass_router);
-    
+    app.use ("/", Delete_acc)
 
     app.listen(port, () => {
       console.log(`Server is running on port ${port}`);
