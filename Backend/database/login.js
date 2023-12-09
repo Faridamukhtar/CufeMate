@@ -1,30 +1,18 @@
-const express = require('express');
-const { Pool } = require('pg');
-const bodyParser = require('body-parser');
+import { db } from "./connection.js";
+import express from "express";
+import bodyParser from 'body-parser';
 
-const router = express.Router();
-
-// Configure the CockroachDB connection (adjust the connection string accordingly)
-const pool = new Pool({
-  user: 'your_username',
-  host: 'your_hostname',
-  database: 'your_database',
-  password: 'your_password',
-  port: 26257,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
+const login_router = express.Router();
 
 // Middleware to parse incoming requests
-router.use(bodyParser.json());
+login_router.use(bodyParser.json());
 
 // Login API
-router.get('/api/login', async (req, res) => {
+login_router.get('/api/login/student', async (req, res) => {
   const {email, password} = req.body;
 
   try {
-    const result = await pool.query('SELECT * FROM Students WHERE email = $1 AND password = $2', [email, password]);
+    const result = await db.query('SELECT * FROM Students WHERE email = $1 AND password = $2', [email, password]);
 
     if (result.rows.length === 1) {
       res.json({ success: true, message: 'Login successful' });
@@ -37,4 +25,4 @@ router.get('/api/login', async (req, res) => {
   }
 });
 
-module.exports = router;
+export { login_router };

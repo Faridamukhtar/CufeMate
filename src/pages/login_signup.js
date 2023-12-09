@@ -41,7 +41,7 @@ const LoginSignup = () => {
     //calling the get fn in login route
         try {
           // Make a GET request to login API endpoint
-          const response = await fetch('/api/login'); 
+          const response = await fetch('/api/login/student'); 
           const result = await response.json();
           // Handle the login result as needed
           console.log(result);
@@ -56,7 +56,7 @@ const LoginSignup = () => {
     //calling the get fn in signup route
     try {
         // Make a GET request to login API endpoint
-        const response = await fetch('/api/signup'); 
+        const response = await fetch('/api/signup/student'); 
         const result = await response.json();
         // Handle the login result as needed
         console.log(result);
@@ -69,26 +69,34 @@ const LoginSignup = () => {
 
   return (
     <div className="login_signup">
-        <title>Hi Handasa!</title>
-        <title>Welcome to CufeMate</title>
-      <div className="login">
-        <h2>Login</h2>
-        <input
-          type="email"
-          placeholder="Email"
-          value={loginEmail}
-          onChange={(e) => setLoginEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={loginPassword}
-          onChange={(e) => setLoginPassword(e.target.value)}
-        />
-        <button onClick={handleLogin}>Login</button>
+        <div className="welcome">
+        Hi Handasa!<br/>
+        Welcome to CufeMate Student Window
+        </div>
+        <div className="components">
+        <div className="left">
+          <div className="switch_buttons">
+            <button>Student</button>
+            <button>Student Club</button>
+          </div> 
+          <div className="login">
+          <input
+            type="email"
+            placeholder="Email"
+            value={loginEmail}
+            onChange={(e) => setLoginEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={loginPassword}
+            onChange={(e) => setLoginPassword(e.target.value)}
+          />
+          <button onClick={handleLogin}>Login</button>
+        </div>
       </div>
+      <div className="right">
       <div className="signup">
-        <h2>Signup</h2>
         <input
           type="text"
           placeholder="First Name"
@@ -139,6 +147,8 @@ const LoginSignup = () => {
           {/*Classes to be updated annually*/}
         </select>
         <button onClick={handleSignup}>Signup</button>
+      </div>
+      </div>
       </div>
     </div>
   );

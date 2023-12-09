@@ -1,24 +1,13 @@
-const express = require('express');
-const { Pool } = require('pg');
+import express from "express";
+import { db } from "./connection.js";
 
-const router = express.Router();
+const major_router = express.Router();
 
-// Configure the CockroachDB connection (adjust the connection string accordingly)
-const pool = new Pool({
-  user: 'your_username',
-  host: 'your_hostname',
-  database: 'your_database',
-  password: 'your_password',
-  port: 26257,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
 
 // Get majors from the database
-router.get('/api/majors', async (req, res) => {
+major_router.get('/api/majors', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM majors');
+    const result = await db.query('SELECT * FROM majors');
     res.json(result.rows);
   } catch (error) {
     console.error(error);
@@ -26,4 +15,4 @@ router.get('/api/majors', async (req, res) => {
   }
 });
 
-module.exports = router;
+export { major_router };
