@@ -1,8 +1,13 @@
-import React,{} from "react";
+import React,{useState} from "react";
 import './WriteComplaint.css';
+import ComplaintTitleText from "./ComplaintTitleText.js";
+import ComplaintInputText from "./ComplaintInputText.js";
 
 function WriteComplaint(props)
+
 {
+    const [Tittle, setTitle] = useState('');
+    const [Conttent, setContent] = useState('');
     return (
   <div>
      <div className ="Title">
@@ -13,13 +18,11 @@ function WriteComplaint(props)
 
      <div className = "ComplaintBox">
             <div>
-                <h3 className="ComplaintTitle">
-                    Add Title:
-                </h3>
-            </div>
+                <ComplaintTitleText placeholderText=" Add title" setInputValue={setTitle} inputValue={Tittle} />
+            </div>  
             <hr className="UpperLine"/>
-            <div className ="ComplaintContent">   
-
+            <div>   
+                <ComplaintInputText placeholderText=" Add content" setInputValue={setContent} inputValue={Conttent} />
             </div>    
             <hr className= "LowerLine"/>
             <div className="CharacterCount">

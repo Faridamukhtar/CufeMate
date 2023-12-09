@@ -28,8 +28,8 @@ function StudentHeader()
 function ComplaintHeader()
 {
     return (
-        <div>
-            <div className="StudentHeader">
+        <div className="StudentHeader">
+            <div className="greeting">
                 <h1>
                     Complaints
                 </h1>
