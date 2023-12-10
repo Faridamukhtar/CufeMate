@@ -52,17 +52,57 @@ const LoginSignup = () => {
         console.log("Login clicked");
   };
 
-  const handleSignup = async (std_id, fname, lname, email, passw, major_id, studentClass) => {
-    // calling the get fn in signup route
+  /*const handleSignup = async (std_id, fname, lname, email, passw, major_id, studentClass) => {
+    // calling the post fn in signup route
     try {
+      //has to be get request
       const url = `http://localhost:8080/api/signup/student/${encodeURIComponent(std_id)}/${encodeURIComponent(fname)}/${encodeURIComponent(lname)}/${encodeURIComponent(email)}/${encodeURIComponent(passw)}/${encodeURIComponent(major_id)}/${encodeURIComponent(studentClass)}`;
-      // Make a GET request to the signup API endpoint
       const response = await fetch(url);
       const result = await response.json();
       // Handle the signup result as needed
       console.log(result);
     } catch (error) {
       console.error('Error during signup:', error);
+    }
+    console.log("Signup clicked");
+  };*/
+
+  const handleSignup = async (std_id, fname, lname, email, major_id, password, studentClass) => {
+    try {
+      const url = 'http://localhost:8080/api/signup/student';
+      const data = {
+        Fname: fname,
+        Lname: lname,
+        Std_ID: std_id,
+        Email: email,
+        Passw: password,
+        Major_ID: major_id,
+        studentC: studentClass,
+      };
+  
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+  
+      if (!response.ok) {
+        // Handle non-successful response
+        const errorResponse = await response.json();
+        console.error('Error during signup:', errorResponse);
+        // You might want to show a user-friendly error message here
+        return;
+      }
+  
+      const result = await response.json();
+      // Handle the signup result as needed
+      console.log(result);
+    } catch (error) {
+      console.error('Error during signup:', error);
+      // Handle unexpected client-side errors
+      // You might want to show a user-friendly error message here
     }
     console.log("Signup clicked");
   };
@@ -140,14 +180,14 @@ const LoginSignup = () => {
           onChange={(e) => setSignupClass(e.target.value)}
         >
           <option value="" disabled>Select Class</option>
-          <option value="Class 2028">2028</option>
-          <option value="Class 2027">2027</option>
-          <option value="Class 2026">2026</option>
-          <option value="Class 2025">2025</option>
-          <option value="Class 2024">2024</option>
+          <option value="2028">Class 2028</option>
+          <option value="2027">Class 2027</option>
+          <option value="2026">Class 2026</option>
+          <option value="2025">Class 2025</option>
+          <option value="2024">Class 2024</option>
           {/*Classes to be updated annually*/}
         </select>
-        <button onClick={() => handleSignup(signupStudentId, signupFirstName, signupLastName, signupEmail, signupPassword, signupMajor, signupClass)}>Signup</button>
+        <button onClick={() => handleSignup(signupStudentId, signupFirstName, signupLastName, signupEmail,  signupMajor, signupPassword,signupClass)}>Signup</button>
       </div>
       </div>
       </div>
