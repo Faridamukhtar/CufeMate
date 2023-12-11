@@ -10,7 +10,7 @@ const dbInstance = await db();
 Update_Pass.use(bodyParser.json());
 
 // Update_pass API
-Update_Pass.get('/api/UpdatePassword/', async (req, res) => {
+/*Update_Pass.get('/api/UpdatePassword/', async (req, res) => {
     const { email, newPassword } = req.body;
 
     try {
@@ -26,9 +26,9 @@ Update_Pass.get('/api/UpdatePassword/', async (req, res) => {
         res.status(500).json({ success: false, error: 'Internal Server Error' });
       }
   
-});
+});*/
 
-/*Update_Pass.get('/api/UpdatePassword/', async (req, res) => {
+Update_Pass.get('/api/UpdatePassword/', async (req, res) => {
     const { email, password: newPassword } = req.query;
     
     console.log('Updating password for email:', email, 'with new password:', newPassword);
@@ -37,7 +37,7 @@ Update_Pass.get('/api/UpdatePassword/', async (req, res) => {
         const result = await dbInstance.query('UPDATE student SET passw = $1 WHERE email = $2', [newPassword, email]);
         console.log('Query result:', result);
 
-        if (result.rowCount > 0) {
+       if (result.rowCount > 0) {
             res.json({ success: true, message: 'Password updated successfully' });
         } else {
             res.status(404).json({ success: false, message: 'User not found or password not updated' });
@@ -47,7 +47,7 @@ Update_Pass.get('/api/UpdatePassword/', async (req, res) => {
         res.status(500).json({ success: false, error: 'Internal Server Error' });
     }
 
-});*/
+});
 
 
 

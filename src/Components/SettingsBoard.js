@@ -10,25 +10,49 @@ const UpdatePassword =() => {
     const [conpass, setconpass] = useState('');
     const [currentPassFromApi, setCurrentPassFromApi] = useState('');
 
-  useEffect(() => {
-    const fetchPass = async () => {
+    const FetchPass = async (email) => {
       try {
+         // Construct the URL with actual values for email and newPassword
+         const url = `http://localhost:8080/api/Getpass/?email=${email}`;
+         console.log(url);
         //TO BE REMOVEDDDD
-        const response = await fetch('http://localhost:8080/api/Getpass?email=marmar@gmail.com');
-        //const response = await fetch('http://localhost:8080/api/GetPass?${encodeURIComponent(email)}');
+        // url = 'http://localhost:8080/api/Getpass?email=marmar@gmail.com';
+       // console.log(url);
+
+        //TO BE INSERTED
+       const response = await fetch(url);
         const data = await response.json();
         const currentPass = data.length > 0 ? data[0].passw : '';
-        console.log(currentPass);
         setCurrentPassFromApi(currentPass);
       } catch (error) {
         console.error('Error fetching Password:', error);
       }
     };
 
-    fetchPass();
-  }, []); 
     
+//UPDATING PASSWORD:-
+const handlePasswordUpdate = async (email, newPassword) => {
+    try {
+        
+      // Construct the URL with actual values for email and newPassword
+        const url = `http://localhost:8080/api/UpdatePassword/?email=${email}&password=${newPassword}`;
+  
+      // Make a GET request to the constructed URL
+      const response = await fetch(url);
+      const result = await response.json();
+  
+      // Handle the password update result as needed
+      console.log(result);
+    } catch (error) {
+      console.error('Error during password update:', error);
+    }
+  };
+  
+
+
     const handleClick = () => {
+
+        FetchPass('marmar@gmail.com')
         if (Npass !== conpass) {
           alert("New password and confirm password don't match.");
            return;
@@ -45,7 +69,8 @@ const UpdatePassword =() => {
         // update pass api 
         else 
         {
-
+            //GET EMAIL BGD BA
+            handlePasswordUpdate('marmar@gmail.com', Npass);
         }
 
  
