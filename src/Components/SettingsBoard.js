@@ -1,26 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect  } from 'react';
 import ChooseHeader from "./Header.js";
 import './SettingsBoard.css';
 import TextInput from './TextInput';
 
-
-
 const UpdatePassword =() => {
+    //CURRENT PASS , NEW AND CONFIRM PASS STATES + SAVING RETURNING FROM API
     const [Cpass, setCpass] = useState('');
     const [Npass, setNpass] = useState('');
     const [conpass, setconpass] = useState('');
+    const [currentPassFromApi, setCurrentPassFromApi] = useState('');
 
+  useEffect(() => {
+    const fetchPass = async () => {
+      try {
+        //TO BE REMOVEDDDD
+        const response = await fetch('http://localhost:8080/api/Getpass?email=marmar@gmail.com');
+        //const response = await fetch('http://localhost:8080/api/GetPass?${encodeURIComponent(email)}');
+        const data = await response.json();
+        const currentPass = data.length > 0 ? data[0].passw : '';
+        console.log(currentPass);
+        setCurrentPassFromApi(currentPass);
+      } catch (error) {
+        console.error('Error fetching Password:', error);
+      }
+    };
+
+    fetchPass();
+  }, []); 
     
-
-    //To BE DONE BACKEND (UPDATE PASSWORD)
     const handleClick = () => {
         if (Npass !== conpass) {
           alert("New password and confirm password don't match.");
            return;
          }
+
         // If current pass equal el pass f3lan 
         // Get current pass mn el api
+        if (Cpass !== currentPassFromApi) {
+            console.log("pass el api",currentPassFromApi);
+            console.log("pass el written", Cpass)
+            alert("Current password is incorrect.");
+            return;
+          }
         // update pass api 
+        else 
+        {
+
+        }
+
  
     };
 
@@ -37,6 +64,13 @@ const UpdatePassword =() => {
         );
 }
 
+function AccDelete () { 
+    return (
+        <div>
+        Your account has been deleted
+        </div>
+    );
+}
 
 
 //Student Settings 
@@ -59,9 +93,10 @@ function StudentBody(props)
             );
 
         case 'Button2':
-            //Return back to sign up page
-            return <div>Your account has been deleted</div>;
-
+            return (
+                <AccDelete/>
+            );
+        
         default:
             return null;
         }
