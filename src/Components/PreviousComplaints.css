@@ -17,6 +17,8 @@
 
 .ComplaintRect
 {
+    display:flex;
+    flex-direction: row;
     width: 1060px;
     height: 127px;
     flex-shrink: 0;
@@ -48,6 +50,9 @@
     flex-shrink: 0;
     border-radius: 4px;
     background: rgba(223, 168, 116, 0.20);
+    margin-left:10px;
+    margin-top:10px;
+    margin-bottom:10px;
 }
 
 .PendingText
@@ -61,6 +66,8 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    text-align: center;
+   
 }
 
 .ReadRect
@@ -70,6 +77,9 @@
     flex-shrink: 0;
     border-radius: 4px;
     background: rgba(109, 221, 143, 0.2);
+    margin-left:10px;
+    margin-top:10px;
+    margin-bottom:10px;
 }
 
 .ReadText
@@ -83,7 +93,17 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    text-align: center;
+    
 }
+
+.DateRect
+{
+    width: 80.253px;
+    height: 18.175px;
+    flex:1;
+}
+
 
 .Date
 {

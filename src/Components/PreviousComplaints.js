@@ -29,19 +29,28 @@ const getComplaints = async (title="",complaint_date="", stat=0) =>
 
 function Complaint(props)
 {
+  const ChooseBoxColor= props.stat===0? 'PendingRect':'ReadRect';
+  const ChooseBoxTextColor=props.stat===0? 'PendingText':'ReadText';
+  const StatusText=props.stat===0? 'Pending':'Read';
    return(
         <div className="ComplaintRect">
-            <div className="PendingRect">
-               <div>
-                {props.stat} 
+            <div className={ChooseBoxColor}>
+              <div>
+               <h3 className={ChooseBoxTextColor}>
+                {StatusText}
+               </h3>
                </div>
-               <div className="Date">
+            <div>
+            <div className="DateRect">
+              <h4 className="Date">
                 {props.date}
-               </div>
-               <div>
+              </h4>
+            </div>
+            <div>
                     <h5 className="ComplaintTitle">
                          {props.title}
                    </h5>
+            </div>
                </div>
            </div>
        </div>
