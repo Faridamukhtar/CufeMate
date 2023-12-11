@@ -1,6 +1,8 @@
 import React from "react";
 import './Header.css';
 
+const studentData = {fname:"Ahmed", lname:"Mohamed", major_id:'CCE', std_id:1, class:'2026'}; //get logged in student data
+
 function StudentHeader()
 {
     return (
@@ -15,10 +17,10 @@ function StudentHeader()
             </div>
             <div className="Info">
                 <h4 className='StudentName'>
-                    Name
+                    {studentData.fname} {studentData.lname}
                 </h4>
                 <h4>
-                    Class of XXXX
+                    Class of {studentData.class}
                 </h4>
             </div>
         </div>
