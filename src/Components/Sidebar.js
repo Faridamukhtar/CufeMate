@@ -1,6 +1,8 @@
 import React from "react";
 import './Sidebar.css';
 import { HomeSVG, StudentClubsSVG, FileAComplaintSVG,RepsContactsSVG, SettingsSVG  } from "../svg/SvgFiles"; 
+import { Link } from 'react-router-dom';
+
 
 
 //Renders Student Sidebar content
@@ -8,6 +10,7 @@ function StudentSidebar()
 {
     return(
         <div className='options'>
+            <Link to="/">
             <div className="SidebarOption" id="Home">
                 <div className="SidebarIcon">
                     <HomeSVG/>
@@ -18,6 +21,7 @@ function StudentSidebar()
                     </h5>
                 </div>
             </div>
+            </Link>
             <div className="SidebarOption" id="StudentClubs">
             <div className="SidebarIcon">
                     <StudentClubsSVG/>
@@ -48,6 +52,7 @@ function StudentSidebar()
                         </h5>
                     </div>
                 </div>
+            <Link to="/Settings">
             <div className="SidebarOption" id="Settings">
             <div className="SidebarIcon">
                     <SettingsSVG/>
@@ -58,6 +63,7 @@ function StudentSidebar()
                     </h5>
                 </div>
             </div>
+            </Link>
         </div>
     );
 }

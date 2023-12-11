@@ -1,13 +1,13 @@
 import React from "react";
 import ChooseHeader from "./Header.js";
 import './Dashboard.css';
-import Posts from './Posts';
+import PostSection from './Posts.js';
 
 function StudentBody(props)
 {
     return (
         <div className='StudentBody'>
-            <Posts DashboardType={props.DashboardType}/>
+            <PostSection DashboardType={props.DashboardType}/>
        </div>
     );
 }

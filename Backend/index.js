@@ -1,3 +1,4 @@
+
 import express from 'express';
 import posts from './routes/posts.js';
 import { login_router } from './database/login.js';
@@ -21,7 +22,7 @@ app.use(
 (async () => {
   try {
     await db(); // Call the db function to establish the database connection
-    app.use('/', posts);
+   app.use('/api/', posts);
     app.use('/', signup_router);
     app.use('/', login_router);
     app.use('/', major_router);

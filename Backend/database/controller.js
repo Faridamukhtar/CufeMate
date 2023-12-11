@@ -4,62 +4,46 @@ const dbInstance = await db();
 
 const getPostAuthor = (author) =>
 {
-  let CurrentQuery=`SELECT DISTINCT post.post_id
-  FROM post, student, requests_to_write
-  WHERE (requests_to_write.std_id = student.std_id AND requests_to_write.post_id = post.post_id AND requests_to_write.flagstatus = 1 AND (strpos(Fname,'${author}')>0 OR strpos(Lname,'${author}')>0)) 
-  UNION
-  SELECT DISTINCT post.post_id
-  FROM post, student, writes
-  WHERE (writes.std_id = student.std_id AND writes.post_id = post.post_id AND (strpos(Fname,'${author}')>0 OR strpos(Lname,'${author}')>0))` 
-  
-  return (CurrentQuery);
+  if (author!=='')
+  {
+    let CurrentQuery=`AND ((strpos(Fname,'${author}')>0) OR (strpos(Lname,'${author}')>0)) `
+    return (CurrentQuery); 
+  }
+  else{
+    return ("");
+  }
 }
 
-const getPostMajor=(major)=>
+const getPostMajor = (major)=>
 {
-  let CurrentQuery=`SELECT DISTINCT post.post_id
-  FROM post, related_to_major, major
-  WHERE related_to_major.post_id = post.post_id AND related_to_major.major_id= major.major_id 
-  AND major.major_name = '${major}'` 
-  
-  return (CurrentQuery);
+  if (major!=='')
+  {
+    let CurrentQuery=`AND m.major_id = '${major}' ` 
+    return (CurrentQuery);
+  }
+  else
+  {
+    return ("");
+  }
 
 }
 
 const getPostCourse = (course)=>
 {
-  let CurrentQuery=`SELECT DISTINCT post.post_id
-  FROM post, related_to_course, course
-  WHERE related_to_course.post_id = post.post_id AND related_to_course.course_id= course.course_id 
-  AND course.course_name = '${course}'` 
-  
-  return (CurrentQuery);
+  if (course!=='')
+  {
+    let CurrentQuery=`AND c.course_name = '${course}' ` 
+    return (CurrentQuery);
+  }
+  else
+  {
+    return ("");
+  }
 }
 
-
-export const getPosts = async (req, res) => {
-  req.body = { author: 'Mohamed', major:'', course: ''};
-  
-  const { author, major, course } = req.body;
-
-  let CurrentQuery= "SELECT DISTINCT post.post_id FROM post ";
-
-  if (course!==undefined && course!=="")
-  {
-    CurrentQuery+= `INTERSECT ${getPostCourse(course)} `;
-  }
-
-  if (major!==undefined && major!=="")
-  {
-    CurrentQuery+= `INTERSECT ${getPostMajor(major)} `;
-  }
-
-  if (author!==undefined && author!=="")
-  {
-    CurrentQuery+= `INTERSECT ${getPostAuthor(author)} `;
-  }
-
-  let Query= `SELECT DISTINCT s.Fname, s.Lname, p.post_date, p.content, p.post_id, c.course_name
+const QueryWrites=(author, major, course)=>
+{
+  return(`SELECT DISTINCT s.Fname, s.Lname, p.post_date, p.content, p.post_id, c.course_name, m.major_id
   FROM post p
   INNER JOIN writes w ON p.post_id = w.post_id
   INNER JOIN student s ON w.std_id = s.std_id
@@ -67,9 +51,13 @@ export const getPosts = async (req, res) => {
   LEFT OUTER JOIN course c ON rtc.course_id = c.course_id
   LEFT OUTER JOIN related_to_major rtm ON p.post_id = rtm.post_id
   LEFT OUTER JOIN major m ON rtm.major_id = m.major_id
-  WHERE p.post_id IN (${CurrentQuery})
-  UNION
-  SELECT DISTINCT s.Fname, s.Lname, p.post_date, p.content, p.post_id, c.course_name
+  WHERE (p.post_id <> 0) ${getPostAuthor(author)} ${getPostMajor(major)} ${getPostCourse(course)}`);
+}
+
+const QueryRequestsToWrite=(author, major, course)=>
+{
+  return (`
+  SELECT DISTINCT s.Fname, s.Lname, p.post_date, p.content, p.post_id, c.course_name, m.major_id
   FROM post p
   INNER JOIN requests_to_write rtw ON p.post_id = rtw.post_id
   INNER JOIN student s ON rtw.std_id = s.std_id
@@ -77,12 +65,21 @@ export const getPosts = async (req, res) => {
   LEFT OUTER JOIN course c ON rtc.course_id = c.course_id
   LEFT OUTER JOIN related_to_major rtm ON p.post_id = rtm.post_id
   LEFT OUTER JOIN major m ON rtm.major_id = m.major_id
-  WHERE rtw.flagstatus = 1 AND p.post_id IN (${CurrentQuery});
-  `;
-  
+  WHERE (rtw.flagstatus=1) ${getPostAuthor(author)} ${getPostMajor(major)} ${getPostCourse(course)}`);
+}
+
+export const getPosts = async (req, res) => { 
+  //req.body = {author:"", major:"CCE", course:""};
+  console.log('req body', req.body);
+  const author = req.body.author;
+  const major = req.body.major;
+  const course = req.body.course;
+  let Query = `${QueryRequestsToWrite(author, major, course)}`;
+
+  console.log(Query);
   try {
     const result = await dbInstance.query(Query);
-    res.status(200).json({ success: true, message: 'Getting Posts By Course', result: result.rows});
+    res.status(200).json({ success: true, message: 'Getting Posts', result: result.rows});
   } 
   
   catch (err) {

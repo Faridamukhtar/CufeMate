@@ -1,0 +1,21 @@
+
+
+.SubTitle
+{
+    color: #0D062D;
+    padding: 10px;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.TextBox
+{
+    border-radius: 8px;
+    border: 2px solid #E7E7E9;
+    background: #FFF;
+    width: 70%;
+    padding: 10px;
+}

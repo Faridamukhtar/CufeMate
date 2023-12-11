@@ -2,11 +2,17 @@
 {
     border-radius: 16px;
     border: 1px solid #FFF;
-    background: #FFF;
+    background: #ffffffad;
     padding: 3%;
     box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.10);
     width: 95%;
     min-height: 100vh;
+}
+
+
+.LineUnderPost
+{
+    border-color: #5030E5;
 }
 
 .Post
@@ -14,15 +20,55 @@
     border-radius: 16px;
     border: 1px solid #AD9EF4;
     background: #FFF;
+    padding: 3%;
 }
 
-.postHR
+.Posts ul
 {
-    border-color: #5030E5;
+    list-style-type: none;
+    padding:0;
 }
 
 .LatestPostsTitle
 {
     color: #0D062D;
     padding-bottom: 20px;
+}
+
+.PostHeader
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Categories
+{
+    width:20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Course h6{
+    background-color: rgba(81, 48, 229, 0.12);
+    padding: 8px;
+    margin: 3%;
+    border-radius: 30px;
+    color: rgba(81, 48, 229, 1);
+    width:max-content
+}
+
+.Author h6{
+    background-color: rgba(199, 48, 229, 0.12);
+    padding: 8px;
+    border-radius: 30px;
+    color: rgb(229, 48, 178);
+    width:max-content
+}
+
+.Content
+{
+    margin-top: 5px;
 }
