@@ -3,7 +3,7 @@ import "./PreviousComplaints.css";
 
   
 
-const getComplaints = async (title="", date="", stat="") => 
+const getComplaints = async (title="",complaint_date="", stat=0) => 
 {
     try 
     {
@@ -31,9 +31,9 @@ function Complaint(props)
 {
    return(
         <div className="ComplaintRect">
-            <div className="Header">
+            <div className="PendingRect">
                <div>
-                {props.stat}
+                {props.stat} 
                </div>
                <div className="Date">
                 {props.date}
@@ -51,10 +51,10 @@ function Complaint(props)
 
 function DisplayComplaints(props)
 {
-    if (props?.compArray[0]?.complaint_id>0)
+    if (props?.compArray[0])
     {
         console.log('AAAAA');
-        const listItems = props.compArray.map((complaint) => <li><Complaint title={complaint.title} date={complaint.complaint_date} stat={complaint.stat} /></li>);
+        const listItems = props.compArray.map ( (complaint) =>{return (<li><Complaint title={complaint.title} date={complaint.complaint_date} stat={complaint.stat} /></li>)});
         return listItems;
     }
     else
@@ -67,13 +67,14 @@ function DisplayComplaints(props)
 
 function PreviousComplaints() 
 {  
-  const [ComplaintsData, setComplaintsData]=useState([{title:"",date:"",stat:""}]);
+  const [ComplaintsData, setComplaintsData]=useState([{title:"",complaint_date:"",stat:0}]);
     
     useEffect(()=>
     {
         const setComplaints= async () =>
         {
             const data = await getComplaints('', '', '');
+            console.log(data);
             setComplaintsData(data);
         }
 
