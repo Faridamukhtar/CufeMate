@@ -3,7 +3,7 @@ import './Header.css';
 
 const studentData = {fname:"Ahmed", lname:"Mohamed", major_id:'CCE', std_id:1, class:'2026'}; //get logged in student data
 
-function StudentHeader()
+function StudentHeader(props)
 {
     return (
         <div className="StudentHeader">
@@ -20,7 +20,7 @@ function StudentHeader()
                     {studentData.fname} {studentData.lname}
                 </h4>
                 <h4>
-                    Class of {studentData.class}
+                    Class of {props.studentType=='student' ? studentData.class : studentData.class + ' Rep'}
                 </h4>
             </div>
         </div>
@@ -29,11 +29,11 @@ function StudentHeader()
 
 function ChooseHeader(props)
 {
-    if (props.DashboardType==='student')
+    if (props.DashboardType==='student' || props.DashboardType==='studentRep')
     {
         return (
             <>
-                <StudentHeader/>
+                <StudentHeader studentType={props.DashboardType}/>
             </>
         );
     }

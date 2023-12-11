@@ -42,7 +42,7 @@ function Post(props)
 //TO DO: create button: Write if Rep, Request to Write if student, then add it to posts
 function WriteType(props)
 {
-
+    
 }
 
 
