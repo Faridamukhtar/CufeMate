@@ -3,24 +3,19 @@ import ChooseHeader from "./Header.js";
 import './SettingsBoard.css';
 import TextInput from './TextInput';
 
-const UpdatePassword =() => {
-    //CURRENT PASS , NEW AND CONFIRM PASS STATES + SAVING RETURNING FROM API
-    const [Cpass, setCpass] = useState('');
-    const [Npass, setNpass] = useState('');
-    const [conpass, setconpass] = useState('');
-    const [currentPassFromApi, setCurrentPassFromApi] = useState('');
+const UpdatePassword = () => {
+  const [Cpass, setCpass] = useState('');
+  const [Npass, setNpass] = useState('');
+  const [conpass, setconpass] = useState('');
+  const [currentPassFromApi, setCurrentPassFromApi] = useState('');
 
-    const FetchPass = async (email) => {
+  useEffect(() => {
+    const fetchPass = async (email) => {
       try {
-         // Construct the URL with actual values for email and newPassword
-         const url = `http://localhost:8080/api/Getpass?email=${email}`;
-         console.log(url);
         //TO BE REMOVEDDDD
-         // url = 'http://localhost:8080/api/Getpass?email=marmar@gmail.com';
-       // console.log(url);
-
-        //TO BE INSERTED
-       const response = await fetch(url);
+        //const response = await fetch('http://localhost:8080/api/Getpass?email=marmar@gmail.com');
+        let url =  `http://localhost:8080/api/Getpass/?email=${email}`;
+        const response = await fetch(url);
         const data = await response.json();
         const currentPass = data.length > 0 ? data[0].passw : '';
         setCurrentPassFromApi(currentPass);
@@ -28,67 +23,68 @@ const UpdatePassword =() => {
         console.error('Error fetching Password:', error);
       }
     };
+    //to be changed
+    fetchPass('marmar@gmail.com')
+  }, []); 
 
-    
-//UPDATING PASSWORD:-
-const handlePasswordUpdate = async (email, newPassword) => {
+  const handlePasswordUpdate = async (email, newPassword) => {
     try {
-        
-      // Construct the URL with actual values for email and newPassword
-        const url = `http://localhost:8080/api/UpdatePassword/?email=${email}&password=${newPassword}`;
-  
-      // Make a GET request to the constructed URL
+      const url = `http://localhost:8080/api/UpdatePassword/?email=${email}&password=${newPassword}`;
       const response = await fetch(url);
       const result = await response.json();
-  
-      // Handle the password update result as needed
       console.log(result);
     } catch (error) {
       console.error('Error during password update:', error);
     }
   };
-  
 
 
-    const handleClick = () => {
+  const handleClick = async () => {
 
-        FetchPass('marmar@gmail.com')
-        if (Npass !== conpass) {
-          alert("New password and confirm password don't match.");
-           return;
-         }
+    if (Npass !== conpass) {
+      alert("New password and confirm password don't match.");
+      return;
+    }
 
-        // If current pass equal el pass f3lan 
-        // Get current pass mn el api
-        if (Cpass !== currentPassFromApi) {
-            console.log("pass el api",currentPassFromApi);
-            console.log("pass el written", Cpass)
-            alert("Current password is incorrect.");
-            return;
-          }
-        // update pass api 
-        else 
-        {
-            //GET EMAIL BGD BA
-            handlePasswordUpdate('marmar@gmail.com', Npass);
-        }
+    if (Cpass !== currentPassFromApi) {
+      console.log("pass el api", currentPassFromApi);
+      console.log("pass el written", Cpass);
+      alert("Current password is incorrect.");
+      return;
+    } else {
+      handlePasswordUpdate('marmar@gmail.com', Npass);
+    }
+  };
 
- 
-    };
-
-
-    return (
-            <div>
-                <TextInput Title= "Current Password" placeholderText="Current Password" isPassword={true} setInputValue={setCpass} inputValue={Cpass}/>
-                <TextInput Title= "New Password" placeholderText="New Password" isPassword={true} setInputValue={setNpass} inputValue={Npass} />
-                <TextInput Title= "Confirm Password" placeholderText="Confirm Password" isPassword={true} setInputValue={setconpass} inputValue={conpass} />
-                <button className="button-clicked" onClick={handleClick}>
-                <span className="label-clicked ">Update password</span>
-                </button>
-            </div>
-        );
-}
-
+  return (
+    <div>
+      <TextInput
+        Title="Current Password"
+        placeholderText="Current Password"
+        isPassword={true}
+        setInputValue={setCpass}
+        inputValue={Cpass}
+      />
+      <TextInput
+        Title="New Password"
+        placeholderText="New Password"
+        isPassword={true}
+        setInputValue={setNpass}
+        inputValue={Npass}
+      />
+      <TextInput
+        Title="Confirm Password"
+        placeholderText="Confirm Password"
+        isPassword={true}
+        setInputValue={setconpass}
+        inputValue={conpass}
+      />
+      <button className="button-clicked" onClick={handleClick}>
+        <span className="label-clicked ">Update password</span>
+      </button>
+    </div>
+  );
+};
 
 
 const handleAccountDeletion = async (email) => {
@@ -110,7 +106,6 @@ const handleAccountDeletion = async (email) => {
         console.log("Account deletion failed:", result.message);
       }
     } catch (error) {
-        console.log('enty henaaa')
       console.error('Error during account deletion:', error);
     }
     console.log("Account deletion clicked");
@@ -119,7 +114,7 @@ const handleAccountDeletion = async (email) => {
 
 
 function AccDelete () { 
-      handleAccountDeletion('zft@gmail.com');
+    handleAccountDeletion('zft@gmail.com');
     return (    
         <div>
         Your account has been deleted
