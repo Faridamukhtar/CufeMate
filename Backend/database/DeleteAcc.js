@@ -10,7 +10,7 @@ const dbInstance = await db();
 Delete_acc.use(bodyParser.json());
 
 // Update_pass API
-Delete_acc.get('/api/DeleteAcc', async (req, res) => {
+/*Delete_acc.get('/api/DeleteAcc', async (req, res) => {
     const { email} = req.body;
 
     try {
@@ -26,8 +26,23 @@ Delete_acc.get('/api/DeleteAcc', async (req, res) => {
         res.status(500).json({ success: false, error: 'Internal Server Error' });
       }
   
-});
+});*/
+Delete_acc.get('/api/DeleteAcc', async (req, res) => {
+  const { email } = req.query;
 
+  try {
+    const result = await dbInstance.query('DELETE FROM student WHERE email = $1', [email]);
+
+    if (result.rowCount > 0 && result.command === 'DELETE') {
+      res.json({ success: true, message: 'User deleted successfully' });
+    } else {
+      res.status(404).json({ success: false, message: 'User not found or not deleted' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, error: 'Internal Server Error' });
+  }
+});
 
 
 

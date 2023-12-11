@@ -13,10 +13,10 @@ const UpdatePassword =() => {
     const FetchPass = async (email) => {
       try {
          // Construct the URL with actual values for email and newPassword
-         const url = `http://localhost:8080/api/Getpass/?email=${email}`;
+         const url = `http://localhost:8080/api/Getpass?email=${email}`;
          console.log(url);
         //TO BE REMOVEDDDD
-        // url = 'http://localhost:8080/api/Getpass?email=marmar@gmail.com';
+         // url = 'http://localhost:8080/api/Getpass?email=marmar@gmail.com';
        // console.log(url);
 
         //TO BE INSERTED
@@ -89,8 +89,38 @@ const handlePasswordUpdate = async (email, newPassword) => {
         );
 }
 
+
+
+const handleAccountDeletion = async (email) => {
+    try {
+      const url = `http://localhost:8080/api/DeleteAcc/?email=${(email)}`;
+      //console.log(url);
+      //url = 'http://localhost:8080/api/DeleteAcc/?email=zft@gmail.com'
+      //console.log(url);
+
+      const response = await fetch(url, {
+        method: 'DELETE'
+      });
+  
+      const result = await response.json();
+  
+      if (result.success) {
+        console.log("Account deletion successful");
+      } else {
+        console.log("Account deletion failed:", result.message);
+      }
+    } catch (error) {
+        console.log('enty henaaa')
+      console.error('Error during account deletion:', error);
+    }
+    console.log("Account deletion clicked");
+  };
+
+
+
 function AccDelete () { 
-    return (
+      handleAccountDeletion('zft@gmail.com');
+    return (    
         <div>
         Your account has been deleted
         </div>
