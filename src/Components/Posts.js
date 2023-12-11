@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from "react";
 import './Posts.css';
-import getposts from "../hooks/getposts";
+import {getposts,fetchStudentCourses, fetchMajorAuthors} from "../CustomHooks/PostsHooks.js";
+import ChooseHeader from "./Header.js";
+
+const studentData = {fname:"Ahmed", major_id:'CCE', std_id:1, class:'2026'}; //get logged in student data
 
 function Post(props)
 {
@@ -34,24 +37,96 @@ function Post(props)
     );
 }
 
+
+
 //TO DO: create button: Write if Rep, Request to Write if student, then add it to posts
 function WriteType(props)
 {
-
+    if (props.Type=='student')
+    {
+        return (
+            <button className="WritePost">
+                <h5>
+                Request To Write Post
+                </h5>
+            </button>
+        )
+    }
+    else
+    {
+        return (
+            <button className="WritePost">
+                <h5>
+                Write Post
+                </h5>            
+            </button>
+        )
+    }
 }
 
-//TO DO: create filters
-function Filters()
+
+function CourseOptions(props)
 {
+    if (props.options)
+    {
+        const OptionsSelection = props.options.map((option)=>
+        {
+                return(<option value={option.course_name}>
+                    {option.course_name}
+                </option>);
+        });
+        return (
+            <>
+            <option value="">
+                All Courses
+            </option>
+            {OptionsSelection}
+            </>
+            );
+
+    }
+    else{ 
+        return (
+            <>
+            No Options Available
+            </>);
+    }
 
 }
 
+function AuthorOptions(props)
+{
+    if (props.options)
+    {
+        const OptionsSelection = props.options.map((option)=>
+        {
+                return(<option value={option.fname}>
+                    {option.fname} {option.lname}
+                </option>)
+        });
+
+        return(
+            <>
+                <option value="">
+                    All Authors
+                </option>
+                {OptionsSelection}
+            </>
+        );
+    }
+    else{ 
+        return (
+            <>
+            No Options Available
+            </>);
+    }
+
+}
 
 function DisplayPosts(props)
 {
     if (props?.postArray[0]?.post_id>0)
     {
-        console.log('AAAAA');
         const listItems = props.postArray.map((post) => <li><Post Major={post.major_id} Content={post.content} Course={post.course_name} FAuthor={post.fname} LAuthor={post.lname}/></li>);
         return listItems;
     }
@@ -62,23 +137,74 @@ function DisplayPosts(props)
 
 }
 
-
 //Fetch Posts
-function PostSection()
+function PostSection(props)
 {
     const [postsContent, setPostsContent]=useState([{fname:"",lname:"",post_date:"",content:"",post_id:0,course_name:""}]);
-    
+    const [StudentCourses, setStudentCourses]=useState([{course_name:"", course_id:""}]);
+    const [Authors, setAuthors]=useState([{fname:"", lname:"", std_id:""}]);
+    const [ChosenAuthor, setChosenAuthor] = useState('');
+    const [ChosenCourse, setChosenCourse] = useState('');
+
     useEffect(()=>
     {
-        const setPosts= async () =>
-        {
-            const data = await getposts('', 'CCE', '');
+        const FilterByCourseandAuthor = async (Course,Author) =>
+        { 
+            const data = await getposts(`${Author}`, `${studentData.major_id}` , `${Course}`);
             setPostsContent(data);
         }
 
-        setPosts();
+        FilterByCourseandAuthor(ChosenCourse, ChosenAuthor);
+        
+    },[ChosenCourse,ChosenAuthor]);
+
+    useEffect(()=>
+    {
+        fetchStudentCourses(studentData.std_id).then((courses)=>
+        {
+            console.log('courses', courses);
+            setStudentCourses(courses);
+        })
+
+        fetchMajorAuthors(studentData.major_id).then((authors)=>
+        {
+            console.log('authors', authors);
+            setAuthors(authors);
+        })
 
     },[]);
+
+    //TO DO: create filters
+    function Filters(props)
+    {   
+        return (
+        <div className="Filters">
+            <select className="Filter"
+            defaultValue=""
+            value={ChosenCourse}
+            onChange={(e)=>setChosenCourse(e.target.value)}>
+                <CourseOptions options={props.courses}/>
+            </select>
+            <select className="Filter" 
+            defaultValue=""
+            value={ChosenAuthor}
+            onChange={(e)=>setChosenAuthor(e.target.value)}>
+                <AuthorOptions options={props.authors}/>
+            </select>
+        </div>
+        );
+    }
+
+    function handleClickedAuthorFilter(value)
+    {
+        setChosenAuthor(value);
+        console.log(value);
+    }
+
+    function handleClickedCourseFilter(value)
+    {
+        setChosenCourse(value);
+    }
 
     return (
         <div className="PostsWrapper">
@@ -86,10 +212,11 @@ function PostSection()
                 <h3>
                     Latest Posts
                 </h3>
+                <WriteType Type={props.DashboardType}/>
             </div>
             <hr className="LineUnderPost"/>
             <div className="filters">
-
+                <Filters courses={StudentCourses} authors={Authors}/>
             </div>
             <div className="Posts">
                 <ul><DisplayPosts postArray={postsContent}/></ul>
@@ -97,6 +224,5 @@ function PostSection()
         </div>
     );
 }
-
 
 export default PostSection;
