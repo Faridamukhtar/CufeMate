@@ -1,6 +1,6 @@
 import React from "react";
 import './Sidebar.css';
-import { HomeSVG, StudentClubsSVG, FileAComplaintSVG,RepsContactsSVG, SettingsSVG  } from "../svg/SvgFiles"; 
+import { HomeSVG, StudentClubsSVG,StudentPendingPosts, StudentComplaintsSVG, FileAComplaintSVG,RepsContactsSVG, SettingsSVG  } from "../svg/SvgFiles"; 
 
 
 //Renders Student Sidebar content
@@ -88,9 +88,9 @@ function StudentRepSidebar()
                         </h5>
                     </div>
                 </div>
-                <div className="SidebarOption" id="FileAComplaint">
+                <div className="SidebarOption" id="StudentComplaints">
                     <div className="SidebarIcon">
-                            <RepsContactsSVG/>
+                            <StudentComplaintsSVG/>
                         </div>
                         <div className="SidebarLabel">
                             <h5>
@@ -98,9 +98,9 @@ function StudentRepSidebar()
                             </h5>
                         </div>
                     </div>
-                <div className="SidebarOption" id="RepsContacts">
+                <div className="SidebarOption" id="StudentPendingPosts">
                     <div className="SidebarIcon">
-                        <FileAComplaintSVG/>
+                        <StudentPendingPosts/>
                     </div>
                     <div className="SidebarLabel">
                         <h5>
