@@ -5,9 +5,28 @@ import ComplaintInputText from "./ComplaintInputText.js";
 
 function WriteComplaint(props)
 
-{
+{    
     const [Tittle, setTitle] = useState('');
     const [Conttent, setContent] = useState('');
+
+    const handleSubmit = async (Tittle, Conttent) => {
+        try {
+          // Construct the URL with actual values for email and password
+          const url = `http://localhost:8080/api/writecomplaint/${encodeURIComponent(Tittle)}/${encodeURIComponent(Conttent)}`;
+      
+          // Make a GET request to the constructed URL
+              const response = await fetch(url); 
+              const result = await response.json();
+              // Handle the login result as needed
+              console.log(result);
+            } 
+            catch (error) {
+              console.error('Error during login:', error);
+            }
+            console.log("submit clicked");
+      };
+
+
     return (
   <div>
      <div className ="Title">
@@ -28,16 +47,10 @@ function WriteComplaint(props)
             <div className="CharacterCount">
                 0:500
             </div>
-            <div className="SubmitButton"> 
+            <button className="SubmitButton" onClick={() => handleSubmit(Tittle, Conttent)}> <h5 className="SubmitText">Submit</h5></button>
         
-                <div className="SubmitText"> 
-                    <h6>
-                       Submit
-                   </h6>
-                </div>
            </div>        
        </div>
-   </div>
     );
 }
 

@@ -2,11 +2,13 @@ import express from "express";
 import { db } from "./connection.js";
 
 const previous_complaints_router=express.Router();
+const dbInstance = await db();
 
-previous_complaints_router.get("/api/previouscomplaints", async (req,res) =>{
+previous_complaints_router.get("/api/previouscomplaints/:std_id", async (req,res) =>{
+    const {std_id}=req.params;
     try 
     {
-        const result =await db.query ("SELECT title, complaint_id, content, std_id, stat_id FROM complaint ");
+        const result =await dbInstance.query ("SELECT title, complaint_date, stat  FROM complaint WHERE std_id = $1;",[std_id]);
         res.json(result.rows);
     }
     catch (error)
