@@ -42,7 +42,26 @@ function Post(props)
 //TO DO: create button: Write if Rep, Request to Write if student, then add it to posts
 function WriteType(props)
 {
-    
+    if (props.Type=='student')
+    {
+        return (
+            <button className="WritePost">
+                <h5>
+                Request To Write Post
+                </h5>
+            </button>
+        )
+    }
+    else
+    {
+        return (
+            <button className="WritePost">
+                <h5>
+                Write Post
+                </h5>            
+            </button>
+        )
+    }
 }
 
 
@@ -119,7 +138,7 @@ function DisplayPosts(props)
 }
 
 //Fetch Posts
-function PostSection()
+function PostSection(props)
 {
     const [postsContent, setPostsContent]=useState([{fname:"",lname:"",post_date:"",content:"",post_id:0,course_name:""}]);
     const [StudentCourses, setStudentCourses]=useState([{course_name:"", course_id:""}]);
@@ -193,6 +212,7 @@ function PostSection()
                 <h3>
                     Latest Posts
                 </h3>
+                <WriteType Type={props.DashboardType}/>
             </div>
             <hr className="LineUnderPost"/>
             <div className="filters">

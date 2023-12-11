@@ -32,8 +32,41 @@
 
 .LatestPostsTitle
 {
-    color: #0D062D;
     padding-bottom: 20px;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.LatestPostsTitle h3
+{
+    padding-bottom: 0px;
+    align-self: center;
+    color: #0D062D;
+}
+
+.WritePost
+{
+    padding-block:8px;
+    padding-inline:25px;
+    margin-block:10px;
+    border-width: 0px;
+    border-radius: 20px;
+    background-color: #271576e3;
+    color: white;
+}
+
+.WritePost h5
+{
+    font-weight: 600;
+
+}
+.WritePost:hover
+{
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 0.3s;
+
 }
 
 .PostHeader
@@ -112,3 +145,4 @@
     transition: all 0.2s;
 
 }
+
