@@ -7,8 +7,8 @@ const getContacts = async (fname="", lname="", email="") =>
 {
     try 
     {
-        const major='CCEC';
-        const classs='2025';
+        //const major='CCEC';
+        //const classs='2025';
       // Construct the URL with actual values for email and password
       const url = `http://localhost:8080/api/repscontacts/${encodeURIComponent(major)}/${encodeURIComponent(classs)}`;
   
