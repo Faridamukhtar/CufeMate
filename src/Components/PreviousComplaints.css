@@ -17,7 +17,7 @@
 
 .ComplaintRect
 {
-    display:flex;
+    position:relative;
     flex-direction: row;
     width: 1060px;
     height: 127px;
@@ -99,9 +99,17 @@
 
 .DateRect
 {
-    width: 80.253px;
+    width: 200px;
     height: 18.175px;
-    flex:1;
+    position:absolute;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    top:0;
+    right:0;
+    margin-right:60px;
+    margin-top:5px; 
 }
 
 

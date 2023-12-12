@@ -3,7 +3,7 @@ import "./PreviousComplaints.css";
 
   
 
-const getComplaints = async (title="",complaint_date="", stat=0) => 
+const getComplaints = async (title="",complaint_date="", stat="") => 
 {
     try 
     {
@@ -29,9 +29,9 @@ const getComplaints = async (title="",complaint_date="", stat=0) =>
 
 function Complaint(props)
 {
-  const ChooseBoxColor= props.stat===0? 'PendingRect':'ReadRect';
-  const ChooseBoxTextColor=props.stat===0? 'PendingText':'ReadText';
-  const StatusText=props.stat===0? 'Pending':'Read';
+  const ChooseBoxColor= props.stat==='0'? 'PendingRect':'ReadRect';
+  const ChooseBoxTextColor=props.stat==='0'? 'PendingText':'ReadText';
+  const StatusText=props.stat==='0'? 'Pending':'Read';
    return(
         <div className="ComplaintRect">
             <div className={ChooseBoxColor}>
@@ -76,7 +76,7 @@ function DisplayComplaints(props)
 
 function PreviousComplaints() 
 {  
-  const [ComplaintsData, setComplaintsData]=useState([{title:"",complaint_date:"",stat:0}]);
+  const [ComplaintsData, setComplaintsData]=useState([{title:"",complaint_date:"",stat:""}]);
     
     useEffect(()=>
     {

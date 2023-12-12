@@ -6,7 +6,7 @@ const dbInstance = await db();
 
 write_complaint_router.get("/api/writecomplaint/:title/:content", async (req,res) =>{
     const {title,content}=req.params;
-    const complaint_id=1200;
+    const complaint_id=12;
     const std_id=5;
     const stdrep_id=4;
     const stat=0;
