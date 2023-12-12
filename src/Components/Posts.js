@@ -195,17 +195,6 @@ function PostSection(props)
         );
     }
 
-    function handleClickedAuthorFilter(value)
-    {
-        setChosenAuthor(value);
-        console.log(value);
-    }
-
-    function handleClickedCourseFilter(value)
-    {
-        setChosenCourse(value);
-    }
-
     return (
         <div className="PostsWrapper">
             <div className="LatestPostsTitle">

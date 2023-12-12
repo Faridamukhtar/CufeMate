@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ChooseHeader from "./Header.js";
 import './Dashboard.css';
 import PostSection from './Posts.js';
@@ -18,9 +18,13 @@ function DashboardBody(props)
     {
         return (
             <>
-                <StudentBody DashboardType={props.DashboardType}/>
+                <StudentBody DashboardType={props.DashboardType} setDashboardType={props.setDashboardType}/>
             </>
         );
+    }
+    else if (props.DashboardType==='viewstudentclubs')
+    {
+        
     }
 
 
@@ -28,13 +32,20 @@ function DashboardBody(props)
 
 function Dashboard(props)
 {
+    const [DashboardType, setDashboardType] = useState(props.DashboardType);
+
+    if (props.studentType == undefined)
+    {
+        props.studentType = props.DashboardType
+    }
+
     return (
         <div className="DashboardPage">
             <div className="DashboardHeader">
-                <ChooseHeader DashboardType={props.DashboardType}/>
+                <ChooseHeader DashboardType={DashboardType} studentType={props.studentType}/>
             </div>
             <div className="DashboardBody">
-                <DashboardBody DashboardType={props.DashboardType}/>
+                <DashboardBody DashboardType={DashboardType} setDashboardType={setDashboardType}/>
             </div>
         </div>
     );

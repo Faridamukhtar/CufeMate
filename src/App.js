@@ -6,7 +6,6 @@ import LoginSignup from './pages/login_signup.js'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import StudentSetting from './pages/StudentSettings.js';
 
-
 function App() {
   return (
     <>
