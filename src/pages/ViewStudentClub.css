@@ -1,0 +1,17 @@
+.ViewStudentClubPage
+{
+    display: flex;
+    flex-direction: row;
+    flex:1;
+    min-height: 100vh;
+}
+
+.sidebar
+{
+    min-width: 20%;
+}
+
+.ViewStudentClub
+{
+    width: 73%;
+}

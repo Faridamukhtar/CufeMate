@@ -3,6 +3,7 @@ import { dbInstance } from "./connection.js";
 import bodyParser from 'body-parser';
 
 const signup_router = express.Router();
+
 // Middleware to parse incoming requests
 signup_router.use(bodyParser.json());
 
