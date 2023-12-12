@@ -10,7 +10,7 @@ const getContacts = async (fname="", lname="", email="") =>
         const major='CCEC';
         const classs='2025';
       // Construct the URL with actual values for email and password
-      const url = `http://localhost:8080/api/previouscomplaints/${encodeURIComponent(major)}/${encodeURIComponent(classs)}`;
+      const url = `http://localhost:8080/api/repscontacts/${encodeURIComponent(major)}/${encodeURIComponent(classs)}`;
   
       // Make a GET request to the constructed URL
           const response = await fetch(url); 

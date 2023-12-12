@@ -11,7 +11,7 @@ reps_contacts_router.get("/api/repscontacts/", async (req,res) =>{
     const classs=2025;
     try 
     {
-        const result =await dbInstance.query ("SELECT fname, lname, email FROM student WHERE major_id=$1 AND class=$2 AND rep_flag=1;",[major,classs]);
+        const result =await dbInstance.query ("SELECT fname, lname, email FROM student WHERE major_id=$1 AND class=$2 AND rep_flag= B'1';",[major,classs]);
         res.json(result.rows);
     }
     catch (error)
