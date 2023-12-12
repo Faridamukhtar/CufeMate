@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './login_signup.css';
+import { Link } from 'react-router-dom';
 
 const LoginSignup = () => {
 
@@ -45,27 +46,16 @@ const LoginSignup = () => {
           const result = await response.json();
           // Handle the login result as needed
           console.log(result);
+          if(result.message ==='Invalid username or password')
+          {
+              alert("Invalid username or password");
+          }
         } 
         catch (error) {
           console.error('Error during login:', error);
         }
         console.log("Login clicked");
   };
-
-  /*const handleSignup = async (std_id, fname, lname, email, passw, major_id, studentClass) => {
-    // calling the post fn in signup route
-    try {
-      //has to be get request
-      const url = `http://localhost:8080/api/signup/student/${encodeURIComponent(std_id)}/${encodeURIComponent(fname)}/${encodeURIComponent(lname)}/${encodeURIComponent(email)}/${encodeURIComponent(passw)}/${encodeURIComponent(major_id)}/${encodeURIComponent(studentClass)}`;
-      const response = await fetch(url);
-      const result = await response.json();
-      // Handle the signup result as needed
-      console.log(result);
-    } catch (error) {
-      console.error('Error during signup:', error);
-    }
-    console.log("Signup clicked");
-  };*/
 
   const handleSignup = async (std_id, fname, lname, email, major_id, password, studentClass) => {
     try {
@@ -99,6 +89,14 @@ const LoginSignup = () => {
       const result = await response.json();
       // Handle the signup result as needed
       console.log(result);
+      if(result.message ==='user already exists')
+          {
+              alert("user already exists, try logging in");
+          }
+      if(result.message ==='Internal Server Error')
+          {
+              alert("some data may be missing or of incorrect format");
+          }
     } catch (error) {
       console.error('Error during signup:', error);
       // Handle unexpected client-side errors
@@ -107,7 +105,8 @@ const LoginSignup = () => {
     console.log("Signup clicked");
   };
   
-
+  
+  
   return (
     <div className="login_signup">
         <div className="welcome">
@@ -117,8 +116,14 @@ const LoginSignup = () => {
         <div className="components">
         <div className="left">
           <div className="switch_buttons">
-            <button>Student</button>
-            <button>Student Club</button>
+            <button >Student</button>
+            <Link to='/Club'>
+            <button >Student Club</button>
+            </Link>
+            <Link to='/Admin'>
+            <button >Admin</button>
+            </Link>
+            
           </div> 
           <div className="login">
           <input
@@ -134,6 +139,7 @@ const LoginSignup = () => {
             onChange={(e) => setLoginPassword(e.target.value)}
           />
           <button onClick={() => handleLogin(loginEmail, loginPassword)}>Login</button>
+          <button>Forgot Password</button>
         </div>
       </div>
       <div className="right">

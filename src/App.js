@@ -5,17 +5,20 @@ import LoginSignup from './pages/login_signup.js'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import StudentDashboard from './pages/StudentDashboard.js';
 import StudentSetting from './pages/StudentSettings.js';
-
+import LoginAdmin from './pages/LoginAdmin.js';
+import LoginSignupClub from './pages/LoginSignupClub.js';
 
 function App() {
   return (
     <>
       <div className='App'>
-        <LoginSignup />
         <Router>
           <Routes>
-            <Route path="/" element={<StudentDashboard />} />
+            <Route path="/Home" element={<StudentDashboard />} />
             <Route path="/Settings" element={<StudentSetting />} />
+            <Route path="/" element={<LoginSignup />} />
+            <Route path="/Club" element={<LoginSignupClub />} />
+            <Route path="/Admin" element={<LoginAdmin />} />
           </Routes>
         </Router>
       </div>

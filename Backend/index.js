@@ -4,6 +4,9 @@ import posts from './routes/posts.js';
 import { login_router } from './database/login.js';
 import { signup_router } from './database/signup.js';
 import { major_router } from './database/majors.js';
+import { admin_router } from './database/Admin.js';
+import { club_router } from './database/studentClub.js';
+import { logo } from './database/logo.js';
 import { db } from './database/connection.js';
 import cors from 'cors';
 import bodyParser from "body-parser";
@@ -26,7 +29,10 @@ app.use(
     app.use('/', signup_router);
     app.use('/', login_router);
     app.use('/', major_router);
-
+    app.use('/', admin_router);
+    app.use('/', club_router);
+    app.use('/', logo);
+    
     app.listen(port, () => {
       console.log(`Server is running on port ${port}`);
     });

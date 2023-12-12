@@ -2,10 +2,10 @@ import { db } from "./connection.js";
 import express from "express";
 import bodyParser from 'body-parser';
 
-const login_router = express.Router();
+const admin_router = express.Router();
 const dbInstance = await db();
 // Middleware to parse incoming requests
-login_router.use(bodyParser.json());
+admin_router.use(bodyParser.json());
 
 // Login API
 /*login_router.get('/api/login/student', async (req, res) => {
@@ -24,11 +24,11 @@ login_router.use(bodyParser.json());
     res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
 });*/
-login_router.get('/api/login/student/:email/:password', async (req, res) => {
+admin_router.get('/api/login/admin/:email/:password', async (req, res) => {
   const { email, password } = req.params;
 
   try {
-    const result = await dbInstance.query('SELECT * FROM Student WHERE email = $1 AND passw = $2', [email, password]);
+    const result = await dbInstance.query('SELECT * FROM admins WHERE email = $1 AND passw = $2', [email, password]);
 
     if (result.rows.length === 1) {
       res.json({ success: true,user: result.rows[0], message: 'Login successful' });
@@ -40,5 +40,5 @@ login_router.get('/api/login/student/:email/:password', async (req, res) => {
     res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
 });
-export { login_router };
+export { admin_router };
 

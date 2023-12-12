@@ -18,8 +18,7 @@
     justify-content: space-around;
 }
 
-.left,
-.right{
+.left{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -63,28 +62,18 @@ background-clip: text;
 text-align:center;
 }
 
-  .login,
-  .signup {
+  .login {
     border-radius: 8px;
     padding: 20px;
   }
   
-  .login h2,
-  .signup h2 {
+  .login h2{
     font-size: 1.5rem;
     margin-bottom: 20px;
   }
   
   input {
     width: 70%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  select {
-    width: 73%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
