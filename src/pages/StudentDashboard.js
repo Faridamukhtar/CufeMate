@@ -11,7 +11,7 @@ const StudentDashboard =()=>
                 <Sidebar SidebarType='student'/>
             </div>
             <div className="Dashboard">
-                <Dashboard DashboardType='student'/>
+                <Dashboard DashboardType='studentclubs'/>
             </div>
         </div>
     );

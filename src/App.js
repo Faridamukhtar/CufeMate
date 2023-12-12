@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import StudentSetting from './pages/StudentSettings.js';
 import ViewStudentClubs from './pages/ViewStudentClubs.js';
 
-
 function App() {
   return (
     <>
