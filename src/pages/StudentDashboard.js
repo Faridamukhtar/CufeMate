@@ -8,10 +8,10 @@ const StudentDashboard =()=>
     return (
         <div className="StudentPage">
             <div className="sidebar">
-                <Sidebar SidebarType='student'/>
+                <Sidebar SidebarType='student' />
             </div>
             <div className="Dashboard">
-                <Dashboard DashboardType='studentclubs'/>
+                <Dashboard DashboardType='student' studentType='student'/>
             </div>
         </div>
     );

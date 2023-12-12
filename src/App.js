@@ -5,7 +5,6 @@ import RepDashboard from './pages/RepDashboard.js';
 import LoginSignup from './pages/login_signup.js'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import StudentSetting from './pages/StudentSettings.js';
-import ViewStudentClubs from './pages/ViewStudentClubs.js';
 
 function App() {
   return (
@@ -17,7 +16,6 @@ function App() {
             <Route path="/student" element={<StudentDashboard />} />
             <Route path="/rep" element={<RepDashboard />} />
             <Route path="/Settings" element={<StudentSetting />} />
-            <Route path="/ViewStudentClubs" element={<ViewStudentClubs DashboardType='student' />} />
           </Routes>
         </Router>
       </div>

@@ -75,7 +75,7 @@ function StudentSettingsHeader()
 
 function ChooseHeader(props)
 {
-    if (props.DashboardType==='studentDashboard' || props.DashboardType==='studentRepDashboard')
+    if (props.DashboardType==='student' || props.DashboardType==='studentRep')
     {
         return (
             <>

@@ -34,11 +34,6 @@ function Dashboard(props)
 {
     const [DashboardType, setDashboardType] = useState(props.DashboardType);
 
-    if (props.studentType == undefined)
-    {
-        props.studentType = props.DashboardType
-    }
-
     return (
         <div className="DashboardPage">
             <div className="DashboardHeader">

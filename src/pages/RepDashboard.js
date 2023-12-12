@@ -11,7 +11,7 @@ const RepDashboard =()=>
                 <Sidebar SidebarType='studentRep'/>
             </div>
             <div className="Dashboard">
-                <Dashboard DashboardType='studentRep'/>
+                <Dashboard DashboardType='studentRep' studentType='studentRep'/>
             </div>
         </div>
     );
