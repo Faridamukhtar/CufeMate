@@ -1,6 +1,4 @@
-import { db } from "./connection.js";
-
-const dbInstance = await db();
+import {dbInstance} from "./connection.js";
 
 export const getPosts = async (req, res) => { 
 

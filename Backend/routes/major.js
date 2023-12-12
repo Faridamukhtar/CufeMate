@@ -1,5 +1,5 @@
 import express from "express";
-import { getMajorAuthors } from "../database/controller.js";
+import { getMajorAuthors } from "../database/StudentPosts.js";
 
 const router = express.Router();
 
