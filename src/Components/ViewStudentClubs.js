@@ -1,56 +1,54 @@
 import React, {useState, useEffect} from "react";
-import './Posts.css';
-import {getposts,fetchStudentCourses, fetchMajorAuthors} from "../CustomHooks/PostsHooks.js";
+import './ViewStudentClubs.css';
+import { getStudentClubForms } from "../CustomHooks/StudentClubsHooks.js";
+import {InfoSVG} from "../svg/SvgFiles.js"
 
-function StudentClubForm(props)
-{
-    return(
-        <div className="form">
-            <div className="formHeader">
-                <div className="Title">
-                    <h2>
-                        {props.Course}
-                    </h2>                
-                </div>
-                <div className="Categories">
-                    <div className="Course">
-                        <h6>
-                            {props.Course}
-                        </h6> 
-                    </div>
-                    <div className="Author">
-                        <h6>
-                            {props.FAuthor} {props.LAuthor}
-                        </h6> 
-                    </div>
-                </div>
-            </div>
-            <div class='Content'>
-                <h5>
-                    {props.Content}
-                </h5>   
-            </div>
-        </div>
-    );
-}
-
-
-
-//TO DO: create button: Write if Rep, Request to Write if student, then add it to posts
-function WriteType(props)
+function Apply(props)
 {
     return (
         <button className="apply">
             <h5>
                 {props.applied? 'Applied' : 'Apply Now'}
             </h5>
-        </button>
+        </button> 
         )
+}
+
+function StudentClubForm(props)
+{
+    return(
+        <div className="form">
+            <div className="ClubName">
+                <div className="club">
+                    <h6>
+                        {props.std_club_name}
+                    </h6> 
+                    <InfoSVG/>
+                </div>
+            </div>
+            <div className="formHeader">
+                <div className="TitleForm">
+                    <h2>
+                        {props.form_title}
+                    </h2>                
+                </div>
+            </div>
+            <div class='Content'>
+                <h5>
+                    Extra Requirements: {props.requirements}
+                </h5> 
+                <h5>
+                    To be sent on email: {props.email}
+                </h5> 
+                <Apply/>
+            </div>
+        </div>
+    );
 }
 
 function StudentClubOptions(props)
 {
-    if (props.options)
+    if (props.options[0]?.std_club_id>0)
     {
         const OptionsSelection = props.options.map((option)=>
         {
@@ -61,7 +59,7 @@ function StudentClubOptions(props)
 
         return(
             <>
-                <option value="">
+                <option value=" ">
                     All Clubs' Announcements
                 </option>
                 {OptionsSelection}
@@ -81,7 +79,7 @@ function Displayforms(props)
 {
     if (props?.formArray[0]?.form_id>0)
     {
-        const listItems = props.formArray.map((post) => <li><Post Major={post.major_id} Content={post.content} Course={post.course_name} FAuthor={post.fname} LAuthor={post.lname}/></li>);
+        const listItems = props.formArray.map((form) => <li><StudentClubForm form_title={form.form_title} std_club_name={form.std_club_name} requirements={form.requirements} email= {form.email}/></li>);
         return listItems;
     }
     else
@@ -92,20 +90,75 @@ function Displayforms(props)
 }
 
 //Fetch Posts
-function PostSection(props)
+function FormsSection()
 {
+    const [formsContent, setFormsContent] = useState([{std_club_id:0, std_club_name:"", email:"", about:"", logo:"",form_id:0, form_title:'', requirements:'', form_date:''}])
+    const [chosenStudentClub, setChosenStudentClub] = useState(" ");
+    const [StudentClubs, setStudentClubs] = useState([{std_club_id:0, std_club_name:""}]);
+    
+    useEffect(()=>
+    {
+       const onMount = async()=>
+       {
+            const data = await getStudentClubForms(chosenStudentClub);
+            let studentclubs=[{std_club_id:0, std_club_name:""}];
+            data.forEach((option)=>
+            {
+                studentclubs = ([...studentclubs,{std_club_id:option.std_club_id, std_club_name:option.std_club_name}]);
+                console.log('studentclubs',studentclubs);
+            })
+            studentclubs.shift();
+            setStudentClubs(studentclubs);
+            setFormsContent(data);
+       }
+
+       onMount();
+
+       return ()=>
+       {
+            setChosenStudentClub(" ");
+       }
+
+    },[])
+
+    useEffect(()=>
+    {
+       const onChangeSelection = async()=>
+       {
+            const data = await getStudentClubForms(chosenStudentClub);
+            setFormsContent(data);
+       }
+       
+       onChangeSelection();
+
+    },[chosenStudentClub])
+
+
+    function Filters()
+    {   
+        return (
+        <div className="FiltersClub">
+            <select className="FilterClub"
+                defaultValue=" "
+                value={chosenStudentClub}
+                onChange={(e)=>setChosenStudentClub(e.target.value)}>
+                <StudentClubOptions options={StudentClubs}/>
+            </select>
+        </div>
+        );
+    }
+
 
     return (
         <div className="formsWrapper">
             <div className="LatestformsTitle">
                 <h3>
-                    Latest forms
+                    Latest Student Club Announcements
                 </h3>
-                <WriteType Type={props.DashboardType}/>
             </div>
             <hr className="LineUnderform"/>
-            <div className="filters">
-                <Filters courses={StudentCourses} authors={Authors}/>
+            <div className="filtersClub">
+                <Filters options={StudentClubs}/>
             </div>
             <div className="forms">
                 <ul><Displayforms formArray={formsContent}/></ul>
@@ -114,4 +167,4 @@ function PostSection(props)
     );
 }
 
-export default PostSection;
+export default FormsSection;

@@ -1,17 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import Sidebar from "../Components/Sidebar";
 import Dashboard from "../Components/Dashboard";
 import './StudentDashboard.css'
 
 const RepDashboard =()=>
 {
+    const [DashboardType, setDashboardType]=useState('studentRep');
+
     return (
         <div className="StudentPage">
             <div className="sidebar">
-                <Sidebar SidebarType='studentRep'/>
+                <Sidebar SidebarType='student' setOnClickNav={setDashboardType}/>
             </div>
             <div className="Dashboard">
-                <Dashboard DashboardType='studentRep' studentType='studentRep'/>
+                <Dashboard DashboardType={DashboardType} studentType='studentRep'/>
             </div>
         </div>
     );

@@ -1,4 +1,3 @@
-import React from "react";
 
 export async function getposts(author = "", major = "", course = "", std_id ="")
 {
@@ -18,7 +17,7 @@ export async function getposts(author = "", major = "", course = "", std_id ="")
     });
 
     const data = await response.json();
-    console.log("ay 7aga");
+    console.log("Posts Fetched");
     console.log(data.result);
     return data.result;
   } 
