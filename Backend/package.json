@@ -2,8 +2,7 @@
   "name": "backend",
   "type": "module",
   "scripts": {
-
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "version": "1.0.0",
   "description": "",
