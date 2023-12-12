@@ -8,7 +8,7 @@ function Apply(props)
     return (
         <button className="apply">
             <h5>
-                {props.applied? 'Applied' : 'Apply Now'}
+                {props.applied? 'Applied' : 'Withdraw Application'}
             </h5>
         </button> 
         )
@@ -40,7 +40,7 @@ function StudentClubForm(props)
                 <h5>
                     To be sent on email: {props.email}
                 </h5> 
-                <Apply/>
+                <Apply applied={props.applied}/>
             </div>
         </div>
     );
@@ -95,7 +95,8 @@ function FormsSection()
     const [formsContent, setFormsContent] = useState([{std_club_id:0, std_club_name:"", email:"", about:"", logo:"",form_id:0, form_title:'', requirements:'', form_date:''}])
     const [chosenStudentClub, setChosenStudentClub] = useState(" ");
     const [StudentClubs, setStudentClubs] = useState([{std_club_id:0, std_club_name:""}]);
-    
+    const [applied, setApplied]=useState(false); //USE STORED PROCEDURE
+
     useEffect(()=>
     {
        const onMount = async()=>
@@ -161,7 +162,7 @@ function FormsSection()
                 <Filters options={StudentClubs}/>
             </div>
             <div className="forms">
-                <ul><Displayforms formArray={formsContent}/></ul>
+                <ul><Displayforms formArray={formsContent} applied={applied}/></ul>
             </div>
         </div>
     );
