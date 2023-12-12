@@ -1,8 +1,7 @@
 import express from "express";
-import { db } from "./connection.js";
+import { dbInstance } from "./connection.js";
 
 const major_router = express.Router();
-const dbInstance = await db();
 
 // Get majors from the database
 major_router.get('/api/majors', async (req, res) => {

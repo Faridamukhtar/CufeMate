@@ -1,11 +1,20 @@
 import 'dotenv/config'
 import pgInstance from 'pg';
 
-export const db = async () =>
+const dbConnect = async () =>
 {
   const {Client} =pgInstance;
   const client = new Client(process.env.DATABASE_URL);
-client.connect((err) => {
+/*
+  const client = new Client({
+    host: 'localhost',
+    port: 5432,
+    database: 'postgres',
+    user: 'postgres',
+  })
+*/
+
+  client.connect((err) => {
     if (err) {
       console.error('Error connecting to the database:', err.stack);
     } else {
@@ -14,3 +23,5 @@ client.connect((err) => {
   });
 return client;  
 }
+
+export const dbInstance = await dbConnect();

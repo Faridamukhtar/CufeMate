@@ -14,7 +14,21 @@ export function HomeSVG()
     );
 } 
 
-export function StudentClubsSVG()
+export function RepsContactsSVG()
+{
+    return (
+        <>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.5 19H8C4 19 2 18 2 13V8C2 4 4 2 8 2H16C20 2 22 4 22 8V13C22 17 20 19 16 19H15.5C15.19 19 14.89 19.15 14.7 19.4L13.2 21.4C12.54 22.28 11.46 22.28 10.8 21.4L9.3 19.4C9.14 19.18 8.77 19 8.5 19Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15.9965 11H16.0054" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M11.9955 11H12.0045" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7.99451 11H8.00349" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </>
+    );
+}
+
+export function StudentComplaintsSVG()
 {
     return (
         <>
@@ -40,7 +54,19 @@ export function FileAComplaintSVG()
         );
 }
 
-export function RepsContactsSVG()
+export function StudentPendingPosts()
+{
+    return (
+        <>
+            <svg width="24" height="30" viewBox="4 2 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.1375 9.80001L9.64998 16.2875C9.39998 16.5375 9.16249 17.025 9.11249 17.375L8.76249 19.85C8.63749 20.75 9.26249 21.375 10.1625 21.25L12.6375 20.9C12.9875 20.85 13.475 20.6125 13.725 20.3625L20.2125 13.875C21.325 12.7625 21.8625 11.4625 20.2125 9.81251C18.5625 8.15001 17.2625 8.67501 16.1375 9.80001Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15.2125 10.725C15.7625 12.6875 17.3 14.2375 19.275 14.7875" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </>
+        );
+}
+
+export function StudentClubsSVG()
 {
     return (
     <>
@@ -64,4 +90,15 @@ export function SettingsSVG()
             </svg>
         </>
         );
+}
+
+export function PostFilter()
+{
+    return (
+        <>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.6 1H12.4C13.1333 1 13.7333 1.6 13.7333 2.33333V3.8C13.7333 4.33333 13.4 5 13.0667 5.33333L10.2 7.86667C9.8 8.2 9.53333 8.86667 9.53333 9.4V12.2667C9.53333 12.6667 9.26667 13.2 8.93333 13.4L8 14C7.13333 14.5333 5.93333 13.9333 5.93333 12.8667V9.33333C5.93333 8.86667 5.66667 8.26667 5.4 7.93333L2.86667 5.26667C2.53333 4.93333 2.26667 4.33333 2.26667 3.93333V2.4C2.26667 1.6 2.86667 1 3.6 1Z" stroke="#787486" stroke-width="1.3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </>
+    )
 }

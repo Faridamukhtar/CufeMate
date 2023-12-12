@@ -1,4 +1,4 @@
-.PostsWrapper
+.formsWrapper
 {
     border-radius: 16px;
     border: 1px solid #FFF;
@@ -10,12 +10,12 @@
 }
 
 
-.LineUnderPost
+.LineUnderform
 {
     border-color: #5030E5;
 }
 
-.Post
+.form
 {
     border-radius: 16px;
     border: 1px solid #AD9EF4;
@@ -24,13 +24,13 @@
     margin-bottom: 15px;
 }
 
-.Posts ul
+.forms ul
 {
     list-style-type: none;
     padding:0;
 }
 
-.LatestPostsTitle
+.LatestformsTitle
 {
     padding-bottom: 20px;
     display: flex;
@@ -38,14 +38,14 @@
     justify-content: space-between;
 }
 
-.LatestPostsTitle h3
+.LatestformsTitle h3
 {
     padding-bottom: 0px;
     align-self: center;
     color: #0D062D;
 }
 
-.WritePost
+.apply
 {
     width:auto;
     padding-block:8px;
@@ -57,13 +57,13 @@
     color: white;
 }
 
-.WritePost h5
+.apply h5
 {
     font-weight: 600;
     text-align: center;
 
 }
-.WritePost:hover
+.Writeform:hover
 {
     cursor: pointer;
     opacity: 0.7;
@@ -71,7 +71,7 @@
 
 }
 
-.PostHeader
+.formHeader
 {
     display: flex;
     flex-direction: row;
@@ -123,7 +123,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     background: transparent;
-    background-image: url("../svg/postFilter.svg");
+    background-image: url("../svg/formFilter.svg");
     background-repeat: no-repeat;
     background-position-x: 89%;
     background-position-y: center;

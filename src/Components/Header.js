@@ -1,7 +1,34 @@
 import React from "react";
 import './Header.css';
 
-function StudentHeader()
+const studentData = {fname:"Ahmed", lname:"Mohamed", major_id:'CCE', std_id:1, class:'2026'}; //get logged in student data
+
+function ViewStudentClubsHeader(props)
+{
+    return (
+        <div className="ViewStudentClubsHeader">
+            <div className="greeting">
+                <h1>
+                    Student Clubs
+                </h1>
+                <h3>
+                    A Complete Guide To On-Campus Activities
+                </h3>
+            </div>
+            <div className="Info">
+                <h4 className='StudentName'>
+                    {studentData.fname} {studentData.lname}
+                </h4>
+                <h4>
+                    Class of {props.studentType=='student' ? studentData.class : studentData.class + ' Rep'}
+                </h4>
+            </div>
+        </div>
+    );
+}
+
+
+function StudentHeader(props)
 {
     return (
         <div className="StudentHeader">
@@ -15,10 +42,10 @@ function StudentHeader()
             </div>
             <div className="Info">
                 <h4 className='StudentName'>
-                    Name
+                    {studentData.fname} {studentData.lname}
                 </h4>
                 <h4>
-                    Class of XXXX
+                    Class of {props.studentType=='student' ? studentData.class : studentData.class + ' Rep'}
                 </h4>
             </div>
         </div>
@@ -48,11 +75,11 @@ function StudentSettingsHeader()
 
 function ChooseHeader(props)
 {
-    if (props.DashboardType==='student')
+    if (props.DashboardType==='student' || props.DashboardType==='studentRep')
     {
         return (
             <>
-                <StudentHeader/>
+                <StudentHeader studentType={props.studentType}/>
             </>
         );
     }
@@ -60,7 +87,15 @@ function ChooseHeader(props)
     {
         return (
             <>
-                <StudentSettingsHeader/>
+                <StudentSettingsHeader />
+            </>
+        );
+    }
+    else if (props.DashboardType==='viewstudentclubs' )
+    {
+        return (
+            <>
+                <ViewStudentClubsHeader studentType={props.studentType}/>
             </>
         );
     }

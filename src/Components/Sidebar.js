@@ -1,8 +1,6 @@
 import React from "react";
 import './Sidebar.css';
-import { HomeSVG, StudentClubsSVG, FileAComplaintSVG,RepsContactsSVG, SettingsSVG  } from "../svg/SvgFiles"; 
-import { Link } from 'react-router-dom';
-
+import { HomeSVG, StudentClubsSVG,StudentPendingPosts, StudentComplaintsSVG, FileAComplaintSVG,RepsContactsSVG, SettingsSVG  } from "../svg/SvgFiles"; 
 
 
 //Renders Student Sidebar content
@@ -10,7 +8,9 @@ function StudentSidebar()
 {
     return(
         <div className='options'>
+
             <Link to="/Home">
+
             <div className="SidebarOption" id="Home">
                 <div className="SidebarIcon">
                     <HomeSVG/>
@@ -21,7 +21,6 @@ function StudentSidebar()
                     </h5>
                 </div>
             </div>
-            </Link>
             <div className="SidebarOption" id="StudentClubs">
             <div className="SidebarIcon">
                     <StudentClubsSVG/>
@@ -52,7 +51,6 @@ function StudentSidebar()
                         </h5>
                     </div>
                 </div>
-            <Link to="/Settings">
             <div className="SidebarOption" id="Settings">
             <div className="SidebarIcon">
                     <SettingsSVG/>
@@ -63,7 +61,6 @@ function StudentSidebar()
                     </h5>
                 </div>
             </div>
-            </Link>
         </div>
     );
 }
@@ -73,6 +70,58 @@ function StudentRepSidebar()
 {
     return (
     <>
+        <div className='options'>
+                <div className="SidebarOption" id="Home">
+                    <div className="SidebarIcon">
+                        <HomeSVG/>
+                    </div>
+                    <div className="SidebarLabel">
+                        <h5>
+                            Home
+                        </h5>
+                    </div>
+                </div>
+                <div className="SidebarOption" id="StudentClubs">
+                <div className="SidebarIcon">
+                        <StudentClubsSVG/>
+                    </div>
+                    <div className="SidebarLabel">
+                        <h5>
+                            Student Clubs
+                        </h5>
+                    </div>
+                </div>
+                <div className="SidebarOption" id="StudentComplaints">
+                    <div className="SidebarIcon">
+                            <StudentComplaintsSVG/>
+                        </div>
+                        <div className="SidebarLabel">
+                            <h5>
+                               Student Complaints
+                            </h5>
+                        </div>
+                    </div>
+                <div className="SidebarOption" id="StudentPendingPosts">
+                    <div className="SidebarIcon">
+                        <StudentPendingPosts/>
+                    </div>
+                    <div className="SidebarLabel">
+                        <h5>
+                            Student Pending Posts
+                        </h5>
+                    </div>
+                    </div>
+                <div className="SidebarOption" id="Settings">
+                <div className="SidebarIcon">
+                        <SettingsSVG/>
+                    </div>
+                    <div className="SidebarLabel">
+                        <h5>
+                            Settings
+                        </h5>
+                    </div>
+                </div>
+            </div>
     </>);
 }
 
