@@ -150,7 +150,7 @@ function PostSection(props)
     {
         const FilterByCourseandAuthor = async (Course,Author) =>
         { 
-            const data = await getposts(`${Author}`, `${studentData.major_id}` , `${Course}`);
+            const data = await getposts(`${Author}`, `${studentData.major_id}` , `${Course}`, `${studentData.std_id}`);
             setPostsContent(data);
         }
 

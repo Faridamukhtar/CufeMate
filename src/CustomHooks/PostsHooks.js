@@ -1,6 +1,6 @@
 import React from "react";
 
-export async function getposts(author = "", major = "", course = "")
+export async function getposts(author = "", major = "", course = "", std_id ="")
 {
   try 
   {
@@ -13,6 +13,7 @@ export async function getposts(author = "", major = "", course = "")
         author: author || "",
         major: major || "",
         course: course || "",
+        std_id: std_id || "",
       }),
     });
 
