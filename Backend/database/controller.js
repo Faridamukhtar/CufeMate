@@ -4,18 +4,22 @@ const dbInstance = await db();
 
 export const getPosts = async (req, res) => { 
 
-    const FilterPosts = (author, major, course) =>
+    const FilterPosts = (author, major, course, std_id) =>
     {
-      let CurrentQuery="";
+      let CurrentQuery=` 
+      c.course_name in (
+        SELECT course_name FROM student, course, takes WHERE course.course_id=takes.course_id
+        AND takes.std_id=student.std_id AND Student.std_id = ${std_id} 
+      )`;
       if (author!=='' || course!=='')
       {
+        if (course!=='')
+        {
+          CurrentQuery=`c.course_name = '${course}' ` 
+        }
         if (author!=='')
         {
           CurrentQuery+=`AND ((strpos(Fname,'${author}')>0) OR (strpos(Lname,'${author}')>0)) `
-        }
-        if (course!=='')
-        {
-          CurrentQuery+=`AND c.course_name = '${course}' ` 
         }
       }
       else if (major!=='')
@@ -35,22 +39,26 @@ export const getPosts = async (req, res) => {
       return (`
       SELECT DISTINCT s.Fname, s.Lname, p.post_date, p.content, p.post_id, c.course_name, m.major_id
       FROM post p
-      LEFT OUTER JOIN requests_to_write rtw ON p.post_id = rtw.post_id
-      LEFT OUTER JOIN writes w ON p.post_id = w.post_id
-      LEFT OUTER JOIN student s ON w.std_id = s.std_id OR rtw.std_id = s.std_id
-      LEFT OUTER JOIN related_to_course rtc ON p.post_id = rtc.post_id
-      LEFT OUTER JOIN course c ON rtc.course_id = c.course_id
-      LEFT OUTER JOIN related_to_major rtm ON p.post_id = rtm.post_id
-      LEFT OUTER JOIN major m ON rtm.major_id = m.major_id
-      WHERE ((rtw.flagstatus=1 AND rtw.post_id <> 0) OR (w.post_id <> 0)) ${FilterPosts(author, major, course)}`);
+      LEFT OUTER JOIN requests_to_write rtw 
+          ON p.post_id = rtw.post_id AND rtw.flagstatus=1
+      LEFT OUTER JOIN writes w 
+          ON p.post_id = w.post_id
+      LEFT OUTER JOIN student s 
+          ON w.std_id = s.std_id OR rtw.std_id = s.std_id
+      LEFT OUTER JOIN related_to_course rtc
+          ON p.post_id = rtc.post_id
+      LEFT OUTER JOIN course c 
+          ON rtc.course_id = c.course_id
+      LEFT OUTER JOIN related_to_major rtm 
+          ON p.post_id = rtm.post_id
+      WHERE
+      ${FilterPosts(author, major, course, std_id)}`);
     }
 
     console.log('req body', req.body);
-    const author = req.body.author;
-    const major = req.body.major;
-    const course = req.body.course;
+    const {author, major, course, std_id} = req.body;
 
-    let Query = `${QueryGetPosts(author, major, course)}`;
+    let Query = `${QueryGetPosts(author, major, course, std_id)}`;
 
     console.log(Query);
     try {
@@ -99,11 +107,16 @@ export const getMajorAuthors = async (req, res) => {
    
   const majorID = req.params.major;
 
-  let query = `SELECT DISTINCT student.std_id, student.fname, student.lname FROM Student  
-  INNER JOIN major on major.major_id=student.major_id
-  LEFT OUTER JOIN writes ON student.std_id = writes.std_id 
-  LEFT OUTER JOIN Requests_to_write ON student.std_id = requests_to_write.std_id
-  WHERE ((writes.post_id is NOT NULL) OR (requests_to_write.post_id is NOT NULL AND requests_to_write.flagstatus = 1));
+  let query = `
+  SELECT DISTINCT student.std_id, student.fname, student.lname 
+  FROM Student  
+  INNER JOIN major 
+    on major.major_id=student.major_id 
+  LEFT OUTER JOIN writes 
+    ON student.std_id = writes.std_id AND writes.post_id is NOT NULL
+  LEFT OUTER JOIN Requests_to_write rtw ON 
+    student.std_id = rtw.std_id rtw.post_id is NOT NULL AND rtw.flagstatus = 1
+  WHERE major.major_id = ${majorID}
   `
     try {
 
