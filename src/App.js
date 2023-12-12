@@ -5,17 +5,24 @@ import RepDashboard from './pages/RepDashboard.js';
 import LoginSignup from './pages/login_signup.js'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import StudentSetting from './pages/StudentSettings.js';
+import LoginAdmin from './pages/LoginAdmin.js';
+import LoginSignupClub from './pages/LoginSignupClub.js';
+
 
 function App() {
   return (
     <>
       <div className='App'>
-        <LoginSignup />
         <Router>
           <Routes>
+
+            <Route path="/Home" element={<StudentDashboard />} />
             <Route path="/student" element={<StudentDashboard />} />
             <Route path="/rep" element={<RepDashboard />} />
             <Route path="/Settings" element={<StudentSetting />} />
+            <Route path="/" element={<LoginSignup />} />
+            <Route path="/Club" element={<LoginSignupClub />} />
+            <Route path="/Admin" element={<LoginAdmin />} />
           </Routes>
         </Router>
       </div>

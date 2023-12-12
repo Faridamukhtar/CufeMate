@@ -2,6 +2,7 @@
 .login_signup {
     display: flex;
     background: linear-gradient(261deg, rgba(238, 234, 255, 0.39) 1.22%, rgba(240, 237, 255, 0.56) 59.07%, rgba(244, 241, 255, 0.62) 80.56%);
+    box-shadow: 0px 44px 84px 6px #D8D9DB;
     background-color: #E7E7E9;
     width: 1440px;
     height: 650px;
@@ -66,6 +67,8 @@ text-align:center;
   .signup {
     border-radius: 8px;
     padding: 20px;
+    margin-left: 85px;
+    margin-right: 10px;
   }
   
   .login h2,
@@ -82,11 +85,10 @@ text-align:center;
     border-radius: 4px;
   }
   
-  select {
+  .inputPhoto{
     width: 73%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
   }
-  
+

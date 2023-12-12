@@ -8,6 +8,9 @@ function StudentSidebar()
 {
     return(
         <div className='options'>
+
+            <Link to="/Home">
+
             <div className="SidebarOption" id="Home">
                 <div className="SidebarIcon">
                     <HomeSVG/>
