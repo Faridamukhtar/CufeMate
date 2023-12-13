@@ -7,13 +7,13 @@ const LoginSignupClub = () => {
     // State for login form
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
-  
+    //State for signup form
     const [stdClubId, setStdClubId] = useState('');
-  const [stdClubName, setStdClubName] = useState('');
-  const [email, setEmail] = useState('');
-  const [passw, setPassw] = useState('');
-  const [about, setAbout] = useState('');
-  const [selectedImage, setSelectedImage] = useState(null);
+    const [stdClubName, setStdClubName] = useState('');
+    const [email, setEmail] = useState('');
+    const [passw, setPassw] = useState('');
+    const [about, setAbout] = useState('');
+    const [selectedImage, setSelectedImage] = useState(null);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];

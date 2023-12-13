@@ -4,7 +4,7 @@ import { dbInstance } from "./connection.js";
 const major_router = express.Router();
 
 // Get majors from the database
-major_router.get('/api/majors', async (res) => {
+major_router.get('/api/majors', async (req,res) => {
   try {
     const result = await dbInstance.query('SELECT * FROM major');
     res.json(result.rows);

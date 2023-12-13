@@ -10,7 +10,7 @@ function StudentSidebar()
     return(
         <div className='options'>
 
-            <Link to="/Home"></Link>
+            <Link to="/Home">
             <div className="SidebarOption" id="Home">
                 <div className="SidebarIcon">
                     <HomeSVG/>
@@ -21,6 +21,7 @@ function StudentSidebar()
                     </h5>
                 </div>
             </div>
+            </Link>
             <div className="SidebarOption" id="StudentClubs">
             <div className="SidebarIcon">
                     <StudentClubsSVG/>

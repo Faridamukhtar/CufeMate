@@ -6,7 +6,7 @@ const admin_router = express.Router();
 // Middleware to parse incoming requests
 admin_router.use(bodyParser.json());
 
-
+//////////////////////////////////////////          ADMIN            ////////////////////////////////////////////
 //admin login
 admin_router.get('/api/login/admin/:email/:password', async (req, res) => {
   const { email, password } = req.params;
@@ -47,11 +47,23 @@ admin_router.post('/api/add/admin', async (req, res) => {
   }
 });
 
+//////////////////////////////////////////          STUDENTS            ////////////////////////////////////////////
 // students
 // view all
-admin_router.get('/api/admin/getAllStudents', async (res) => {
+admin_router.get('/api/admin/getAllStudents', async (req,res) => {
   try {
-    const result = await dbInstance.query('SELECT * FROM student');
+    const result = await dbInstance.query('SELECT Distinct * FROM student');
+    res.json(result.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+//get 1 student info
+admin_router.get('/api/admin/student/info/:id', async (req,res) => {
+  const {id} = req.params;
+  try {
+    const result = await dbInstance.query('SELECT Distinct * FROM student where std_id =$1',[id]);
     res.json(result.rows);
   } catch (error) {
     console.error(error);
@@ -74,12 +86,28 @@ admin_router.put('/api/admin/banRep/:id/:decision', async (req, res) => {
   }
 });
 
-// Clubs
-// get all approved clubs
-admin_router.get('/api/admin/getAllClubs', async (res) => {
+//accept/reject rep
+/*admin_router.put('/api/admin/respondRep/:id/:decision', async (req, res) => {
+  const {decision,id} = req.params;
+  // stat: 0-> student , 1-> rep, 2-> banned rep
+  // decision: 2-> ban, 1-> unban
   try {
     //accepted clubs only
-    const result = await dbInstance.query('SELECT * FROM (student_club NATURAL JOIN request_std_club) WHERE stat=1;'); 
+    const result = await dbInstance.query('UPDATE request_rep SET stat = $1 WHERE std_id=$2;', [decision, id]);
+    res.json({ success: true,user: result.rows[0], message: 'req request status updated successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});*/
+
+//////////////////////////////////////////          CLUBS            ////////////////////////////////////////////
+// Clubs
+// get all approved clubs
+admin_router.get('/api/admin/getAllClubs', async (req,res) => {
+  try {
+    //accepted clubs only
+    const result = await dbInstance.query('SELECT Distinct * FROM (student_club NATURAL JOIN request_std_club) WHERE stat=1;'); 
     res.json(result.rows);
   } catch (error) {
     console.error(error);
@@ -88,7 +116,7 @@ admin_router.get('/api/admin/getAllClubs', async (res) => {
 });
 
 //ban/unban club
-admin_router.put('/api/admin/banRep/:id/:decision', async (req, res) => {
+admin_router.put('/api/admin/banClub/:id/:decision', async (req, res) => {
   const {decision,id} = req.params;
   // stat: 0-> pending , 1-> approved club, 2-> banned club
   // decision: 2-> ban, 1-> unban
@@ -102,6 +130,31 @@ admin_router.put('/api/admin/banRep/:id/:decision', async (req, res) => {
   }
 });
 
+//get 1 club info
+admin_router.get('/api/admin/club/info/:id', async (req,res) => {
+  const {id} = req.params;
+  try {
+    const result = await dbInstance.query('SELECT Distinct * FROM student_club where std_club_id =$1',[id]);
+    res.json(result.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
+//accept/reject club
+/*admin_router.put('/api/admin/respondClub/:id/:decision', async (req, res) => {
+  const {decision,id} = req.params;
+  // stat: 0-> student , 1-> rep, 2-> banned rep
+  // decision: 2-> ban, 1-> unban
+  try {
+    //accepted clubs only
+    const result = await dbInstance.query('UPDATE request_std_club SET stat = $1 WHERE std_club_id=$2;', [decision, id]);
+    res.json({ success: true,user: result.rows[0], message: 'club request status updated successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});*/
 export { admin_router };
 
