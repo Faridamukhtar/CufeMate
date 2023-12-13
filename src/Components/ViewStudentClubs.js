@@ -8,7 +8,7 @@ function Apply(props)
     return (
         <button className="apply">
             <h5>
-                {props.applied? 'Applied' : 'Withdraw Application'}
+                {props?.applied ? 'Withdraw Application' : 'Apply'}
             </h5>
         </button> 
         )
