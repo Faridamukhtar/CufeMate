@@ -15,11 +15,11 @@ function App() {
       <div className='App'>
         <Router>
           <Routes>
-
-            <Route path="/Home" element={<StudentDashboard />} />
-            <Route path="/student" element={<StudentDashboard />} />
-            <Route path="/rep" element={<RepDashboard />} />
+            <Route path="/student" element={<StudentDashboard DashboardType='student' />} />
+            <Route path="/rep" element={<RepDashboard DashboardType='studentRep'/>} />
             <Route path="/Settings" element={<StudentSetting />} />
+            <Route path="/student/studentclubs" element={<StudentDashboard DashboardType='viewstudentclubs' />} />
+            <Route path="/rep/studentclubs" element={<RepDashboard DashboardType='viewstudentclubs' />} />
             <Route path="/" element={<LoginSignup />} />
             <Route path="/Club" element={<LoginSignupClub />} />
             <Route path="/Admin" element={<LoginAdmin />} />
