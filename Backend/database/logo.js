@@ -1,8 +1,8 @@
-import { db } from "./connection.js";
+import { dbInstance } from "./connection.js";
 import express from "express";
 import bodyParser from 'body-parser';
 const logo = express.Router();
-const dbInstance = await db();
+//const dbInstance = await db();
 // Middleware to parse incoming requests
 logo.use(bodyParser.json());
 

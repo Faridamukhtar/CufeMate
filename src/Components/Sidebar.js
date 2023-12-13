@@ -1,5 +1,6 @@
 import React from "react";
 import './Sidebar.css';
+import { Link } from 'react-router-dom';
 import { HomeSVG, StudentClubsSVG,StudentPendingPosts, StudentComplaintsSVG, FileAComplaintSVG,RepsContactsSVG, SettingsSVG  } from "../svg/SvgFiles"; 
 
 
@@ -9,8 +10,7 @@ function StudentSidebar()
     return(
         <div className='options'>
 
-            <Link to="/Home">
-
+            <Link to="/Home"></Link>
             <div className="SidebarOption" id="Home">
                 <div className="SidebarIcon">
                     <HomeSVG/>

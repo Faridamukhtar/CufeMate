@@ -1,3 +1,42 @@
-buttons go to different pages
-image from signup
-login when clicked returns user and integer '0,1,2,3' student, rep, club, admin and redirects to another page accordingly
+optimisation notes :
+1- one login with radio button of student,admin,club
+2- 2 signups in 1 page (clubs and students)
+
+to do:
+* backend:
+❓ 0- Edit SignUp for Clubs to make request before being able to login , edit LogIn as well (❓ pending till meet)
+✅A- view users
+    ✅1- get students 
+    ✅2- get clubs
+    ✅3- ban/unban reps
+    ✅4- ban/unban club
+❓ B- stats
+    1- club stats routes
+    2- reps stats routes
+✅C- Add Admin 
+❓ D- requests
+    ✅1- approve/decline club
+    ❓-> make logging in only available if request_std_club = 1 (❓ pending till meet)
+    ✅2- approve/decline rep
+
+* frontend
+A- general layout -> SideBar with linking + display board
+B- view users
+    this will have login button in each row to access the user account -> component + link
+    the tab is split into 2 (club & student), also for student, display rep or not
+    here we can ban/unban reps and clubs
+❓ C- stats
+        one page split into 2 columns
+        pie charts ? bar charts ?
+D- Add Admin
+    inputs and submit on click and alert
+E- requests
+    one page split into 2 columns (+ previous requests tab)
+    display each row as request + 2 buttons (approve and decline) <- decision
+
+
+<Route path="/Admin/settings" element={<AdminSettings/>/* to be filled by mimo */} /> 
+            <Route path="/Admin/requests" element={<RequestsToAdmin/>} />
+            <Route path="/Admin/add" element={<AddAdmin />} />
+            <Route path="/Admin/stats" element={<AdminStats />} />
+            <Route path="/Admin/allUsers" element={<AllUsers/>} />

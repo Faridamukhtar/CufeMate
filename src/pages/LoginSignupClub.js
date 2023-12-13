@@ -40,7 +40,7 @@ const LoginSignupClub = () => {
   const handleSignup = async () => {
 
     try {
-        const url = 'http://localhost:8080/api/signup/studentClub';
+        const url = 'http://localhost:8080/api/signup/student_club';
         const data = {
         std_club_name: stdClubName,
         std_club_id: stdClubId,
@@ -83,7 +83,7 @@ const LoginSignupClub = () => {
     const handleLogin = async (email, password) => {
       try {
         // Construct the URL with actual values for email and password
-        const url = `http://localhost:8080/api/login/studentClub/${encodeURIComponent(email)}/${encodeURIComponent(password)}`;
+        const url = `http://localhost:8080/api/login/student_club/${encodeURIComponent(email)}/${encodeURIComponent(password)}`;
     
         // Make a GET request to the constructed URL
             const response = await fetch(url); 

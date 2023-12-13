@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import StudentSetting from './pages/StudentSettings.js';
 import LoginAdmin from './pages/LoginAdmin.js';
 import LoginSignupClub from './pages/LoginSignupClub.js';
+//import AdminBar from './Components/adminBar.js';
 
 
 function App() {
@@ -15,7 +16,6 @@ function App() {
       <div className='App'>
         <Router>
           <Routes>
-
             <Route path="/Home" element={<StudentDashboard />} />
             <Route path="/student" element={<StudentDashboard />} />
             <Route path="/rep" element={<RepDashboard />} />
