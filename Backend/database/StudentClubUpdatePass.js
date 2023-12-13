@@ -2,22 +2,18 @@ import express from "express";
 import { db } from "./connection.js";
 import bodyParser from 'body-parser';
 
-const Update_Pass = express.Router();
+
+const UpdateClubPass_router = express.Router();
 const dbInstance = await db();
 
+UpdateClubPass_router.use(bodyParser.json());
 
-// Middleware to parse incoming requests
-Update_Pass.use(bodyParser.json());
 
-// Update_pass API
-
-Update_Pass.get('/api/UpdatePassword/', async (req, res) => {
+UpdateClubPass_router.get('/api/UpdateStudentClubPassword/', async (req, res) => {
     const { email, password: newPassword } = req.query;
     
-    console.log('Updating password for email:', email, 'with new password:', newPassword);
-
     try {
-        const result = await dbInstance.query('UPDATE student SET passw = $1 WHERE email = $2', [newPassword, email]);
+        const result = await dbInstance.query('UPDATE student_club SET passw = $1 WHERE email = $2', [newPassword, email]);
         console.log('Query result:', result);
 
        if (result.rowCount > 0) {
@@ -33,7 +29,4 @@ Update_Pass.get('/api/UpdatePassword/', async (req, res) => {
 });
 
 
-
-
-export { Update_Pass };
-
+export { UpdateClubPass_router };

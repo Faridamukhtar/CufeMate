@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <div className='App'>
-        <StudentSetting />
+        <StudentSetting DashboardType="studentclubsettings" />
       </div>
       <div className='Mobile'>
         <h2>

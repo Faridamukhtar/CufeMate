@@ -3,7 +3,13 @@ import posts from './routes/posts.js';
 import bodyParser from "body-parser";
 import cors from 'cors';
 import { Update_Pass } from './database/UpdatePass.js';
-import { Delete_acc } from './database/DeleteAcc.js';
+import { ChangeClubPass_router } from './database/PassStudentClub.js';
+import { UpdateClubPass_router } from './database/StudentClubUpdatePass.js';
+import { ChangeAdminPass_router } from './database/GetAdminpass.js';
+import { UpdateAdminPass_router } from './database/ChangeAdminpass.js';
+import { Update_About } from './database/UpdateAbout.js';
+
+
 import {Pass_router} from "./database/GetCurrentpass.js"
 import { db } from './database/connection.js';
 
@@ -28,7 +34,14 @@ app.use(
     app.use('/', posts);
     app.use('/', Update_Pass);
     app.use('/', Pass_router);
-    app.use ("/", Delete_acc)
+    app.use ("/", ChangeClubPass_router)
+    app.use ("/", UpdateClubPass_router)
+    app.use ("/", ChangeAdminPass_router)
+    app.use ("/", UpdateAdminPass_router)
+    app.use ("/", Update_About)
+
+
+
 
     app.listen(port, () => {
       console.log(`Server is running on port ${port}`);

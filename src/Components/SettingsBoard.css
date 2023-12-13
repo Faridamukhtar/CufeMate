@@ -5,7 +5,10 @@
     background: #FFF;
     padding: 3%;
     box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.10);
-    width: 95%;}
+    width: 95%;
+    min-height: 70vh;
+
+  }
 
 .Post
 {
@@ -62,6 +65,15 @@
 
   }
 
+ 
+
+  .charmsg{
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 16px;
+
+  }
+
   .label {
     color: #787486;
     font-family: Inter;
@@ -81,5 +93,24 @@
     line-height: normal;
     text-transform: capitalize;
   }
+
+  
+  .AboutText
+  {
+      border-radius: 8px;
+      border: 2px solid #E7E7E9;
+      background: #FFF;
+      width: 90%;
+      padding: 10px;
+      min-height: 30vh;
+      font-size: 16px;
+      font-family: Inter;
+
+  }
+
+  .Buttonsstyle {
+    display: flex;
+  }
+  
   
   
