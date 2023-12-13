@@ -1,6 +1,6 @@
 import React from "react";
-import Sidebar from "../Components/Sidebar";
-import Dashboard from "../Components/Dashboard";
+import Sidebar from "../Components/Sidebar.js";
+import Dashboard from "../Components/Dashboard.js";
 import './RepsContactsDashboard.css'
 
 const RepsContactsDashboard =()=>

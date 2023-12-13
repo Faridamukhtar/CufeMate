@@ -25,28 +25,27 @@ function StudentHeader()
     );
 }
 
-function RepsContactsHeader(props)
+function RepsContactsHeader()
 
 { 
     return (
-        <div className="studentHeader">
-            <div className= "greeting">
-                 <h1>
-                    Reps Contacts
-                 </h1>
-                 <h3>
-                    Reps of class {props.year} , {props.major} major 
-                 </h3>
+        <div className="StudentHeader">
+            <div className="greeting">
+                <h1>
+                    Contacts
+                </h1>
+                <h3>
+                    Reps of class 2026, major MEE.
+                </h3>
             </div>
             <div className="Info">
-                 <h4 className='StudentName'>
-                     Name
-                 </h4>
-                 <h4>
-                     Class of XXXX
-                 </h4>
+                <h4 className='StudentName'>
+                    Name
+                </h4>
+                <h4>
+                    Class of XXXX
+                </h4>
             </div>
-
         </div>
     );
 
@@ -62,11 +61,11 @@ function ChooseHeader(props)
             </>
         );
     }
-    if (props.Dashboardtype==='reps_contacts')
+    if (props.DashboardType==='reps_contacts')
     {
         return (
             <>
-              <RepsContactsHeader DashboardType={props.DashboardType}/>
+              <RepsContactsHeader/>
             </>
         );
     }

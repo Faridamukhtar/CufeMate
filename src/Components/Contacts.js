@@ -7,10 +7,10 @@ const getContacts = async (fname="", lname="", email="") =>
 {
     try 
     {
-        //const major='CCEC';
-        //const classs='2025';
+        const major='MEE';
+        const classs='2026';
       // Construct the URL with actual values for email and password
-      const url = `http://localhost:8080/api/repscontacts/${encodeURIComponent(major)}/${encodeURIComponent(classs)}`;
+        const url = `http://localhost:8080/api/repscontacts/${encodeURIComponent(major)}/${encodeURIComponent(classs)}`;
   
       // Make a GET request to the constructed URL
           const response = await fetch(url); 
@@ -32,13 +32,15 @@ function Contact(props)
 {
    return(
        <div className="Container">
-        <div className="Name">
-            <h5>
+        <div>
+            <h5 className="Name">
                 {props.fname} {props.lname}
             </h5>
         </div>
-        <div className="Email">
-            {props.email}
+        <div>
+            <h6 className="Email">
+                {props.email}
+            </h6>
         </div>
        </div>
     );
@@ -47,7 +49,7 @@ function Contact(props)
 
 function DisplayContacts(props)
 {
-    if (props?.compArray[0])
+    if (props?.contArray[0])
     {
         console.log('AAAAA');
         const listItems = props.contArray.map ( (student) =>{return (<li><Contact fname={student.fname} lname={student.lname} email={student.email} /></li>)});
@@ -81,9 +83,6 @@ function Contacts()
 
   return (
      <div>
-        <div className="Title">
-           <h3>Contacts</h3>
-        </div>
         <ul>
         <DisplayContacts contArray={ContactsData}/>
         </ul>

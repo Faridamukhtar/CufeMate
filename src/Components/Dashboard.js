@@ -2,7 +2,7 @@ import React from "react";
 import ChooseHeader from "./Header.js";
 import './Dashboard.css';
 import Posts from './Posts';
-import Contacts from './Contacts';
+import Contacts from './Contacts.js';
 
 function StudentBody(props)
 {
