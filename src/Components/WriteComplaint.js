@@ -8,6 +8,7 @@ function WriteComplaint(props)
 {    
     const [Tittle, setTitle] = useState('');
     const [Conttent, setContent] = useState('');
+    const [CharCount, setCharCount]=useState('');
 
     const handleSubmit = async (Tittle, Conttent) => {
         try {
@@ -45,7 +46,7 @@ function WriteComplaint(props)
             </div>    
             <hr className= "LowerLine"/>
             <div className="CharacterCount">
-                0:500
+                {CharCount.length}/500
             </div>
             <button className="SubmitButton" onClick={() => handleSubmit(Tittle, Conttent)}> <h5 className="SubmitText">Submit</h5></button>
         
