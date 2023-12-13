@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import './Posts.css';
 import {getposts,fetchStudentCourses, fetchMajorAuthors} from "../CustomHooks/PostsHooks.js";
-import ChooseHeader from "./Header.js";
 
 const studentData = {fname:"Ahmed", major_id:'CCE', std_id:1, class:'2026'}; //get logged in student data
 

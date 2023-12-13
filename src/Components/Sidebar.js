@@ -1,16 +1,18 @@
 import './Sidebar.css';
 import { HomeSVG, StudentClubsSVG,StudentPendingPosts, StudentComplaintsSVG, FileAComplaintSVG,RepsContactsSVG, SettingsSVG  } from "../svg/SvgFiles"; 
 import React,{ useEffect, useState } from 'react';
+import {Routes, Route, useNavigate} from 'react-router-dom';
 
 //Sidebar component
 function Sidebar(props)
 {
+    const navigate=useNavigate();
     //Renders Student Sidebar content
     function StudentSidebar()
     {
         return(
             <div className='options'>
-                <div className="SidebarOption" id="Home" onClick={()=>props.setOnClickNav('student')}>
+                <div className="SidebarOption" id="Home" onClick={()=>navigate('/student/')}>
                     <div className="SidebarIcon">
                         <HomeSVG/>
                     </div>
@@ -20,7 +22,7 @@ function Sidebar(props)
                         </h5>
                     </div>
                 </div>
-                <div className="SidebarOption" id="StudentClubs" onClick={()=>props.setOnClickNav('viewstudentclubs')}>
+                <div className="SidebarOption" id="StudentClubs" onClick={()=>navigate('/student/studentclubs/')}>
                 <div className="SidebarIcon">
                         <StudentClubsSVG/>
                     </div>
@@ -70,7 +72,7 @@ function Sidebar(props)
         return (
         <>
             <div className='options'>
-                    <div className="SidebarOption" id="Home" onClick={()=>props.setOnClickNav('studentRep')}>
+                    <div className="SidebarOption" id="Home" onClick={()=>navigate('/rep')}>
                         <div className="SidebarIcon">
                             <HomeSVG/>
                         </div>
@@ -80,7 +82,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                     </div>
-                    <div className="SidebarOption" id="StudentClubs" onClick={()=>props.setOnClickNav('StudentClubs')}>
+                    <div className="SidebarOption" id="StudentClubs" onClick={()=>navigate('/rep/studentclubs')}>
                     <div className="SidebarIcon">
                             <StudentClubsSVG/>
                         </div>

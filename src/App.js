@@ -13,9 +13,11 @@ function App() {
         <LoginSignup />
         <Router>
           <Routes>
-            <Route path="/student" element={<StudentDashboard />} />
-            <Route path="/rep" element={<RepDashboard />} />
+            <Route path="/student" element={<StudentDashboard DashboardType='student' />} />
+            <Route path="/rep" element={<RepDashboard DashboardType='studentRep'/>} />
             <Route path="/Settings" element={<StudentSetting />} />
+            <Route path="/student/studentclubs" element={<StudentDashboard DashboardType='viewstudentclubs' />} />
+            <Route path="/rep/studentclubs" element={<RepDashboard DashboardType='viewstudentclubs' />} />
           </Routes>
         </Router>
       </div>

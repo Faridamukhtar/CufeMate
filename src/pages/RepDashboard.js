@@ -3,17 +3,16 @@ import Sidebar from "../Components/Sidebar";
 import Dashboard from "../Components/Dashboard";
 import './StudentDashboard.css'
 
-const RepDashboard =()=>
+const RepDashboard =(props)=>
 {
-    const [DashboardType, setDashboardType]=useState('studentRep');
 
     return (
         <div className="StudentPage">
             <div className="sidebar">
-                <Sidebar SidebarType='student' setOnClickNav={setDashboardType}/>
+                <Sidebar SidebarType='studentRep'/>
             </div>
             <div className="Dashboard">
-                <Dashboard DashboardType={DashboardType} studentType='studentRep'/>
+                <Dashboard DashboardType={props.DashboardType} studentType='studentRep'/>
             </div>
         </div>
     );
