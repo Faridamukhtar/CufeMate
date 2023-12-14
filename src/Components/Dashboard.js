@@ -60,7 +60,7 @@ function DashboardBody(props)
                 <ViewStudentClubsBody DashboardType={props.DashboardType}/>
             </>
         );
-
+    }
    else if (props.DashboardType==='complaint')
     {
         return (

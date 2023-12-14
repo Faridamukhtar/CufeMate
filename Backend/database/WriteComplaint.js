@@ -1,8 +1,7 @@
 import express from "express";
-import { db } from "./connection.js";
+import { dbInstance } from "./connection.js";
 
 const write_complaint_router=express.Router();
-const dbInstance = await db();
 
 write_complaint_router.get("/api/writecomplaint/:title/:content", async (req,res) =>{
     const {title,content}=req.params;

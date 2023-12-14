@@ -1,8 +1,8 @@
 import express from "express";
-import { db } from "./connection.js";
+import { dbInstance } from "./connection.js";
 
 const previous_complaints_router=express.Router();
-const dbInstance = await db();
+
 
 previous_complaints_router.get("/api/previouscomplaints/:std_id", async (req,res) =>{
     //const {std_id}=req.params;

@@ -92,7 +92,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                     </div>
-                    <div className="SidebarOption" id="StudentComplaints">
+                    <div className="SidebarOption" id="StudentComplaints" onClick={()=>navigate('/student/complaint')}>
                         <div className="SidebarIcon">
                                 <StudentComplaintsSVG/>
                             </div>

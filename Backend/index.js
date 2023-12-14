@@ -1,5 +1,4 @@
 
-
 import express from 'express';
 import posts from './routes/posts.js';
 import ViewStudentClubs from './routes/viewstudentclubs.js'
