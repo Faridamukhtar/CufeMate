@@ -82,4 +82,15 @@
     text-transform: capitalize;
   }
   
-  
+  .AboutText
+  {
+      border-radius: 8px;
+      border: 2px solid #E7E7E9;
+      background: #FFF;
+      width: 90%;
+      padding: 10px;
+      min-height: 30vh;
+      font-size: 16px;
+      font-family: Inter;
+
+  }

@@ -52,7 +52,7 @@ function StudentHeader(props)
     );
 }
 
-function StudentSettingsHeader()
+function StudentSettingsHeader(props)
 {
     return (
         <div className="StudentHeader">
@@ -63,15 +63,38 @@ function StudentSettingsHeader()
             </div>
             <div className="Info">
                 <h4 className='StudentName'>
-                    Name
+                    {studentData.fname} {studentData.lname}
                 </h4>
                 <h4>
-                    Class of XXXX
+                    Class of {props.studentType=='student' ? studentData.class : studentData.class + ' Rep'}
                 </h4>
             </div>
         </div>
     );
 }
+
+function ViewRepFromHeader(props)
+{
+    return (
+        <div className="StudentHeader">
+            <div className="greeting">
+                <h1>
+                    Rep Application
+                </h1>
+            </div>
+            <div className="Info">
+                <h4 className='StudentName'>
+                    {studentData.fname} {studentData.lname}
+                </h4>
+                <h4>
+                    Class of {props.studentType=='student' ? studentData.class : studentData.class + ' Rep'}
+                </h4>
+            </div>
+        </div>
+    );
+}
+
+
 
 function ChooseHeader(props)
 {
@@ -87,7 +110,7 @@ function ChooseHeader(props)
     {
         return (
             <>
-                <StudentSettingsHeader />
+                <StudentSettingsHeader studentType={props.studentType}/>
             </>
         );
     }
@@ -96,6 +119,14 @@ function ChooseHeader(props)
         return (
             <>
                 <ViewStudentClubsHeader studentType={props.studentType}/>
+            </>
+        );
+    }
+    else if (props.DashboardType==='ApplyRepForm' )
+    {
+        return (
+            <>
+                <ViewRepFromHeader studentType={props.studentType}/>
             </>
         );
     }

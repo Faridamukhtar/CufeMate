@@ -54,6 +54,17 @@ function Sidebar(props)
                     </div>
                 <div className="SidebarOption" id="Settings">
                 <div className="SidebarIcon">
+                        <FileAComplaintSVG/>
+                    </div>
+                    <div className="SidebarLabel">
+                        <h5>
+                            Apply to be Rep
+                        </h5>
+                    </div>
+                </div>
+
+                <div className="SidebarOption" id="Settings">
+                <div className="SidebarIcon">
                         <SettingsSVG/>
                     </div>
                     <div className="SidebarLabel">
@@ -62,6 +73,7 @@ function Sidebar(props)
                         </h5>
                     </div>
                 </div>
+
             </div>
         );
     }
