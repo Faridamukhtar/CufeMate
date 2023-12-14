@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import ChooseHeader from "./Header.js";
 import './Dashboard.css';
+import WriteComplaint from "./WriteComplaint.js";
+import PreviousComplaints from "./PreviousComplaints.js";
 import PostSection from './Posts.js';
 import ViewStudentClubs from './ViewStudentClubs.js';
+
 
 
 function StudentBody(props)
@@ -20,6 +23,22 @@ function ViewStudentClubsBody (props)
         <div className='ViewStudentClubsBody'>
             <ViewStudentClubs studentType={props.studentType}/>
        </div>
+    );
+}
+
+
+function ComplaintBody(props)
+{
+    return (
+        <div className='ComplaintBody'>
+            <div className = 'WriteComplaint'>
+                <WriteComplaint Dashboard={props.DashboardType}/>
+            </div>
+            <div className = 'PreviousComplaints'>
+                <PreviousComplaints Dashboard={props.DashboardType}/>
+            </div>
+        </div>
+
     );
 }
 
@@ -42,7 +61,17 @@ function DashboardBody(props)
             </>
         );
 
+   else if (props.DashboardType==='complaint')
+    {
+        return (
+            <>
+                 <ComplaintBody DashboardType={props.DashboardType}/>
+            </>
+        );
+        
     }
+
+
 }
 
 
