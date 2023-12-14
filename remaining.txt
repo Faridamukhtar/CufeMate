@@ -1,0 +1,3 @@
+buttons go to different pages
+image from signup
+login when clicked returns user and integer '0,1,2,3' student, rep, club, admin and redirects to another page accordingly

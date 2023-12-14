@@ -1,0 +1,85 @@
+.Wrapper
+{
+    border-radius: 16px;
+    border: 1px solid #FFF;
+    background: #FFF;
+    padding: 3%;
+    box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.10);
+    width: 95%;}
+
+.Post
+{
+    border-radius: 16px;
+    border: 1px solid #AD9EF4;
+    background: #FFF;
+}
+
+.BorderLine
+{
+    border-color: #5030E5;
+}
+
+.Title
+{
+    color: #0D062D;
+    padding-bottom: 20px;
+}
+
+.SettingsWrapper
+{
+    width: 95%;
+    padding: 5%;
+}
+
+.DashboardBody
+{
+    margin-block: 6%;
+}
+
+
+.button {
+    height: 10%;
+    padding: 8px;
+    border: 1px solid #787486;
+    box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.10);
+    border-radius: 6px;
+    background: #FFF;
+    margin-right : 16px; 
+
+  }
+  
+  .button-clicked {
+    height: 10%;
+    padding: 8px;
+    border: 1px solid #FFF;
+    box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.10);
+    border-radius: 6px;
+    border: 1px solid #FFF;
+    background: #5030E5;
+    margin-top : 10px; 
+    margin-right : 16px; 
+
+
+  }
+
+  .label {
+    color: #787486;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+  }
+
+  .label-clicked {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+  }
+  
+  

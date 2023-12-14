@@ -1,21 +1,20 @@
-import React, {useState} from "react";
+import React from "react";
 import Sidebar from "../Components/Sidebar";
-import Dashboard from "../Components/Dashboard";
-import './StudentDashboard.css'
+import './StudentSetting.css'
+import SettingsBoard from "../Components/SettingsBoard";
 
-const StudentDashboard =(props)=>
+const StudentSetting =()=>
 {
-
     return (
         <div className="StudentPage">
             <div className="sidebar">
                 <Sidebar SidebarType='student'/>
             </div>
             <div className="Dashboard">
-                <Dashboard DashboardType={props.DashboardType} studentType='student'/>
+                <SettingsBoard DashboardType='studentsettings'/>
             </div>
         </div>
     );
 }
 
-export default StudentDashboard;
+export default StudentSetting;
