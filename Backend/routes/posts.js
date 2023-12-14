@@ -1,8 +1,10 @@
 import express from "express";
-import { viewPosts } from "../Controller";
+import { getPosts } from "../database/StudentPosts.js";
 
 const router = express.Router();
 
-router.get("/", viewPosts);
+
+router.post("/", (req, res)=> getPosts(req,res));
+
 
 export default router;

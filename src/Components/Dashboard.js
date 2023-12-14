@@ -1,17 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import ChooseHeader from "./Header.js";
 import './Dashboard.css';
 import Posts from './Posts';
 import Contacts from './Contacts.js';
+import PostSection from './Posts.js';
+import ViewStudentClubs from './ViewStudentClubs.js';
+
+
 
 function StudentBody(props)
 {
     return (
         <div className='StudentBody'>
-            <Posts DashboardType={props.DashboardType}/>
+            <PostSection studentType={props.studentType}/>
        </div>
     );
 }
+
+function ViewStudentClubsBody (props)
+{
+    return (
+        <div className='ViewStudentClubsBody'>
+            <ViewStudentClubs studentType={props.studentType}/>
+       </div>
+    );
+}
+
 
 function RepsContactsBody(props)
 {
@@ -23,6 +37,7 @@ function RepsContactsBody(props)
     );
 } 
 
+
 function DashboardBody(props)
 {
     if (props.DashboardType==='student' || props.DashboardType==='studentRep')
@@ -33,7 +48,8 @@ function DashboardBody(props)
             </>
         );
     }
-    if (props.DashboardType==='reps_contacts')
+
+    else if (props.DashboardType==='reps_contacts')
     {
         return(
             <>
@@ -43,15 +59,24 @@ function DashboardBody(props)
         );
     }
 
+    else if (props.DashboardType==='viewstudentclubs')
+    {
+        return (
+            <>
+                <ViewStudentClubsBody DashboardType={props.DashboardType}/>
+            </>
+        );
 
+    }
 }
+
 
 function Dashboard(props)
 {
     return (
         <div className="DashboardPage">
             <div className="DashboardHeader">
-                <ChooseHeader DashboardType={props.DashboardType}/>
+                <ChooseHeader DashboardType={props.DashboardType} studentType={props.studentType}/>
             </div>
             <div className="DashboardBody">
                 <DashboardBody DashboardType={props.DashboardType}/>

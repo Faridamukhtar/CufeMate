@@ -1,4 +1,4 @@
-.PostsWrapper
+.formsWrapper
 {
     border-radius: 16px;
     border: 1px solid #FFF;
@@ -10,27 +10,28 @@
 }
 
 
-.LineUnderPost
+.LineUnderform
 {
     border-color: #5030E5;
 }
 
-.Post
+.form
 {
     border-radius: 16px;
     border: 1px solid #AD9EF4;
     background: #FFF;
     padding: 3%;
     margin-bottom: 15px;
+    width:50%;
 }
 
-.Posts ul
+.forms ul
 {
     list-style-type: none;
     padding:0;
 }
 
-.LatestPostsTitle
+.LatestformsTitle
 {
     padding-bottom: 20px;
     display: flex;
@@ -38,40 +39,42 @@
     justify-content: space-between;
 }
 
-.LatestPostsTitle h3
+.LatestformsTitle h3
 {
     padding-bottom: 0px;
     align-self: center;
     color: #0D062D;
 }
 
-.WritePost
+.TitleForm
+{
+    padding-bottom: 0px;
+    padding-top: 20px;
+}
+
+.apply
 {
     width:auto;
-    padding-block:8px;
-    padding-inline:25px;
     margin-block:10px;
-    border-width: 0px;
-    border-radius: 20px;
-    background-color: #271576e3;
+    border-radius: 10px;
     color: white;
 }
 
-.WritePost h5
+.apply h5
 {
     font-weight: 600;
     text-align: center;
 
 }
-.WritePost:hover
-{
-    cursor: pointer;
-    opacity: 0.7;
-    transition: all 0.3s;
 
+.apply:hover
+{
+    opacity: 0.3;
+    transition: all 0.3s;
+    background-color: #0D062D !important;
 }
 
-.PostHeader
+.formHeader
 {
     display: flex;
     flex-direction: row;
@@ -79,45 +82,33 @@
     align-items: center;
 }
 
-.Categories
+.ClubName
 {
-    width:20%;
+    position: relative;
+    left:-5px;
+    width:180px;
+    padding: 0%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.Course h6{
-    background-color: rgba(81, 48, 229, 0.12);
-    padding: 8px;
-    margin: 3px;
-    border-radius: 30px;
-    color: rgba(81, 48, 229, 1);
-    width:max-content
-}
-
-.Author h6{
-    background-color: rgba(199, 48, 229, 0.12);
-    padding: 8px;
-    margin: 3px;
-    border-radius: 30px;
-    color: rgb(229, 48, 178);
-    width:max-content
-}
-
 .Content
 {
-    margin-top: 5px;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-.Filters
+.FilterClub
 {
     display: flex;
     width: 400px;
     justify-content:space-between
 }
 
-.Filter
+.FilterClub
 {
     width:auto;
     -webkit-appearance: none;
@@ -149,3 +140,32 @@
 
 }
 
+.club h6
+{
+    border-radius: 6px;
+    color:rgb(43, 20, 107);
+    background-color: transparent;
+    display: flex;
+}
+
+.club
+{
+    display: flex;
+    justify-content: space-between;
+    background-color: #ac9ef479;
+    width:300px;
+    align-items: center;
+    padding: 7px;
+    border-radius: 7px;
+}
+
+.club:hover
+{
+    cursor: pointer;    
+
+}
+
+.club .InfoSVG:hover
+{
+    opacity: 0.7;
+}
