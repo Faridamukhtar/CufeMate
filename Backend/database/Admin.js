@@ -72,14 +72,16 @@ admin_router.get('/api/admin/student/info/:id', async (req,res) => {
 });
  
 //ban/unban rep
-admin_router.put('/api/admin/banRep/:id/:decision', async (req, res) => {
-  const {decision,id} = req.params;
+admin_router.put('/api/admin/banRep/:stdId/:decision/:adminID', async (req, res) => {
+  const {decision, adminID, stdId} = req.params;
   // stat: 0-> student , 1-> rep, 2-> banned rep
   // decision: 2-> ban, 1-> unban
   try {
-    //accepted clubs only
-    const result = await dbInstance.query('UPDATE student SET stat = $1 WHERE std_id=$2;', [decision, id]);
-    res.json({ success: true,user: result.rows[0], message: 'status updated successfully' });
+    //exclude students , only banned and unbanned reps 
+    const result1 = await dbInstance.query('UPDATE student SET rep_flag = $1 WHERE std_id=$2;', [decision, stdId]);
+    //const result2 = await dbInstance.query('UPDATE request_rep SET stat = $1, admin_id=$2 WHERE std_id=$3;', [decision, adminID, stdId]);
+    //console.log(result2.rows[0]);
+    res.json({ success: true,user: result1.rows[0], message: 'status updated successfully' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -106,8 +108,8 @@ admin_router.put('/api/admin/banRep/:id/:decision', async (req, res) => {
 // get all approved clubs
 admin_router.get('/api/admin/getAllClubs', async (req,res) => {
   try {
-    //accepted clubs only
-    const result = await dbInstance.query('SELECT Distinct * FROM (student_club NATURAL JOIN request_std_club) WHERE stat=1;'); 
+    //exclude pending clubs
+    const result = await dbInstance.query('SELECT Distinct * FROM (student_club NATURAL JOIN request_std_club) WHERE stat in (1,2);'); 
     res.json(result.rows);
   } catch (error) {
     console.error(error);
@@ -122,7 +124,7 @@ admin_router.put('/api/admin/banClub/:id/:decision', async (req, res) => {
   // decision: 2-> ban, 1-> unban
   try {
     //accepted clubs only
-    const result = await dbInstance.query('UPDATE student_club SET stat = $1 WHERE std_club_id=$2;', [decision, id]);
+    const result = await dbInstance.query('UPDATE request_std_club SET stat = $1 WHERE std_club_id=$2;', [decision, id]);
     res.json({ success: true,user: result.rows[0], message: 'status updated successfully' });
   } catch (error) {
     console.error(error);

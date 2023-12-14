@@ -13,6 +13,7 @@ import AddAdmin from './pages/AddAdmin.js';
 import AdminRequests from './pages/AdminRequests.js';
 
 
+
 function App() {
   return (
     <>
@@ -26,9 +27,9 @@ function App() {
             <Route path="/" element={<LoginSignup />} />
             <Route path="/Club" element={<LoginSignupClub />} />
             <Route path="/Admin" element={<LoginAdmin />} />
-            <Route path="/Admin/requests" element={<AdminRequests/>} />
-            <Route path="/Admin/allUsers" element={<AdminDashboard/>} />
+            <Route path="/AdminDashboard/:admin_id" element={<AdminDashboard />} />
             <Route path="/Admin/add" element={<AddAdmin />} />
+            <Route path="/Admin/requests/:admin_id" element={<AdminRequests/>} />
           </Routes>
         </Router>
       </div>

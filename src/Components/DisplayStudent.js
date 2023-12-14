@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import'./DisplayStudent.css';
 
-const DisplayStudent = ({ student }) => {
+const DisplayStudent = ({ student,adminID }) => {
   const [infoMessage, setInfoMessage] = useState('');
+  const [showInfo, setShowInfo] = useState(''); // to be used to show/hide data by toggling
 
   const handleInfoClick = async (studentId) => {
     try {
@@ -15,25 +17,28 @@ const DisplayStudent = ({ student }) => {
     }
   };
 
-  const handleBanClick = async (studentId,decision) => {
+  const handleBanClick = async (studentId,decision,adminID) => {
     try {
-      const url = `http://localhost:8080/api/admin/banRep/${studentId}/${decision}`; // Assuming 2 is the decision for banning
+      const url = `http://localhost:8080/api/admin/banRep/${studentId}/${decision}/${adminID}`; // Assuming 2 is the decision for banning
       const response = await fetch(url, { method: 'PUT' });
       const data = await response.json();
       // Handle the ban response as needed
       console.log(data);
+      alert("please refresh after banning/unbanning to get updated feed");
     } catch (error) {
       console.error('Error banning student:', error);
     }
   };
 
-  const handleUnbanClick = async (studentId,decision) => {
+  const handleUnbanClick = async (studentId,decision,adminID) => {
+    console.log(studentId);
     try {
-      const url = `http://localhost:8080/api/admin/banRep/${studentId}/${decision}`; // Assuming 1 is the decision for unbanning
+      const url = `http://localhost:8080/api/admin/banRep/${studentId}/${decision}/${adminID}`; // Assuming 1 is the decision for unbanning
       const response = await fetch(url, { method: 'PUT' });
       const data = await response.json();
       // Handle the unban response as needed
       console.log(data);
+      alert("please refresh after banning/unbanning to get updated feed");
     } catch (error) {
       console.error('Error unbanning student:', error);
     }
@@ -41,25 +46,39 @@ const DisplayStudent = ({ student }) => {
 
   return (
     <div>
-      <h2>{`Student Name: ${student.fname} ${student.lname}`}</h2>
-      <h2>{`Student ID: ${student.std_id}`}</h2>
+      <div className='main'>
+      <div className='font'>{`Student Name: ${student.fname} ${student.lname}`}</div>
+      <div className='font'>{`Student ID: ${student.std_id}`}</div>
       
-      {student.rep_flag === 0 && <h2>Student</h2>}
+      {student.rep_flag === 0 && (
+      <div>
+      <div className='font2'>Student</div>
+      <div className='buttons'>
+      <button onClick={() => handleInfoClick(student.std_id)}>Info</button>
+      </div>
+      </div>  
+      )}
       {student.rep_flag === 1 && (
         <div>
-          <h2>Rep</h2>
-          <button onClick={() => handleBanClick(student.std_id,2)}>Ban</button>
+          <div className='font2'>Rep</div>
+          <div className='buttons'>
+          <button onClick={() => handleBanClick(student.std_id,2,adminID)}>Ban</button>
+          <button onClick={() => handleInfoClick(student.std_id)}>Info</button>
+          </div>
         </div>
       )}
       {student.rep_flag === 2 && (
         <div>
-          <h2>Rep</h2>
-          <button onClick={() => handleUnbanClick(student.std_id,1)}>Unban</button>
+          <div className='font2'>Rep</div>
+          <div className='buttons'>
+          <button onClick={() => handleUnbanClick(student.std_id,1,adminID)}>Unban</button>
+          <button onClick={() => handleInfoClick(student.std_id)}>Info</button>
+          </div>
         </div>
       )}
-
-      <button onClick={() => handleInfoClick(student.std_id)}>Info</button>
-      {infoMessage && <p>{infoMessage}</p>}
+     {infoMessage && <p>{infoMessage}</p>}
+      
+      </div>
     </div>
   );
 };

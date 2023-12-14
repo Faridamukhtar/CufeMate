@@ -1,25 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
 import './adminBar.css';
-
-const AdminBar = () => {
+  
+const AdminBar = ({ props }) => {
+    const adminID = props;
+    console.log("ana fl adminbar",adminID);
+    const navigate = useNavigate(); // Initialize the navigate hook
   return (
     <div className="admin-bar">
 
-      <Link to='/Admin/allUsers'>
-       <button> All Users</button>
-      </Link>
+       <button onClick={()=>  navigate(`/AdminDashboard/${adminID}`)}> All Users</button>
 
       <Link to='/Admin/stats'>
        <button>Statistics</button>
       </Link>
-      
-      <Link to='/Admin/add'>
-      <button>Add Admin</button>
-      </Link>
-      <Link to='/Admin/requests'>
-      <button>Requests</button>
-      </Link>
+     
+      <button onClick={()=> navigate('/Admin/add')}>Add Admin</button>
+      <button onClick={()=> navigate(`/Admin/requests/${adminID}`)}>Requests</button>
+
       <Link to="/Admin/settings">
       <button>Settings</button>
       </Link>

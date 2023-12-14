@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import AdminBar from '../Components/adminBar.js'
+import AdminBar from "../Components/adminBar.js";
 
 const AddAdmin = () => {
     const [AdminID, setAdminID] = useState('');
@@ -49,8 +49,8 @@ const AddAdmin = () => {
         }
       };
     return (
-        <div className="layout">
-            <AdminBar />
+          <div className="Layout">
+          <AdminBar/>
             <div className="Dashboard">
             <input
             type="text"
@@ -84,7 +84,7 @@ const AddAdmin = () => {
           />
           <button onClick={handleSignup}>Signup</button>
         </div>
-            </div>
+        </div>
     );
 };
 
