@@ -16,6 +16,7 @@ function App() {
     <>
       <div className='App'>
 
+        <StudentSetting DashboardType="studentclubsettings" />
         <Router>
           <Routes>
             <Route path="/student" element={<StudentDashboard DashboardType='student' />} />

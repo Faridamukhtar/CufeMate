@@ -106,7 +106,7 @@ function ChooseHeader(props)
             </>
         );
     }
-    else if  (props.DashboardType==='studentsettings')
+    else if  (props.DashboardType==='studentsettings' ||  props.DashboardType==='studentclubsettings')
     {
         return (
             <>

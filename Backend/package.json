@@ -2,6 +2,7 @@
   "name": "backend",
   "type": "module",
   "scripts": {
+
     "start": "nodemon index.js"
   },
   "version": "1.0.0",
