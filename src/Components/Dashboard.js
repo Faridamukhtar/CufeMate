@@ -1,16 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import ChooseHeader from "./Header.js";
 import './Dashboard.css';
+import WriteComplaint from "./WriteComplaint.js";
+import PreviousComplaints from "./PreviousComplaints.js";
 import PostSection from './Posts.js';
+import ViewStudentClubs from './ViewStudentClubs.js';
+
+
 
 function StudentBody(props)
 {
     return (
         <div className='StudentBody'>
-            <PostSection DashboardType={props.DashboardType}/>
+            <PostSection studentType={props.studentType}/>
        </div>
     );
 }
+
+function ViewStudentClubsBody (props)
+{
+    return (
+        <div className='ViewStudentClubsBody'>
+            <ViewStudentClubs studentType={props.studentType}/>
+       </div>
+    );
+}
+
+
+function ComplaintBody(props)
+{
+    return (
+        <div className='ComplaintBody'>
+            <div className = 'WriteComplaint'>
+                <WriteComplaint Dashboard={props.DashboardType}/>
+            </div>
+            <div className = 'PreviousComplaints'>
+                <PreviousComplaints Dashboard={props.DashboardType}/>
+            </div>
+        </div>
+
+    );
+}
+
 
 function DashboardBody(props)
 {
@@ -22,16 +53,34 @@ function DashboardBody(props)
             </>
         );
     }
+    else if (props.DashboardType==='viewstudentclubs')
+    {
+        return (
+            <>
+                <ViewStudentClubsBody DashboardType={props.DashboardType}/>
+            </>
+        );
+    }
+   else if (props.DashboardType==='complaint')
+    {
+        return (
+            <>
+                 <ComplaintBody DashboardType={props.DashboardType}/>
+            </>
+        );
+        
+    }
 
 
 }
+
 
 function Dashboard(props)
 {
     return (
         <div className="DashboardPage">
             <div className="DashboardHeader">
-                <ChooseHeader DashboardType={props.DashboardType}/>
+                <ChooseHeader DashboardType={props.DashboardType} studentType={props.studentType}/>
             </div>
             <div className="DashboardBody">
                 <DashboardBody DashboardType={props.DashboardType}/>
