@@ -23,7 +23,6 @@ function App() {
             <Route path="/Settings" element={<StudentSetting DashboardType='studentsettings' />} />
             <Route path="/student/studentclubs" element={<StudentDashboard DashboardType='viewstudentclubs' />} />
             <Route path="/rep/studentclubs" element={<RepDashboard DashboardType='viewstudentclubs' />} />
-            <Route path="/student/complaint" element={<ComplaintDashboard DashboardType='complaint'/>} />
             <Route path="/" element={<LoginSignup />} />
             <Route path="/Club" element={<LoginSignupClub />} />
             <Route path="/Admin" element={<LoginAdmin />} />

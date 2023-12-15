@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 
 
 const UpdateClubPass_router = express.Router();
+
 UpdateClubPass_router.use(bodyParser.json());
 
 
