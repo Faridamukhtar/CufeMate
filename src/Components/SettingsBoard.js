@@ -252,15 +252,48 @@ const UpdateInfo =() =>
   )
 }
 
+const ApplyRep =() => {
+  const handleClick1 = (event) => {
+  };
+
+  //get if he applied before and what is the status if he did 
+  //send request to apply if he didn't 
+
+  return (
+    <div>
+      <button className="button-clicked" onClick={handleClick1}>
+      <span className="label-clicked">Submit application</span>
+      </button>
+    </div>
+    )
+}
+
 function StudentBody(props)
 {
+   //To determine which button is selected so which components will I render
+   const [selectedButton, setSelectedButton] = useState('Button1');
    
+   const handleButtonClick = (button) => {
+       setSelectedButton(button);
+     };
+
     // Content to render based on the selected button
     const renderContent = () => 
     {
-       return (
-        <UpdatePassword message='student' />
-        )
+        switch (selectedButton) {
+        case 'Button1':
+            return (
+                <UpdatePassword message='student'/>
+            );
+
+        case 'Button2':
+            return (
+                <ApplyRep/>
+            );
+        
+        default:
+            return null;
+        }
     };
       
     return (
@@ -271,11 +304,21 @@ function StudentBody(props)
                 </h3>
             </div>
 
+           
             {/* Button one (change pass) */}
             <button
-            className='button-clicked'
+            className={selectedButton === 'Button1' ? 'button-clicked' : 'button'}
+            onClick={() => handleButtonClick('Button1')}
              >
-            <span className='label-clicked'> Change Password</span>
+            <span className={selectedButton === 'Button1' ? 'label-clicked' : 'label'}> Change Password</span>
+            </button>
+
+            {/* Button two (Delete acc)*/}
+            <button
+            className={selectedButton === 'Button2' ? 'button-clicked' : 'button'}
+            onClick={() => handleButtonClick('Button2')}
+             >
+            <span className={selectedButton === 'Button2' ? 'label-clicked' : 'label'}>Apply to be rep</span>
             </button>
     
             {/* Border line*/}

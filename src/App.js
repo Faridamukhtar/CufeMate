@@ -16,12 +16,11 @@ function App() {
     <>
       <div className='App'>
 
-        <StudentSetting DashboardType="studentclubsettings" />
         <Router>
           <Routes>
             <Route path="/student" element={<StudentDashboard DashboardType='student' />} />
             <Route path="/rep" element={<RepDashboard DashboardType='studentRep'/>} />
-            <Route path="/Settings" element={<StudentSetting />} />
+            <Route path="/Settings" element={<StudentSetting DashboardType='studentsettings' />} />
             <Route path="/student/studentclubs" element={<StudentDashboard DashboardType='viewstudentclubs' />} />
             <Route path="/rep/studentclubs" element={<RepDashboard DashboardType='viewstudentclubs' />} />
             <Route path="/student/complaint" element={<ComplaintDashboard DashboardType='complaint'/>} />
