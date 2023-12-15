@@ -7,9 +7,9 @@ const Getrepreqstatus = express.Router();
 // Middleware to parse incoming requests
 Getrepreqstatus.use(bodyParser.json());
 
-// SignUp API
+// Get rep request status api 
 
-Getrepreqstatus.post('/api/signup/student', async (req, res) => {
+Getrepreqstatus.post('/api/get_rep_req_stat/', async (req, res) => {
     const {Std_ID,Fname,Lname,Email,Major_ID,Passw,studentC} = req.body;
   
     try {
