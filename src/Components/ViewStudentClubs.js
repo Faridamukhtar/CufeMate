@@ -1,9 +1,33 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, Image} from "react";
 import './ViewStudentClubs.css';
 import { getStudentClubForms, Apply_To_Club, Withdraw_Application, ApplicantStatus } from "../CustomHooks/StudentClubsHooks.js";
 import {InfoSVG} from "../svg/SvgFiles.js"
 
 const studentData = {fname:"Ahmed", lname:"Mohamed", major_id:'CCE', std_id:1, class:'2026'}; //get logged in student data
+
+
+function StudentClubDetails(props)
+{
+    console.log(props.logo);
+    return (
+    <div className="StudentClubDetails">
+        <div className="SClogo">
+            <img 
+                src={props.logo}
+            />
+        </div>
+        <div className="SCcontent">
+            <div className="SCName">
+                {props.std_club_name}
+            </div>
+            <div className="SCDescription">
+                {props.about}
+            </div>
+        </div>
+    </div>
+    )
+}
+
 
 function ChooseText(props)
 {
@@ -48,6 +72,7 @@ function StudentClubForm(props)
 {
     const [applied, setApplied]=useState(-1);
     const [InsertedApply, setInsertedApply] = useState(-1);
+    const [InfoHidden, SeetInfoHidden] = useState(true);
 
     useEffect(()=>
     {
@@ -117,13 +142,18 @@ useEffect(()=>
                 </div>
             </div>
             <div class='Content'>
-                <h5>
-                    Extra Requirements: {props.requirements}
-                </h5> 
-                <h5>
-                    To be sent on email: {props.email}
-                </h5> 
+                <div class='Content'>
+                    <h5>
+                        Extra Requirements: {props.requirements}
+                    </h5> 
+                    <h5>
+                        To be sent on email: {props.email}
+                    </h5> 
+                </div>
                 <Apply applied={applied} setApplied={setApplied}/>
+            </div>
+            <div className="studentClubDetails" hidden={true}>
+                <StudentClubDetails std_club_name={props.std_club_name} about={props.about} logo={props.logo}/>
             </div>
         </div>
     );
@@ -162,7 +192,7 @@ function Displayforms(props)
 {
     if (props?.formArray[0]?.form_id>0)
     {
-        const listItems = props.formArray.map((form) => <li><StudentClubForm form_title={form.form_title} std_club_name={form.std_club_name} requirements={form.requirements} email= {form.email} form_id={form.form_id}/></li>);
+        const listItems = props.formArray.map((form) => <li><StudentClubForm form_title={form.form_title} std_club_name={form.std_club_name} requirements={form.requirements} email= {form.email} form_id={form.form_id} about={form.about} logo={form.logo}/></li>);
         return listItems;
     }
     else
