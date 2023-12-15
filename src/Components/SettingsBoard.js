@@ -27,7 +27,7 @@ const UpdatePassword = ({ message }) => {
           path = 'GetAdminsPass' ;
         }
 
-        let url = `http://localhost:8080/api/${path}/?email=${email}`;
+        let url = `http://localhost:8080/api/${path}/?id=${id}`;
         const response = await fetch(url);
         console.log(url);
         const data = await response.json();
@@ -38,26 +38,26 @@ const UpdatePassword = ({ message }) => {
       }
     };
     /////////////////////////////////////TO BE REMOVED WHEN ACTUAL LINKING OCCUR//////////////////////
-    let email 
+    let id 
     if (message==='student')
     {
-       email = 'marmar@gmail.com'; // Replace with your dynamic email logic
+       id = 1234; 
 
     }
     else if (message==='studentclub')
     {
-       email ='yarabb@hhh.gov'
+       id =1212;
     }
     else if (message==='admin')
     {
-       email ='amira@handasa.com'
+       id =1210200;
     }
 
-    fetchPass(email);
-  }, []); // Include message in the dependency array
+    fetchPass(id);
+  }, []); 
 
 
-  const handlePasswordUpdate = async (email, newPassword) => {
+  const handlePasswordUpdate = async (id, newPassword) => {
 
   let path
         if (message==='student')
@@ -75,7 +75,7 @@ const UpdatePassword = ({ message }) => {
 
 
     try {
-      const url = `http://localhost:8080/api/${path}/?email=${email}&password=${newPassword}`;
+      const url = `http://localhost:8080/api/${path}/?id=${id}&password=${newPassword}`;
       const response = await fetch(url);
       const result = await response.json();
       console.log(result)
@@ -98,23 +98,23 @@ const UpdatePassword = ({ message }) => {
       alert("Current password is incorrect.");
       return;
     } else {
-                  let email
+                  let id
                   if (message==='student')
                 {
-                  email = 'marmar@gmail.com'; // Replace with your dynamic email logic
+                  id = 1234; // Replace with your dynamic email logic
 
                 }
                 else if (message==='studentclub')
                 {
-                  email ='yarabb@hhh.gov'
+                  id =1212;
                 }
                 else if (message==='admin')
                 {
-                   email ='amira@handasa.com'
+                   id =1210200
                 }
             
 
-      handlePasswordUpdate(email, Npass);
+      handlePasswordUpdate(id, Npass);
     }
   };
 
@@ -180,10 +180,10 @@ const UpdateInfo =() =>
     setInputValue(event.target.value);
   };
 
-  const handleAboutUpdate = async (email, inputValue) => {
+  const handleAboutUpdate = async (id, inputValue) => {
 
       try {
-        const url = `http://localhost:8080/api/UpdateAbout/${email}/${encodeURIComponent(inputValue)}`;
+        const url = `http://localhost:8080/api/UpdateAbout/${id}/${encodeURIComponent(inputValue)}`;
         const response = await fetch(url);
         const result = await response.json();
         console.log(result)
@@ -198,8 +198,8 @@ const UpdateInfo =() =>
   const ChangeAbout =() => 
   {
     ///TO BE REMOVED LATER ON WHEN EMAIL IS ACTUALLY SAVED
-    let email ='yarabb@hhh.gov'
-    handleAboutUpdate(email, inputValue);
+    let id =1212
+    handleAboutUpdate(id, inputValue);
 
   }
  
@@ -214,7 +214,7 @@ const UpdateInfo =() =>
       />
       <p className='charmsg'> {inputValue.length} : 2000 Characters </p>
      
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '50px' ,width:'95%' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '50px' ,width:'95%' ,marginTop:'5%'}}>
         <div>
           <button className="button-clicked" onClick={handleClick1}>
             <span className="label-clicked">Update new image</span>
@@ -252,15 +252,162 @@ const UpdateInfo =() =>
   )
 }
 
+const ApplyRep =() => {
+  const [CurrentstatFromApi, setCurrentstatFromApi] = useState('');
+  const [id, setId] = useState('70');
+
+   //get if he applied before and what is the status if he did 
+   useEffect(() => {
+    const fetchPass = async (std_id) => {
+      try {
+      
+        let url = `http://localhost:8080/api/get_rep_req_stat?std_id=${std_id}`;
+        const response = await fetch(url);
+        console.log(url);
+        const data = await response.json();
+        const stat = data.length > 0 ? data[0].stat : '';
+        if (stat===0)
+        {
+          setCurrentstatFromApi('APPROVED!!')
+        }
+        else if (stat===1)
+        {
+          setCurrentstatFromApi("Pending")
+      
+        }
+        else if (stat===2)
+        {
+          setCurrentstatFromApi("Rejected")
+      
+        }
+        else{
+          setCurrentstatFromApi("Haven't applied yet")
+        }
+        console.log(data)
+      } catch (error) {
+        console.error('Error fetching Request Rep stat:', error);
+      }
+    };
+    /////////////////////////////////////TO BE REMOVED WHEN ACTUAL LINKING OCCUR//////////////////////
+    fetchPass(id);
+  }, []); 
+  //send request to apply if he didn't 
+
+  const handleClick = async () => {
+      try {
+      
+        let url = `http://localhost:8080/api/Makenewrepreq?std_id=${id}`;
+        const response = await fetch(url);
+        console.log(url);
+        const data = await response.json();
+        setCurrentstatFromApi("Pending")
+      } catch (error) {
+        console.error('Error fetching Request Rep stat:', error);
+      }
+    };
+
+ 
+
+ 
+  return (
+    <div>
+      <div>
+      <p  style={{padding:"1%"}}> Current stats = {CurrentstatFromApi} </p> 
+      </div>
+      <button className="button-clicked" onClick={handleClick}>
+      <span className="label-clicked">Submit application</span>
+      </button>
+    </div>
+    )
+}
+
+/*const ApplyRep = () => {
+  const [currentStatFromApi, setCurrentStatFromApi] = useState('');
+  const [id, setId] = useState('200');
+
+  // Function to fetch application status
+  const fetchPass = async (std_id) => {
+    try {
+      let url = `http://localhost:8080/api/get_rep_req_stat?std_id=${std_id}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      const stat = data.length > 0 ? data[0].stat : '';
+
+      if (stat === 0) {
+        setCurrentStatFromApi('APPROVED!!');
+      } else if (stat === 1) {
+        setCurrentStatFromApi('Pending');
+      } else if (stat === 2) {
+        setCurrentStatFromApi('Rejected');
+      } else {
+        setCurrentStatFromApi("Haven't applied yet");
+      }
+
+      console.log(data);
+    } catch (error) {
+      console.error('Error fetching Request Rep stat:', error);
+    }
+  };
+
+  // useEffect to fetch initial application status
+  useEffect(() => {
+    fetchPass(id);
+  }, [id]);
+
+  // Function to handle the click event and submit a new application
+  const handleClick = async () => {
+    try {
+      let url = `http://localhost:8080/api/Makenewrepreq?std_id=${id}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      console.log(data);
+
+      // Update state to trigger re-render
+      setCurrentStatFromApi('Pending');
+    } catch (error) {
+      console.error('Error fetching Request Rep stat:', error);
+    }
+  };
+
+  return (
+    <div>
+      <div>
+        <p style={{ padding: '1%' }}> Current stats = {currentStatFromApi} </p>
+      </div>
+      <button className="button-clicked" onClick={handleClick}>
+        <span className="label-clicked">Submit application</span>
+      </button>
+    </div>
+  );
+};*/
+
+
 function StudentBody(props)
 {
+   //To determine which button is selected so which components will I render
+   const [selectedButton, setSelectedButton] = useState('Button1');
    
+   const handleButtonClick = (button) => {
+       setSelectedButton(button);
+     };
+
     // Content to render based on the selected button
     const renderContent = () => 
     {
-       return (
-        <UpdatePassword message='student' />
-        )
+        switch (selectedButton) {
+        case 'Button1':
+            return (
+                <UpdatePassword message='student'/>
+            );
+
+        case 'Button2':
+            return (
+                <ApplyRep/>
+            );
+        
+        default:
+            return null;
+        }
     };
       
     return (
@@ -271,11 +418,21 @@ function StudentBody(props)
                 </h3>
             </div>
 
+           
             {/* Button one (change pass) */}
             <button
-            className='button-clicked'
+            className={selectedButton === 'Button1' ? 'button-clicked' : 'button'}
+            onClick={() => handleButtonClick('Button1')}
              >
-            <span className='label-clicked'> Change Password</span>
+            <span className={selectedButton === 'Button1' ? 'label-clicked' : 'label'}> Change Password</span>
+            </button>
+
+            {/* Button two (Delete acc)*/}
+            <button
+            className={selectedButton === 'Button2' ? 'button-clicked' : 'button'}
+            onClick={() => handleButtonClick('Button2')}
+             >
+            <span className={selectedButton === 'Button2' ? 'label-clicked' : 'label'}>Apply to be rep</span>
             </button>
     
             {/* Border line*/}

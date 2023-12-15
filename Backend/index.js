@@ -21,6 +21,9 @@ import { signup_router } from './database/signup.js';
 import { major_router } from './database/majors.js';
 import { admin_router } from './database/Admin.js';
 import { club_router } from './database/studentClub.js';
+import { Getrepreqstatus } from './database/GetStatusOfRepReq.js';
+import { NewRepReq } from './database/MakeRepReq.js';
+
 import { logo } from './database/logo.js';
 
 
@@ -48,6 +51,9 @@ app.use(
     app.use('/', admin_router);
     app.use('/', club_router);
     app.use('/', logo);
+    app.use('/', Getrepreqstatus);
+    app.use('/', NewRepReq);
+
     app.use('/api/posts/', posts);
     app.use('/api/courses/', courses);
     app.use('/api/major/', major);

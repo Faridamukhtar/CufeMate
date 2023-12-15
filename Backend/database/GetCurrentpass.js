@@ -22,10 +22,10 @@ Pass_router.use(bodyParser.json());
 
 
 Pass_router.get('/api/GetPass', async (req, res) => {
-    const { email} = req.query;
+    const { id} = req.query;
 
   try {
-    const result = await dbInstance.query('SELECT passw FROM student WHERE email= $1', [email]);
+    const result = await dbInstance.query('SELECT passw FROM student WHERE std_id= $1', [id]);
     res.json(result.rows);
   } catch (error) {
     console.error(error);

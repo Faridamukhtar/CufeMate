@@ -9,10 +9,10 @@ UpdateClubPass_router.use(bodyParser.json());
 
 
 UpdateClubPass_router.get('/api/UpdateStudentClubPassword/', async (req, res) => {
-    const { email, password: newPassword } = req.query;
+    const { id, password: newPassword } = req.query;
     
     try {
-        const result = await dbInstance.query('UPDATE student_club SET passw = $1 WHERE email = $2', [newPassword, email]);
+        const result = await dbInstance.query('UPDATE student_club SET passw = $1 WHERE std_club_id = $2', [newPassword, id]);
         console.log('Query result:', result);
 
        if (result.rowCount > 0) {

@@ -8,10 +8,10 @@ const ChangeClubPass_router = express.Router();
 ChangeClubPass_router.use(bodyParser.json());
 
 ChangeClubPass_router.get('/api/GetStudentClubPass', async (req, res) => {
-    const { email} = req.query;
+    const { id} = req.query;
 
   try {
-    const result = await dbInstance.query('SELECT passw FROM student_club WHERE email= $1', [email]);
+    const result = await dbInstance.query('SELECT passw FROM student_club WHERE std_club_id= $1', [id]);
     res.json(result.rows);
   } catch (error) {
     console.error(error);
