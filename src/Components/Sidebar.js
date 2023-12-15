@@ -32,7 +32,7 @@ function Sidebar(props)
                         </h5>
                     </div>
                 </div>
-                <div className="SidebarOption" id="FileAComplaint">
+                <div className="SidebarOption" id="FileAComplaint" onClick={()=>navigate('/complaints/')}>
                     <div className="SidebarIcon">
                             <FileAComplaintSVG/>
                         </div>
@@ -52,7 +52,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                     </div>
-                <div className="SidebarOption" id="Settings">
+                <div className="SidebarOption" id="Settings" onClick={()=>navigate('/StudentSettings/')}>
                 <div className="SidebarIcon">
                         <SettingsSVG/>
                     </div>
@@ -112,7 +112,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                         </div>
-                    <div className="SidebarOption" id="Settings">
+                    <div className="SidebarOption" id="Settings" onClick={()=>navigate('/StudentSettings/')}>
                     <div className="SidebarIcon">
                             <SettingsSVG/>
                         </div>
