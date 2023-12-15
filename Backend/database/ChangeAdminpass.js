@@ -9,10 +9,10 @@ UpdateAdminPass_router.use(bodyParser.json());
 
 
 UpdateAdminPass_router.get('/api/UpdateAdminsPassword/', async (req, res) => {
-    const { email, password: newPassword } = req.query;
+    const { id, password: newPassword } = req.query;
     
     try {
-        const result = await dbInstance.query('UPDATE admins SET passw = $1 WHERE email = $2', [newPassword, email]);
+        const result = await dbInstance.query('UPDATE admins SET passw = $1 WHERE admin_id = $2', [newPassword,id]);
         console.log('Query result:', result);
 
        if (result.rowCount > 0) {

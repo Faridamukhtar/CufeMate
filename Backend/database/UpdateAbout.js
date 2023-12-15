@@ -10,13 +10,12 @@ Update_About.use(bodyParser.json());
 
 // Update_pass API
 
-Update_About.get('/api/UpdateAbout/:email/:about', async (req, res) => {
-    const {email,about}=req.params;
+Update_About.get('/api/UpdateAbout/:id/:about', async (req, res) => {
+    const {id,about}=req.params;
 
-    console.log('Updating about for email:', email, 'with about:', about);
 
     try {
-        const result = await dbInstance.query('UPDATE student_club SET about = $1 WHERE email = $2', [about, email]);
+        const result = await dbInstance.query('UPDATE student_club SET about = $1 WHERE std_club_id = $2', [about, id]);
         console.log('Query result:', result);
 
        if (result.rowCount > 0) {

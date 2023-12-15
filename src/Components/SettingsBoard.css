@@ -48,6 +48,8 @@
     border-radius: 6px;
     background: #FFF;
     margin-right : 16px; 
+    width:auto;
+
 
   }
   
@@ -61,6 +63,7 @@
     background: #5030E5;
     margin-top : 10px; 
     margin-right : 16px; 
+    width:auto;
 
 
   }

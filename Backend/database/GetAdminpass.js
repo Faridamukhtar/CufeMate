@@ -8,10 +8,10 @@ const ChangeAdminPass_router = express.Router();
 ChangeAdminPass_router.use(bodyParser.json());
 
 ChangeAdminPass_router.get('/api/GetAdminsPass', async (req, res) => {
-    const { email} = req.query;
+    const {id} = req.query;
 
   try {
-    const result = await dbInstance.query('SELECT passw FROM admins WHERE email= $1', [email]);
+    const result = await dbInstance.query('SELECT passw FROM admins WHERE admin_id= $1', [id]);
     res.json(result.rows);
   } catch (error) {
     console.error(error);

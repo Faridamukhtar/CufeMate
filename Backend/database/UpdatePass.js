@@ -11,12 +11,11 @@ Update_Pass.use(bodyParser.json());
 // Update_pass API
 
 Update_Pass.get('/api/UpdatePassword/', async (req, res) => {
-    const { email, password: newPassword } = req.query;
+    const { id, password: newPassword } = req.query;
     
-    console.log('Updating password for email:', email, 'with new password:', newPassword);
 
     try {
-        const result = await dbInstance.query('UPDATE student SET passw = $1 WHERE email = $2', [newPassword, email]);
+        const result = await dbInstance.query('UPDATE student SET passw = $1 WHERE std_id = $2', [newPassword, id]);
         console.log('Query result:', result);
 
        if (result.rowCount > 0) {
