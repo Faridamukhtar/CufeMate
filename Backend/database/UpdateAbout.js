@@ -1,9 +1,8 @@
 import express from "express";
-import { db } from "./connection.js";
+import { dbInstance } from "./connection.js";
 import bodyParser from 'body-parser';
 
 const Update_About = express.Router();
-const dbInstance = await db();
 
 
 // Middleware to parse incoming requests

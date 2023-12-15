@@ -1,10 +1,9 @@
 import express from "express";
-import { db } from "./connection.js";
+import { dbInstance } from "./connection.js";
 import bodyParser from 'body-parser';
 
 
 const ChangeAdminPass_router = express.Router();
-const dbInstance = await db();
 
 ChangeAdminPass_router.use(bodyParser.json());
 
