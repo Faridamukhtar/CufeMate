@@ -40,7 +40,7 @@ const AdminDashboard = () => {
             <div className="clubs">
             <div className="font">Clubs</div>
                 {clubs.map(club => (
-                    <DisplayClub key={club.std_club_id} club={club} adminID={admin_id}/>
+                    <DisplayClub key={club.std_club_id} Club={club} adminID={admin_id}/>
                 ))}
             </div>
         </div>

@@ -42,7 +42,7 @@ const DisplayClub = ({ Club , adminID}) => {
 
   return (
     <div>
-      <h2>{`Club Name: ${Club.name}`}</h2>
+      <h2>{`Club Name: ${Club.std_club_name}`}</h2>
       <p>{`Club ID: ${Club.std_club_id}`}</p>
       <h2>{`Club Status: ${Club.stat} 1: unbanned 2:banned`}</h2>
         <div>
