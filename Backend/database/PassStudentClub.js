@@ -1,10 +1,9 @@
 import express from "express";
-import { db } from "./connection.js";
+import { dbInstance } from "./connection.js";
 import bodyParser from 'body-parser';
 
 
 const ChangeClubPass_router = express.Router();
-const dbInstance = await db();
 
 ChangeClubPass_router.use(bodyParser.json());
 
