@@ -1,8 +1,8 @@
 import express from "express";
-import { db } from "./connection.js";
+import { dbInstance } from "./connection.js";
 
 const reps_view_complaints_router=express.Router();
-const dbInstance = await db();
+
 
 reps_view_complaints_router.get("/api/repsviewcomplaints/", async (req,res) =>
 {
