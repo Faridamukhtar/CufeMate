@@ -1,0 +1,31 @@
+.font{
+    color: #282144;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.font2{
+    color: #9000ad;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.main{
+    border-radius: 16px;
+    border: 1px solid #AD9EF4;
+    background: #FFF;
+    width: 500px;
+    height: 120px;
+    transform: rotate(0.19deg);
+    flex-shrink: 0;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+}
