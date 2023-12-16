@@ -23,6 +23,9 @@ import { admin_router } from './database/Admin.js';
 import { club_router } from './database/studentClub.js';
 import { Getrepreqstatus } from './database/GetStatusOfRepReq.js';
 import { NewRepReq } from './database/MakeRepReq.js';
+import { GetClubMembers } from './database/GetAllClubmembers.js';
+import { GetClubMembersperyear } from './database/GetMembersPeryear.js';
+import { RemoveMember } from './database/RemoveClubMember.js';
 
 import { logo } from './database/logo.js';
 
@@ -53,13 +56,15 @@ app.use(
     app.use('/', logo);
     app.use('/', Getrepreqstatus);
     app.use('/', NewRepReq);
-
+    app.use('/', GetClubMembers);
+    app.use('/', GetClubMembersperyear);
     app.use('/api/posts/', posts);
     app.use('/api/courses/', courses);
     app.use('/api/major/', major);
     app.use('/api/viewstudentclubs/', ViewStudentClubs);
     app.use('/', previous_complaints_router);
     app.use('/', write_complaint_router);
+    app.use('/',RemoveMember)
     
     app.listen(port, () => {
       console.log(`Server is running on port ${port}`);

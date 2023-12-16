@@ -321,67 +321,6 @@ const ApplyRep =() => {
     )
 }
 
-/*const ApplyRep = () => {
-  const [currentStatFromApi, setCurrentStatFromApi] = useState('');
-  const [id, setId] = useState('200');
-
-  // Function to fetch application status
-  const fetchPass = async (std_id) => {
-    try {
-      let url = `http://localhost:8080/api/get_rep_req_stat?std_id=${std_id}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      const stat = data.length > 0 ? data[0].stat : '';
-
-      if (stat === 0) {
-        setCurrentStatFromApi('APPROVED!!');
-      } else if (stat === 1) {
-        setCurrentStatFromApi('Pending');
-      } else if (stat === 2) {
-        setCurrentStatFromApi('Rejected');
-      } else {
-        setCurrentStatFromApi("Haven't applied yet");
-      }
-
-      console.log(data);
-    } catch (error) {
-      console.error('Error fetching Request Rep stat:', error);
-    }
-  };
-
-  // useEffect to fetch initial application status
-  useEffect(() => {
-    fetchPass(id);
-  }, [id]);
-
-  // Function to handle the click event and submit a new application
-  const handleClick = async () => {
-    try {
-      let url = `http://localhost:8080/api/Makenewrepreq?std_id=${id}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      console.log(data);
-
-      // Update state to trigger re-render
-      setCurrentStatFromApi('Pending');
-    } catch (error) {
-      console.error('Error fetching Request Rep stat:', error);
-    }
-  };
-
-  return (
-    <div>
-      <div>
-        <p style={{ padding: '1%' }}> Current stats = {currentStatFromApi} </p>
-      </div>
-      <button className="button-clicked" onClick={handleClick}>
-        <span className="label-clicked">Submit application</span>
-      </button>
-    </div>
-  );
-};*/
-
-
 function StudentBody(props)
 {
    //To determine which button is selected so which components will I render
