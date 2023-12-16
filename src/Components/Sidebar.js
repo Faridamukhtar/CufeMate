@@ -1,8 +1,8 @@
 import './Sidebar.css';
+import { Link } from 'react-router-dom';
 import { HomeSVG, StudentClubsSVG,StudentPendingPosts, StudentComplaintsSVG, FileAComplaintSVG,RepsContactsSVG, SettingsSVG  } from "../svg/SvgFiles"; 
 import React,{ useEffect, useState } from 'react';
 import {Routes, Route, useNavigate} from 'react-router-dom';
-
 //Sidebar component
 function Sidebar(props)
 {
@@ -32,7 +32,7 @@ function Sidebar(props)
                         </h5>
                     </div>
                 </div>
-                <div className="SidebarOption" id="FileAComplaint">
+                <div className="SidebarOption" id="FileAComplaint" onClick={()=>navigate('/complaints/')}>
                     <div className="SidebarIcon">
                             <FileAComplaintSVG/>
                         </div>
@@ -52,7 +52,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                     </div>
-                <div className="SidebarOption" id="Settings">
+                <div className="SidebarOption" id="Settings" onClick={()=>navigate('/StudentSettings/')}>
                 <div className="SidebarIcon">
                         <SettingsSVG/>
                     </div>
@@ -112,7 +112,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                         </div>
-                    <div className="SidebarOption" id="Settings">
+                    <div className="SidebarOption" id="Settings" onClick={()=>navigate('/StudentSettings/')}>
                     <div className="SidebarIcon">
                             <SettingsSVG/>
                         </div>

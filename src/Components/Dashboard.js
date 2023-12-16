@@ -3,6 +3,8 @@ import ChooseHeader from "./Header.js";
 import './Dashboard.css';
 import Posts from './Posts';
 import Contacts from './Contacts.js';
+import WriteComplaint from "./WriteComplaint.js";
+import PreviousComplaints from "./PreviousComplaints.js";
 import PostSection from './Posts.js';
 import ViewStudentClubs from './ViewStudentClubs.js';
 
@@ -27,6 +29,7 @@ function ViewStudentClubsBody (props)
 }
 
 
+
 function RepsContactsBody(props)
 {
     return (
@@ -36,6 +39,22 @@ function RepsContactsBody(props)
 
     );
 } 
+
+function ComplaintBody(props)
+{
+    return (
+        <div className='ComplaintBody'>
+            <div className = 'WriteComplaint'>
+                <WriteComplaint Dashboard={props.DashboardType}/>
+            </div>
+            <div className = 'PreviousComplaints'>
+                <PreviousComplaints Dashboard={props.DashboardType}/>
+            </div>
+        </div>
+
+    );
+}
+
 
 
 function DashboardBody(props)
@@ -66,8 +85,18 @@ function DashboardBody(props)
                 <ViewStudentClubsBody DashboardType={props.DashboardType}/>
             </>
         );
-
     }
+   else if (props.DashboardType==='complaint')
+    {
+        return (
+            <>
+                 <ComplaintBody DashboardType={props.DashboardType}/>
+            </>
+        );
+        
+    }
+
+
 }
 
 

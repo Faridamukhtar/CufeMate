@@ -73,9 +73,34 @@ function StudentSettingsHeader()
     );
 }
 
+
+function ComplaintHeader()
+{
+    return (
+        <div className="StudentHeader">
+            <div className="greeting">
+                <h1>
+                    Complaints
+                </h1>
+            </div>
+            <div className="Info">
+                <h4 className='StudentName'>
+                    Name
+                </h4>
+                <h4>
+                    Class of XXXX
+                </h4>
+            </div>
+        </div>
+
+    );
+}
+
+
+
 function RepsContactsHeader()
 
-{ 
+{
     return (
         <div className="StudentHeader">
             <div className="greeting">
@@ -85,7 +110,6 @@ function RepsContactsHeader()
                 <h3>
                     Reps of class 2026, major MEE.
                 </h3>
-            </div>
             <div className="Info">
                 <h4 className='StudentName'>
                     Name
@@ -99,6 +123,9 @@ function RepsContactsHeader()
 
 }
 
+
+
+
 function ChooseHeader(props)
 {
     if (props.DashboardType==='student' || props.DashboardType==='studentRep')
@@ -109,7 +136,7 @@ function ChooseHeader(props)
             </>
         );
     }
-    else if  (props.DashboardType==='studentsettings')
+    else if  (props.DashboardType==='studentsettings' ||  props.DashboardType==='studentclubsettings')
     {
         return (
             <>
@@ -125,11 +152,20 @@ function ChooseHeader(props)
             </>
         );
     }
-    if (props.DashboardType==='reps_contacts')
+
+    else if (props.DashboardType==='reps_contacts')
     {
         return (
             <>
               <RepsContactsHeader/>
+          );
+     }
+
+    else if (props.DashboardType==='complaint')
+    {
+        return (
+            <>
+                <ComplaintHeader/>
             </>
         );
     }
