@@ -33,7 +33,7 @@ function App() {
             <Route path="/StudentSettings" element={<StudentSetting DashboardType='studentsettings' />} />
             <Route path="/student/studentclubs" element={<StudentDashboard DashboardType='viewstudentclubs' />} />
             <Route path="/rep/studentclubs" element={<RepDashboard DashboardType='viewstudentclubs' />} />
-            <Route path="//repsviewcomplaints" element={<RepsComplaintsDashboard DashboardType='repsviewcomplaints' />} />
+            <Route path="/repsviewcomplaints" element={<RepsComplaintsDashboard DashboardType='repsviewcomplaints' />} />
             <Route path="/" element={<LoginSignup />} />
             <Route path="/Club" element={<LoginSignupClub />} />
             <Route path="/Admin" element={<LoginAdmin />} />
