@@ -95,6 +95,30 @@ function ComplaintHeader()
     );
 }
 
+function RepsViewComplaintsHeader()
+{
+    return (
+        <div className="StudentHeader">
+        <div className="greeting">
+            <h1>
+                View Complaints
+            </h1>
+        </div>
+        <div className="Info">
+            <h4 className='StudentName'>
+                Name
+            </h4>
+            <h4>
+                Class of XXXX
+            </h4>
+        </div>
+    </div>
+
+
+    );
+}
+
+
 
 function ChooseHeader(props)
 {
@@ -130,6 +154,15 @@ function ChooseHeader(props)
                 <ComplaintHeader/>
             </>
         );
+    }
+
+    else if (props.DashboardType==='repsviewcomplaints')
+    {
+        return (
+            <>
+               <RepsViewComplaintsHeader/>
+            </>
+        )
     }
 }
 
