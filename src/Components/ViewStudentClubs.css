@@ -45,15 +45,17 @@
     color: #0D062D;
 }
 
+.TitleForm
+{
+    padding-bottom: 0px;
+    padding-top: 20px;
+}
+
 .apply
 {
     width:auto;
-    padding-block:8px;
-    padding-inline:25px;
     margin-block:10px;
-    border-width: 0px;
-    border-radius: 20px;
-    background-color: #271576e3;
+    border-radius: 10px;
     color: white;
 }
 
@@ -63,12 +65,12 @@
     text-align: center;
 
 }
-.Writeform:hover
-{
-    cursor: pointer;
-    opacity: 0.7;
-    transition: all 0.3s;
 
+.apply:hover
+{
+    opacity: 0.3;
+    transition: all 0.3s;
+    background-color: #0D062D !important;
 }
 
 .formHeader
@@ -79,51 +81,37 @@
     align-items: center;
 }
 
-.Categories
+.ClubName
 {
-    width:20%;
+    position: relative;
+    left:-5px;
+    width:180px;
+    padding: 0%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.Course h6{
-    background-color: rgba(81, 48, 229, 0.12);
-    padding: 8px;
-    margin: 3px;
-    border-radius: 30px;
-    color: rgba(81, 48, 229, 1);
-    width:max-content
-}
-
-.Author h6{
-    background-color: rgba(199, 48, 229, 0.12);
-    padding: 8px;
-    margin: 3px;
-    border-radius: 30px;
-    color: rgb(229, 48, 178);
-    width:max-content
-}
-
 .Content
 {
-    margin-top: 5px;
+    margin-top: 10px;
+
 }
 
-.Filters
+.FilterClub
 {
     display: flex;
     width: 400px;
     justify-content:space-between
 }
 
-.Filter
+.FilterClub
 {
     width:auto;
     -webkit-appearance: none;
     -moz-appearance: none;
     background: transparent;
-    background-image: url("../svg/formFilter.svg");
+    background-image: url("../svg/postFilter.svg");
     background-repeat: no-repeat;
     background-position-x: 89%;
     background-position-y: center;
@@ -149,3 +137,48 @@
 
 }
 
+.club h6
+{
+    border-radius: 6px;
+    color:rgb(43, 20, 107);
+    background-color: transparent;
+    display: flex;
+}
+
+.club
+{
+    display: flex;
+    justify-content: space-between;
+    background-color: #ac9ef479;
+    width:300px;
+    align-items: center;
+    padding: 7px;
+    border-radius: 7px;
+}
+
+.club:hover
+{
+    cursor: pointer;    
+
+}
+
+.club .InfoSVG:hover
+{
+    opacity: 0.7;
+}
+
+.StudentClubDetails
+{
+    display: flex;
+}
+
+.SClogo
+{
+    width:25%;
+    clip-path: circle();
+}
+
+.SClogo img
+{
+    width: 100%;
+}

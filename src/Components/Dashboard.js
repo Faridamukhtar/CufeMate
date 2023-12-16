@@ -1,16 +1,47 @@
 import React, { useState } from "react";
 import ChooseHeader from "./Header.js";
 import './Dashboard.css';
+import WriteComplaint from "./WriteComplaint.js";
+import PreviousComplaints from "./PreviousComplaints.js";
 import PostSection from './Posts.js';
+import ViewStudentClubs from './ViewStudentClubs.js';
+
+
 
 function StudentBody(props)
 {
     return (
         <div className='StudentBody'>
-            <PostSection DashboardType={props.DashboardType}/>
+            <PostSection studentType={props.studentType}/>
        </div>
     );
 }
+
+function ViewStudentClubsBody (props)
+{
+    return (
+        <div className='ViewStudentClubsBody'>
+            <ViewStudentClubs studentType={props.studentType}/>
+       </div>
+    );
+}
+
+
+function ComplaintBody(props)
+{
+    return (
+        <div className='ComplaintBody'>
+            <div className = 'WriteComplaint'>
+                <WriteComplaint Dashboard={props.DashboardType}/>
+            </div>
+            <div className = 'PreviousComplaints'>
+                <PreviousComplaints Dashboard={props.DashboardType}/>
+            </div>
+        </div>
+
+    );
+}
+
 
 function DashboardBody(props)
 {
@@ -18,29 +49,41 @@ function DashboardBody(props)
     {
         return (
             <>
-                <StudentBody DashboardType={props.DashboardType} setDashboardType={props.setDashboardType}/>
+                <StudentBody DashboardType={props.DashboardType}/>
             </>
         );
     }
     else if (props.DashboardType==='viewstudentclubs')
     {
+        return (
+            <>
+                <ViewStudentClubsBody DashboardType={props.DashboardType}/>
+            </>
+        );
+    }
+   else if (props.DashboardType==='complaint')
+    {
+        return (
+            <>
+                 <ComplaintBody DashboardType={props.DashboardType}/>
+            </>
+        );
         
     }
 
 
 }
 
+
 function Dashboard(props)
 {
-    const [DashboardType, setDashboardType] = useState(props.DashboardType);
-
     return (
         <div className="DashboardPage">
             <div className="DashboardHeader">
-                <ChooseHeader DashboardType={DashboardType} studentType={props.studentType}/>
+                <ChooseHeader DashboardType={props.DashboardType} studentType={props.studentType}/>
             </div>
             <div className="DashboardBody">
-                <DashboardBody DashboardType={DashboardType} setDashboardType={setDashboardType}/>
+                <DashboardBody DashboardType={props.DashboardType}/>
             </div>
         </div>
     );
