@@ -8,6 +8,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import StudentSetting from './pages/StudentSettings.js';
 import LoginAdmin from './pages/LoginAdmin.js';
 import LoginSignupClub from './pages/LoginSignupClub.js';
+//import AdminBar from './Components/adminBar.js';
+import AdminDashboard from './pages/AdminDashboard.js';
+import AddAdmin from './pages/AddAdmin.js';
+import AdminRequests from './pages/AdminRequests.js';
+
 
 
 
@@ -27,6 +32,9 @@ function App() {
             <Route path="/" element={<LoginSignup />} />
             <Route path="/Club" element={<LoginSignupClub />} />
             <Route path="/Admin" element={<LoginAdmin />} />
+            <Route path="/AdminDashboard/:admin_id" element={<AdminDashboard />} />
+            <Route path="/Admin/add" element={<AddAdmin />} />
+            <Route path="/Admin/requests/:admin_id" element={<AdminRequests/>} />
           </Routes>
         </Router>
       </div>

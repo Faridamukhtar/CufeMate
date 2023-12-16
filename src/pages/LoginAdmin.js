@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import './LoginAdmin.css';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
 
 const LoginAdmin = () => {
-  
+  const navigate = useNavigate(); // Initialize the navigate hook
     // State for login form
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
@@ -18,15 +18,20 @@ const LoginAdmin = () => {
             const result = await response.json();
             // Handle the login result as needed
             console.log(result);
-            if(result.message ==='Invalid username or password')
+            console.log("Login clicked");
+          if(response.ok)
           {
-              alert("Invalid username or password");
+            console.log(result.user.admin_id);
+            navigate(`/AdminDashboard/${result.user.admin_id}`);
+          }
+          if(result.message ==='Invalid username or password')
+          {
+            alert("Invalid username or password");
           }
           } 
           catch (error) {
             console.error('Error during login:', error);
           }
-          console.log("Login clicked");
     };
   
     
