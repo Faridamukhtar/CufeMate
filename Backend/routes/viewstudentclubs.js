@@ -1,5 +1,5 @@
 import express from "express";
-import { getStudentClubForms, Apply_To_Club, Withdraw_Application, ApplicantStatus, Rate_Club, RateStatus } from "../database/ViewStudentClubs.js";
+import { getStudentClubForms, Apply_To_Club, Withdraw_Application, ApplicantStatus, Rate_Club, RateStatus} from "../database/ViewStudentClubs.js";
 
 const router = express.Router();
 

@@ -160,3 +160,52 @@ export const RateStatus = async (req, res) =>
   }
 
 }
+
+
+export const GetStudentApplicants = async (req, res) =>
+{
+  const form_id = req.params.form_id
+  let Query =
+  `
+    SELECT * 
+    FROM applied a 
+    INNER JOIN student s 
+      on s.std_id = a.std_id AND a.form_id = ${form_id}
+  `
+
+  console.log(Query);
+  try {
+    const result = await dbInstance.query(Query);
+    res.status(200).json({ success: true, message: `Applicants fetched`, result: result.rows});
+  } 
+  
+  catch (err) {
+    console.error('Error:', err.message);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+
+}
+
+
+export const UpdateApplicantStatus = async (req, res) =>
+{
+  const {status, std_id, form_id} = req.body;
+  let Query =
+  `
+    UPDATE applied
+    SET stat = ${status} 
+    WHERE std_id=${std_id} AND form_id = ${form_id} 
+  `
+
+  console.log(Query);
+  try {
+    const result = await dbInstance.query(Query);
+    res.status(200).json({ success: true, message: `Status Updated`, result: result.rows});
+  } 
+  
+  catch (err) {
+    console.error('Error:', err.message);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+
+}
