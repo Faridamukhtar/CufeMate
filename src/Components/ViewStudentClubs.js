@@ -1,6 +1,6 @@
 import React, {useState, useEffect, Image} from "react";
 import './ViewStudentClubs.css';
-import { getStudentClubForms, Apply_To_Club, Withdraw_Application, ApplicantStatus } from "../CustomHooks/StudentClubsHooks.js";
+import { getStudentClubForms, Apply_To_Club, Withdraw_Application, ApplicantStatus, Rate_Club, getRateStatus } from "../CustomHooks/StudentClubsHooks.js";
 import {InfoSVG, StarSVGFilled, StarSVGUnfilled} from "../svg/SvgFiles.js"
 
 const studentData = {fname:"Ahmed", lname:"Mohamed", major_id:'CCE', std_id:1, class:'2026'}; //get logged in student data
@@ -29,6 +29,41 @@ function Stars(props) {
 function StudentClubDetails(props)
 {
     const [RatingN, setRatingN]=useState(0);
+
+
+    useEffect(()=>
+    {
+        const setRating = async()=>
+        {
+         console.log('Rating:', RatingN);
+         await Rate_Club(RatingN, studentData.std_id, props.std_club_id)
+        }
+ 
+        setRating();
+
+    },[RatingN])
+
+    useEffect(()=>
+    {
+       const onMount = async()=>
+       {    
+            const data = await getRateStatus(studentData.std_id, props.std_club_id);
+            console.log(data);
+            if (data?.length>0 && data[0]?.rating!==undefined && data[0]?.rating!==null)
+            {
+                console.log(data);
+                setRatingN(data[0]?.rating)
+            }
+            else
+            {
+                setRatingN(0);
+            }
+       }
+
+       onMount();
+
+    },[]);
+
     console.log(props.logo);
     return (
     <div className="StudentClubDetails">
@@ -195,7 +230,7 @@ useEffect(()=>
                 </div>
             </div>
                 <div className="studentClubDetails" hidden={InfoHidden}>
-                    <StudentClubDetails std_club_name={props.std_club_name} about={props.about} logo={props.logo}/>
+                    <StudentClubDetails std_club_name={props.std_club_name} about={props.about} logo={props.logo} std_club_id={props.std_club_id}/>
                 </div>
         </div>
     );
@@ -234,7 +269,7 @@ function Displayforms(props)
 {
     if (props?.formArray[0]?.form_id>0)
     {
-        const listItems = props.formArray.map((form) => <li><StudentClubForm form_title={form.form_title} std_club_name={form.std_club_name} requirements={form.requirements} email= {form.email} form_id={form.form_id} about={form.about} logo={form.logo}/></li>);
+        const listItems = props.formArray.map((form) => <li><StudentClubForm form_title={form.form_title} std_club_id={form.std_club_id} std_club_name={form.std_club_name} requirements={form.requirements} email= {form.email} form_id={form.form_id} about={form.about} logo={form.logo}/></li>);
         return listItems;
     }
     else
