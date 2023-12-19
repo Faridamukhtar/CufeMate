@@ -2,6 +2,7 @@ import React from "react";
 import './Header.css';
 
 const studentData = {fname:"Ahmed", lname:"Mohamed", major_id:'CCE', std_id:1, class:'2026'}; //get logged in student data
+const SCData = {std_club_name:"CU Eco-Racing team", std_club_id:1, email:'CUERT@gmail.com'}; //get logged in student data
 
 function ViewStudentClubsHeader(props)
 {
@@ -95,6 +96,32 @@ function ComplaintHeader()
     );
 }
 
+
+function StudentClubFormsHeader()
+{
+    return (
+        <div className="StudentHeader">
+            <div className="greeting">
+                <h1>
+                    Forms
+                </h1>
+                <h3>
+                    The Data You Need In One Place.
+                </h3>
+            </div>
+            <div className="Info">
+                <h4 className='StudentName'>
+                    {SCData.std_club_name}
+                </h4>
+                <h4>
+                    {SCData.email}
+                </h4>
+            </div>
+        </div>
+
+    );
+}
+
 function RepsViewComplaintsHeader()
 {
     return (
@@ -161,6 +188,14 @@ function ChooseHeader(props)
         return (
             <>
                <RepsViewComplaintsHeader/>
+            </>
+        )
+    }
+    else if (props.DashboardType==='StudentClubForms')
+    {
+        return (
+            <>
+               <StudentClubFormsHeader/>
             </>
         )
     }

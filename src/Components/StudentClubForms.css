@@ -1,0 +1,121 @@
+.formsWrapper2
+{
+    border-radius: 16px;
+    border: 1px solid #FFF;
+    background: #ffffffad;
+    padding: 3%;
+    box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.10);
+    min-height: 100vh;
+    width: 100%;
+}
+
+.formsWrapper22
+{
+    border-radius: 16px;
+    min-height: 100vh;
+    width: 50%;
+}
+
+.ClubformsWrapper
+{
+    border-radius: 16px;
+    padding: 3%;
+    box-shadow: 0px  10px -3px rgba(0, 0, 0, 0.10);
+    min-height: 100vh;
+    width: 50%;
+}
+
+.LineUnderform
+{
+    border-color: #5030E5;
+}
+
+.form
+{
+    padding: 3%;
+    margin-bottom: 15px;
+}
+
+.forms ul
+{
+    list-style-type: none;
+    padding:0;
+}
+
+.LatestformsTitle
+{
+    padding-bottom: 20px;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.LatestformsTitle h3
+{
+    padding-bottom: 0px;
+    align-self: center;
+    color: #0D062D;
+}
+
+.TitleForm
+{
+    padding-bottom: 0px;
+    padding-top: 20px;
+}
+
+.formHeader
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ClubName
+{
+    position: relative;
+    left:-5px;
+    width:180px;
+    padding: 0%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.ContentWrap
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ContentClub
+{
+    margin-top: 10px;
+
+}
+
+.club h6
+{
+    border-radius: 6px;
+    color:rgb(43, 20, 107);
+    background-color: transparent;
+    display: flex;
+}
+
+.club
+{
+    display: flex;
+    justify-content: space-between;
+    background-color: #ac9ef457;
+    width:300px;
+    align-items: center;
+    padding: 7px;
+    border-radius: 7px;
+}
+
+.club:hover
+{
+    opacity: 0.7;
+    cursor: pointer;    
+}
