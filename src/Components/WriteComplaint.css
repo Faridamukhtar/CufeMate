@@ -109,3 +109,7 @@
     justify-content: center;
 }
 
+.Rating
+{
+    display: flex;
+}

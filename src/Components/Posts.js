@@ -9,7 +9,7 @@ function Post(props)
     return(
         <div className="Post">
             <div className="PostHeader">
-                <div className="Title">
+                <div className="TitlePost">
                     <h2>
                         {props.Course}
                     </h2>                
@@ -27,7 +27,7 @@ function Post(props)
                     </div>
                 </div>
             </div>
-            <div class='Content'>
+            <div class='ContentPost'>
                 <h5>
                     {props.Content}
                 </h5>   

@@ -1,27 +1,96 @@
 import React, {useState, useEffect, Image} from "react";
 import './ViewStudentClubs.css';
-import { getStudentClubForms, Apply_To_Club, Withdraw_Application, ApplicantStatus } from "../CustomHooks/StudentClubsHooks.js";
-import {InfoSVG} from "../svg/SvgFiles.js"
+import { getStudentClubForms, Apply_To_Club, Withdraw_Application, ApplicantStatus, Rate_Club, getRateStatus } from "../CustomHooks/StudentClubsHooks.js";
+import {InfoSVG, StarSVGFilled, StarSVGUnfilled} from "../svg/SvgFiles.js"
 
 const studentData = {fname:"Ahmed", lname:"Mohamed", major_id:'CCE', std_id:1, class:'2026'}; //get logged in student data
-
+function Stars(props) {
+    return (
+      <>
+        <div className="rating1" onClick={() => props.setRatingN(1)}>
+          {props.RatingN >= 1 ? <StarSVGFilled /> : <StarSVGUnfilled />}
+        </div>
+        <div className="rating2" onClick={() => props.setRatingN(2)}>
+          {props.RatingN >= 2 ? <StarSVGFilled /> : <StarSVGUnfilled />}
+        </div>
+        <div className="rating3" onClick={() => props.setRatingN(3)}>
+          {props.RatingN >= 3 ? <StarSVGFilled /> : <StarSVGUnfilled />}
+        </div>
+        <div className="rating4" onClick={() => props.setRatingN(4)}>
+          {props.RatingN >= 4 ? <StarSVGFilled /> : <StarSVGUnfilled />}
+        </div>
+        <div className="rating5" onClick={() => props.setRatingN(5)}>
+          {props.RatingN === 5 ? <StarSVGFilled /> : <StarSVGUnfilled />}
+        </div>
+      </>
+    );
+  }
 
 function StudentClubDetails(props)
 {
+    const [RatingN, setRatingN]=useState(0);
+
+
+    useEffect(()=>
+    {
+        const setRating = async()=>
+        {
+         console.log('Rating:', RatingN);
+         await Rate_Club(RatingN, studentData.std_id, props.std_club_id)
+        }
+ 
+        setRating();
+
+    },[RatingN])
+
+    useEffect(()=>
+    {
+       const onMount = async()=>
+       {    
+            const data = await getRateStatus(studentData.std_id, props.std_club_id);
+            console.log(data);
+            if (data?.length>0 && data[0]?.rating!==undefined && data[0]?.rating!==null)
+            {
+                console.log(data);
+                setRatingN(data[0]?.rating)
+            }
+            else
+            {
+                setRatingN(0);
+            }
+       }
+
+       onMount();
+
+    },[]);
+
     console.log(props.logo);
     return (
     <div className="StudentClubDetails">
-        <div className="SClogo">
-            <img 
-                src={props.logo}
-            />
+        <div className="SClogoWrapper">
+            <div className="SClogo">
+                <img 
+                    src={props.logo}
+                />
+            </div>
         </div>
         <div className="SCcontent">
             <div className="SCName">
+                <h4>
                 {props.std_club_name}
+                </h4>
+
             </div>
             <div className="SCDescription">
-                {props.about}
+                <h5>
+                    {props.about}
+                </h5>
+            </div>
+            <div className="Rating">
+                <h5>
+                    Rating:
+                </h5>
+                <Stars setRatingN={setRatingN} RatingN={RatingN}/>
             </div>
         </div>
     </div>
@@ -72,7 +141,13 @@ function StudentClubForm(props)
 {
     const [applied, setApplied]=useState(-1);
     const [InsertedApply, setInsertedApply] = useState(-1);
-    const [InfoHidden, SeetInfoHidden] = useState(true);
+    const [InfoHidden, SetInfoHidden] = useState(true);
+
+
+    function handleClickInfo()
+    {
+        SetInfoHidden(!InfoHidden);
+    }
 
     useEffect(()=>
     {
@@ -123,38 +198,40 @@ useEffect(()=>
 
 
     return(
-        <div className="form">
-            <div className="ClubName">
-                <div className="club">
-                    <h6>
-                        {props.std_club_name}
-                    </h6> 
-                    <div className="InfoSVG">
-                        <InfoSVG/>
+        <div className="ClubformWrapper">
+            <div className="form">
+                <div className="ClubName">
+                    <div className="club">
+                        <h6>
+                            {props.std_club_name}
+                        </h6> 
+                        <div className="InfoSVG" onClick={handleClickInfo}>
+                            <InfoSVG/>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="formHeader">
-                <div className="TitleForm">
-                    <h2>
-                        {props.form_title}
-                    </h2>                
+                <div className="formHeader">
+                    <div className="TitleForm">
+                        <h2>
+                            {props.form_title}
+                        </h2>                
+                    </div>
+                </div>
+                <div class='ContentWrap'>
+                    <div class='ContentClub'>
+                        <h5>
+                            Extra Requirements: {props.requirements}
+                        </h5> 
+                        <h5>
+                            To be sent on email: {props.email}
+                        </h5> 
+                    </div>
+                    <Apply applied={applied} setApplied={setApplied}/>
                 </div>
             </div>
-            <div class='Content'>
-                <div class='Content'>
-                    <h5>
-                        Extra Requirements: {props.requirements}
-                    </h5> 
-                    <h5>
-                        To be sent on email: {props.email}
-                    </h5> 
+                <div className="studentClubDetails" hidden={InfoHidden}>
+                    <StudentClubDetails std_club_name={props.std_club_name} about={props.about} logo={props.logo} std_club_id={props.std_club_id}/>
                 </div>
-                <Apply applied={applied} setApplied={setApplied}/>
-            </div>
-            <div className="studentClubDetails" hidden={true}>
-                <StudentClubDetails std_club_name={props.std_club_name} about={props.about} logo={props.logo}/>
-            </div>
         </div>
     );
 }
@@ -192,7 +269,7 @@ function Displayforms(props)
 {
     if (props?.formArray[0]?.form_id>0)
     {
-        const listItems = props.formArray.map((form) => <li><StudentClubForm form_title={form.form_title} std_club_name={form.std_club_name} requirements={form.requirements} email= {form.email} form_id={form.form_id} about={form.about} logo={form.logo}/></li>);
+        const listItems = props.formArray.map((form) => <li><StudentClubForm form_title={form.form_title} std_club_id={form.std_club_id} std_club_name={form.std_club_name} requirements={form.requirements} email= {form.email} form_id={form.form_id} about={form.about} logo={form.logo}/></li>);
         return listItems;
     }
     else
