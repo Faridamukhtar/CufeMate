@@ -209,3 +209,63 @@ export const UpdateApplicantStatus = async (req, res) =>
   }
 
 }
+
+export const UpdateForm = async (req, res) =>
+{
+  const {form_id, std_club_id, Requirements, form_title} = req.body
+  let Query
+
+  if (form_id==0)
+  {
+    Query=
+    `
+    INSERT INTO form (posted_by, form_title, form_date, requirements)
+    VALUES (${std_club_id}, '${form_title}', CURRENT_DATE, '${Requirements}')  
+    `
+  }
+  else
+  {
+    Query=
+    `
+    UPDATE form
+    SET requirements='${Requirements}' ,
+    form_title = '${form_title}'
+    WHERE form_id = ${form_id}
+    `
+
+  }
+  
+    console.log(Query);
+    try {
+      const result = await dbInstance.query(Query);
+      res.status(200).json({ success: true, message: `Updated/Created Form`, result: result.rows});
+    } 
+    
+    catch (err) {
+        console.error('Error:', err.message);
+        res.status(500).json({ success: false, message: 'Internal Server Error' })
+    }
+  }
+
+export const deleteForm = async (req, res) =>
+{
+  const form_id = req.params.form_id
+  let Query =
+  `
+    DELETE
+    FROM form f 
+    WHERE f.form_id = ${form_id}
+  `
+
+  console.log(Query);
+  try {
+    const result = await dbInstance.query(Query);
+    res.status(200).json({ success: true, message: `Applicants fetched`, result: result.rows});
+  } 
+  
+  catch (err) {
+    console.error('Error:', err.message);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+
+}

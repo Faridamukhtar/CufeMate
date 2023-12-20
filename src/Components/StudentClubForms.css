@@ -1,7 +1,7 @@
 .formsWrapperOuter
 {
     border-radius: 16px 0px 0px 16px ;
-    background: #ffffff86;
+    background: #ffffffd4;
     padding: 3%;
     box-shadow: 0px 0px 0px 0px;
     min-height: 100vh;
@@ -19,6 +19,8 @@
     border-radius: 16px;
     box-shadow: 0px 0px 0px 0px;
     width:100%;
+    margin-bottom: 15px;
+
 }
 
 .LineUnderform
@@ -78,7 +80,7 @@
 {
     position: relative;
     left:-5px;
-    width:180px;
+    width:100%;
     padding: 0%;
     display: flex;
     flex-direction: row;
@@ -111,10 +113,11 @@
     display: flex;
     justify-content: space-between;
     background-color: #ac9ef457;
-    width:300px;
+    width:200px;
     align-items: center;
     padding: 7px;
     border-radius: 7px;
+    height: 25px;
 }
 
 .club:hover
@@ -137,7 +140,7 @@
 {
     border-radius: 0px 16px 16px 0px;
     border: 0px;
-    background: #ffffff;
+    background: #ffffff44;
     padding: 3%;
     min-height: 100vh;
     width: 100%;
@@ -175,7 +178,7 @@
     align-items: center;
     border-radius: 6px;
     background-color:#5432ec0b;
-    width: 70%;
+    width: 75%;
     padding: 20px;
     margin-inline: 10px;
     margin-block:20px;
@@ -232,4 +235,94 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+}
+
+.editForm
+{
+    width:fit-content;
+    height: fit-content;
+    padding: 20px;
+    padding-block: 12px;
+    background-color: #271576e3;
+    color: white;
+    font-weight: 400;
+    font-size: small;
+    
+}
+
+.editForm:hover
+{
+    opacity: 0.7;
+    background-color: #0D062D;
+}
+
+
+.flexform
+{
+    display: flex;
+    justify-content: flex-end;
+}
+
+#submitbuttonform
+{
+    background-color: #0D062D;
+    width: fit-content;
+    color: white;
+    padding-inline: 20px;
+    margin-top: 50px;
+    margin-inline:30px
+}
+
+#submitbuttonform:hover
+{
+    opacity: 0.7;
+    background-color: #0D062D;
+    cursor: pointer;
+}
+
+
+form input{
+    border: 1px solid #341c9e82;
+    background-color: #341c9e28;
+    margin-bottom: 20px;
+
+}
+
+form h3
+{
+    font-size: larger;
+    margin-block: 6px;
+}
+
+.NewForm
+{
+    width:fit-content;
+    height: fit-content;
+    padding: 13px;
+    padding-block: 8px;
+    border-radius: 100%;
+    background-color: #271576e3;
+    color: white;
+    font-size: larger;
+}
+
+.NoApplic 
+{
+    margin-inline: 20px;
+}
+
+.deleteForm
+{
+    width:fit-content;
+    height: fit-content;
+    padding: 13px;
+    padding-block: 8px;
+    border-radius: 100%;
+    background-color: #27157600;
+    color: #0D062D;
+    position: relative;
+    top:-20px;
+    right:-20px;
+    font-weight: 800;
+    font-size: larger;
 }

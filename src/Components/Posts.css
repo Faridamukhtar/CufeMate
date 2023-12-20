@@ -149,3 +149,16 @@
 
 }
 
+.like
+{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.like:hover
+{
+    cursor: pointer;
+    opacity: 0.7;
+}
+
