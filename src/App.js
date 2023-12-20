@@ -12,6 +12,7 @@ import StudentClubStats from "./pages/StudentClubStats.js"
 import AdminDashboard from './pages/AdminDashboard.js';
 import AddAdmin from './pages/AddAdmin.js';
 import AdminRequests from './pages/AdminRequests.js';
+import StudentClubForms from './pages/StudentClubForms.js';
 //import AdminBar from './Components/adminBar.js';
 
 
@@ -42,6 +43,7 @@ function App() {
             <Route path="/AdminDashboard/:admin_id" element={<AdminDashboard />} />
             <Route path="/Admin/add" element={<AddAdmin />} />
             <Route path="/Admin/requests/:admin_id" element={<AdminRequests/>} />
+            <Route path="/StudentClub/Forms" element={<StudentClubForms DashboardType='StudentClubForms'/>} />
           </Routes>
         </Router>
       </div>

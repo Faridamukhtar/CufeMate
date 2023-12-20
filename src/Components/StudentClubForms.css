@@ -1,0 +1,328 @@
+.formsWrapperOuter
+{
+    border-radius: 16px 0px 0px 16px ;
+    background: #ffffffd4;
+    padding: 3%;
+    box-shadow: 0px 0px 0px 0px;
+    min-height: 100vh;
+    width: 70%;
+}
+.formsWrapper
+{
+    box-shadow: 0px 0px 0px 0px;
+    background-color: transparent;
+    border-width: 0px;
+
+}
+.ClubformWrapper
+{
+    border-radius: 16px;
+    box-shadow: 0px 0px 0px 0px;
+    width:100%;
+    margin-bottom: 15px;
+
+}
+
+.LineUnderform
+{
+    border-color: #5030E5;
+}
+
+.form
+{
+    padding: 5%;
+    margin-bottom: 15px;
+}
+
+.forms ul
+{
+    list-style-type: none;
+    padding:0;
+}
+
+
+.DisplayApplicants li
+{
+    list-style-type: none;
+    padding:0;
+}
+
+.LatestformsTitle
+{
+    padding-bottom: 20px;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.LatestformsTitle h3
+{
+    padding-bottom: 0px;
+    align-self: center;
+    color: #0D062D;
+}
+
+.TitleForm
+{
+    padding-bottom: 0px;
+    padding-top: 20px;
+}
+
+.formHeader
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ClubName
+{
+    position: relative;
+    left:-5px;
+    width:100%;
+    padding: 0%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.ContentWrap
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ContentClub
+{
+    margin-top: 10px;
+
+}
+
+.club h6
+{
+    border-radius: 6px;
+    color:rgb(43, 20, 107);
+    background-color: transparent;
+    display: flex;
+}
+
+.club
+{
+    display: flex;
+    justify-content: space-between;
+    background-color: #ac9ef457;
+    width:200px;
+    align-items: center;
+    padding: 7px;
+    border-radius: 7px;
+    height: 25px;
+}
+
+.club:hover
+{
+    opacity: 0.7;
+    cursor: pointer;    
+}
+
+.OuterWrapper
+{
+    display: flex;
+}
+
+.ApplicantsWrapper
+{
+    width:30%;
+}
+
+.ApplicationWrapper
+{
+    border-radius: 0px 16px 16px 0px;
+    border: 0px;
+    background: #ffffff44;
+    padding: 3%;
+    min-height: 100vh;
+    width: 100%;
+    padding-bottom: 100px;
+}
+
+.ApplicantsLabel
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px;
+    padding-right: 14px;
+    margin: 10px;
+    width: fit-content;
+    border-radius: 7px;
+}
+
+.ApplicantsLabel:hover
+{
+    opacity: 0.7;
+    cursor: pointer;    
+}
+
+.ApplicantsLabel h4
+{
+    font-weight: 800;
+}
+
+.SingleApplicantWrapper
+{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 6px;
+    background-color:#5432ec0b;
+    width: 75%;
+    padding: 20px;
+    margin-inline: 10px;
+    margin-block:20px;
+
+}
+
+.applystat
+{
+    font-size: x-small;
+    background-color: #0d062da6;
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+    margin: 0%;
+    height: fit-content;
+}
+
+.applystat:hover
+{
+    font-size: x-small;
+    background-color: #0d062da6;
+    cursor:auto;
+}
+
+
+.applystat2
+{
+    font-size: x-small;
+    border-radius: 10px;
+    background-color: #341c9e;
+    width: auto;
+    height: fit-content;
+
+}
+
+
+.applystat2:hover
+{
+    font-size: x-small;
+    background-color: #0d062d6f;
+}
+
+.ApplicationStatus
+{
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 15px;
+
+}
+
+
+.AcceptanceButtons
+{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.editForm
+{
+    width:fit-content;
+    height: fit-content;
+    padding: 20px;
+    padding-block: 12px;
+    background-color: #271576e3;
+    color: white;
+    font-weight: 400;
+    font-size: small;
+    
+}
+
+.editForm:hover
+{
+    opacity: 0.7;
+    background-color: #0D062D;
+}
+
+
+.flexform
+{
+    display: flex;
+    justify-content: flex-end;
+}
+
+#submitbuttonform
+{
+    background-color: #0D062D;
+    width: fit-content;
+    color: white;
+    padding-inline: 20px;
+    margin-top: 50px;
+    margin-inline:30px
+}
+
+#submitbuttonform:hover
+{
+    opacity: 0.7;
+    background-color: #0D062D;
+    cursor: pointer;
+}
+
+
+form input{
+    border: 1px solid #341c9e82;
+    background-color: #341c9e28;
+    margin-bottom: 20px;
+
+}
+
+form h3
+{
+    font-size: larger;
+    margin-block: 6px;
+}
+
+.NewForm
+{
+    width:fit-content;
+    height: fit-content;
+    padding: 13px;
+    padding-block: 8px;
+    border-radius: 100%;
+    background-color: #271576e3;
+    color: white;
+    font-size: larger;
+}
+
+.NoApplic 
+{
+    margin-inline: 20px;
+}
+
+.deleteForm
+{
+    width:fit-content;
+    height: fit-content;
+    padding: 13px;
+    padding-block: 8px;
+    border-radius: 100%;
+    background-color: #27157600;
+    color: #0D062D;
+    position: relative;
+    top:-20px;
+    right:-20px;
+    font-weight: 800;
+    font-size: larger;
+}

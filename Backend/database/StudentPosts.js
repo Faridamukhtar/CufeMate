@@ -126,3 +126,85 @@ export const getMajorAuthors = async (req, res) => {
       res.status(500).json({ success: false, error: 'Internal Server Error' });
     }
 }
+
+export const getLikesNo = async(req, res)=>
+{
+   
+  const { post_id } = req.params;
+
+  let query = `
+  SELECT COUNT(*) AS "count"
+  FROM likes
+  WHERE post_id = ${post_id}
+  `
+    try {
+
+      const result = await dbInstance.query(query);
+      res.status(200).json({ success: true, message: 'Getting No. of likes', result: result.rows});
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+}
+
+export const getDidLike = async(req, res)=>
+{
+   
+  const {post_id, std_id} = req.params;
+
+  let query = `
+  SELECT *
+  FROM likes
+  WHERE post_id = ${post_id} AND std_id = ${std_id}
+  `
+    try {
+
+      const result = await dbInstance.query(query);
+      res.status(200).json({ success: true, message: 'Getting Did Like', result: result.rows});
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+}
+
+export const like = async(req, res)=>
+{
+   
+  const {post_id, std_id} = req.params;
+
+  let query = `
+  INSERT INTO likes (post_id, std_id)
+  VALUES (${post_id}, ${std_id})
+  `
+    try {
+
+      const result = await dbInstance.query(query);
+      res.status(200).json({ success: true, message: 'Liked', result: result.rows});
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+}
+
+export const unlike = async(req, res)=>
+{
+   
+  const {post_id, std_id} = req.params;
+
+  let query = `
+  DELETE FROM likes
+  WHERE post_id=${post_id} AND std_id= ${std_id}
+  `
+    try {
+
+      const result = await dbInstance.query(query);
+      res.status(200).json({ success: true, message: 'Unliked', result: result.rows});
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+}
