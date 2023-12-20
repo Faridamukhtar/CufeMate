@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import './Posts.css';
 import {getposts,fetchStudentCourses, fetchMajorAuthors} from "../CustomHooks/PostsHooks.js";
-import ChooseHeader from "./Header.js";
 
 const studentData = {fname:"Ahmed", major_id:'CCE', std_id:1, class:'2026'}; //get logged in student data
 
@@ -39,7 +38,6 @@ function Post(props)
 
 
 
-//TO DO: create button: Write if Rep, Request to Write if student, then add it to posts
 function WriteType(props)
 {
     if (props.Type=='student')
@@ -174,7 +172,6 @@ function PostSection(props)
 
     },[]);
 
-    //TO DO: create filters
     function Filters(props)
     {   
         return (
@@ -201,7 +198,7 @@ function PostSection(props)
                 <h3>
                     Latest Posts
                 </h3>
-                <WriteType Type={props.DashboardType}/>
+                <WriteType Type={props.studentType}/>
             </div>
             <hr className="LineUnderPost"/>
             <div className="filters">

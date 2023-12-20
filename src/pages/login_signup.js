@@ -138,7 +138,9 @@ const LoginSignup = () => {
             value={loginPassword}
             onChange={(e) => setLoginPassword(e.target.value)}
           />
+            <Link to='/student'>
           <button onClick={() => handleLogin(loginEmail, loginPassword)}>Login</button>
+          </Link>
           <button>Forgot Password</button>
         </div>
       </div>

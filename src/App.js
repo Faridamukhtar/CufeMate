@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import ComplaintDashboard from './pages/ComplaintDashboard.js'
 import StudentDashboard from './pages/StudentDashboard.js'
 import RepDashboard from './pages/RepDashboard.js';
 import LoginSignup from './pages/login_signup.js'
@@ -16,16 +17,20 @@ import AdminStats from './pages/AdminStats.js';
 
 //<Route path="/Admin/settings/:admin_id" element={<AdminSettings/>/* to be edited by mimo */} /> 
 
+
 function App() {
   return (
     <>
       <div className='App'>
+
         <Router>
           <Routes>
-            <Route path="/Home" element={<StudentDashboard />} />
-            <Route path="/student" element={<StudentDashboard />} />
-            <Route path="/rep" element={<RepDashboard />} />
-            <Route path="/Settings" element={<StudentSetting />} />
+            <Route path="/student" element={<StudentDashboard DashboardType='student' />} />
+            <Route path="/complaints" element={<ComplaintDashboard/>} />
+            <Route path="/rep" element={<RepDashboard DashboardType='studentRep'/>} />
+            <Route path="/StudentSettings" element={<StudentSetting DashboardType='studentsettings' />} />
+            <Route path="/student/studentclubs" element={<StudentDashboard DashboardType='viewstudentclubs' />} />
+            <Route path="/rep/studentclubs" element={<RepDashboard DashboardType='viewstudentclubs' />} />
             <Route path="/" element={<LoginSignup />} />
             <Route path="/Club" element={<LoginSignupClub />} />
             <Route path="/Admin" element={<LoginAdmin />} />

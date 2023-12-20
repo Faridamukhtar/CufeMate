@@ -1,56 +1,167 @@
-import React, {useState, useEffect} from "react";
-import './Posts.css';
-import {getposts,fetchStudentCourses, fetchMajorAuthors} from "../CustomHooks/PostsHooks.js";
+import React, {useState, useEffect, Image} from "react";
+import './ViewStudentClubs.css';
+import { getStudentClubForms, Apply_To_Club, Withdraw_Application, ApplicantStatus } from "../CustomHooks/StudentClubsHooks.js";
+import {InfoSVG} from "../svg/SvgFiles.js"
+
+const studentData = {fname:"Ahmed", lname:"Mohamed", major_id:'CCE', std_id:1, class:'2026'}; //get logged in student data
+
+
+function StudentClubDetails(props)
+{
+    console.log(props.logo);
+    return (
+    <div className="StudentClubDetails">
+        <div className="SClogo">
+            <img 
+                src={props.logo}
+            />
+        </div>
+        <div className="SCcontent">
+            <div className="SCName">
+                {props.std_club_name}
+            </div>
+            <div className="SCDescription">
+                {props.about}
+            </div>
+        </div>
+    </div>
+    )
+}
+
+
+function ChooseText(props)
+{
+    if (props?.applied===0)
+    {
+        return ('Withdraw Application')
+    }
+    if (props?.applied===1)
+    {
+        return ('Currently A Member')
+    }
+    if (props?.applied===2)
+    {
+        return ('Rejected')
+    }
+    return ('Apply');
+}
+
+
+function Apply(props)
+{
+    return (
+        <button className="apply" 
+        disabled={props.applied===2 || props.applied===1} 
+        onClick={()=>props.setApplied((prev)=> 
+            {
+                if (prev===0) 
+                {
+                    return (-1);
+                }
+                return (0);
+            })}
+        >
+            <h5>
+                <ChooseText applied={props.applied}/>
+            </h5>
+        </button> 
+        )
+}
 
 function StudentClubForm(props)
 {
+    const [applied, setApplied]=useState(-1);
+    const [InsertedApply, setInsertedApply] = useState(-1);
+    const [InfoHidden, SeetInfoHidden] = useState(true);
+
+    useEffect(()=>
+    {
+       const onMount = async()=>
+       {    
+            const data = await ApplicantStatus(props.form_id, studentData.std_id)
+            if (data?.length>0 && data[0]?.stat!==undefined && data[0]?.stat!==null)
+            {
+                setApplied(data[0]?.stat);
+                setInsertedApply(data[0]?.stat);
+            }
+            else
+            {
+                setApplied(-1);
+                setInsertedApply(-1);
+            }
+       }
+
+       onMount();
+
+},[]);
+
+useEffect(()=>
+{
+       const apply = async()=>
+       {
+        console.log('Inserted:', InsertedApply)
+        console.log('Final Apply', applied);
+            if (InsertedApply!==applied)
+            {
+                if (applied==0)
+                {
+                    await Apply_To_Club(props.form_id, studentData.std_id);
+                    setInsertedApply(0);
+                }
+                if (applied ==-1)
+                {
+                    await Withdraw_Application(props.form_id, studentData.std_id);
+                    setInsertedApply(-1);
+                }
+            }
+        }
+
+        apply();
+
+},[applied]);
+
+
+
     return(
         <div className="form">
-            <div className="formHeader">
-                <div className="Title">
-                    <h2>
-                        {props.Course}
-                    </h2>                
-                </div>
-                <div className="Categories">
-                    <div className="Course">
-                        <h6>
-                            {props.Course}
-                        </h6> 
-                    </div>
-                    <div className="Author">
-                        <h6>
-                            {props.FAuthor} {props.LAuthor}
-                        </h6> 
+            <div className="ClubName">
+                <div className="club">
+                    <h6>
+                        {props.std_club_name}
+                    </h6> 
+                    <div className="InfoSVG">
+                        <InfoSVG/>
                     </div>
                 </div>
             </div>
+            <div className="formHeader">
+                <div className="TitleForm">
+                    <h2>
+                        {props.form_title}
+                    </h2>                
+                </div>
+            </div>
             <div class='Content'>
-                <h5>
-                    {props.Content}
-                </h5>   
+                <div class='Content'>
+                    <h5>
+                        Extra Requirements: {props.requirements}
+                    </h5> 
+                    <h5>
+                        To be sent on email: {props.email}
+                    </h5> 
+                </div>
+                <Apply applied={applied} setApplied={setApplied}/>
+            </div>
+            <div className="studentClubDetails" hidden={true}>
+                <StudentClubDetails std_club_name={props.std_club_name} about={props.about} logo={props.logo}/>
             </div>
         </div>
     );
 }
 
-
-
-//TO DO: create button: Write if Rep, Request to Write if student, then add it to posts
-function WriteType(props)
-{
-    return (
-        <button className="apply">
-            <h5>
-                {props.applied? 'Applied' : 'Apply Now'}
-            </h5>
-        </button>
-        )
-}
-
 function StudentClubOptions(props)
 {
-    if (props.options)
+    if (props.options[0]?.std_club_id>0)
     {
         const OptionsSelection = props.options.map((option)=>
         {
@@ -61,7 +172,7 @@ function StudentClubOptions(props)
 
         return(
             <>
-                <option value="">
+                <option value=" ">
                     All Clubs' Announcements
                 </option>
                 {OptionsSelection}
@@ -81,7 +192,7 @@ function Displayforms(props)
 {
     if (props?.formArray[0]?.form_id>0)
     {
-        const listItems = props.formArray.map((post) => <li><Post Major={post.major_id} Content={post.content} Course={post.course_name} FAuthor={post.fname} LAuthor={post.lname}/></li>);
+        const listItems = props.formArray.map((form) => <li><StudentClubForm form_title={form.form_title} std_club_name={form.std_club_name} requirements={form.requirements} email= {form.email} form_id={form.form_id} about={form.about} logo={form.logo}/></li>);
         return listItems;
     }
     else
@@ -92,20 +203,70 @@ function Displayforms(props)
 }
 
 //Fetch Posts
-function PostSection(props)
+function FormsSection()
 {
+    const [formsContent, setFormsContent] = useState([{std_club_id:0, std_club_name:"", email:"", about:"", logo:"",form_id:0, form_title:'', requirements:'', form_date:''}])
+    const [chosenStudentClub, setChosenStudentClub] = useState(" ");
+    const [StudentClubs, setStudentClubs] = useState([{std_club_id:0, std_club_name:""}]);
+
+    useEffect(()=>
+    {
+       const onMount = async()=>
+       {
+            const data = await getStudentClubForms(chosenStudentClub);
+            let studentclubs=[{std_club_id:0, std_club_name:""}];
+            data.forEach((option)=>
+            {
+                studentclubs = ([...studentclubs,{std_club_id:option.std_club_id, std_club_name:option.std_club_name}]);
+                console.log('studentclubs',studentclubs);
+            })
+            studentclubs.shift();
+            setStudentClubs(studentclubs);
+            setFormsContent(data);
+       }
+
+       onMount();
+
+    },[])
+
+    useEffect(()=>
+    {
+       const onChangeSelection = async()=>
+       {
+            const data = await getStudentClubForms(chosenStudentClub);
+            setFormsContent(data);
+       }
+       
+       onChangeSelection();
+
+    },[chosenStudentClub])
+
+
+    function Filters()
+    {   
+        return (
+        <div className="FiltersClub">
+            <select className="FilterClub"
+                defaultValue=" "
+                value={chosenStudentClub}
+                onChange={(e)=>setChosenStudentClub(e.target.value)}>
+                <StudentClubOptions options={StudentClubs}/>
+            </select>
+        </div>
+        );
+    }
+
 
     return (
         <div className="formsWrapper">
             <div className="LatestformsTitle">
                 <h3>
-                    Latest forms
+                    Latest Student Club Announcements
                 </h3>
-                <WriteType Type={props.DashboardType}/>
             </div>
             <hr className="LineUnderform"/>
-            <div className="filters">
-                <Filters courses={StudentCourses} authors={Authors}/>
+            <div className="filtersClub">
+                <Filters options={StudentClubs}/>
             </div>
             <div className="forms">
                 <ul><Displayforms formArray={formsContent}/></ul>
@@ -114,4 +275,4 @@ function PostSection(props)
     );
 }
 
-export default PostSection;
+export default FormsSection;

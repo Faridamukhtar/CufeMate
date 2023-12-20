@@ -24,6 +24,7 @@ club_router.get('/api/login/student_club/:email/:password', async (req, res) => 
 });
 
 club_router.post('/api/signup/student_club',async (req, res) => {
+
   const { std_club_id, std_club_name, email, passw, about , logo} = req.body;
   
   try {
