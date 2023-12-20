@@ -16,7 +16,6 @@ import AdminStats from './pages/AdminStats.js';
 
 //<Route path="/Admin/settings/:admin_id" element={<AdminSettings/>/* to be edited by mimo */} /> 
 
-
 function App() {
   return (
     <>
