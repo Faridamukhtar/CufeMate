@@ -73,6 +73,25 @@ function StudentSettingsHeader()
         </div>
     );
 }
+function StudentClubSettingsHeader()
+{
+    return (
+        <div className="StudentHeader">
+            <div className="greeting">
+                <h1>
+                    Settings
+                </h1>
+            </div>
+            <div className="Info">
+                <h4 className='StudentName'>
+                   Club Name
+                </h4>
+                
+            </div>
+        </div>
+    );
+}
+
 
 function ComplaintHeader()
 {
@@ -89,6 +108,24 @@ function ComplaintHeader()
                 </h4>
                 <h4>
                     Class of XXXX
+                </h4>
+            </div>
+        </div>
+
+    );
+}
+function StudentClub()
+{
+    return (
+        <div className="StudentHeader">
+            <div className="greeting">
+                <h1>
+                Club Statistics 
+                </h1>
+            </div>
+            <div className="Info">
+                <h4 className='StudentName'>
+                    Club Name
                 </h4>
             </div>
         </div>
@@ -157,7 +194,7 @@ function ChooseHeader(props)
             </>
         );
     }
-    else if  (props.DashboardType==='studentsettings' ||  props.DashboardType==='studentclubsettings')
+    else if  (props.DashboardType==='studentsettings'  || props.DashboardType==='adminsettings')
     {
         return (
             <>
@@ -179,6 +216,22 @@ function ChooseHeader(props)
         return (
             <>
                 <ComplaintHeader/>
+            </>
+        );
+    }
+    else if (props.DashboardType==='StudentClub')
+    {
+        return (
+            <>
+                <StudentClub/>
+            </>
+        );
+    }
+    else if (props.DashboardType==='studentclubsettings')
+    {
+        return (
+            <>
+                <StudentClubSettingsHeader/>
             </>
         );
     }

@@ -151,30 +151,36 @@ const UpdatePassword = ({ message }) => {
 const UpdateInfo =() => 
 {
   const [inputValue, setInputValue] = useState('');
+  const [selectedImage, setSelectedImage] = useState(null);
+  
 
-  const [file, setFile] = useState(null);
-  const [logo, setLogo] = useState(null);
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
 
-  const handleFileChange = (e) => {
-      setFile(e.target.files[0]);
+    if (file) {
+      // Process the file or store it in state, for example:
+      setSelectedImage(file);
+    }
   };
 
-  const handleSubmit = async (e) => {
-      e.preventDefault();
-      const formData = new FormData();
-      formData.append('logo', file);
-
-      const response = await fetch('/upload-logo', {
-        method: 'POST',
-        body: formData,
-      });
-
-      const data = await response.json();
-      setLogo(data.url);
-  }; 
-
-
-  
+  const handleImageUpload = () => {
+    // Use the selectedImage state for further processing or upload to the server.
+    try{
+    if (selectedImage) {
+      // Perform actions with the selected image, such as sending it to the server.
+      console.log('Selected Image:', selectedImage);
+      const fileURL = URL.createObjectURL(selectedImage);
+      console.log('File URL:', fileURL);
+      setSelectedImage(fileURL);
+    } else {
+      console.log('No image selected.');
+    }}
+    catch(error)
+    {
+      console.log('image already uploaded',error);
+      alert("image already uploaded");
+    };
+  };
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -192,17 +198,34 @@ const UpdateInfo =() =>
       }
     };
 
-  const handleClick1 = (event) => {
-  };
 
   const ChangeAbout =() => 
   {
     ///TO BE REMOVED LATER ON WHEN EMAIL IS ACTUALLY SAVED
     let id =1212
     handleAboutUpdate(id, inputValue);
-
   }
- 
+  const handleUpdateimage = async (id, logo) => {
+
+    try {
+      const url = `http://localhost:8080/api/Updatelogo/${id}/${encodeURIComponent(logo)}`;
+      console.log('logo url', logo);
+      console.log('Fetch url', url);
+
+      const response = await fetch(url);
+      const result = await response.json();
+      console.log(result)
+    } catch (error) {
+      console.error('Error during about update:', error);
+    }
+  };
+  const ChangeLogo=()=>{
+     ///TO BE REMOVED LATER ON WHEN EMAIL IS ACTUALLY SAVED
+     let id =1212
+     handleUpdateimage(id, selectedImage);
+     console.log('')
+  }
+
 
   return (
      <div>
@@ -214,38 +237,34 @@ const UpdateInfo =() =>
       />
       <p className='charmsg'> {inputValue.length} : 2000 Characters </p>
      
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '50px' ,width:'95%' ,marginTop:'5%'}}>
-        <div>
-          <button className="button-clicked" onClick={handleClick1}>
-            <span className="label-clicked">Update new image</span>
-          </button>
+      <div style={{  justifyContent: 'space-between', alignItems: 'center'}}>
+          <label > please click upload image before clicking update image <br/></label>
+          <div style={{display:'flex' , justifyContent:'space-between' , marginTop:'2%'}}>
+
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            style={{width:'40%'}}
+          />
           
-
-
-          <button className="button-clicked" onClick={handleClick1}>
-            <span className="label-clicked">+</span>
+          <button className="button-clicked" onClick={handleImageUpload}>
+            <span className="label-clicked">Upload Image</span>
           </button>
-
-          <div  >
-            <form onSubmit={handleSubmit}>
-              <input  className="button-clicked" type="file" onChange={handleFileChange} />
-            </form>
-            {logo && <img src={logo} alt="Logo" />}
+          <button className="button-clicked" onClick={ChangeLogo}>
+            <span className="label-clicked">Update image</span>
+          </button>
           </div>
-          
-
         </div>
-
-        <div>
           <button className="button-clicked" onClick={ChangeAbout}>
             <span className="label-clicked">Update About</span>
           </button>
+          {selectedImage && (
+      <div>
+        <img src={selectedImage} alt="Uploaded Logo" style={{ maxWidth: '100%', height: 'auto' }} />
+      </div>
+    )}
         </div>
-</div>
-
-
-
-     </div>
        
 
 
@@ -268,11 +287,11 @@ const ApplyRep =() => {
         const stat = data.length > 0 ? data[0].stat : '';
         if (stat===0)
         {
-          setCurrentstatFromApi('APPROVED!!')
+          setCurrentstatFromApi('Pending')
         }
         else if (stat===1)
         {
-          setCurrentstatFromApi("Pending")
+          setCurrentstatFromApi("Approved!!")
       
         }
         else if (stat===2)
@@ -320,67 +339,6 @@ const ApplyRep =() => {
     </div>
     )
 }
-
-/*const ApplyRep = () => {
-  const [currentStatFromApi, setCurrentStatFromApi] = useState('');
-  const [id, setId] = useState('200');
-
-  // Function to fetch application status
-  const fetchPass = async (std_id) => {
-    try {
-      let url = `http://localhost:8080/api/get_rep_req_stat?std_id=${std_id}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      const stat = data.length > 0 ? data[0].stat : '';
-
-      if (stat === 0) {
-        setCurrentStatFromApi('APPROVED!!');
-      } else if (stat === 1) {
-        setCurrentStatFromApi('Pending');
-      } else if (stat === 2) {
-        setCurrentStatFromApi('Rejected');
-      } else {
-        setCurrentStatFromApi("Haven't applied yet");
-      }
-
-      console.log(data);
-    } catch (error) {
-      console.error('Error fetching Request Rep stat:', error);
-    }
-  };
-
-  // useEffect to fetch initial application status
-  useEffect(() => {
-    fetchPass(id);
-  }, [id]);
-
-  // Function to handle the click event and submit a new application
-  const handleClick = async () => {
-    try {
-      let url = `http://localhost:8080/api/Makenewrepreq?std_id=${id}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      console.log(data);
-
-      // Update state to trigger re-render
-      setCurrentStatFromApi('Pending');
-    } catch (error) {
-      console.error('Error fetching Request Rep stat:', error);
-    }
-  };
-
-  return (
-    <div>
-      <div>
-        <p style={{ padding: '1%' }}> Current stats = {currentStatFromApi} </p>
-      </div>
-      <button className="button-clicked" onClick={handleClick}>
-        <span className="label-clicked">Submit application</span>
-      </button>
-    </div>
-  );
-};*/
-
 
 function StudentBody(props)
 {
