@@ -84,10 +84,8 @@ stats_router.get('/api/stats/reps/activityMetric/:year/:month', async (req,res) 
 // count of students in each major
 stats_router.get('/api/stats/studentsInMajors', async (req,res) => {
   try {
-    const result = await dbInstance.query('SELECT count(*), Major_Name'+ 
-    'FROM student NATURAL JOIN major'+
-    'GROUP BY Major_Name');
-    res.json(result.rows);
+    const result = await dbInstance.query('SELECT count(*), Major_Name FROM student NATURAL JOIN major GROUP BY Major_Name');
+    res.json({data:result.rows});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });

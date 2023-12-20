@@ -13,6 +13,10 @@ import AddAdmin from './pages/AddAdmin.js';
 import AdminRequests from './pages/AdminRequests.js';
 import AdminStats from './pages/AdminStats.js';
 
+
+//<Route path="/Admin/settings/:admin_id" element={<AdminSettings/>/* to be edited by mimo */} /> 
+
+
 function App() {
   return (
     <>
@@ -27,9 +31,10 @@ function App() {
             <Route path="/Club" element={<LoginSignupClub />} />
             <Route path="/Admin" element={<LoginAdmin />} />
             <Route path="/AdminDashboard/:admin_id" element={<AdminDashboard />} />
-            <Route path="/Admin/add" element={<AddAdmin />} />
+            <Route path="/Admin/add/:admin_id" element={<AddAdmin />} />
             <Route path="/Admin/requests/:admin_id" element={<AdminRequests/>} />
-            <Route path="/Admin/stats" element={<AdminStats />} />
+            <Route path="/Admin/stats/:admin_id" element={<AdminStats />} />
+
           </Routes>
         </Router>
       </div>

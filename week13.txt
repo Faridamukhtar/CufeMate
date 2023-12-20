@@ -27,7 +27,7 @@ B- ❌-> this will have info button in each row to get all info about user from 
 E- (❌+ previous requests tab)
 
 
-<Route path="/Admin/settings" element={<AdminSettings/>/* to be filled by mimo */} /> 
+
 
 
 

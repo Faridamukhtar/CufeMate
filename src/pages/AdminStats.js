@@ -4,9 +4,10 @@ import ReportTable from '../Components/ReportTable';
 import PieChart from '../Components/PieChart';
 import BarChart from '../Components/BarChart'; 
 import WeeklyPostCountChart from "../Components/WeeklyPostCountChart.js";
+import { useParams } from 'react-router-dom';
 
 const AdminStats = () => {
-
+    const { admin_id } = useParams();//pass AdminID to the component
     const [tableData, setTableData] = useState(null);
     const [chartData, setChartData] = useState(null);
     const [barChartData, setBarChartData] = useState(null);
@@ -17,7 +18,7 @@ const AdminStats = () => {
 
     const fetchDataForWeeklyChart = async () => {
         try {
-            const response = await fetch(`/api/stats/reps/activityMetric/${weeklyYear}/${weeklyMonth}`);
+            const response = await fetch(`http://localhost:8080/api/stats/reps/activityMetric/${weeklyYear}/${weeklyMonth}`);
             const result = await response.json();
             setWeeklyChartData(result);
         } catch (error) {
@@ -53,7 +54,7 @@ const AdminStats = () => {
   
     const fetchDataForTable = async () => {
         try {
-            const response = await fetch('/api/stats/reps/posts');
+            const response = await fetch('http://localhost:8080/api/stats/reps/posts');
             const result = await response.json();
             setTableData(result.rows);
         } catch (error) {
@@ -63,9 +64,10 @@ const AdminStats = () => {
 
     const fetchDataForPie = async () => {
         try {
-            const response = await fetch('/api/stats/studentsInMajors');
+            const response = await fetch('http://localhost:8080/api/stats/studentsInMajors');
             const result = await response.json();
-            setChartData(result.rows);
+            console.log(result.data);
+            setChartData(result.data);
         } catch (error) {
             console.error('Error fetching data for chart:', error);
         }
@@ -73,7 +75,7 @@ const AdminStats = () => {
 
     const fetchDataForBarChart = async () => {
         try {
-            const response = await fetch(`/api/stats/clubs/avgRating/${year}`);
+            const response = await fetch(`http://localhost:8080/api/stats/clubs/avgRating/${year}`);
             const result = await response.json();
             setBarChartData(result);
         } catch (error) {
@@ -104,7 +106,7 @@ const AdminStats = () => {
 
     return (
         <div className="Layout">
-            <AdminBar/>
+            <AdminBar props={admin_id}/>
             <div className="Dashboard">
                 <div className="clubStats">
                     <div>
