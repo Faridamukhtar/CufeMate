@@ -22,7 +22,7 @@ const Table = ({ titles, members, onRemoveMember }) => {
                 </td>
               ))}
               <td style={{ padding: '10px' }}>
-              <button style={{width:'auto'}}onClick={() => onRemoveMember(member.id)}>
+              <button style={{width:'auto' , backgroundColor: '#222537' }}onClick={() => onRemoveMember(member.id)}>
                   Remove
                 </button>
               </td>

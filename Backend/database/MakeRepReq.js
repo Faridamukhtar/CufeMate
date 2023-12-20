@@ -18,7 +18,7 @@ NewRepReq.get('/api/Makenewrepreq/', async (req, res) => {
       if (existingUser.rows.length > 0) {
         return res.status(400).json({ success: false, message: 'req already exists' });   
       }
-      const result = await dbInstance.query('INSERT INTO request_rep VALUES ($1, $2, $3)', [std_id, null ,1]);
+      const result = await dbInstance.query('INSERT INTO request_rep VALUES ($1, $2, $3)', [std_id, null ,0]);
       if (result.rowCount > 0) {
       res.json({ success: true, user: result.rows[0], message: 'Request successful' });
       }

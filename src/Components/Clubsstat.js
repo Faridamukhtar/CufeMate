@@ -43,7 +43,6 @@ const BarStats = ({ startYear }) => {
     );
   };
 
-  
 //Table 
 const  MembersTable=()=>
 {   
@@ -115,45 +114,43 @@ function PageBody(props)
                 setstartYear(parsedValue.toString()); // Set the state as a string
             }
              else {
-              // Optionally, you can provide feedback to the user that only integers are allowed.
-              // For example, show an error message or prevent further input.
               alert("Please enter a valid integer.");
             }
           };
-    
+          const handleChange = (e) => {
+            setstartYear2(e.target.value);
+          };
 
       return (
         <div className="Wrapper">
-            <div className="Title">
-                <h3>
-                    Club Statistics 
-                </h3>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'flex-start' }}>
-                <div className="container">
-                    <div className="input-container">
-                        <p className='Title'>
-                            Please enter The Start Year
-                        </p>
-                        <TextInput
-                            Title="Start year"
-                            placeholderText="Start year"
-                            isPassword={false}
-                            setInputValue={setstartYear2}
-                            inputValue={startYear2}
-                        />
+            
+            <div style={{display:'flex' , justifyContent:'space-between'}}>
+              <div>
+                <div style={{ marginLeft:'10%'}}>
+                <p className='Title2'>
+                    Please enter The Start Year
+                </p>
+                <div style={{display:'flex' , justifyContent:'space-between'}}>
+                <input
+                      type={'text'}
+                      value={startYear2}
+                      onChange={handleChange}
+                      placeholder={'Starting year'}
+                      className='TextBox'
+                    />
+
+                    <div className="button-container2">
+                      <button className="button-clicked2" onClick={handleClick}>
+                      <span className="label-clicked2">Get Statistics </span>
+                      </button>
                     </div>
-                    <div className="button-container">
-                        <button className="button-clicked" onClick={handleClick}>
-                            <span className="label-clicked">Get Statistics </span>
-                        </button>
-                    </div>
+                 </div>
                 </div>
                 <BarStats startYear={startYear} />
-            </div>
 
+              </div>
             <MembersTable />
-
+            </div>
         </div>
     );
 }
@@ -165,7 +162,7 @@ function Clubstat(props)
     return (
         <div className="SettingsWrapper">
             <div className="DashboardHeader">
-                <ChooseHeader DashboardType='viewstudentclubs'/>
+                <ChooseHeader DashboardType='StudentClub'/>
             </div>
             <div className="DashboardBody">
                <PageBody DashboardType={props.DashboardType}/>

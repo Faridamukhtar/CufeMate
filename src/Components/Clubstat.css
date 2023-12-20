@@ -1,51 +1,31 @@
-.button-clicked {
-    height: 10%;
-    padding: 1%;
-    border: 1px solid #FFF;
+.button-clicked2 {
+    height: auto;
     box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.10);
     border-radius: 6px;
-    border: 1px solid #FFF;
-    background: #5030E5;
-    margin-top : 1%; 
-    margin-right : 1%; 
-    width:auto;
-  }
+    background: #222537;
+    display: flex;
+    margin-top: 0%;
+    justify-content: center;
+    padding: 0%;
 
-  .label-clicked {
+}
+
+.label-clicked2 {
     color: #FFF;
     font-family: Inter;
     font-size: 16px;
-    font-style: normal;
     font-weight: 400;
-    line-height: normal;
-    text-transform: capitalize;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    padding: 5% 10%;
+    white-space: nowrap; /* Prevents text from wrapping */
+}
 
-  }
-  .Title
-{
+.Title2 {
     color: #0D062D;
     padding-bottom: 1%;
     font-family: Inter;
     font-size: 18px;
-
 }
 
-.container {
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: flex-start; /* Align items to the start (left) of the container */
-}
-
-.input-container {
-    margin-bottom: 10px; /* Optional: Add some margin between the paragraph and the text input */
-}
-
-.button-container {
-    margin-top: 10px; /* Optional: Add some margin between the text input and the button */
-    width:auto;
-    width: 100%; /* Ensure the button takes the full width of the container */
-    height: 100%; /* Ensure the button takes the full width of the container */
-
+.button-container2 {
+    margin-left: 5%;
 }
