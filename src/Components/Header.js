@@ -94,6 +94,24 @@ function ComplaintHeader()
 
     );
 }
+function StudentClub()
+{
+    return (
+        <div className="StudentHeader">
+            <div className="greeting">
+                <h1>
+                Club Statistics 
+                </h1>
+            </div>
+            <div className="Info">
+                <h4 className='StudentName'>
+                    Club Name
+                </h4>
+            </div>
+        </div>
+
+    );
+}
 
 function RepsViewComplaintsHeader()
 {
@@ -155,6 +173,14 @@ function ChooseHeader(props)
             </>
         );
     }
+    else if (props.DashboardType==='StudentClub')
+    {
+        return (
+            <>
+                <StudentClub/>
+            </>
+        );
+
 
     else if (props.DashboardType==='repsviewcomplaints')
     {

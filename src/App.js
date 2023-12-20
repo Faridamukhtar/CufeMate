@@ -8,8 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import StudentSetting from './pages/StudentSettings.js';
 import LoginAdmin from './pages/LoginAdmin.js';
 import LoginSignupClub from './pages/LoginSignupClub.js';
-
-
+import StudentClubStats from "./pages/StudentClubStats.js"
 //import AdminBar from './Components/adminBar.js';
 import AdminDashboard from './pages/AdminDashboard.js';
 import AddAdmin from './pages/AddAdmin.js';
@@ -20,6 +19,7 @@ import AdminRequests from './pages/AdminRequests.js';
 
 
 function App() {
+
   return (
     <>
       <div className='App'>
@@ -28,6 +28,7 @@ function App() {
           <Routes>
             <Route path="/student" element={<StudentDashboard DashboardType='student' />} />
             <Route path="/complaints" element={<ComplaintDashboard/>} />
+            <Route path="/StudentClubStatistics" element={<StudentClubStats/>} />
             <Route path="/rep" element={<RepDashboard DashboardType='studentRep'/>} />
             <Route path="/StudentSettings" element={<StudentSetting DashboardType='studentsettings' />} />
             <Route path="/student/studentclubs" element={<StudentDashboard DashboardType='viewstudentclubs' />} />
