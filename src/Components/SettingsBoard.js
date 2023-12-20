@@ -152,6 +152,7 @@ const UpdateInfo =() =>
 {
   const [inputValue, setInputValue] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
+  
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -258,6 +259,11 @@ const UpdateInfo =() =>
           <button className="button-clicked" onClick={ChangeAbout}>
             <span className="label-clicked">Update About</span>
           </button>
+          {selectedImage && (
+      <div>
+        <img src={selectedImage} alt="Uploaded Logo" style={{ maxWidth: '100%', height: 'auto' }} />
+      </div>
+    )}
         </div>
        
 
