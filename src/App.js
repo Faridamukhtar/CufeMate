@@ -13,17 +13,18 @@ import AdminDashboard from './pages/AdminDashboard.js';
 import AddAdmin from './pages/AddAdmin.js';
 import AdminRequests from './pages/AdminRequests.js';
 import AdminStats from './pages/AdminStats.js';
-
-
+import MainComponent from './Components/MainComponentTry.js';
 //<Route path="/Admin/settings/:admin_id" element={<AdminSettings/>/* to be edited by mimo */} /> 
 
-
+/*
+ 
+           <MainComponent/>
+*/
 function App() {
   return (
     <>
       <div className='App'>
-
-        <Router>
+      <Router>
           <Routes>
             <Route path="/student" element={<StudentDashboard DashboardType='student' />} />
             <Route path="/complaints" element={<ComplaintDashboard/>} />
@@ -38,9 +39,8 @@ function App() {
             <Route path="/Admin/add/:admin_id" element={<AddAdmin />} />
             <Route path="/Admin/requests/:admin_id" element={<AdminRequests/>} />
             <Route path="/Admin/stats/:admin_id" element={<AdminStats />} />
-
           </Routes>
-        </Router>
+        </Router> 
       </div>
       <div className='Mobile'>
        <h2>

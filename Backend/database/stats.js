@@ -32,8 +32,8 @@ const stats_router = express.Router();
 stats_router.get('/api/stats/clubs/avgRating/:yr', async (req,res) => {
   const {yr} = req.params;
   try {
-    const result = await dbInstance.query('select student_club_name , std_club_id, avg(rating) as avg_rate from rate NATURAL JOIN student_club WHERE yr =$1 GROUP BY student_club_name;',[yr]);
-    res.json(result.rows);
+    const result = await dbInstance.query('select std_club_name , std_club_id, avg(rating) as avg_rate from rate NATURAL JOIN student_club WHERE yr =$1 GROUP BY std_club_id, std_club_name;',[yr]);
+    res.json({data:result.rows});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -56,8 +56,8 @@ stats_router.get('/api/stats/clubs/avgRating/:yr', async (req,res) => {
 // all posts by reps
 stats_router.get('/api/stats/reps/posts', async (req,res) => {
   try {
-    const result = await dbInstance.query('SELECT r.fname, r.lname, r.std_id, p.post_id, p.content p.post_date FROM (post p natural join writes w) JOIN student d ON d.std_id = w.std_id ORDER BY r.fname, r.lname p.post_date;');
-    res.json(result.rows);
+    const result = await dbInstance.query('SELECT r.fname, r.lname, r.std_id, p.post_id, p.content , p.post_date FROM (post p natural join writes w) JOIN student r ON r.std_id = w.std_id ORDER BY r.fname, r.lname, p.post_date;');
+    res.json({data:result.rows});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -68,11 +68,8 @@ stats_router.get('/api/stats/reps/posts', async (req,res) => {
 stats_router.get('/api/stats/reps/activityMetric/:year/:month', async (req,res) => {
   const {year, month} = req.params;
   try {
-    const result = await dbInstance.query('SELECT count(*)/4 as weekly_avg, r.fname, r.lname, r.std_id, p.post_date'+ 
-    'FROM (post p natural join writes w) JOIN student d ON d.std_id = w.std_id'+
-    'WHERE EXTRACT(YEAR FROM post_date) = $1 AND EXTRACT(MONTH FROM post_date) = $2'+
-    'GROUP BY r.std_id;',[year,month]);
-    res.json(result.rows);
+    const result = await dbInstance.query('SELECT count(*)/4 as weekly_avg, s.fname, s.std_id FROM (post p natural join writes w) JOIN student s ON s.std_id = w.std_id WHERE EXTRACT(YEAR FROM post_date) = $1 AND EXTRACT(MONTH FROM post_date) = $2 GROUP BY s.std_id;',[year,month]);
+    res.json({data:result.rows});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -84,7 +81,7 @@ stats_router.get('/api/stats/reps/activityMetric/:year/:month', async (req,res) 
 // count of students in each major
 stats_router.get('/api/stats/studentsInMajors', async (req,res) => {
   try {
-    const result = await dbInstance.query('SELECT count(*), Major_Name FROM student NATURAL JOIN major GROUP BY Major_Name');
+    const result = await dbInstance.query('SELECT count(*) as std_count, Major_Name FROM student NATURAL JOIN major GROUP BY Major_Name');
     res.json({data:result.rows});
   } catch (error) {
     console.error(error);

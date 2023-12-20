@@ -1,37 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Bar } from "react-chartjs-2";
 
 const WeeklyPostCountChart = ({ data }) => {
-    // Extracting labels (student names) and data values (weekly averages) from the API response
-    const labels = data.map(item => `${item.fname} ${item.lname}`);
-    const values = data.map(item => item.weekly_avg);
+    const chartRef = useRef();
 
-    // Chart data
-    const chartData = {
-        labels: labels,
-        datasets: [
-            {
-                label: "Weekly Average Post Count",
-                data: values,
-                backgroundColor: "rgba(255,99,132,0.2)",
-                borderColor: "rgba(255,99,132,1)",
-                borderWidth: 1,
+    useEffect(() => {
+        if (chartRef.current) {
+            chartRef.current.destroy();
+        }
+
+        const ctx = document.getElementById("weeklyPostCountChartCanvas").getContext("2d");
+        chartRef.current = new Bar(ctx, {
+            data: {
+                labels: data.map(item => `${item.fname} ${item.lname}`),
+                datasets: [
+                    {
+                        label: "Weekly Average Post Count",
+                        data: data.map(item => item.weekly_avg),
+                        backgroundColor: "rgba(255,99,132,0.2)",
+                        borderColor: "rgba(255,99,132,1)",
+                        borderWidth: 1,
+                    },
+                ],
             },
-        ],
-    };
-
-    // Chart options
-    const chartOptions = {
-        scales: {
-            x: { title: { display: true, text: "Student Names" } },
-            y: { title: { display: true, text: "Weekly Average Post Count" } },
-        },
-    };
+            options: {
+                scales: {
+                    x: { title: { display: true, text: "Student Names" } },
+                    y: { title: { display: true, text: "Weekly Average Post Count" } },
+                },
+            },
+        });
+    }, [data]);
 
     return (
         <div>
             <h2>Weekly Post Count</h2>
-            <Bar data={chartData} options={chartOptions} />
+            <canvas id="weeklyPostCountChartCanvas"></canvas>
         </div>
     );
 };
