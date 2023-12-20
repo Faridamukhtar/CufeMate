@@ -11,8 +11,7 @@ import LoginSignupClub from './pages/LoginSignupClub.js';
 import AdminDashboard from './pages/AdminDashboard.js';
 import AddAdmin from './pages/AddAdmin.js';
 import AdminRequests from './pages/AdminRequests.js';
-
-
+import AdminStats from './pages/AdminStats.js';
 
 function App() {
   return (
@@ -30,6 +29,7 @@ function App() {
             <Route path="/AdminDashboard/:admin_id" element={<AdminDashboard />} />
             <Route path="/Admin/add" element={<AddAdmin />} />
             <Route path="/Admin/requests/:admin_id" element={<AdminRequests/>} />
+            <Route path="/Admin/stats" element={<AdminStats />} />
           </Routes>
         </Router>
       </div>

@@ -42,6 +42,8 @@ const LoginSignupClub = () => {
       alert("image already uploaded, click signup or choose a different picture");
     };
   };
+
+  
   const sendRequest = async() =>{
 
       try {
