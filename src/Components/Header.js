@@ -180,7 +180,7 @@ function ChooseHeader(props)
                 <StudentClub/>
             </>
         );
-
+    }
 
     else if (props.DashboardType==='repsviewcomplaints')
     {
