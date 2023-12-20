@@ -9,10 +9,10 @@ import StudentSetting from './pages/StudentSettings.js';
 import LoginAdmin from './pages/LoginAdmin.js';
 import LoginSignupClub from './pages/LoginSignupClub.js';
 import StudentClubStats from "./pages/StudentClubStats.js"
-//import AdminBar from './Components/adminBar.js';
 import AdminDashboard from './pages/AdminDashboard.js';
 import AddAdmin from './pages/AddAdmin.js';
 import AdminRequests from './pages/AdminRequests.js';
+//import AdminBar from './Components/adminBar.js';
 
 
 
