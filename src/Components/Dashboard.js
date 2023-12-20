@@ -5,7 +5,7 @@ import WriteComplaint from "./WriteComplaint.js";
 import PreviousComplaints from "./PreviousComplaints.js";
 import PostSection from './Posts.js';
 import ViewStudentClubs from './ViewStudentClubs.js';
-
+import RepsViewComplaints from './RepsViewComplaints.js';
 
 
 function StudentBody(props)
@@ -42,6 +42,16 @@ function ComplaintBody(props)
     );
 }
 
+function RepsViewComplaintsBody(props)
+{
+    return (
+        <div className='RepsViewComplaintsBody'>
+             <RepsViewComplaints DashboardType={props.DashboardType}/>
+        </div>
+
+    );
+}
+
 
 function DashboardBody(props)
 {
@@ -70,7 +80,14 @@ function DashboardBody(props)
         );
         
     }
-
+    else if (props.DashboardType==='repsviewcomplaints')
+    {
+        return (
+            <>
+              <RepsViewComplaintsBody DashboardType={props.DashboardType}/>
+            </>
+        );
+    }
 
 }
 

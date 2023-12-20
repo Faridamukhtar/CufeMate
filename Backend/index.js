@@ -26,8 +26,9 @@ import { NewRepReq } from './database/MakeRepReq.js';
 import { GetClubMembers } from './database/GetAllClubmembers.js';
 import { GetClubMembersperyear } from './database/GetMembersPeryear.js';
 import { RemoveMember } from './database/RemoveClubMember.js';
-
 import { logo } from './database/logo.js';
+import { stats_router } from './database/stats.js';
+import { requests_router } from './database/requests.js';
 
 
 const port = 8080;
@@ -48,12 +49,16 @@ app.use(
     app.use ("/", UpdateAdminPass_router)
     app.use ("/", Update_About)
     app.use('/api/', posts);
+//////////////////// AMIRA ROUTERS /////////////////
     app.use('/', signup_router);
     app.use('/', login_router);
     app.use('/', major_router);
     app.use('/', admin_router);
     app.use('/', club_router);
     app.use('/', logo);
+    app.use('/', requests_router);
+    app.use('/', stats_router);
+////////////////////////////////////////////////////
     app.use('/', Getrepreqstatus);
     app.use('/', NewRepReq);
     app.use('/', GetClubMembers);

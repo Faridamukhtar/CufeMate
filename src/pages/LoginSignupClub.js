@@ -7,13 +7,13 @@ const LoginSignupClub = () => {
     // State for login form
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
-  
+    //State for signup form
     const [stdClubId, setStdClubId] = useState('');
-  const [stdClubName, setStdClubName] = useState('');
-  const [email, setEmail] = useState('');
-  const [passw, setPassw] = useState('');
-  const [about, setAbout] = useState('');
-  const [selectedImage, setSelectedImage] = useState(null);
+    const [stdClubName, setStdClubName] = useState('');
+    const [email, setEmail] = useState('');
+    const [passw, setPassw] = useState('');
+    const [about, setAbout] = useState('');
+    const [selectedImage, setSelectedImage] = useState(null);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -26,6 +26,7 @@ const LoginSignupClub = () => {
 
   const handleImageUpload = () => {
     // Use the selectedImage state for further processing or upload to the server.
+    try{
     if (selectedImage) {
       // Perform actions with the selected image, such as sending it to the server.
       console.log('Selected Image:', selectedImage);
@@ -34,13 +35,83 @@ const LoginSignupClub = () => {
       setSelectedImage(fileURL);
     } else {
       console.log('No image selected.');
+    }}
+    catch(error)
+    {
+      console.log('image already uploaded',error);
+      alert("image already uploaded, click signup or choose a different picture");
+    };
+  };
+  const sendRequest = async() =>{
+
+      try {
+        const url = 'http://localhost:8080/api/send/request/student_club';
+        const data = {
+        std_club_id: stdClubId,
+      };
+    
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      console.log('Response:', response);
+
+      const result = await response.json();
+      if(result.message ==="request already sent, user exists")
+          {
+              alert("request already sent, user exists");
+          }
+      if(result.message ==='Internal Server Error')
+          {
+              alert("some data may be missing or of incorrect format");
+          }
+      if (response.ok) {
+        console.log('request sent successfully and will be responded to by an admin:', result);
+        //await handReqToAdmin();
+      } else {
+        console.error('request sent failed:', result.message);
+      }
+    } catch (error) {
+      console.error('Error during sending request_std_club:', error);
     }
   };
+  /*const handReqToAdmin = async()=>{
+      try {
+        const url = 'http://localhost:8080/api/requests/club/assignAdmin';
+        const data = {
+        std_club_id: stdClubId,
+      };
+    
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      console.log('Response:', response);
+
+      const result = await response.json();
+      console.log(result.message);
+      if (response.ok) {
+        console.log('admin assigned successfully:', result);
+      } else {
+        console.error('admin assigning failed:', result.message);
+      }
+    } catch (error) {
+      console.error('Error during assigning std_club request to admin:', error);
+    }
+  };*/
 
   const handleSignup = async () => {
 
     try {
-        const url = 'http://localhost:8080/api/signup/studentClub';
+        const url = 'http://localhost:8080/api/signup/student_club';
         const data = {
         std_club_name: stdClubName,
         std_club_id: stdClubId,
@@ -70,7 +141,9 @@ const LoginSignupClub = () => {
               alert("some data may be missing or of incorrect format");
           }
       if (response.ok) {
-        console.log('Signup successful:', result);
+        console.log('Request will be sent and Signup successful:', result);
+        await sendRequest();
+        alert("Request will be sent and Signup successful");
       } else {
         console.error('Signup failed:', result.message);
       }
@@ -83,7 +156,7 @@ const LoginSignupClub = () => {
     const handleLogin = async (email, password) => {
       try {
         // Construct the URL with actual values for email and password
-        const url = `http://localhost:8080/api/login/studentClub/${encodeURIComponent(email)}/${encodeURIComponent(password)}`;
+        const url = `http://localhost:8080/api/login/student_club/${encodeURIComponent(email)}/${encodeURIComponent(password)}`;
     
         // Make a GET request to the constructed URL
             const response = await fetch(url); 
@@ -92,7 +165,7 @@ const LoginSignupClub = () => {
             console.log(result);
             if(result.message ==='Invalid username or password')
           {
-              alert("Invalid username or password");
+            alert("1. Invalid username or password or 2.pending or rejected request -> contact the admin for more info");
           }
           } 
           catch (error) {

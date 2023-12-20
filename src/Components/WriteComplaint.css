@@ -41,20 +41,25 @@
 
 .UpperLine
 {
-    width: 1060px;
+    width: 1080px;
     border-top: 3px solid #5030E5;
     height: 0px;
     transform: rotate(0.167deg);
+    position: absolute;
+    top:55px; 
 }
 
 
 
 .LowerLine
 {
-    width: 1060px;
+    width: 1080px;
     border-top: 3px solid #5030E5;
     height: 0px;
     transform: rotate(0.167deg);
+    position: absolute;
+    bottom:40px;
+    left : 5px;
 }
 
 .CharacterCount
@@ -104,3 +109,7 @@
     justify-content: center;
 }
 
+.Rating
+{
+    display: flex;
+}

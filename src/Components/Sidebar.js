@@ -1,8 +1,8 @@
 import './Sidebar.css';
+import { Link } from 'react-router-dom';
 import { HomeSVG, StudentClubsSVG,StudentPendingPosts, StudentComplaintsSVG, FileAComplaintSVG,RepsContactsSVG, SettingsSVG  } from "../svg/SvgFiles"; 
 import React,{ useEffect, useState } from 'react';
 import {Routes, Route, useNavigate} from 'react-router-dom';
-
 //Sidebar component
 function Sidebar(props)
 {
@@ -92,7 +92,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                     </div>
-                    <div className="SidebarOption" id="StudentComplaints">
+                    <div className="SidebarOption" id="StudentComplaints" onClick ={()=> navigate('/repsviewcomplaints')}>
                         <div className="SidebarIcon">
                                 <StudentComplaintsSVG/>
                             </div>
