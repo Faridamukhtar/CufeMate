@@ -29,6 +29,7 @@ import { RemoveMember } from './database/RemoveClubMember.js';
 import { logo } from './database/logo.js';
 import { stats_router } from './database/stats.js';
 import { requests_router } from './database/requests.js';
+import { Updatelogo_router } from './database/UpdateLogo.js';
 
 
 const port = 8080;
@@ -70,6 +71,8 @@ app.use(
     app.use('/', previous_complaints_router);
     app.use('/', write_complaint_router);
     app.use('/',RemoveMember)
+    app.use('/', Updatelogo_router);
+
     
     app.listen(port, () => {
       console.log(`Server is running on port ${port}`);
