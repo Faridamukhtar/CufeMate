@@ -72,6 +72,25 @@ function StudentSettingsHeader()
         </div>
     );
 }
+function StudentClubSettingsHeader()
+{
+    return (
+        <div className="StudentHeader">
+            <div className="greeting">
+                <h1>
+                    Settings
+                </h1>
+            </div>
+            <div className="Info">
+                <h4 className='StudentName'>
+                   Club Name
+                </h4>
+                
+            </div>
+        </div>
+    );
+}
+
 
 function ComplaintHeader()
 {
@@ -148,7 +167,7 @@ function ChooseHeader(props)
             </>
         );
     }
-    else if  (props.DashboardType==='studentsettings' ||  props.DashboardType==='studentclubsettings')
+    else if  (props.DashboardType==='studentsettings'  || props.DashboardType==='adminsettings')
     {
         return (
             <>
@@ -178,6 +197,14 @@ function ChooseHeader(props)
         return (
             <>
                 <StudentClub/>
+            </>
+        );
+    }
+    else if (props.DashboardType==='studentclubsettings')
+    {
+        return (
+            <>
+                <StudentClubSettingsHeader/>
             </>
         );
     }
