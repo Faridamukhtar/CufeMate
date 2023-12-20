@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import AdminBar from "../Components/adminBar.js";
 import ReportTable from '../Components/ReportTable';
 import PieChart from '../Components/PieChart';
