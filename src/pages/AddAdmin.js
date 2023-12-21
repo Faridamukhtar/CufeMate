@@ -54,6 +54,7 @@ const AddAdmin = () => {
           <div className="Layout">
           <AdminBar props={admin_id}/>
             <div className="Dashboard">
+            <div className="MainTitle">Add Admin Form</div> 
             <input
             type="text"
             placeholder="Admin ID"

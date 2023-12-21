@@ -18,7 +18,11 @@ to do:
         ✅-> managerial : avg rep activity per week bar chart -> get month/4
         ✅ managerial : count of students in each major (pie chart maybe) 
        
-F- CSS for all pages and organise layout + apply sidebar css to adminbar & better info box
+F- CSS for all pages and organise layout 
++ apply sidebar css to adminbar & better info box
+    requests
+    all users
+    adminbar
 
 
 week 13:
