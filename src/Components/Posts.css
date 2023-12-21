@@ -105,7 +105,7 @@
     width:max-content
 }
 
-.Content
+.ContentPost
 {
     margin-top: 5px;
 }
@@ -147,5 +147,18 @@
     opacity: 0.6;
     transition: all 0.2s;
 
+}
+
+.like
+{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.like:hover
+{
+    cursor: pointer;
+    opacity: 0.7;
 }
 

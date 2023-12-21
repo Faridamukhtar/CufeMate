@@ -2,6 +2,7 @@ import React from "react";
 import './Header.css';
 
 const studentData = {fname:"Ahmed", lname:"Mohamed", major_id:'CCE', std_id:1, class:'2026'}; //get logged in student data
+const SCData = {std_club_name:"CU Eco-Racing team", std_club_id:1, email:'CUERT@gmail.com'}; //get logged in student data
 
 function ViewStudentClubsHeader(props)
 {
@@ -72,6 +73,25 @@ function StudentSettingsHeader()
         </div>
     );
 }
+function StudentClubSettingsHeader()
+{
+    return (
+        <div className="StudentHeader">
+            <div className="greeting">
+                <h1>
+                    Settings
+                </h1>
+            </div>
+            <div className="Info">
+                <h4 className='StudentName'>
+                   Club Name
+                </h4>
+                
+            </div>
+        </div>
+    );
+}
+
 
 function ComplaintHeader()
 {
@@ -94,6 +114,74 @@ function ComplaintHeader()
 
     );
 }
+function StudentClub()
+{
+    return (
+        <div className="StudentHeader">
+            <div className="greeting">
+                <h1>
+                Club Statistics 
+                </h1>
+            </div>
+            <div className="Info">
+                <h4 className='StudentName'>
+                    Club Name
+                </h4>
+            </div>
+        </div>
+
+    );
+}
+
+
+function StudentClubFormsHeader()
+{
+    return (
+        <div className="StudentHeader">
+            <div className="greeting">
+                <h1>
+                    Forms
+                </h1>
+                <h3>
+                    The Data You Need In One Place.
+                </h3>
+            </div>
+            <div className="Info">
+                <h4 className='StudentName'>
+                    {SCData.std_club_name}
+                </h4>
+                <h4>
+                    {SCData.email}
+                </h4>
+            </div>
+        </div>
+
+    );
+}
+
+function RepsViewComplaintsHeader()
+{
+    return (
+        <div className="StudentHeader">
+        <div className="greeting">
+            <h1>
+                View Complaints
+            </h1>
+        </div>
+        <div className="Info">
+            <h4 className='StudentName'>
+                Name
+            </h4>
+            <h4>
+                Class of XXXX
+            </h4>
+        </div>
+    </div>
+
+
+    );
+}
+
 
 
 function ChooseHeader(props)
@@ -106,7 +194,7 @@ function ChooseHeader(props)
             </>
         );
     }
-    else if  (props.DashboardType==='studentsettings' ||  props.DashboardType==='studentclubsettings')
+    else if  (props.DashboardType==='studentsettings'  || props.DashboardType==='adminsettings')
     {
         return (
             <>
@@ -130,6 +218,39 @@ function ChooseHeader(props)
                 <ComplaintHeader/>
             </>
         );
+    }
+    else if (props.DashboardType==='StudentClub')
+    {
+        return (
+            <>
+                <StudentClub/>
+            </>
+        );
+    }
+    else if (props.DashboardType==='studentclubsettings')
+    {
+        return (
+            <>
+                <StudentClubSettingsHeader/>
+            </>
+        );
+    }
+
+    else if (props.DashboardType==='repsviewcomplaints')
+    {
+        return (
+            <>
+               <RepsViewComplaintsHeader/>
+            </>
+        )
+    }
+    else if (props.DashboardType==='StudentClubForms')
+    {
+        return (
+            <>
+               <StudentClubFormsHeader/>
+            </>
+        )
     }
 }
 

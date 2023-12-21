@@ -1,0 +1,31 @@
+.button-clicked2 {
+    height: auto;
+    box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.10);
+    border-radius: 6px;
+    background: #222537;
+    display: flex;
+    margin-top: 0%;
+    justify-content: center;
+    padding: 0%;
+
+}
+
+.label-clicked2 {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 5% 10%;
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+
+.Title2 {
+    color: #0D062D;
+    padding-bottom: 1%;
+    font-family: Inter;
+    font-size: 18px;
+}
+
+.button-container2 {
+    margin-left: 5%;
+}

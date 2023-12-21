@@ -7,6 +7,49 @@ import {Routes, Route, useNavigate} from 'react-router-dom';
 function Sidebar(props)
 {
     const navigate=useNavigate();
+
+    //Renders Student Clubs Sidebar
+    function StudentClubsSidebar()
+    {
+        return (
+        <>
+            <div className='options'>
+                    <div className="SidebarOption" id="SCHome" >
+                        <div className="SidebarIcon">
+                            <HomeSVG/>
+                        </div>
+                        <div className="SidebarLabel">
+                            <h5>
+                                Home
+                            </h5>
+                        </div>
+                    </div>
+                    <div className="SidebarOption" id="StudentClubs" onClick={()=>navigate('/StudentClub/Forms/')}>
+                        <div className="SidebarIcon">
+                            <StudentClubsSVG/>
+                        </div>
+                        <div className="SidebarLabel">
+                            <h5>
+                                Student Club Forms
+                            </h5>
+                        </div>
+                    </div>
+                    <div className="SidebarOption" id="Settings">
+                        <div className="SidebarIcon">
+                            <SettingsSVG/>
+                        </div>
+                        <div className="SidebarLabel">
+                            <h5>
+                                Settings
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+        </>);
+    }
+
+
+
     //Renders Student Sidebar content
     function StudentSidebar()
     {
@@ -72,7 +115,7 @@ function Sidebar(props)
         return (
         <>
             <div className='options'>
-                    <div className="SidebarOption" id="Home" onClick={()=>navigate('/rep')}>
+                    <div className="SidebarOption" id="RHome" onClick={()=>navigate('/rep')}>
                         <div className="SidebarIcon">
                             <HomeSVG/>
                         </div>
@@ -82,7 +125,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                     </div>
-                    <div className="SidebarOption" id="StudentClubs" onClick={()=>navigate('/rep/studentclubs')}>
+                    <div className="SidebarOption" id="RStudentClubs" onClick={()=>navigate('/rep/studentclubs')}>
                     <div className="SidebarIcon">
                             <StudentClubsSVG/>
                         </div>
@@ -92,7 +135,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                     </div>
-                    <div className="SidebarOption" id="StudentComplaints">
+                    <div className="SidebarOption" id="RStudentComplaints" onClick ={()=> navigate('/repsviewcomplaints')}>
                         <div className="SidebarIcon">
                                 <StudentComplaintsSVG/>
                             </div>
@@ -102,7 +145,7 @@ function Sidebar(props)
                                 </h5>
                             </div>
                         </div>
-                    <div className="SidebarOption" id="StudentPendingPosts">
+                    <div className="SidebarOption" id="RStudentPendingPosts">
                         <div className="SidebarIcon">
                             <StudentPendingPosts/>
                         </div>
@@ -112,7 +155,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                         </div>
-                    <div className="SidebarOption" id="Settings" onClick={()=>navigate('/StudentSettings/')}>
+                    <div className="SidebarOption" id="RSettings" onClick={()=>navigate('/StudentSettings/')}>
                     <div className="SidebarIcon">
                             <SettingsSVG/>
                         </div>
@@ -145,6 +188,15 @@ function Sidebar(props)
                 </>
             );
         }
+        if (props.SidebarType==='StudentClubForms')
+        {
+            return (
+                <>
+                    <StudentClubsSidebar/>
+                </>
+            );
+        }
+        
     }
 
     return (

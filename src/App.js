@@ -8,19 +8,17 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import StudentSetting from './pages/StudentSettings.js';
 import LoginAdmin from './pages/LoginAdmin.js';
 import LoginSignupClub from './pages/LoginSignupClub.js';
-//import AdminBar from './Components/adminBar.js';
+import StudentClubStats from "./pages/StudentClubStats.js"
 import AdminDashboard from './pages/AdminDashboard.js';
 import AddAdmin from './pages/AddAdmin.js';
 import AdminRequests from './pages/AdminRequests.js';
 import AdminStats from './pages/AdminStats.js';
 import MainComponent from './Components/MainComponentTry.js';
 //<Route path="/Admin/settings/:admin_id" element={<AdminSettings/>/* to be edited by mimo */} /> 
+import StudentClubForms from './pages/StudentClubForms.js';
 
-/*
- 
-           <MainComponent/>
-*/
 function App() {
+
   return (
     <>
       <div className='App'>
@@ -28,8 +26,11 @@ function App() {
           <Routes>
             <Route path="/student" element={<StudentDashboard DashboardType='student' />} />
             <Route path="/complaints" element={<ComplaintDashboard/>} />
+            <Route path="/StudentClubStatistics" element={<StudentClubStats/>} />
             <Route path="/rep" element={<RepDashboard DashboardType='studentRep'/>} />
             <Route path="/StudentSettings" element={<StudentSetting DashboardType='studentsettings' />} />
+            <Route path="/StudentClubSettings" element={<StudentSetting DashboardType='studentclubsettings' />} />
+            <Route path="/AdminsSettings" element={<StudentSetting DashboardType='adminsettings' />} />
             <Route path="/student/studentclubs" element={<StudentDashboard DashboardType='viewstudentclubs' />} />
             <Route path="/rep/studentclubs" element={<RepDashboard DashboardType='viewstudentclubs' />} />
             <Route path="/" element={<LoginSignup />} />
@@ -39,6 +40,7 @@ function App() {
             <Route path="/Admin/add/:admin_id" element={<AddAdmin />} />
             <Route path="/Admin/requests/:admin_id" element={<AdminRequests/>} />
             <Route path="/Admin/stats/:admin_id" element={<AdminStats />} />
+            <Route path="/StudentClub/Forms" element={<StudentClubForms DashboardType='StudentClubForms'/>} />
           </Routes>
         </Router> 
       </div>

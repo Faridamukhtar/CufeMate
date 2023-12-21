@@ -3,14 +3,15 @@ import './WriteComplaint.css';
 import ComplaintTitleText from "./ComplaintTitleText.js";
 import ComplaintInputText from "./ComplaintInputText.js";
 
+
 function WriteComplaint(props)
 
 {    
     const [Tittle, setTitle] = useState('');
     const [Conttent, setContent] = useState('');
-    const [CharCount, setCharCount]=useState('');
 
-    const handleSubmit = async (Tittle, Conttent) => {
+    const handleSubmit = async (Tittle, Conttent) =>
+     {
         try {
           // Construct the URL with actual values for email and password
           const url = `http://localhost:8080/api/writecomplaint/${encodeURIComponent(Tittle)}/${encodeURIComponent(Conttent)}`;
@@ -46,7 +47,7 @@ function WriteComplaint(props)
             </div>    
             <hr className= "LowerLine"/>
             <div className="CharacterCount">
-                {CharCount.length}/500
+                <p > {Conttent.length} : 500  </p>
             </div>
             <button className="SubmitButton" onClick={() => handleSubmit(Tittle, Conttent)}> <h5 className="SubmitText">Submit</h5></button>
         

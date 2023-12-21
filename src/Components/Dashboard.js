@@ -5,7 +5,8 @@ import WriteComplaint from "./WriteComplaint.js";
 import PreviousComplaints from "./PreviousComplaints.js";
 import PostSection from './Posts.js';
 import ViewStudentClubs from './ViewStudentClubs.js';
-
+import RepsViewComplaints from './RepsViewComplaints.js';
+import StudentClubForms from './StudentClubForms.js'
 
 
 function StudentBody(props)
@@ -21,11 +22,20 @@ function ViewStudentClubsBody (props)
 {
     return (
         <div className='ViewStudentClubsBody'>
-            <ViewStudentClubs studentType={props.studentType}/>
+            <ViewStudentClubs/>
        </div>
     );
 }
 
+
+function StudentClubFormsBody (props)
+{
+    return (
+        <div className='ViewStudentClubsBody'>
+            <StudentClubForms studentType={props.studentType}/>
+       </div>
+    );
+}
 
 function ComplaintBody(props)
 {
@@ -37,6 +47,16 @@ function ComplaintBody(props)
             <div className = 'PreviousComplaints'>
                 <PreviousComplaints Dashboard={props.DashboardType}/>
             </div>
+        </div>
+
+    );
+}
+
+function RepsViewComplaintsBody(props)
+{
+    return (
+        <div className='RepsViewComplaintsBody'>
+             <RepsViewComplaints DashboardType={props.DashboardType}/>
         </div>
 
     );
@@ -70,7 +90,22 @@ function DashboardBody(props)
         );
         
     }
-
+    else if (props.DashboardType==='repsviewcomplaints')
+    {
+        return (
+            <>
+              <RepsViewComplaintsBody DashboardType={props.DashboardType}/>
+            </>
+        );
+    }
+    else if (props.DashboardType==='StudentClubForms')
+    {
+        return (
+            <>
+              <StudentClubFormsBody DashboardType={props.DashboardType}/>
+            </>
+        );
+    }
 
 }
 
