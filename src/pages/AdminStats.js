@@ -139,7 +139,7 @@ const fetchDataForPie2 = async () => {
             <div className="bar">
                 <AdminBar props={admin_id}/>
             </div> 
-            <div className="Dashboard">
+            <div className="DashboardAdmin">
             <div className="MainTitle">Statistics Window</div> 
                 <div className="clubStats">
                     <div className="Titles">Clubs' Rating</div>

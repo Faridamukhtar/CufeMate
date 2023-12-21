@@ -337,7 +337,7 @@ function FormsSection()
 
 
     return (
-        <div className="formsWrapper">
+        <div className="formsWrapperViewSC">
             <div className="LatestformsTitle">
                 <h3>
                     Latest Student Club Announcements
