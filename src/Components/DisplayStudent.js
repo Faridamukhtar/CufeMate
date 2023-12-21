@@ -3,13 +3,18 @@ import'./DisplayStudent.css';
 
 const DisplayStudent = ({ student,adminID }) => {
   const [infoMessage, setInfoMessage] = useState('');
-  const [showInfo, setShowInfo] = useState(''); // to be used to show/hide data by toggling
+  const [infoVisible, setInfoVisible] = useState(true);
+
+  const handleHideInfoClick = () => {
+    setInfoVisible(false);
+  };
 
   const handleInfoClick = async (studentId) => {
     try {
       const url = `http://localhost:8080/api/admin/student/info/${studentId}`;
       const response = await fetch(url);
       const data = await response.json();
+      setInfoVisible(true);
       setInfoMessage(JSON.stringify(data)); // Assuming your response is JSON data
     } catch (error) {
       console.error('Error fetching additional info:', error);
@@ -54,7 +59,8 @@ const DisplayStudent = ({ student,adminID }) => {
       <div>
       <div className='font2'>Student</div>
       <div className='buttons'>
-      <button onClick={() => handleInfoClick(student.std_id)}>Info</button>
+      <button onClick={() => handleInfoClick(student.std_id)}>Show Info</button>
+      <button onClick={handleHideInfoClick}>Hide Info</button>
       </div>
       </div>  
       )}
@@ -63,7 +69,8 @@ const DisplayStudent = ({ student,adminID }) => {
           <div className='font2'>Rep</div>
           <div className='buttons'>
           <button onClick={() => handleBanClick(student.std_id,2,adminID)}>Ban</button>
-          <button onClick={() => handleInfoClick(student.std_id)}>Info</button>
+          <button onClick={() => handleInfoClick(student.std_id)}>Show Info</button>
+          <button onClick={handleHideInfoClick}>Hide Info</button>
           </div>
         </div>
       )}
@@ -72,11 +79,12 @@ const DisplayStudent = ({ student,adminID }) => {
           <div className='font2'>Rep</div>
           <div className='buttons'>
           <button onClick={() => handleUnbanClick(student.std_id,1,adminID)}>Unban</button>
-          <button onClick={() => handleInfoClick(student.std_id)}>Info</button>
+          <button onClick={() => handleInfoClick(student.std_id)}>Show Info</button>
+          <button onClick={handleHideInfoClick}>Hide Info</button>
           </div>
         </div>
       )}
-     {infoMessage && <p>{infoMessage}</p>}
+      {infoVisible && infoMessage && <p>{infoMessage}</p>}
       
       </div>
     </div>

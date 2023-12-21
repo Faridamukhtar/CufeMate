@@ -3,6 +3,7 @@ import'./DisplayClub.css';
 
 const DisplayClub = ({ Club , adminID}) => {
   const [infoMessage, setInfoMessage] = useState('');
+  const [infoVisible, setInfoVisible] = useState(true);
 
   const handleInfoClick = async (ClubId) => {
     try {
@@ -10,12 +11,15 @@ const DisplayClub = ({ Club , adminID}) => {
       const response = await fetch(url);
       const data = await response.json();
       setInfoMessage(JSON.stringify(data)); // Assuming your response is JSON data
+      setInfoVisible(true);
     } catch (error) {
       console.error('Error fetching additional info:', error);
       setInfoMessage('Error fetching additional info');
     }
   };
-
+  const handleHideInfoClick = () => {
+    setInfoVisible(false);
+  };
   const handleBanClick = async (ClubId,decision,adminID) => {
     try {
       const url = `http://localhost:8080/api/admin/banClub/${ClubId}/${decision}/${adminID}`; // Assuming 2 is the decision for banning
@@ -49,8 +53,9 @@ const DisplayClub = ({ Club , adminID}) => {
           <button onClick={() => handleBanClick(Club.std_club_id,2,adminID)}>Ban</button>
           <button onClick={() => handleUnbanClick(Club.std_club_id,1,adminID)}>Unban</button>
         </div>
-      <button onClick={() => handleInfoClick(Club.std_club_id)}>Info</button>
-      {infoMessage && <p>{infoMessage}</p>}
+        <button onClick={() => handleInfoClick(Club.std_club_id)}>Show Info</button>
+      <button onClick={handleHideInfoClick}>Hide Info</button>
+      {infoVisible && infoMessage && <p>{infoMessage}</p>}
     </div>
   );
 };

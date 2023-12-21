@@ -124,15 +124,27 @@ const AdminStats = () => {
         <div className="Layout">
             <AdminBar props={admin_id}/>
             <div className="Dashboard">
+            <div className="MainTitle">Statistics Window</div> 
+                <div className="clubStats">
+                    <div className="Titles">Clubs' Rating</div>
+                        <input
+                            type="text"
+                            placeholder="Enter Year"
+                            value={year}
+                            onChange={(e) => setYear(e.target.value)}
+                        />
+                        <button onClick={handleShowClubRatings}>
+                            Show Club Ratings
+                        </button>
+                        {barChartData && <BarChartComponent data={transformDataForClubChart()} />}
+                </div>
                 <div className="studentStats">
-                    <h2>Posts By Reps (Detailed Report)</h2>
-                    {tableData && <ReportTable data={tableData} />}  
                     <div className="StudentsInMajors"> 
-                        <h1>Students' Distribution in Majors</h1>
+                    <div className="Titles">Students' Distribution in Majors</div> 
                         {chartData && <PieChartComponent ChartData={chartData} />}
                     </div>
                     <div className="weeklyStats">
-                        <h1>Weekly Post Count</h1>
+                    <div className="Titles">Weekly Post Count</div> 
                         <div>
                             <input
                             type="text"
@@ -147,29 +159,16 @@ const AdminStats = () => {
                             onChange={(e) => setWeeklyMonth(e.target.value)}
                             />
                             <button onClick={handleShowWeeklyPostCount}>
-                            Show Weekly Post Count
+                            Show Weekly Activity
                             </button>
                         </div>
                         {weeklyChartData && <BarChartComponent data={transformDataForRepChart()} />}
                     </div> 
-                </div>
-                <div className="clubStats">
-                    <div>
-                    <h1>Clubs' Rating</h1>
-                        <input
-                            type="text"
-                            placeholder="Enter Year"
-                            value={year}
-                            onChange={(e) => setYear(e.target.value)}
-                        />
-                        <button onClick={handleShowClubRatings}>
-                            Show Club Ratings
-                        </button>
-                        {barChartData && <BarChartComponent data={transformDataForClubChart()} />}
-                    </div>
-                </div>
+                    <div className="Titles">Posts By Reps (Detailed Report)</div> 
+                    {tableData && <ReportTable data={tableData} />} 
+                </div> 
             </div>
-        </div>
+        </div>   
     );
 };
 

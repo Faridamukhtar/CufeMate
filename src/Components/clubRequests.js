@@ -3,12 +3,18 @@ import React, { useState } from 'react';
 const ClubRequests = ({ club,adminID }) => {
   console.log("ana fl club requests ", adminID)
     const [infoMessage, setInfoMessage] = useState('');
+    const [infoVisible, setInfoVisible] = useState(true);
+
+    const handleHideInfoClick = () => {
+      setInfoVisible(false);
+    };
 
     const handleInfoClick = async (ClubId) => {
       try {
         const url = `http://localhost:8080/api/admin/club/info/${ClubId}`;
         const response = await fetch(url);
         const data = await response.json();
+        setInfoVisible(true);
         setInfoMessage(JSON.stringify(data)); // Assuming your response is JSON data
       } catch (error) {
         console.error('Error fetching additional info:', error);
@@ -48,8 +54,9 @@ const ClubRequests = ({ club,adminID }) => {
       <p>{`Club ID: ${club.std_club_id}`}</p>
         <button onClick={() => handleRejectClick(club.std_club_id,2,adminID)}>Reject</button>
         <button onClick={() => handleApproveClick(club.std_club_id,1,adminID)}>Approve</button>
-        <button onClick={() => handleInfoClick(club.std_club_id)}>Info</button>
-      {infoMessage && <p>{infoMessage}</p>}
+        <button onClick={() => handleInfoClick(club.std_club_id)}>Show Info</button>
+        <button onClick={handleHideInfoClick}>Hide Info</button>
+      {infoVisible && infoMessage && <p>{infoMessage}</p>}
     </div>
   );
 };

@@ -8,15 +8,14 @@ const AdminBar = ({ props }) => {
     const navigate = useNavigate(); // Initialize the navigate hook
   return (
     <div className="admin-bar">
-
-       <button onClick={()=> navigate(`/AdminDashboard/${adminID}`)}> All Users</button>
-      <button onClick={()=> navigate(`/Admin/stats/${adminID}`)}>Statistics</button>
-      <button onClick={()=> navigate(`/Admin/add/${adminID}`)}>Add Admin</button>
-      <button onClick={()=> navigate(`/Admin/requests/${adminID}`)}>Requests</button>
-      <button onClick={()=> navigate(`/Admin/settings/${adminID}`)}>Settings</button>
-      <Link to="/" >
-      <button>Logout</button>
-      </Link>
+        <button onClick={()=> navigate(`/AdminDashboard/${adminID}`)}> All Users</button>
+        <button onClick={()=> navigate(`/Admin/stats/${adminID}`)}>Statistics</button>
+        <button onClick={()=> navigate(`/Admin/add/${adminID}`)}>Add Admin</button>
+        <button onClick={()=> navigate(`/Admin/requests/${adminID}`)}>Requests</button>
+        <button onClick={()=> navigate(`/Admin/settings/${adminID}`)}>Settings</button>
+        <Link to="/" >
+        <button>Logout</button>
+        </Link>
     </div>
   );
 };

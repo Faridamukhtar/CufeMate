@@ -3,12 +3,16 @@ import React, { useState } from 'react';
 const RepRequests = ({ rep, adminID }) => {
   console.log("ana fl rep requests ", adminID)
     const [infoMessage, setInfoMessage] = useState('');
-
+    const [infoVisible, setInfoVisible] = useState(true);
+    const handleHideInfoClick = () => {
+      setInfoVisible(false);
+    };
     const handleInfoClick = async (repId) => {
       try {
         const url = `http://localhost:8080/api/admin/student/info/${repId}`;
         const response = await fetch(url);
         const data = await response.json();
+        setInfoVisible(true);
         setInfoMessage(JSON.stringify(data)); // Assuming your response is JSON data
       } catch (error) {
         console.error('Error fetching additional info:', error);
@@ -50,8 +54,9 @@ const RepRequests = ({ rep, adminID }) => {
       <p>{`Requesting Rep ID: ${rep.std_id}`}</p>
         <button onClick={() => handleRejectClick(rep.std_id,2,adminID)}>Reject</button>
         <button onClick={() => handleApproveClick(rep.std_id,1,adminID)}>Approve</button>
-        <button onClick={() => handleInfoClick(rep.std_id)}>Info</button>
-      {infoMessage && <p>{infoMessage}</p>}
+        <button onClick={() => handleInfoClick(rep.std_id)}>Show Info</button>
+        <button onClick={handleHideInfoClick}>Hide Info</button>
+      {infoVisible && infoMessage && <p>{infoMessage}</p>}
     </div>
   );
 };
