@@ -3,7 +3,7 @@ import './ViewStudentClubs.css';
 import { getStudentClubForms, Apply_To_Club, Withdraw_Application, ApplicantStatus, Rate_Club, getRateStatus } from "../CustomHooks/StudentClubsHooks.js";
 import {InfoSVG, StarSVGFilled, StarSVGUnfilled} from "../svg/SvgFiles.js"
 
-const studentData = {fname:"Ahmed", lname:"Mohamed", major_id:'CCE', std_id:1, class:'2026'}; //get logged in student data
+const studentData = {fname:"Ahmed", lname:"Mohamed", major_id:'CCEC', std_id:123, class:2026}; //get logged in student data
 function Stars(props) {
     return (
       <>
@@ -48,11 +48,9 @@ function StudentClubDetails(props)
        const onMount = async()=>
        {    
             const data = await getRateStatus(studentData.std_id, props.std_club_id);
-            console.log(data);
-            if (data?.length>0 && data[0]?.rating!==undefined && data[0]?.rating!==null)
+            if (data!==undefined && data!==null)
             {
-                console.log(data);
-                setRatingN(data[0]?.rating)
+                setRatingN(parseInt(data))
             }
             else
             {
@@ -112,7 +110,11 @@ function ChooseText(props)
     {
         return ('Rejected')
     }
-    return ('Apply');
+    if (props?.applied===-1)
+    {
+        return ('Apply');
+    }
+    return ('');
 }
 
 
@@ -139,7 +141,7 @@ function Apply(props)
 
 function StudentClubForm(props)
 {
-    const [applied, setApplied]=useState(-1);
+    const [applied, setApplied]=useState(-2);
     const [InsertedApply, setInsertedApply] = useState(-1);
     const [InfoHidden, SetInfoHidden] = useState(true);
 
