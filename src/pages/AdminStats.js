@@ -122,7 +122,9 @@ const AdminStats = () => {
 
     return (
         <div className="Layout">
-            <AdminBar props={admin_id}/>
+            <div className="bar">
+                <AdminBar props={admin_id}/>
+            </div> 
             <div className="Dashboard">
             <div className="MainTitle">Statistics Window</div> 
                 <div className="clubStats">

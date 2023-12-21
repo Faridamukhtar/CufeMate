@@ -88,6 +88,14 @@ stats_router.get('/api/stats/studentsInMajors', async (req,res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
+/*stats_router.get('/api/stats/LastManagerial', async (req,res) => {
+  try {
+    const result = await dbInstance.query('SELECT count(*) as std_count, Major_Name FROM student NATURAL JOIN major GROUP BY Major_Name');
+    res.json({data:result.rows});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});*/
 
 export { stats_router };
