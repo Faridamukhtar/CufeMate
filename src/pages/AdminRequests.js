@@ -3,10 +3,10 @@ import ClubRequests from "../Components/clubRequests.js";
 import RepRequests from "../Components/repRequests.js";
 import AdminBar from "../Components/adminBar.js";
 import { useParams } from 'react-router-dom';
+import './AdminRequests.css'
 
 const AdminRequests = () => { 
     const { admin_id } = useParams();//pass AdminID to the component
-    console.log("ana fl requests ", admin_id)
     const [clubs, setClubs] = useState([]);
     const [reps, setReps] = useState([]);
 
@@ -26,20 +26,25 @@ const AdminRequests = () => {
 
     return (
         <div className="Layout">
-            <AdminBar props={admin_id}/>
+            <div className="bar">
+                <AdminBar props={admin_id}/>
+            </div> 
             <div className="Dashboard">
+            <div className="MainTitle">Requests Window</div> 
+            <div className="requests">
                 <div className="reps">
-                    <h2>Reps</h2>
+                    <div className="Titles2">Reps</div>
                     {reps.map(rep => (
                         <RepRequests key={rep.std_id} rep={rep} adminID={admin_id}/>
                     ))}
                 </div>
                 <div className="clubs">
-                    <h2>Clubs</h2>
+                <div className="Titles2">Clubs</div>
                     {clubs.map(club => (
                         <ClubRequests key={club.std_club_id} club={club} adminID={admin_id} />
                     ))}
                 </div>
+            </div>
             </div>
             </div>
     );

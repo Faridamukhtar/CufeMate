@@ -3,17 +3,15 @@ optimisation notes :
 2- 2 signups in 1 page (clubs and students)
 
 1 mng report in std club no of members
+
 to do:
 * backend:
-❓ B- stats 
-    1- club stats routes ✅-> detailed : members names for each club GROUP BY club ORDER BY name
-                         ✅-> managerial : avg rating per year (bar charts), each bar for a club
-                        // -> managerial : top rated clubs for years //these 2 can be merged and different one added
-    2- reps stats routes ✅-> detailed : each rep posts and date (SELECT post_id, rep_id, date FROM posts GROUP BY admin_id ORDER BY date)
-                         -> managerial : avg rep activity per week bar chart -> get month/4
-                         -> managerial : count of students in each major (pie chart maybe) 
+✅ B- stats 
+    1- club stats routes ✅-> managerial : avg rating per year (bar charts), each bar for a club
+    2- reps stats routes ✅-> detailed : each rep posts and date 
+                         ✅-> managerial : avg rep activity per week bar chart -> get month/4
+                         ✅-> managerial : count of students in each major (pie chart maybe) 
                          //-> managerial : post with highest number of likes for each month
-❓ E- Stored procedures //make with stats  
 ✅ 0- ✅Edit SignUp for Clubs to make request before being able to login , ✅ edit LogIn as well 
        ✅make logging in only available if request_std_club = 1 
 ✅A- view users
@@ -27,10 +25,8 @@ to do:
     ✅2- approve/decline rep
     ✅3- display club request
     ✅4- display rep requests
+
 * frontend
-❓ C- stats
-        one page split into 2 columns
-        pie charts ? bar charts ?
 ✅A- general layout -> SideBar with linking + display board (6-settings-logout=4)
 ✅B- view users
     ✅the tab is split into 2 (club & student), also for student, display rep or not
@@ -41,12 +37,3 @@ to do:
     ✅display each row as request + 2 buttons (approve and decline) <- decision
 
 
-<Route path="/Admin/settings" element={<AdminSettings/>/* to be filled by mimo */} /> 
-<Route path="/Admin/stats" element={<AdminStats />} />
-
-
-week 13:
-* frontend
-B- ❌-> this will have info button in each row to get all info about user from : user table , all relations
-E- (❌+ previous requests tab)
-F- CSS for all pages and organise layout + apply sidebar css to adminbar & better info box

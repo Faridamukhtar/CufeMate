@@ -12,20 +12,17 @@ import StudentClubStats from "./pages/StudentClubStats.js"
 import AdminDashboard from './pages/AdminDashboard.js';
 import AddAdmin from './pages/AddAdmin.js';
 import AdminRequests from './pages/AdminRequests.js';
+import AdminStats from './pages/AdminStats.js';
+import MainComponent from './Components/MainComponentTry.js';
+//<Route path="/Admin/settings/:admin_id" element={<AdminSettings/>/* to be edited by mimo */} /> 
 import StudentClubForms from './pages/StudentClubForms.js';
-//import AdminBar from './Components/adminBar.js';
-
-
-
-
 
 function App() {
 
   return (
     <>
       <div className='App'>
-
-        <Router>
+      <Router>
           <Routes>
             <Route path="/student" element={<StudentDashboard DashboardType='student' />} />
             <Route path="/complaints" element={<ComplaintDashboard/>} />
@@ -34,18 +31,18 @@ function App() {
             <Route path="/StudentSettings" element={<StudentSetting DashboardType='studentsettings' />} />
             <Route path="/StudentClubSettings" element={<StudentSetting DashboardType='studentclubsettings' />} />
             <Route path="/AdminsSettings" element={<StudentSetting DashboardType='adminsettings' />} />
-
             <Route path="/student/studentclubs" element={<StudentDashboard DashboardType='viewstudentclubs' />} />
             <Route path="/rep/studentclubs" element={<RepDashboard DashboardType='viewstudentclubs' />} />
             <Route path="/" element={<LoginSignup />} />
             <Route path="/Club" element={<LoginSignupClub />} />
             <Route path="/Admin" element={<LoginAdmin />} />
             <Route path="/AdminDashboard/:admin_id" element={<AdminDashboard />} />
-            <Route path="/Admin/add" element={<AddAdmin />} />
+            <Route path="/Admin/add/:admin_id" element={<AddAdmin />} />
             <Route path="/Admin/requests/:admin_id" element={<AdminRequests/>} />
+            <Route path="/Admin/stats/:admin_id" element={<AdminStats />} />
             <Route path="/StudentClub/Forms" element={<StudentClubForms DashboardType='StudentClubForms'/>} />
           </Routes>
-        </Router>
+        </Router> 
       </div>
       <div className='Mobile'>
        <h2>
