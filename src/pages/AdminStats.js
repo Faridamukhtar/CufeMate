@@ -10,6 +10,7 @@ const AdminStats = () => {
     const { admin_id } = useParams();//pass AdminID to the component
     const [tableData, setTableData] = useState(null);
     const [chartData, setChartData] = useState(''); //for pie
+    const [chartData2, setChartData2] = useState(''); //for pie
     const [barChartData, setBarChartData] = useState(null);
     const [year, setYear] = useState("");
     const [weeklyChartData, setWeeklyChartData] = useState(null);
@@ -55,7 +56,8 @@ const AdminStats = () => {
       info: item.weekly_avg,
     }));
   };
-  //////////////////////////////////////////////////////////////////////////////////////
+
+  ////////////////////////////////// TABLE /////////////////////////////
     const fetchDataForTable = async () => {
         try {
             const response = await fetch('http://localhost:8080/api/stats/reps/posts');
@@ -67,7 +69,7 @@ const AdminStats = () => {
         }
     };
 
-    ////////////////////////////// PIE ////////////////////////////////
+    ////////////////////////////// PIE MAJORS //////////////////////////
     const fetchDataForPie = async () => {
         try {
             const response = await fetch('http://localhost:8080/api/stats/studentsInMajors');
@@ -78,9 +80,20 @@ const AdminStats = () => {
             console.error('Error fetching data for chart:', error);
         }
     };
-//////////////////////////////////////////////////////////////////////////////////
 
-/////////////////////////////////// AVG CLUB RATING //////////////////////////////
+/////////////////////////////////// PIE CLASSES ////////////////////////
+const fetchDataForPie2 = async () => {
+    try {
+        const response = await fetch('http://localhost:8080/api/stats/StudentsInClasses');
+        const result = await response.json();
+        console.log("ana fl fetch");
+        console.log(result.data);
+        setChartData2(result.data);
+    } catch (error) {
+        console.error('Error fetching data for chart2:', error);
+    }
+};
+/////////////////////////////////// AVG CLUB RATING ////////////////////
     const fetchDataForBarChart = async () => {
         try {
             const response = await fetch(`http://localhost:8080/api/stats/clubs/avgRating/${year}`);
@@ -114,10 +127,11 @@ const AdminStats = () => {
           info: item.avg_rate,
         }));
       };
-//////////////////////////////////////////////////////////////////////////////////
+
     useEffect(() => {
         fetchDataForTable();
         fetchDataForPie();
+        fetchDataForPie2();
     }, []);
 
     return (
@@ -144,6 +158,10 @@ const AdminStats = () => {
                     <div className="StudentsInMajors"> 
                     <div className="Titles">Students' Distribution in Majors</div> 
                         {chartData && <PieChartComponent ChartData={chartData} />}
+                    </div>
+                    <div className="StudentsInClasses"> 
+                    <div className="Titles">Students' Distribution in Classes</div> 
+                        {chartData2 && <PieChartComponent ChartData={chartData2} />}
                     </div>
                     <div className="weeklyStats">
                     <div className="Titles">Weekly Post Count</div> 

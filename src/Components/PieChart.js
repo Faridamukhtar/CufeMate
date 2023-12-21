@@ -16,7 +16,7 @@ const PieChartComponent = ({ ChartData }) => {
   const colors = generateRandomColors(ChartData.length);
   // Create the data array based on ChartData
   const data = ChartData.map((item, index) => ({
-    name: item.major_name,
+    name: item.label,
     value: parseInt(item.std_count)
     // You can customize other properties as needed
   }));

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import'./DisplayClub.css';
+import'./DisplayStudent.css';
 
 const DisplayClub = ({ Club , adminID}) => {
   const [infoMessage, setInfoMessage] = useState('');
@@ -9,14 +9,26 @@ const DisplayClub = ({ Club , adminID}) => {
     try {
       const url = `http://localhost:8080/api/admin/club/info/${ClubId}`;
       const response = await fetch(url);
-      const data = await response.json();
-      setInfoMessage(JSON.stringify(data)); // Assuming your response is JSON data
+      const result = await response.json();
+      setInfoMessage(result.data); // Assuming your response is JSON data
       setInfoVisible(true);
     } catch (error) {
       console.error('Error fetching additional info:', error);
       setInfoMessage('Error fetching additional info');
     }
   };
+
+  const InfoTextBox = ({ message }) => {
+    console.log(message);
+    return (
+      <div className="info-textbox">
+        <p>Email: {message[0].email}</p>
+        <p>Password: {message[0].passw}</p>
+      </div>
+    );
+  };
+
+
   const handleHideInfoClick = () => {
     setInfoVisible(false);
   };
@@ -46,16 +58,21 @@ const DisplayClub = ({ Club , adminID}) => {
 
   return (
     <div>
-      <h2>{`Club Name: ${Club.std_club_name}`}</h2>
-      <p>{`Club ID: ${Club.std_club_id}`}</p>
-      <h2>{`Club Status: ${Club.stat} 1: unbanned 2:banned`}</h2>
+      <div className='request'>
+      <div className='name'>{`Club Name: ${Club.std_club_name}`}</div>
+      <div className='details'>{`Club ID: ${Club.std_club_id}`}</div>
+      <div className='details'>{`Club Status: ${Club.stat}`}</div>
+      <div className='details'>1: unbanned 2:banned </div>
         <div>
           <button onClick={() => handleBanClick(Club.std_club_id,2,adminID)}>Ban</button>
           <button onClick={() => handleUnbanClick(Club.std_club_id,1,adminID)}>Unban</button>
         </div>
         <button onClick={() => handleInfoClick(Club.std_club_id)}>Show Info</button>
       <button onClick={handleHideInfoClick}>Hide Info</button>
-      {infoVisible && infoMessage && <p>{infoMessage}</p>}
+      {infoVisible && infoMessage && (
+          <InfoTextBox message={infoMessage} onClose={handleHideInfoClick} />
+        )}
+    </div>
     </div>
   );
 };

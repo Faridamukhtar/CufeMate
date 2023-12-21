@@ -64,7 +64,7 @@ admin_router.get('/api/admin/student/info/:id', async (req,res) => {
   const {id} = req.params;
   try {
     const result = await dbInstance.query('SELECT Distinct * FROM student where std_id =$1',[id]);
-    res.json(result.rows);
+    res.json({data:result.rows});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -137,7 +137,7 @@ admin_router.get('/api/admin/club/info/:id', async (req,res) => {
   const {id} = req.params;
   try {
     const result = await dbInstance.query('SELECT Distinct * FROM student_club where std_club_id =$1',[id]);
-    res.json(result.rows);
+    res.json({data:result.rows});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });

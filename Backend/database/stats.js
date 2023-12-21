@@ -81,21 +81,21 @@ stats_router.get('/api/stats/reps/activityMetric/:year/:month', async (req,res) 
 // count of students in each major
 stats_router.get('/api/stats/studentsInMajors', async (req,res) => {
   try {
-    const result = await dbInstance.query('SELECT count(*) as std_count, Major_Name FROM student NATURAL JOIN major GROUP BY Major_Name');
+    const result = await dbInstance.query('SELECT count(*) as std_count, Major_Name as label FROM student NATURAL JOIN major GROUP BY Major_Name');
     res.json({data:result.rows});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-/*stats_router.get('/api/stats/LastManagerial', async (req,res) => {
+stats_router.get('/api/stats/StudentsInClasses', async (req,res) => {
   try {
-    const result = await dbInstance.query('SELECT count(*) as std_count, Major_Name FROM student NATURAL JOIN major GROUP BY Major_Name');
+    const result = await dbInstance.query('SELECT count(*) as std_count, class as label FROM student GROUP BY class');
     res.json({data:result.rows});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-});*/
+});
 
 export { stats_router };

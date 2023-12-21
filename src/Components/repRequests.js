@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './adminCompRequests.css'
 
 const RepRequests = ({ rep, adminID }) => {
   console.log("ana fl rep requests ", adminID)
@@ -11,9 +12,9 @@ const RepRequests = ({ rep, adminID }) => {
       try {
         const url = `http://localhost:8080/api/admin/student/info/${repId}`;
         const response = await fetch(url);
-        const data = await response.json();
+        const result = await response.json();
         setInfoVisible(true);
-        setInfoMessage(JSON.stringify(data)); // Assuming your response is JSON data
+        setInfoMessage(result.data); // Assuming your response is JSON data
       } catch (error) {
         console.error('Error fetching additional info:', error);
         setInfoMessage('Error fetching additional info');
@@ -47,16 +48,37 @@ const RepRequests = ({ rep, adminID }) => {
       console.error('Error Approving Rep:', error);
     }
   };
-
+  const InfoTextBox = ({ message }) => {
+    console.log(message);
+    return (
+      <div className="info-textbox">
+        <p>Email: {message[0].email}</p>
+        <p>Password: {message[0].passw}</p>
+        <p>Major: {message[0].major_id}</p>
+        <p>Class: {message[0].class} </p>
+      </div>
+    );
+  };
   return (
-    <div>
-      <h2>{`Requesting Rep Name: ${rep.fname} ${rep.lname}`}</h2>
-      <p>{`Requesting Rep ID: ${rep.std_id}`}</p>
+    <div className='request'>
+      <div className='name'>
+        Requesting Rep Name: {`${rep.fname} ${rep.lname}`}
+        <br/>
+       </div>
+      <div className='details'> <br/> {`Requesting Rep ID: ${rep.std_id}`}</div>
+      <div className='buttons'>
+        <div className='decisionButtons'>
         <button onClick={() => handleRejectClick(rep.std_id,2,adminID)}>Reject</button>
         <button onClick={() => handleApproveClick(rep.std_id,1,adminID)}>Approve</button>
+        </div>
+        <div className='infoButtons'>
         <button onClick={() => handleInfoClick(rep.std_id)}>Show Info</button>
         <button onClick={handleHideInfoClick}>Hide Info</button>
-      {infoVisible && infoMessage && <p>{infoMessage}</p>}
+        </div>
+      </div>
+      {infoVisible && infoMessage && (
+          <InfoTextBox message={infoMessage} onClose={handleHideInfoClick} />
+        )}
     </div>
   );
 };

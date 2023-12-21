@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './adminCompRequests.css'
 
 const ClubRequests = ({ club,adminID }) => {
   console.log("ana fl club requests ", adminID)
@@ -13,9 +14,9 @@ const ClubRequests = ({ club,adminID }) => {
       try {
         const url = `http://localhost:8080/api/admin/club/info/${ClubId}`;
         const response = await fetch(url);
-        const data = await response.json();
+        const result = await response.json();
         setInfoVisible(true);
-        setInfoMessage(JSON.stringify(data)); // Assuming your response is JSON data
+        setInfoMessage(result.data); 
       } catch (error) {
         console.error('Error fetching additional info:', error);
         setInfoMessage('Error fetching additional info');
@@ -48,15 +49,32 @@ const ClubRequests = ({ club,adminID }) => {
     }
   };
 
+  const InfoTextBox = ({ message }) => {
+    console.log(message);
+    return (
+      <div className="info-textbox">
+        <p>Email: {message[0].email}</p>
+        <p>Password: {message[0].passw}</p>
+      </div>
+    );
+  };
+
   return (
-    <div>
-      <h2>{`Club Name: ${club.std_club_name}`}</h2>
-      <p>{`Club ID: ${club.std_club_id}`}</p>
+    <div className='request'>
+      <div className='name'> Club Name: {`${club.std_club_name}`}<br/> </div>
+      <div className='details'> <br/> {`Club ID: ${club.std_club_id}`}</div>
+      <div className='buttons'>
+        <div className='decisionButtons'></div>
         <button onClick={() => handleRejectClick(club.std_club_id,2,adminID)}>Reject</button>
         <button onClick={() => handleApproveClick(club.std_club_id,1,adminID)}>Approve</button>
+        </div>
+        <div className='infoButtons'>
         <button onClick={() => handleInfoClick(club.std_club_id)}>Show Info</button>
         <button onClick={handleHideInfoClick}>Hide Info</button>
-      {infoVisible && infoMessage && <p>{infoMessage}</p>}
+        {infoVisible && infoMessage && (
+          <InfoTextBox message={infoMessage} onClose={handleHideInfoClick} />
+        )}
+      </div>
     </div>
   );
 };

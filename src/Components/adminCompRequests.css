@@ -1,0 +1,49 @@
+.buttons{
+    display: flex;
+    flex-direction: column;
+}
+
+.decisionButtons
+.infoButtons
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.name{
+    margin: 10px;
+height: 26.657px;
+flex-shrink: 0;
+color: #0D062D;
+font-family: Inter;
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.details{
+    margin: 10px;
+height: 33.507px;
+transform: rotate(0.146deg);
+flex-shrink: 0;
+color: #002b5c;
+font-family: Inter;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.request{
+    margin: 15px;
+    border-radius: 16px;
+    border: 1px solid #eae5ff;
+    background: #f8fbfd;
+    transform: rotate(0.19deg);
+    flex-shrink: 0;
+}
+
+.info-textbox{
+    margin: 15px;
+}

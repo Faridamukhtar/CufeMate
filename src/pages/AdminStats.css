@@ -6,21 +6,22 @@
 
 .MainTitle{
     font-family: Inter;
-font-size: 46px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-text-transform: capitalize;
-background: linear-gradient(180deg, #231E3F 0%, #322958 100%);
-background-clip: text;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-margin-top: 20px;
-margin-bottom: 40px;
+    font-size: 46px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: capitalize;
+    background: linear-gradient(180deg, #231E3F 0%, #322958 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 
 .Titles{
     font-family: Inter;
+    margin-top: 20px;
     font-size: 36px;
     font-style: normal;
     font-weight: 500;
@@ -28,9 +29,9 @@ margin-bottom: 40px;
     letter-spacing: -1.44px;
     text-transform: capitalize;
     background: linear-gradient(180deg, #231E3F 0%, #322958 100%);
-background-clip: text;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .clubStats{
@@ -38,8 +39,8 @@ background-clip: text;
 margin-bottom: 20px;
 }
 
+.StudentsInClasses
 .StudentsInMajors{
-    margin-top: 20px;
     margin-bottom: 40px;
 }
 
