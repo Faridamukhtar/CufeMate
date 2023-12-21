@@ -81,17 +81,11 @@ export const Withdraw_Application = async (req, res) =>
 export const ApplicantStatus = async (req, res) =>
 {
   const {std_id, form_id} = req.params
-  let Query =
-  `
-    SELECT stat
-    from applied
-    WHERE form_id = ${form_id} AND std_id = ${std_id}
-  `
 
-  console.log(Query);
   try {
-    const result = await dbInstance.query(Query);
-    res.status(200).json({ success: true, message: `Application Status Fetched`, result: result.rows});
+    const result = await dbInstance.query('SELECT get_application_status($1, $2) AS status', [form_id, std_id]);
+    console.log(result.rows[0].status)
+    res.status(200).json({ success: true, message: `Application Status Fetched`, result: result.rows[0].status});
   } 
   
   catch (err) {
@@ -260,6 +254,34 @@ export const deleteForm = async (req, res) =>
   catch (err) {
     console.error('Error:', err.message);
     res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+
+}
+
+
+export const AddMember = async (req, res) =>
+{
+
+  const {std_id, std_club_id} = req.body
+  if (std_club_id>0 && std_id>0)
+  {
+    let Query =
+    `
+    INSERT INTO ismember
+    VALUES (${std_id}, ${std_club_id}, date_part('year', CURRENT_DATE));
+    `
+
+    console.log(Query);
+    try {
+      const result = await dbInstance.query(Query);
+      res.status(200).json({ success: true, message: `Member Added: ${std_id} to std club: ${std_club_id}`, result: result.rows});
+    } 
+    
+    catch (err) {
+      console.error('Error:', err.message);
+      res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+
   }
 
 }

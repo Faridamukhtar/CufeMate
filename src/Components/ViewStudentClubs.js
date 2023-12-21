@@ -156,10 +156,10 @@ function StudentClubForm(props)
        const onMount = async()=>
        {    
             const data = await ApplicantStatus(props.form_id, studentData.std_id)
-            if (data?.length>0 && data[0]?.stat!==undefined && data[0]?.stat!==null)
+            if (data!==undefined && data!==null)
             {
-                setApplied(data[0]?.stat);
-                setInsertedApply(data[0]?.stat);
+                setApplied(parseInt(data));
+                setInsertedApply(parseInt(data));
             }
             else
             {

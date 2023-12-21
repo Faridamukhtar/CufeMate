@@ -217,3 +217,29 @@ export const DeleteForm= async (form_id=0) =>
         console.log(error);
     }
 }
+
+
+export const AddMember= async (std_club_id, std_id) =>
+{
+  try 
+  {
+    const response = await fetch("http://localhost:8080/api/StudentClubs/addmember", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        std_id: std_id || 0,
+        std_club_id: std_club_id || 0,
+      }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } 
+    catch (error) 
+    {
+        console.log(error);
+    }
+}

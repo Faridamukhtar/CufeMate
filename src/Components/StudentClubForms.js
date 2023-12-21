@@ -1,6 +1,6 @@
 import React, {useState, useEffect, Image} from "react";
 import './StudentClubForms.css';
-import { getStudentClubForms, getStudentApplicants, updateApplicantStatus, SubmitFormChanges, DeleteForm} from "../CustomHooks/StudentClubsHooks.js";
+import { getStudentClubForms, getStudentApplicants, updateApplicantStatus, SubmitFormChanges, DeleteForm, AddMember} from "../CustomHooks/StudentClubsHooks.js";
 
 const SCData = {std_club_name:"CU Eco-Racing team", std_club_id:1, email:'CUERT@gmail.com'}; //get logged in student data
 
@@ -45,6 +45,10 @@ function ApplicantsList(props)
              if (status!=props.applicant.stat)
              {
                 await updateApplicantStatus(status, props.applicant.form_id, props.applicant.std_id);
+                if (status===1) 
+                {
+                    await AddMember(props.applicant.form_id, props.applicant.std_id);
+                }
              }
         }
  
