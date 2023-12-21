@@ -141,17 +141,11 @@ export const Rate_Club = async (req, res) =>
 export const RateStatus = async (req, res) =>
 {
   const {std_id, std_club_id} = req.params
-  let Query =
-  `
-    SELECT rating
-    from rate
-    WHERE std_club_id = ${std_club_id} AND std_id = ${std_id}
-  `
 
-  console.log(Query);
   try {
-    const result = await dbInstance.query(Query);
-    res.status(200).json({ success: true, message: `Rate fetched`, result: result.rows});
+    const result = await dbInstance.query('SELECT get_rating($1, $2) AS rating', [std_club_id, std_id]);
+    console.log(result.rows[0].rating)
+    res.status(200).json({ success: true, message: `Rate fetched`, result: result.rows[0].rating});
   } 
   
   catch (err) {
