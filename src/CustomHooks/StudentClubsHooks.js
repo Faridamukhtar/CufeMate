@@ -1,11 +1,27 @@
 import React, {useState} from "react";
 
 
-export const getStudentClubForms = async (club_id=" ") =>
+export const getStudentClubForms = async (club_id=0) =>
 {
     try 
     {
-        const response = await fetch(`http://localhost:8080/api/viewstudentclubs/${club_id}/`);
+        const response = await fetch(`http://localhost:8080/api/viewstudentclubs/id/${club_id}/`);
+        const data = await response.json();
+        console.log("Clubs Fetched");
+        console.log(data.result);
+        return data.result;
+    } 
+    catch (error) 
+    {
+        console.log(error);
+    }
+}
+
+export const getStudentClubs= async () =>
+{
+    try 
+    {
+        const response = await fetch(`http://localhost:8080/api/viewstudentclubs/getStudentClubs/`);
         const data = await response.json();
         console.log("Clubs Fetched");
         console.log(data.result);
@@ -21,7 +37,7 @@ export const ApplicantStatus = async (form_id=" ", std_id= " ") =>
 {
     try 
     {
-        const response = await fetch(`http://localhost:8080/api/viewstudentclubs/${form_id}/${std_id}`);
+        const response = await fetch(`http://localhost:8080/api/viewstudentclubs/appstatus/${form_id}/${std_id}`);
         const data = await response.json();
         console.log("Applicant Status:", data.result);
         console.log(data.result);

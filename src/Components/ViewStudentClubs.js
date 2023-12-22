@@ -296,8 +296,9 @@ function FormsSection()
             let studentclubs=[{std_club_id:0, std_club_name:""}];
             data.forEach((option)=>
             {
-                studentclubs = ([...studentclubs,{std_club_id:option.std_club_id, std_club_name:option.std_club_name}]);
-                console.log('studentclubs',studentclubs);
+                if (!studentclubs.find((club) => club.std_club_id === option.std_club_id)) {
+                  studentclubs= ([...studentclubs,{std_club_id:option.std_club_id, std_club_name:option.std_club_name}]);
+                }
             })
             studentclubs.shift();
             setStudentClubs(studentclubs);
@@ -337,7 +338,7 @@ function FormsSection()
 
 
     return (
-        <div className="formsWrapperViewSC">
+        <div className="formsWrapper">
             <div className="LatestformsTitle">
                 <h3>
                     Latest Student Club Announcements

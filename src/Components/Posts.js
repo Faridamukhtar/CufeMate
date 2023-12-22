@@ -80,7 +80,7 @@ function Post(props)
                         {props.Course && props.Course!=="" ? props.Course : props.Major} Announcement
                     </h2>                
                 </div>
-                <div className="Categories">
+                <div className="CategoriesPost">
                     <div className="Course">
                         <h6>
                         {props.Course && props.Course!=="" ? props.Course : props.Major}
@@ -243,13 +243,13 @@ function PostSection(props)
     {   
         return (
         <div className="Filters">
-            <select className="Filter"
+            <select className="FilterPost"
             defaultValue=""
             value={ChosenCourse}
             onChange={(e)=>setChosenCourse(e.target.value)}>
                 <CourseOptions options={props.courses}/>
             </select>
-            <select className="Filter" 
+            <select className="FilterPost" 
             defaultValue=""
             value={ChosenAuthor}
             onChange={(e)=>setChosenAuthor(e.target.value)}>

@@ -1,8 +1,33 @@
 import {dbInstance} from "./connection.js";
 
+
+export const getallclubs = async (req, res)=>
+{
+    let Query = 
+    `
+    SELECT DISTINCT std_club_id, std_club_name 
+    FROM student_club
+    `
+    ;
+
+
+    console.log(Query);
+    try {
+      const result = await dbInstance.query(Query);
+      res.status(200).json({ success: true, message: 'Getting Student Club Data', result: result.rows});
+    } 
+    
+    catch (err) {
+      console.error('Error:', err.message);
+      res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+}
+
+
 export const getStudentClubForms = async (req, res)=>
 {
     const club_id= req.params?.club_id;
+
     let Query = `
     SELECT std_club_id, std_club_name, email, about, logo, form_id, form_title, requirements, form_date
     FROM student_club sc
@@ -11,7 +36,7 @@ export const getStudentClubForms = async (req, res)=>
     `
     ;
 
-    if (club_id!==" ")
+    if (club_id!=0)
     {
       Query += `
       AND sc.std_club_id= ${club_id}
