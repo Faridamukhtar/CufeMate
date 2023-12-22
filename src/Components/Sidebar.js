@@ -42,6 +42,16 @@ function Sidebar(props)
                             </h5>
                         </div>
                     </div>
+                <div className="SidebarOption" id="FReqToWritePost" onClick={()=>navigate('/reqwritepost')}>
+                    <div className="SidebarIcon">
+                            <FileAComplaintSVG/>
+                        </div>
+                        <div className="SidebarLabel">
+                            <h5>
+                                Request To Write Post
+                            </h5>
+                        </div>
+                    </div>
                 <div className="SidebarOption" id="RepsContacts">
                     <div className="SidebarIcon">
                             <RepsContactsSVG/>
@@ -102,7 +112,17 @@ function Sidebar(props)
                                 </h5>
                             </div>
                         </div>
-                    <div className="SidebarOption" id="StudentPendingPosts">
+                    <div className="SidebarOption" id="WritePost" onClick={()=>navigate('/writepost')}>
+                        <div className="SidebarIcon">
+                            <FileAComplaintSVG/>
+                        </div>
+                        <div className="SidebarLabel">
+                            <h5>
+                                 Write Post
+                            </h5>
+                        </div>
+                    </div>    
+                    <div className="SidebarOption" id="StudentPendingPosts" onClick ={()=>navigate('/viewpostreq')}>
                         <div className="SidebarIcon">
                             <StudentPendingPosts/>
                         </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import './Header.css';
+import ViewPostReqDashboard from "../pages/ViewPostReqDashboard";
 
 const studentData = {fname:"Ahmed", lname:"Mohamed", major_id:'CCE', std_id:1, class:'2026'}; //get logged in student data
 
@@ -118,6 +119,73 @@ function RepsViewComplaintsHeader()
     );
 }
 
+function WritePostHeader()
+{
+    return (
+        <div className="StudentHeader">
+            <div className="greeting">
+                <h1>
+                    Write a Post
+                </h1>
+            </div>
+            <div className="Info">
+                <h4 className='StudentName'>
+                    Name
+                </h4>
+                <h4>
+                    Class of XXXX
+                </h4>
+            </div>
+        </div>
+
+    );
+}
+
+function ReqWritePostHeader()
+{
+    return (
+        <div className="StudentHeader">
+            <div className="greeting">
+                <h1>
+                   Request To Write a Post
+                </h1>
+            </div>
+            <div className="Info">
+                <h4 className='StudentName'>
+                    Name
+                </h4>
+                <h4>
+                    Class of XXXX
+                </h4>
+            </div>
+        </div>
+
+    ); 
+}
+
+function ViewPostReqHeader()
+{
+    return (
+        <div className="StudentHeader">
+            <div className="greeting">
+                <h1>
+                   View Students Post Requests
+                </h1>
+            </div>
+            <div className="Info">
+                <h4 className='StudentName'>
+                    Name
+                </h4>
+                <h4>
+                    Class of XXXX
+                </h4>
+            </div>
+        </div>
+
+    ); 
+}
+
+
 
 
 function ChooseHeader(props)
@@ -164,6 +232,32 @@ function ChooseHeader(props)
             </>
         )
     }
+
+    else if (props.DashboardType==='writepost')
+    {
+        return (
+             <>
+                <WritePostHeader/>
+             </>
+        );
+    }
+    else if (props.DashboardType==='reqwritepost')
+    {
+        return (
+           <>
+               <ReqWritePostHeader/>
+           </>
+        );
+    }
+    else if (props.DashboardType==='viewpostreq')
+    {
+        return (
+            <>
+               <ViewPostReqHeader/>
+            </>
+        );
+    }
+
 }
 
 export default ChooseHeader;

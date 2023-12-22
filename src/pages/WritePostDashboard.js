@@ -1,20 +1,20 @@
 import React from "react";
 import Sidebar from "../Components/Sidebar";
 import Dashboard from "../Components/Dashboard";
-import './RepsComplaintsDashboard.css'
+import './WritePostDashboard.css'
 
-const RepsComplaintsDashboard =()=>
+const WritePostDashboard =()=>
 {
     return (
-        <div className="ComplaintPage">
+        <div className="WritePostPage">
             <div className="sidebar">
                 <Sidebar SidebarType='studentRep'/>
             </div>
-            <div className="Dashboard">
-                <Dashboard DashboardType='repsviewcomplaints'/>
+            <div className="WriteDashboard">
+                <Dashboard DashboardType='writepost'/>
             </div>
         </div>
     );
 }
 
-export default RepsComplaintsDashboard;
+export default WritePostDashboard;
