@@ -38,8 +38,10 @@ function StudentClubDetails(props)
          console.log('Rating:', RatingN);
          await Rate_Club(RatingN, studentData.std_id, props.std_club_id)
         }
- 
-        setRating();
+        if (RatingN!==0)
+        {
+            setRating();
+        }
 
     },[RatingN])
 
