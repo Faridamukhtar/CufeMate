@@ -172,7 +172,7 @@ function StudentClubForm(props)
 
        onMount();
 
-},[]);
+},[props]);
 
 useEffect(()=>
 {
@@ -273,7 +273,7 @@ function Displayforms(props)
 {
     if (props?.formArray[0]?.form_id>0)
     {
-        const listItems = props.formArray.map((form) => <li><StudentClubForm form_title={form.form_title} std_club_id={form.std_club_id} std_club_name={form.std_club_name} requirements={form.requirements} email= {form.email} form_id={form.form_id} about={form.about} logo={form.logo}/></li>);
+        const listItems = props.formArray.map((form) => <li><StudentClubForm form_title={form.form_title} std_club_id={form.std_club_id} std_club_name={form.std_club_name} requirements={form.requirements} email= {form.email} form_id={form.form_id} about={form.about} logo={form.logo} chosenStudentClub={props.chosenStudentClub}/></li>);
         return listItems;
     }
     else
@@ -351,7 +351,7 @@ function FormsSection()
                 <Filters options={StudentClubs}/>
             </div>
             <div className="forms">
-                <ul><Displayforms formArray={formsContent}/></ul>
+                <ul><Displayforms formArray={formsContent} chosenStudentClub={chosenStudentClub}/></ul>
             </div>
         </div>
     );
