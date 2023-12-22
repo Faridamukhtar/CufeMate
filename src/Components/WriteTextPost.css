@@ -1,4 +1,4 @@
-.ComplaintPageTitle
+.SectionTitle
 {
     font-family: Inter;
     font-size: 36px;
@@ -12,48 +12,24 @@
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-left:20px;
 
 }
 
 
-.ComplaintBox
+.PostBox
 {
     width: 1093px;
-    height: 300px;
+    height: 600px;
     border-radius: 16px 16px 0px 0px;
     border: 1px solid #FFF;
     background: #FFF;
     box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.10);
     position:relative;
-    margin-left:40px;
-}
-
-.ComplaintTitle
-{
-    color:  #231E3F;
-    font-family: Inter;
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    margin-top: 10px;
-    margin-left: 20px;
-}
-
-.ComplaintUpperLine
-{
-    width: 1080px;
-    border-top: 3px solid #5030E5;
-    height: 0px;
-    transform: rotate(0.167deg);
-    position: absolute;
-    top:55px; 
 }
 
 
 
-.ComplaintLowerLine
+.LowerLine
 {
     width: 1080px;
     border-top: 3px solid #5030E5;
@@ -64,7 +40,7 @@
     left : 5px;
 }
 
-.ComplaintCharacterCount
+.CharacterCount
 {
     width: 152px;
     height: 18px;
@@ -81,7 +57,7 @@
     margin-bottom:30px; 
 }
 
-.ComplaintSubmitButton
+.PostSubmitButton
 {
     display: flex;
     width: 153px;
@@ -97,7 +73,7 @@
     margin-bottom:5px; 
 }
 
-.ComplaintSubmitText
+.PostSubmitText
 {
     color: #FFF;
     font-family: Inter;
@@ -111,7 +87,3 @@
     justify-content: center;
 }
 
-.Rating
-{
-    display: flex;
-}

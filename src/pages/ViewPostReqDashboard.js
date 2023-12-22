@@ -1,9 +1,9 @@
 import React from "react";
 import Sidebar from "../Components/Sidebar";
 import Dashboard from "../Components/Dashboard";
-import './RepsComplaintsDashboard.css'
+import './ViewPostReqDashboard.css'
 
-const RepsComplaintsDashboard =()=>
+const ViewPostReqDashboard =()=>
 {
     return (
         <div className="ComplaintPage">
@@ -11,10 +11,10 @@ const RepsComplaintsDashboard =()=>
                 <Sidebar SidebarType='studentRep'/>
             </div>
             <div className="Dashboard">
-                <Dashboard DashboardType='repsviewcomplaints'/>
+                <Dashboard DashboardType='viewpostreq'/>
             </div>
         </div>
     );
 }
 
-export default RepsComplaintsDashboard;
+export default ViewPostReqDashboard;

@@ -3,7 +3,7 @@ import "./RepsViewComplaints.css";
 
   
 
-const getComplaints = async (title="" , content="") => 
+const getComplaints = async (title="" , content="", id="", date="") => 
 {
     try 
     {
@@ -29,14 +29,14 @@ const getComplaints = async (title="" , content="") =>
 function Complaint(props)
 {
     const [StdRepID, setStdRepID] = useState('');
-    const [Tittle, setTitle] = useState('');
-    const [Content, setContent] = useState('');
 
-    const handleRead = async (StdRepID, Tittle, Content) =>
+    const handleRead = async (StdRepID, complaint_id) =>
      {
-        try {
+        try
+         {
+          StdRepID=170;
           // Construct the URL with actual values for email and password
-          const url = `http://localhost:8080/api/writecomplaint/${encodeURIComponent(StdRepID)}/${encodeURIComponent(Tittle)}/${encodeURIComponent(Content)}`;
+          const url = `http://localhost:8080/api/markread/${encodeURIComponent(StdRepID)}/${encodeURIComponent(complaint_id)}`;
       
           // Make a GET request to the constructed URL
               const response = await fetch(url); 
@@ -60,11 +60,16 @@ function Complaint(props)
                    {props.title} 
                </h5>
            </div>
+           <div className="DateRect">
+              <h4 className="Date">
+                {props.date}
+              </h4>
+            </div>
            <div>
-            <button className="Readbutton" onClick={() => handleRead(StdRepID, Tittle, Content)}> <h5 className="Readbuttontext">Read</h5></button>
+            <button className="Readbutton" onClick={() => handleRead(StdRepID,props.id)}> <h5 className="ReadButtontext">Read</h5></button>
            </div>       
-           <div>
-               <h6 className="Content">
+           <div className="ComplaintContent">
+               <h6>
                    {props.content}
                </h6>
            </div>
@@ -78,7 +83,7 @@ function DisplayComplaints(props)
     if (props?.compArray[0])
     {
         console.log('AAAAA');
-        const listItems = props.compArray.map ( (complaint) =>{return (<li><Complaint title={complaint.title} content={complaint.content} /></li>)});
+        const listItems = props.compArray.map ( (complaint) =>{return (<li><Complaint title={complaint.title} content={complaint.content} id={complaint.complaint_id} date={complaint.complaint_date} /></li>)});
         return listItems;
     }
     else
@@ -91,13 +96,13 @@ function DisplayComplaints(props)
 
 function Complaints() 
 {  
-  const [ComplaintsData, setComplaintsData]=useState([{title:"" , content:""}]);
+  const [ComplaintsData, setComplaintsData]=useState([{title:"" , content:"", id:"" , date:""}]);
     
     useEffect(()=>
     {
         const setComplaints= async () =>
         {
-            const data = await getComplaints('', '');
+            const data = await getComplaints('', '', '', '');
             console.log(data);
             setComplaintsData(data);
         }

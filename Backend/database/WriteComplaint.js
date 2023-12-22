@@ -9,9 +9,11 @@ write_complaint_router.get("/api/writecomplaint/:title/:content", async (req,res
     const std_id=5;
     const stdrep_id=4;
     const stat=0;
+    const today=new Date();
+    const complaint_date=today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate();
     try 
     {
-        const result =await dbInstance.query ("INSERT INTO complaint (title, content, complaint_id, std_id, stdrep_id , stat) VALUES ($1, $2, $3 ,$4 , $5, $6 )",[title, content, complaint_id, std_id, stdrep_id, stat]);
+        const result =await dbInstance.query ("INSERT INTO complaint (title, content, complaint_id, std_id, stdrep_id , stat, complaint_date) VALUES ($1, $2, $3 ,$4 , $5, $6 , $7)",[title, content, complaint_id, std_id, stdrep_id, stat, complaint_date]);
         res.json(result.rows);
     }
     catch (error)

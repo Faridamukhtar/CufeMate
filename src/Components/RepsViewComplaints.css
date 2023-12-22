@@ -15,7 +15,7 @@
 .Title
 {
     width: 500.488px;
-    height: 26.657px;
+    height: 40px;
     flex-shrink: 0;
     color: #362c70;
     font-family: Inter;
@@ -28,20 +28,20 @@
     margin-left:20px;
 }
 
-.Content
+.ComplaintContent
 {
     width: 650px;
     height: 36px;
     flex-shrink: 0;
     color: #282249;
     font-family: Inter;
-    font-size: 20px;
+    font-size: 30px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    margin-top:10px;
+    margin-top:50px;
     margin-bottom:5px;
-    margin-left:50px;
+    margin-left:20px;
 }
 
 
@@ -54,17 +54,42 @@
     position:absolute;
     top:0;
     right:0;
-    margin-right:60px;
-    margin-top:5px; 
+    margin-right:40px;
+    margin-top:20px; 
 }
 
 .ReadButtontext
 {
     color: #09450C;
     font-family: Inter;
-    font-size: 20px;
+    font-size: 15px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     text-transform: capitalize;
+    text-align: center;
+}
+
+.DateRect
+{
+    width: 200px;
+    height: 18.175px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    transform:translate(-200%, 150%);
+    margin-right:200px;
+    margin-top:5px; 
+}
+
+
+.Date
+{
+    color: #000;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
