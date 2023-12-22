@@ -1,4 +1,4 @@
-.admin-bar{
+.bar{
     display:flex;
     flex-direction: column;
     align-items: flex-end;
@@ -9,3 +9,47 @@
     height: 100vh;
     background: linear-gradient(180deg, #2A234C 0%, #19152B 100%);
 }
+
+.admin-bar
+{
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top:0px;
+    padding-top: 30px;
+    padding-left: 10%;
+    width: 90%;
+    height: 100vh;
+    background: linear-gradient(180deg, #2A234C 0%, #19152B 100%);
+}
+
+
+.option
+{
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    height: auto;
+    padding-block: 0;
+    margin-block: 6%;
+}
+
+.SidebarIcon
+{
+    align-self: center;
+    margin-right: 10%;
+}
+
+.option:hover
+{
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.4s;
+}
+
+.SidebarLabel
+{
+    align-self: center;
+    color: white;
+}
+

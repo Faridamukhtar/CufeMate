@@ -34,25 +34,23 @@ function Complaint(props)
   const StatusText=props.stat==='0'? 'Pending':'Read';
    return(
         <div className="ComplaintRect">
-            <div className={ChooseBoxColor}>
-              <div>
-               <h3 className={ChooseBoxTextColor}>
-                {StatusText}
-               </h3>
+              <div className={ChooseBoxColor}>
+                 <div>
+                     <h3 className={ChooseBoxTextColor}>
+                          {StatusText}
+                     </h3>
+                 </div>
                </div>
-            <div>
-            <div className="DateRect">
-              <h4 className="Date">
-                {props.date}
-              </h4>
-            </div>
-            <div>
+               <div className="DateRect">
+                    <h4 className="Date">
+                       {props.date}
+                    </h4>
+               </div>
+               <div>
                     <h5 className="ComplaintTitle">
                          {props.title}
                    </h5>
-            </div>
                </div>
-           </div>
        </div>
     );
 };

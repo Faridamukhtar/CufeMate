@@ -1,23 +1,89 @@
 import React, {useState, useEffect} from "react";
 import './Posts.css';
-import {getposts,fetchStudentCourses, fetchMajorAuthors} from "../CustomHooks/PostsHooks.js";
+import {getposts,fetchStudentCourses, fetchMajorAuthors, Like, Unlike, DidLike, NoLikes} from "../CustomHooks/PostsHooks.js";
+import {LikeSVG} from "../svg/SvgFiles.js"
 
-const studentData = {fname:"Ahmed", major_id:'CCE', std_id:1, class:'2026'}; //get logged in student data
+const studentData = {fname:"Ahmed", major_id:'CCEC', std_id:1, class:'2026'}; //get logged in student data
+
+function HandleLikes(props)
+{
+    const [liked, setliked]=useState(false);
+    const [Likes,setLikeCounts]=useState(0);
+
+    useEffect(()=>
+    {
+        const onMount = async()=>
+        {
+            const didLike=await DidLike(props.post_id, studentData.std_id);
+            const Likes=await NoLikes(props.post_id);
+            if (didLike?.length>0 && didLike[0]!==undefined)
+            {
+                console.log('IDDDD', props.post_id);
+                setliked(true);
+            }
+            else
+            {
+                setliked(false);
+            }
+
+            if (Likes!==null)
+            {
+                console.log(Likes, Likes[0].count)
+                setLikeCounts(parseInt(Likes[0].count));
+            }
+
+        }
+
+        onMount();
+
+    },[liked])
+
+
+    const handleLiked=()=>
+    {
+        const like = async () => {
+            console.log('liked');
+            setLikeCounts((prev) => {
+                if (liked) {
+                    Unlike(props.post_id, studentData.std_id);
+                    setliked(false);
+                    return prev - 1;
+                } else {
+                    Like(props.post_id, studentData.std_id);
+                    setliked(true);
+                    return prev + 1;
+                }
+            });
+        };
+    
+        like();
+    }
+
+    return (
+        <>
+        <div className="like" onClick={handleLiked}>
+            <LikeSVG/>
+            &nbsp;&nbsp;{Likes} likes
+        </div>
+        </>
+    )
+}
+
 
 function Post(props)
 {
     return(
         <div className="Post">
             <div className="PostHeader">
-                <div className="Title">
+                <div className="TitlePost">
                     <h2>
-                        {props.Course}
+                        {props.Course && props.Course!=="" ? props.Course : props.Major} Announcement
                     </h2>                
                 </div>
-                <div className="Categories">
+                <div className="CategoriesPost">
                     <div className="Course">
                         <h6>
-                            {props.Course}
+                        {props.Course && props.Course!=="" ? props.Course : props.Major}
                         </h6> 
                     </div>
                     <div className="Author">
@@ -27,11 +93,12 @@ function Post(props)
                     </div>
                 </div>
             </div>
-            <div class='Content'>
+            <div class='ContentPost'>
                 <h5>
-                    {props.Content}
+                    {props.Content} 
                 </h5>   
             </div>
+            <HandleLikes post_id={props.post_id}/>
         </div>
     );
 }
@@ -125,7 +192,7 @@ function DisplayPosts(props)
 {
     if (props?.postArray[0]?.post_id>0)
     {
-        const listItems = props.postArray.map((post) => <li><Post Major={post.major_id} Content={post.content} Course={post.course_name} FAuthor={post.fname} LAuthor={post.lname}/></li>);
+        const listItems = props.postArray.map((post) => <li key={post.post_id}><Post post_id={post.post_id} Major={post.major_id} Content={post.content} Course={post.course_name} FAuthor={post.fname} LAuthor={post.lname}/></li>);
         return listItems;
     }
     else
@@ -138,7 +205,7 @@ function DisplayPosts(props)
 //Fetch Posts
 function PostSection(props)
 {
-    const [postsContent, setPostsContent]=useState([{fname:"",lname:"",post_date:"",content:"",post_id:0,course_name:""}]);
+    const [postsContent, setPostsContent]=useState([{fname:"",lname:"",post_date:"",content:"",post_id:0,course_name:"", major_id:""}]);
     const [StudentCourses, setStudentCourses]=useState([{course_name:"", course_id:""}]);
     const [Authors, setAuthors]=useState([{fname:"", lname:"", std_id:""}]);
     const [ChosenAuthor, setChosenAuthor] = useState('');
@@ -176,13 +243,13 @@ function PostSection(props)
     {   
         return (
         <div className="Filters">
-            <select className="Filter"
+            <select className="FilterPost"
             defaultValue=""
             value={ChosenCourse}
             onChange={(e)=>setChosenCourse(e.target.value)}>
                 <CourseOptions options={props.courses}/>
             </select>
-            <select className="Filter" 
+            <select className="FilterPost" 
             defaultValue=""
             value={ChosenAuthor}
             onChange={(e)=>setChosenAuthor(e.target.value)}>

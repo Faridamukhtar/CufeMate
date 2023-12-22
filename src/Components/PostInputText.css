@@ -1,0 +1,12 @@
+.PostContent
+{
+    color: #000;
+    height :525px;
+    width :1055px;
+    margin-left: 10px;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
