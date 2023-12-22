@@ -94,6 +94,7 @@ function StudentClubSettingsHeader()
 }
 
 
+
 function ComplaintHeader()
 {
     return (
@@ -252,6 +253,35 @@ function ViewPostReqHeader()
 
 
 
+
+function RepsContactsHeader()
+
+{
+    return (
+        <div className="StudentHeader">
+            <div className="greeting">
+                <h1>
+                    Contacts
+                </h1>
+                <h3>
+                    Reps of class 2026, major MEE.
+                </h3>
+            <div className="Info">
+                <h4 className='StudentName'>
+                    Name
+                </h4>
+                <h4>
+                    Class of XXXX
+                </h4>
+            </div>
+        </div>
+    );
+
+}
+
+
+
+
 function ChooseHeader(props)
 {
     if (props.DashboardType==='student' || props.DashboardType==='studentRep')
@@ -278,6 +308,14 @@ function ChooseHeader(props)
             </>
         );
     }
+
+    else if (props.DashboardType==='reps_contacts')
+    {
+        return (
+            <>
+              <RepsContactsHeader/>
+          );
+     }
 
     else if (props.DashboardType==='complaint')
     {

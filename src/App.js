@@ -1,5 +1,8 @@
 import React from 'react';
 import './App.css';
+
+
+import RepsContactsDashboard from './pages/RepsContactsDashboard.js'
 import ComplaintDashboard from './pages/ComplaintDashboard.js'
 import StudentDashboard from './pages/StudentDashboard.js'
 import RepDashboard from './pages/RepDashboard.js';
@@ -29,6 +32,7 @@ import MainComponent from './Components/MainComponentTry.js';
 import StudentClubForms from './pages/StudentClubForms.js';
 
 
+
 function App() {
 
   return (
@@ -45,7 +49,11 @@ function App() {
             <Route path="/AdminsSettings" element={<StudentSetting DashboardType='adminsettings' />} />
             <Route path="/student/studentclubs" element={<StudentDashboard DashboardType='viewstudentclubs' />} />
             <Route path="/rep/studentclubs" element={<RepDashboard DashboardType='viewstudentclubs' />} />
+
+            <Route path="/reps_contacts" element={<RepsContactsDashboard/>} />
+
             <Route path="/" element={<LoginSignup/>} />
+
             <Route path="/Club" element={<LoginSignupClub />} />
             <Route path="/Admin" element={<LoginAdmin />} />
             <Route path="/AdminDashboard/:admin_id" element={<AdminDashboard />} />
@@ -62,7 +70,9 @@ function App() {
             <Route path="/StudentClub/Forms" element={<StudentClubForms DashboardType='StudentClubForms'/>} />
 
           </Routes>
+
         </Router> 
+
       </div>
       <div className='Mobile'>
        <h2>

@@ -1,4 +1,6 @@
+
 import { dbInstance } from './database/connection.js';
+
 import express from 'express';
 import posts from './routes/posts.js';
 import ViewStudentClubs from './routes/viewstudentclubs.js'
@@ -21,6 +23,8 @@ import { signup_router } from './database/signup.js';
 import { major_router } from './database/majors.js';
 import { admin_router } from './database/Admin.js';
 import { club_router } from './database/studentClub.js';
+import { reps_contacts_router } from './database/Contacts.js';
+
 import { Getrepreqstatus } from './database/GetStatusOfRepReq.js';
 import { NewRepReq } from './database/MakeRepReq.js';
 import { GetClubMembers } from './database/GetAllClubmembers.js';
@@ -68,13 +72,18 @@ app.use(
     app.use('/', admin_router);
     app.use('/', club_router);
     app.use('/', logo);
+
+    app.use('/', reps_contacts_router );
+
     app.use('/', requests_router);
     app.use('/', stats_router);
 ////////////////////////////////////////////////////
     app.use('/', Getrepreqstatus);
     app.use('/', NewRepReq);
+
     app.use('/', GetClubMembers);
     app.use('/', GetClubMembersperyear);
+
     app.use('/api/posts/', posts);
     app.use('/api/courses/', courses);
     app.use('/api/major/', major);

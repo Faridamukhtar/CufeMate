@@ -1,0 +1,45 @@
+.Container
+{
+    width: 1022px;
+    height: 120px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    border: 1px solid #AD9EF4;
+    background: #FFF;
+    margin-top:10px;
+    margin-bottom:10px;
+
+}
+
+.Name
+{
+    width: 500.488px;
+    height: 26.657px;
+    flex-shrink: 0;
+    color: #362c70;
+    font-family: Inter;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-top:20px;
+    margin-bottom:5px;
+    margin-left:20px;
+}
+
+.Email
+{
+    width: 650px;
+    height: 36px;
+    flex-shrink: 0;
+    color: #282249;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top:10px;
+    margin-bottom:5px;
+    margin-left:50px;
+}
+

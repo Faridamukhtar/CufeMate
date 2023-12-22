@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import ChooseHeader from "./Header.js";
 import './Dashboard.css';
+import Posts from './Posts';
+import Contacts from './Contacts.js';
 import WriteComplaint from "./WriteComplaint.js";
 import PreviousComplaints from "./PreviousComplaints.js";
 import PostSection from './Posts.js';
@@ -37,6 +39,18 @@ function ViewStudentClubsBody (props)
 }
 
 
+
+
+function RepsContactsBody(props)
+{
+    return (
+        <div className='RepsContactsBody'>
+            <Contacts DashboardType={props.DashboardType}/>
+        </div>
+
+    );
+} 
+
 function StudentClubFormsBody (props)
 {
     return (
@@ -45,6 +59,7 @@ function StudentClubFormsBody (props)
        </div>
     );
 }
+
 
 function ComplaintBody(props)
 {
@@ -111,6 +126,7 @@ function ViewPostReqBody(props)
     );
 }
 
+
 function DashboardBody(props)
 {
     if (props.DashboardType==='student' || props.DashboardType==='studentRep')
@@ -121,6 +137,17 @@ function DashboardBody(props)
             </>
         );
     }
+
+    else if (props.DashboardType==='reps_contacts')
+    {
+        return(
+            <>
+                <RepsContactsBody DashboardType={props.DashboardType}/>
+            </>
+
+        );
+    }
+
     else if (props.DashboardType==='viewstudentclubs')
     {
         return (

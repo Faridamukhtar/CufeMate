@@ -2,6 +2,7 @@
 import 'dotenv/config'
 import pgInstance from 'pg';
 
+
 const dbConnect = async () =>
 {
   const {Client} =pgInstance;
@@ -23,6 +24,7 @@ const dbConnect = async () =>
 return client;  
 }
 export const dbInstance = await dbConnect();
+
 
 
 /*import 'dotenv/config';
@@ -53,3 +55,4 @@ const dbConnect = async () => {
 };
 
 export const dbInstance = await dbConnect();*/
+
