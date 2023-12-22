@@ -1,7 +1,9 @@
 import React, { useState} from "react";
 import AdminBar from "../Components/adminBar.js";
+import { useParams } from 'react-router-dom';
 
 const AddAdmin = () => {
+    const { admin_id } = useParams();//pass AdminID to the component
     const [AdminID, setAdminID] = useState('');
     const [Fname, setFname] = useState('');
     const [email, setEmail] = useState('');
@@ -50,8 +52,11 @@ const AddAdmin = () => {
       };
     return (
           <div className="Layout">
-          <AdminBar/>
+          <div className="bar">
+                <AdminBar props={admin_id}/>
+            </div> 
             <div className="Dashboard">
+            <div className="MainTitle">Add Admin Form</div> 
             <input
             type="text"
             placeholder="Admin ID"

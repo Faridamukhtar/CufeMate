@@ -1,0 +1,38 @@
+to do:
+* backend:
+
+❓ Fill Tables 
+❓ E- Stored procedures 
+        parameterised:
+            - rep activityMetric, par-> month (in stats.js)
+            - get clubInfo in (Admin.js)
+        non-parameterised:
+            - Major stat (in stats.js)
+            - detailed rep (in stats.js)
+       
+F- CSS for all pages and organise layout 
++ apply sidebar css to adminbar & better info box
+    ✅requests
+    all users
+    ✅adminbar
+
+* frontend
+✅ C- stats (pie charts? bar charts? reports?)
+    1- club stats      
+        ✅-> managerial : avg rating per year (bar charts), each bar for a club
+    2- students stats   
+        ✅ detailed : each rep posts and date 
+        ✅-> managerial : avg rep activity per week bar chart -> get month/4
+        ✅ managerial : count of students in each major (pie chart maybe) 
+
+week 13:
+* frontend
+B- ❌-> this will have info button in each row to get all info about user from : user table , all relations
+E- (❌+ previous requests tab)
+
+
+
+
+
+
+

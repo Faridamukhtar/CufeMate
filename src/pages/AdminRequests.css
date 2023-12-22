@@ -1,0 +1,27 @@
+.requests{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.reps
+.clubs{
+    width: 95%;
+}
+
+
+.Titles2{
+    font-family: Inter;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -1.44px;
+    text-transform: capitalize;
+    background: linear-gradient(180deg, #231E3F 0%, #322958 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

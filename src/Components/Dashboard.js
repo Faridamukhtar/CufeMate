@@ -6,11 +6,15 @@ import PreviousComplaints from "./PreviousComplaints.js";
 import PostSection from './Posts.js';
 import ViewStudentClubs from './ViewStudentClubs.js';
 import RepsViewComplaints from './RepsViewComplaints.js';
+
 import ChooseCourse from './ChooseCourse.js';
 import ViewPreviousPosts from './ViewPreviousPosts.js';
 import ViewPreviousReqPosts from './ViewPreviousReqPosts.js';
 import ChooseCourseReq from './ChooseCourseReq.js';
 import ViewPostReq from './ViewPostReq.js';
+
+
+import StudentClubForms from './StudentClubForms.js'
 
 
 
@@ -27,11 +31,20 @@ function ViewStudentClubsBody (props)
 {
     return (
         <div className='ViewStudentClubsBody'>
-            <ViewStudentClubs studentType={props.studentType}/>
+            <ViewStudentClubs/>
        </div>
     );
 }
 
+
+function StudentClubFormsBody (props)
+{
+    return (
+        <div className='ViewStudentClubsBody'>
+            <StudentClubForms studentType={props.studentType}/>
+       </div>
+    );
+}
 
 function ComplaintBody(props)
 {
@@ -133,6 +146,7 @@ function DashboardBody(props)
             </>
         );
     }
+
     else if (props.DashboardType==='writepost')
     {
         return (
@@ -155,6 +169,13 @@ function DashboardBody(props)
         return (
             <>
                <ViewPostReqBody DashboardType={props.DashboardType}/>
+
+    else if (props.DashboardType==='StudentClubForms')
+    {
+        return (
+            <>
+              <StudentClubFormsBody DashboardType={props.DashboardType}/>
+
             </>
         );
     }

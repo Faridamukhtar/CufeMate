@@ -1,12 +1,12 @@
-.formsWrapper
+.formsWrapperViewSC
 {
     border-radius: 16px;
     border: 1px solid #FFF;
     background: #ffffffad;
     padding: 3%;
     box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.10);
-    width: 95%;
     min-height: 100vh;
+    width: 95%;
 }
 
 
@@ -17,9 +17,6 @@
 
 .form
 {
-    border-radius: 16px;
-    border: 1px solid #AD9EF4;
-    background: #FFF;
     padding: 3%;
     margin-bottom: 15px;
 }
@@ -92,7 +89,14 @@
     justify-content: space-between;
 }
 
-.Content
+.ContentWrap
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ContentClub
 {
     margin-top: 10px;
 
@@ -149,36 +153,89 @@
 {
     display: flex;
     justify-content: space-between;
-    background-color: #ac9ef479;
+    background-color: #ac9ef457;
     width:300px;
     align-items: center;
     padding: 7px;
     border-radius: 7px;
 }
 
-.club:hover
-{
-    cursor: pointer;    
-
-}
-
 .club .InfoSVG:hover
 {
     opacity: 0.7;
+    cursor: pointer;    
 }
 
 .StudentClubDetails
 {
     display: flex;
+    align-items: flex-start;
+    background-color: #ac9ef417;
+    border-radius: 0px 0px 16px 16px;
+    padding: 20px;
+
 }
 
 .SClogo
 {
-    width:25%;
-    clip-path: circle();
+    clip-path: circle(45%);
+    mix-blend-mode:luminosity
+
+}
+
+.SClogoWrapper
+{
+    width:150px;
+    padding-right: 50px;
+
 }
 
 .SClogo img
 {
     width: 100%;
+}
+
+.ClubformWrapper
+{
+    border-radius: 16px;
+    border: 1px solid #AD9EF4;
+    background: #FFF;
+}
+
+.StudentClubDetails h4
+{
+    font-weight: 800;
+}
+
+.SCcontent
+{
+    margin-top: 10px;
+}
+
+.Rating
+{
+    display: flex;
+    margin-top: 10px;
+    width:20%;
+    justify-content: space-between;
+
+
+}
+
+.SCDescription
+{
+    width:70%;
+}
+
+.Rating h5
+{
+    font-weight: 600;
+    padding: 10%;
+    padding-left: 0%;
+}
+
+.rating1, .rating2, .rating3, .rating4, .rating5
+{
+    padding-right: 5px;
+    cursor: pointer;
 }

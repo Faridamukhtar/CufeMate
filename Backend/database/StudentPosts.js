@@ -4,30 +4,37 @@ export const getPosts = async (req, res) => {
 
     const FilterPosts = (author, major, course, std_id) =>
     {
-      let CurrentQuery=` 
-      c.course_name in (
-        SELECT course_name FROM student, course, takes WHERE course.course_id=takes.course_id
-        AND takes.std_id=student.std_id AND Student.std_id = ${std_id} 
-      )`;
-      if (author!=='' || course!=='')
+      let CurrentQuery="";
+
+      if (course!=='')
       {
-        if (course!=='')
-        {
-          CurrentQuery=`c.course_name = '${course}' ` 
-        }
-        if (author!=='')
-        {
-          CurrentQuery+=`AND ((strpos(Fname,'${author}')>0) OR (strpos(Lname,'${author}')>0)) `
-        }
-      }
-      else if (major!=='')
-      {
-        CurrentQuery+=`OR rtm.major_id = '${major}' ` 
+        CurrentQuery+=`c.course_name = '${course}' ` 
       }
       else
       {
-        CurrentQuery+="";
+        if (major!=='')
+        {
+          CurrentQuery+='('
+        }
+        
+        CurrentQuery+=
+        ` 
+        c.course_name in (
+          SELECT course_name FROM student, course, takes WHERE course.course_id=takes.course_id
+          AND takes.std_id=student.std_id AND Student.std_id = ${std_id} 
+        )`;
+
+        if (major!=='')
+        {
+          CurrentQuery+=`OR rtm.major_id = '${major}' ) ` 
+        }
       }
+
+      if (author!=='')
+      {
+        CurrentQuery+=`AND ((strpos(Fname,'${author}')>0) OR (strpos(Lname,'${author}')>0)) `
+      }
+
       return (CurrentQuery);
     
     }
@@ -120,6 +127,88 @@ export const getMajorAuthors = async (req, res) => {
 
       const result = await dbInstance.query(query);
       res.status(200).json({ success: true, message: 'Getting Major Authors', result: result.rows});
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+}
+
+export const getLikesNo = async(req, res)=>
+{
+   
+  const { post_id } = req.params;
+
+  let query = `
+  SELECT COUNT(*) AS "count"
+  FROM likes
+  WHERE post_id = ${post_id}
+  `
+    try {
+
+      const result = await dbInstance.query(query);
+      res.status(200).json({ success: true, message: 'Getting No. of likes', result: result.rows});
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+}
+
+export const getDidLike = async(req, res)=>
+{
+   
+  const {post_id, std_id} = req.params;
+
+  let query = `
+  SELECT *
+  FROM likes
+  WHERE post_id = ${post_id} AND std_id = ${std_id}
+  `
+    try {
+
+      const result = await dbInstance.query(query);
+      res.status(200).json({ success: true, message: 'Getting Did Like', result: result.rows});
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+}
+
+export const like = async(req, res)=>
+{
+   
+  const {post_id, std_id} = req.params;
+
+  let query = `
+  INSERT INTO likes (post_id, std_id)
+  VALUES (${post_id}, ${std_id})
+  `
+    try {
+
+      const result = await dbInstance.query(query);
+      res.status(200).json({ success: true, message: 'Liked', result: result.rows});
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+}
+
+export const unlike = async(req, res)=>
+{
+   
+  const {post_id, std_id} = req.params;
+
+  let query = `
+  DELETE FROM likes
+  WHERE post_id=${post_id} AND std_id= ${std_id}
+  `
+    try {
+
+      const result = await dbInstance.query(query);
+      res.status(200).json({ success: true, message: 'Unliked', result: result.rows});
 
     } catch (error) {
       console.error(error);
