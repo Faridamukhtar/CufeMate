@@ -196,6 +196,9 @@ function DashboardBody(props)
         return (
             <>
                <ViewPostReqBody DashboardType={props.DashboardType}/>
+            </>
+        );
+    }
 
     else if (props.DashboardType==='StudentClubForms')
     {

@@ -266,6 +266,7 @@ function RepsContactsHeader()
                 <h3>
                     Reps of class 2026, major MEE.
                 </h3>
+            </div>
             <div className="Info">
                 <h4 className='StudentName'>
                     Name
@@ -314,6 +315,7 @@ function ChooseHeader(props)
         return (
             <>
               <RepsContactsHeader/>
+             </>
           );
      }
 
