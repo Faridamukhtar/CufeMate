@@ -116,7 +116,7 @@ export async function Rate_Club(rating, std_id, std_club_id)
       body: JSON.stringify({
         rating: rating || 0,
         std_id: std_id,
-        std_club_id: std_club_id
+        std_club_id: parseInt(std_club_id)
       }),
     });
 
