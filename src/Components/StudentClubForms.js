@@ -2,7 +2,7 @@ import React, {useState, useEffect, Image} from "react";
 import './StudentClubForms.css';
 import { getStudentClubForms, getStudentApplicants, updateApplicantStatus, SubmitFormChanges, DeleteForm, AddMember} from "../CustomHooks/StudentClubsHooks.js";
 
-const SCData = {std_club_name:"CU Eco-Racing team", std_club_id:1, email:'CUERT@gmail.com'}; //get logged in student data
+const SCData = {std_club_name:"soso w toto", std_club_id:12, email:'CUERT@gmail.com'}; //get logged in student data
 
 
 function ApplicationStatus(props)

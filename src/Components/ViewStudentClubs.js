@@ -251,7 +251,7 @@ function StudentClubOptions(props)
 
         return(
             <>
-                <option value=" ">
+                <option value={0}>
                     All Clubs' Announcements
                 </option>
                 {OptionsSelection}
@@ -269,7 +269,7 @@ function StudentClubOptions(props)
 
 function Displayforms(props)
 {
-    if (props?.formArray[0]?.form_id>0)
+    if (props?.formArray[0])
     {
         const listItems = props.formArray.map((form) => <li><StudentClubForm form_title={form.form_title} std_club_id={form.std_club_id} std_club_name={form.std_club_name} requirements={form.requirements} email= {form.email} form_id={form.form_id} about={form.about} logo={form.logo}/></li>);
         return listItems;
@@ -285,7 +285,7 @@ function Displayforms(props)
 function FormsSection()
 {
     const [formsContent, setFormsContent] = useState([{std_club_id:0, std_club_name:"", email:"", about:"", logo:"",form_id:0, form_title:'', requirements:'', form_date:''}])
-    const [chosenStudentClub, setChosenStudentClub] = useState(" ");
+    const [chosenStudentClub, setChosenStudentClub] = useState(0);
     const [StudentClubs, setStudentClubs] = useState([{std_club_id:0, std_club_name:""}]);
 
     useEffect(()=>
@@ -311,8 +311,9 @@ function FormsSection()
     useEffect(()=>
     {
        const onChangeSelection = async()=>
-       {
+       { 
             const data = await getStudentClubForms(chosenStudentClub);
+            console.log(chosenStudentClub);
             setFormsContent(data);
        }
        
@@ -326,9 +327,14 @@ function FormsSection()
         return (
         <div className="FiltersClub">
             <select className="FilterClub"
-                defaultValue=" "
+                defaultValue={0}
                 value={chosenStudentClub}
-                onChange={(e)=>setChosenStudentClub(e.target.value)}>
+                onChange={(e)=>
+                {
+                    console.log('change', e.target.value)
+                    setChosenStudentClub(parseInt(e.target.value))
+                }}
+                >
                 <StudentClubOptions options={StudentClubs}/>
             </select>
         </div>
