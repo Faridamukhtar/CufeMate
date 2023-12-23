@@ -19,12 +19,15 @@ GetClubMembersperyear.get('/api/GetClubMembersperyear', async (req, res) => {
     AND ismember.yr = $2
     */
   try {
-    const result = await dbInstance.query('SELECT COUNT(*) FROM ismember WHERE ismember.std_club_id = $1 AND ismember.yr = $2  ;', [id,year]);
+    const result = await dbInstance.query('SELECT get_members_per_year ($1,$2) As Count;', [id,year]);
+    console.log(result.rows)
     res.json(result.rows);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+
 
 export { GetClubMembersperyear };
