@@ -3,7 +3,7 @@ import './Posts.css';
 import {getposts,fetchStudentCourses, fetchMajorAuthors, Like, Unlike, DidLike, NoLikes} from "../CustomHooks/PostsHooks.js";
 import {LikeSVG} from "../svg/SvgFiles.js"
 
-const studentData = {fname:"Ahmed", major_id:'CCE', std_id:1, class:'2026'}; //get logged in student data
+const studentData = {fname:"Ahmed", major_id:'CCEC', std_id:1, class:'2026'}; //get logged in student data
 
 function HandleLikes(props)
 {
@@ -77,13 +77,13 @@ function Post(props)
             <div className="PostHeader">
                 <div className="TitlePost">
                     <h2>
-                        {props.Course}
+                        {props.Course && props.Course!=="" ? props.Course : props.Major} Announcement
                     </h2>                
                 </div>
-                <div className="Categories">
+                <div className="CategoriesPost">
                     <div className="Course">
                         <h6>
-                            {props.Course}
+                        {props.Course && props.Course!=="" ? props.Course : props.Major}
                         </h6> 
                     </div>
                     <div className="Author">
@@ -205,7 +205,7 @@ function DisplayPosts(props)
 //Fetch Posts
 function PostSection(props)
 {
-    const [postsContent, setPostsContent]=useState([{fname:"",lname:"",post_date:"",content:"",post_id:0,course_name:""}]);
+    const [postsContent, setPostsContent]=useState([{fname:"",lname:"",post_date:"",content:"",post_id:0,course_name:"", major_id:""}]);
     const [StudentCourses, setStudentCourses]=useState([{course_name:"", course_id:""}]);
     const [Authors, setAuthors]=useState([{fname:"", lname:"", std_id:""}]);
     const [ChosenAuthor, setChosenAuthor] = useState('');
@@ -243,13 +243,13 @@ function PostSection(props)
     {   
         return (
         <div className="Filters">
-            <select className="Filter"
+            <select className="FilterPost"
             defaultValue=""
             value={ChosenCourse}
             onChange={(e)=>setChosenCourse(e.target.value)}>
                 <CourseOptions options={props.courses}/>
             </select>
-            <select className="Filter" 
+            <select className="FilterPost" 
             defaultValue=""
             value={ChosenAuthor}
             onChange={(e)=>setChosenAuthor(e.target.value)}>

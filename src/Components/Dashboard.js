@@ -1,12 +1,23 @@
 import React, { useState } from "react";
 import ChooseHeader from "./Header.js";
 import './Dashboard.css';
+import Posts from './Posts';
+import Contacts from './Contacts.js';
 import WriteComplaint from "./WriteComplaint.js";
 import PreviousComplaints from "./PreviousComplaints.js";
 import PostSection from './Posts.js';
 import ViewStudentClubs from './ViewStudentClubs.js';
 import RepsViewComplaints from './RepsViewComplaints.js';
+
+import ChooseCourse from './ChooseCourse.js';
+import ViewPreviousPosts from './ViewPreviousPosts.js';
+import ViewPreviousReqPosts from './ViewPreviousReqPosts.js';
+import ChooseCourseReq from './ChooseCourseReq.js';
+import ViewPostReq from './ViewPostReq.js';
+
+
 import StudentClubForms from './StudentClubForms.js'
+
 
 
 function StudentBody(props)
@@ -28,6 +39,18 @@ function ViewStudentClubsBody (props)
 }
 
 
+
+
+function RepsContactsBody(props)
+{
+    return (
+        <div className='RepsContactsBody'>
+            <Contacts DashboardType={props.DashboardType}/>
+        </div>
+
+    );
+} 
+
 function StudentClubFormsBody (props)
 {
     return (
@@ -36,6 +59,7 @@ function StudentClubFormsBody (props)
        </div>
     );
 }
+
 
 function ComplaintBody(props)
 {
@@ -62,6 +86,46 @@ function RepsViewComplaintsBody(props)
     );
 }
 
+function WritePostBody(props)
+{
+    return(
+        <div className="WritePostBody">
+            <div className="ChooseCourse">
+                <ChooseCourse Dashboard={props.DashboardType}/>
+            </div>
+            
+             <div className="ViewPreviousPosts">
+                <ViewPreviousPosts Dashboard={props.DashboardType}/>
+             </div>
+        </div>
+
+    );
+}
+
+function ReqWritePostBody(props)
+{
+    return (
+        <div className="ReqWritePostBody">
+            <div className="ChooseCourse">
+                <ChooseCourseReq Dashboard={props.DashboardType}/>
+            </div>
+            
+             <div className="ViewPreviousReqPosts">
+                <ViewPreviousReqPosts Dashboard={props.DashboardType}/>
+             </div>
+        </div>
+    );
+}
+
+function ViewPostReqBody(props)
+{
+    return (
+            <div className='ViewPostReqBody'>
+                <ViewPostReq Dashboard={props.DashboardType}/>
+            </div>
+    );
+}
+
 
 function DashboardBody(props)
 {
@@ -73,6 +137,17 @@ function DashboardBody(props)
             </>
         );
     }
+
+    else if (props.DashboardType==='reps_contacts')
+    {
+        return(
+            <>
+                <RepsContactsBody DashboardType={props.DashboardType}/>
+            </>
+
+        );
+    }
+
     else if (props.DashboardType==='viewstudentclubs')
     {
         return (
@@ -98,11 +173,39 @@ function DashboardBody(props)
             </>
         );
     }
+
+    else if (props.DashboardType==='writepost')
+    {
+        return (
+            <>
+               <WritePostBody DashboardType={props.DashboardType}/>
+            </>
+        );
+    }
+    else if (props.DashboardType==='reqwritepost')
+    {
+        return (
+            <>
+              <ReqWritePostBody DashboardType={props.DashboardType}/>
+            </>
+
+        );
+    }
+    else if (props.DashboardType==='viewpostreq')
+    {
+        return (
+            <>
+               <ViewPostReqBody DashboardType={props.DashboardType}/>
+            </>
+        );
+    }
+
     else if (props.DashboardType==='StudentClubForms')
     {
         return (
             <>
               <StudentClubFormsBody DashboardType={props.DashboardType}/>
+
             </>
         );
     }

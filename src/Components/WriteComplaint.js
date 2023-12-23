@@ -31,7 +31,7 @@ function WriteComplaint(props)
 
     return (
   <div>
-     <div className ="Title">
+     <div className ="ComplaintPageTitle">
               <h3>
                 Write your complaint here
               </h3>       
@@ -41,15 +41,15 @@ function WriteComplaint(props)
             <div>
                 <ComplaintTitleText placeholderText=" Add title" setInputValue={setTitle} inputValue={Tittle} />
             </div>  
-            <hr className="UpperLine"/>
+            <hr className="ComplaintUpperLine"/>
             <div>   
                 <ComplaintInputText placeholderText=" Add content" setInputValue={setContent} inputValue={Conttent} />
             </div>    
-            <hr className= "LowerLine"/>
-            <div className="CharacterCount">
+            <hr className= "ComplaintLowerLine"/>
+            <div className="ComplaintCharacterCount">
                 <p > {Conttent.length} : 500  </p>
             </div>
-            <button className="SubmitButton" onClick={() => handleSubmit(Tittle, Conttent)}> <h5 className="SubmitText">Submit</h5></button>
+            <button className="ComplaintSubmitButton" onClick={() => handleSubmit(Tittle, Conttent)}> <h5 className="ComplaintSubmitText">Submit</h5></button>
         
            </div>        
        </div>

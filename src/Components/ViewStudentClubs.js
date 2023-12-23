@@ -3,7 +3,7 @@ import './ViewStudentClubs.css';
 import { getStudentClubForms, Apply_To_Club, Withdraw_Application, ApplicantStatus, Rate_Club, getRateStatus } from "../CustomHooks/StudentClubsHooks.js";
 import {InfoSVG, StarSVGFilled, StarSVGUnfilled} from "../svg/SvgFiles.js"
 
-const studentData = {fname:"Ahmed", lname:"Mohamed", major_id:'CCE', std_id:1, class:'2026'}; //get logged in student data
+const studentData = {fname:"Ahmed", lname:"Mohamed", major_id:'CCEC', std_id:123, class:2026}; //get logged in student data
 function Stars(props) {
     return (
       <>
@@ -38,8 +38,10 @@ function StudentClubDetails(props)
          console.log('Rating:', RatingN);
          await Rate_Club(RatingN, studentData.std_id, props.std_club_id)
         }
- 
-        setRating();
+        if (RatingN!==0)
+        {
+            setRating();
+        }
 
     },[RatingN])
 
@@ -48,11 +50,9 @@ function StudentClubDetails(props)
        const onMount = async()=>
        {    
             const data = await getRateStatus(studentData.std_id, props.std_club_id);
-            console.log(data);
-            if (data?.length>0 && data[0]?.rating!==undefined && data[0]?.rating!==null)
+            if (data!==undefined && data!==null)
             {
-                console.log(data);
-                setRatingN(data[0]?.rating)
+                setRatingN(parseInt(data))
             }
             else
             {
@@ -112,7 +112,11 @@ function ChooseText(props)
     {
         return ('Rejected')
     }
-    return ('Apply');
+    if (props?.applied===-1)
+    {
+        return ('Apply');
+    }
+    return ('');
 }
 
 
@@ -139,7 +143,7 @@ function Apply(props)
 
 function StudentClubForm(props)
 {
-    const [applied, setApplied]=useState(-1);
+    const [applied, setApplied]=useState(-2);
     const [InsertedApply, setInsertedApply] = useState(-1);
     const [InfoHidden, SetInfoHidden] = useState(true);
 
@@ -154,10 +158,10 @@ function StudentClubForm(props)
        const onMount = async()=>
        {    
             const data = await ApplicantStatus(props.form_id, studentData.std_id)
-            if (data?.length>0 && data[0]?.stat!==undefined && data[0]?.stat!==null)
+            if (data!==undefined && data!==null)
             {
-                setApplied(data[0]?.stat);
-                setInsertedApply(data[0]?.stat);
+                setApplied(parseInt(data));
+                setInsertedApply(parseInt(data));
             }
             else
             {
@@ -168,7 +172,7 @@ function StudentClubForm(props)
 
        onMount();
 
-},[]);
+},[props]);
 
 useEffect(()=>
 {
@@ -269,7 +273,7 @@ function Displayforms(props)
 {
     if (props?.formArray[0]?.form_id>0)
     {
-        const listItems = props.formArray.map((form) => <li><StudentClubForm form_title={form.form_title} std_club_id={form.std_club_id} std_club_name={form.std_club_name} requirements={form.requirements} email= {form.email} form_id={form.form_id} about={form.about} logo={form.logo}/></li>);
+        const listItems = props.formArray.map((form) => <li><StudentClubForm form_title={form.form_title} std_club_id={form.std_club_id} std_club_name={form.std_club_name} requirements={form.requirements} email= {form.email} form_id={form.form_id} about={form.about} logo={form.logo} chosenStudentClub={props.chosenStudentClub}/></li>);
         return listItems;
     }
     else
@@ -294,8 +298,9 @@ function FormsSection()
             let studentclubs=[{std_club_id:0, std_club_name:""}];
             data.forEach((option)=>
             {
-                studentclubs = ([...studentclubs,{std_club_id:option.std_club_id, std_club_name:option.std_club_name}]);
-                console.log('studentclubs',studentclubs);
+                if (!studentclubs.find((club) => club.std_club_id === option.std_club_id)) {
+                  studentclubs= ([...studentclubs,{std_club_id:option.std_club_id, std_club_name:option.std_club_name}]);
+                }
             })
             studentclubs.shift();
             setStudentClubs(studentclubs);
@@ -335,7 +340,7 @@ function FormsSection()
 
 
     return (
-        <div className="formsWrapper">
+        <div className="formsWrapperViewSC">
             <div className="LatestformsTitle">
                 <h3>
                     Latest Student Club Announcements
@@ -346,7 +351,7 @@ function FormsSection()
                 <Filters options={StudentClubs}/>
             </div>
             <div className="forms">
-                <ul><Displayforms formArray={formsContent}/></ul>
+                <ul><Displayforms formArray={formsContent} chosenStudentClub={chosenStudentClub}/></ul>
             </div>
         </div>
     );

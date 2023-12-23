@@ -8,7 +8,7 @@ const RepsComplaintsDashboard =()=>
     return (
         <div className="ComplaintPage">
             <div className="sidebar">
-                <Sidebar SidebarType='rep'/>
+                <Sidebar SidebarType='studentRep'/>
             </div>
             <div className="Dashboard">
                 <Dashboard DashboardType='repsviewcomplaints'/>

@@ -1,5 +1,6 @@
 import React from "react";
 import './Header.css';
+import ViewPostReqDashboard from "../pages/ViewPostReqDashboard";
 
 const studentData = {fname:"Ahmed", lname:"Mohamed", major_id:'CCE', std_id:1, class:'2026'}; //get logged in student data
 const SCData = {std_club_name:"CU Eco-Racing team", std_club_id:1, email:'CUERT@gmail.com'}; //get logged in student data
@@ -93,6 +94,7 @@ function StudentClubSettingsHeader()
 }
 
 
+
 function ComplaintHeader()
 {
     return (
@@ -182,6 +184,103 @@ function RepsViewComplaintsHeader()
     );
 }
 
+function WritePostHeader()
+{
+    return (
+        <div className="StudentHeader">
+            <div className="greeting">
+                <h1>
+                    Write a Post
+                </h1>
+            </div>
+            <div className="Info">
+                <h4 className='StudentName'>
+                    Name
+                </h4>
+                <h4>
+                    Class of XXXX
+                </h4>
+            </div>
+        </div>
+
+    );
+}
+
+function ReqWritePostHeader()
+{
+    return (
+        <div className="StudentHeader">
+            <div className="greeting">
+                <h1>
+                   Request To Write a Post
+                </h1>
+            </div>
+            <div className="Info">
+                <h4 className='StudentName'>
+                    Name
+                </h4>
+                <h4>
+                    Class of XXXX
+                </h4>
+            </div>
+        </div>
+
+    ); 
+}
+
+function ViewPostReqHeader()
+{
+    return (
+        <div className="StudentHeader">
+            <div className="greeting">
+                <h1>
+                   View Students Post Requests
+                </h1>
+            </div>
+            <div className="Info">
+                <h4 className='StudentName'>
+                    Name
+                </h4>
+                <h4>
+                    Class of XXXX
+                </h4>
+            </div>
+        </div>
+
+    ); 
+}
+
+
+
+
+
+function RepsContactsHeader()
+
+{
+    return (
+        <div className="StudentHeader">
+            <div className="greeting">
+                <h1>
+                    Contacts
+                </h1>
+                <h3>
+                    Reps of class 2026, major MEE.
+                </h3>
+            </div>
+            <div className="Info">
+                <h4 className='StudentName'>
+                    Name
+                </h4>
+                <h4>
+                    Class of XXXX
+                </h4>
+            </div>
+        </div>
+    );
+
+}
+
+
 
 
 function ChooseHeader(props)
@@ -210,6 +309,15 @@ function ChooseHeader(props)
             </>
         );
     }
+
+    else if (props.DashboardType==='reps_contacts')
+    {
+        return (
+            <>
+              <RepsContactsHeader/>
+             </>
+          );
+     }
 
     else if (props.DashboardType==='complaint')
     {
@@ -244,6 +352,33 @@ function ChooseHeader(props)
             </>
         )
     }
+
+
+    else if (props.DashboardType==='writepost')
+    {
+        return (
+             <>
+                <WritePostHeader/>
+             </>
+        );
+    }
+    else if (props.DashboardType==='reqwritepost')
+    {
+        return (
+           <>
+               <ReqWritePostHeader/>
+           </>
+        );
+    }
+    else if (props.DashboardType==='viewpostreq')
+    {
+        return (
+            <>
+               <ViewPostReqHeader/>
+            </>
+        );
+    }
+
     else if (props.DashboardType==='StudentClubForms')
     {
         return (
@@ -252,6 +387,7 @@ function ChooseHeader(props)
             </>
         )
     }
+
 }
 
 export default ChooseHeader;

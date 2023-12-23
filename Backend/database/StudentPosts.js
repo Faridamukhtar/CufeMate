@@ -4,30 +4,37 @@ export const getPosts = async (req, res) => {
 
     const FilterPosts = (author, major, course, std_id) =>
     {
-      let CurrentQuery=` 
-      c.course_name in (
-        SELECT course_name FROM student, course, takes WHERE course.course_id=takes.course_id
-        AND takes.std_id=student.std_id AND Student.std_id = ${std_id} 
-      )`;
-      if (author!=='' || course!=='')
+      let CurrentQuery="";
+
+      if (course!=='')
       {
-        if (course!=='')
-        {
-          CurrentQuery=`c.course_name = '${course}' ` 
-        }
-        if (author!=='')
-        {
-          CurrentQuery+=`AND ((strpos(Fname,'${author}')>0) OR (strpos(Lname,'${author}')>0)) `
-        }
-      }
-      else if (major!=='')
-      {
-        CurrentQuery+=`OR rtm.major_id = '${major}' ` 
+        CurrentQuery+=`c.course_name = '${course}' ` 
       }
       else
       {
-        CurrentQuery+="";
+        if (major!=='')
+        {
+          CurrentQuery+='('
+        }
+        
+        CurrentQuery+=
+        ` 
+        c.course_name in (
+          SELECT course_name FROM student, course, takes WHERE course.course_id=takes.course_id
+          AND takes.std_id=student.std_id AND Student.std_id = ${std_id} 
+        )`;
+
+        if (major!=='')
+        {
+          CurrentQuery+=`OR rtm.major_id = '${major}' ) ` 
+        }
       }
+
+      if (author!=='')
+      {
+        CurrentQuery+=`AND ((strpos(Fname,'${author}')>0) OR (strpos(Lname,'${author}')>0)) `
+      }
+
       return (CurrentQuery);
     
     }

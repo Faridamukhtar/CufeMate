@@ -1,5 +1,5 @@
 import express from "express";
-import {GetStudentApplicants, UpdateApplicantStatus, UpdateForm,deleteForm } from "../database/ViewStudentClubs.js";
+import {GetStudentApplicants, UpdateApplicantStatus, UpdateForm,deleteForm,AddMember} from "../database/ViewStudentClubs.js";
 
 const router = express.Router();
 
@@ -10,6 +10,10 @@ router.post("/UpdateApplicantStatus/", (req, res)=> UpdateApplicantStatus(req,re
 router.post("/SubmitFormChanges/", (req, res)=> UpdateForm(req,res));
 
 router.get("/DeleteForm/:form_id/", (req, res)=> deleteForm(req,res));
+
+router.post("/AddMember/", (req, res)=> AddMember(req,res));
+
+
 
 
 
