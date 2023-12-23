@@ -53,8 +53,8 @@ const ClubRequests = ({ club,adminID }) => {
     console.log(message);
     return (
       <div className="info-textbox">
-        <p>Email: {message[0].email}</p>
-        <p>Password: {message[0].passw}</p>
+        <p>Email: {message.email}</p>
+        <p>Password: {message.passw}</p>
       </div>
     );
   };
@@ -64,13 +64,14 @@ const ClubRequests = ({ club,adminID }) => {
       <div className='name'> Club Name: {`${club.std_club_name}`}<br/> </div>
       <div className='details'> <br/> {`Club ID: ${club.std_club_id}`}</div>
       <div className='buttons'>
-        <div className='decisionButtons'></div>
+        <div className='decisionButtons'>
         <button onClick={() => handleRejectClick(club.std_club_id,2,adminID)}>Reject</button>
         <button onClick={() => handleApproveClick(club.std_club_id,1,adminID)}>Approve</button>
         </div>
         <div className='infoButtons'>
         <button onClick={() => handleInfoClick(club.std_club_id)}>Show Info</button>
         <button onClick={handleHideInfoClick}>Hide Info</button>
+        </div>
         {infoVisible && infoMessage && (
           <InfoTextBox message={infoMessage} onClose={handleHideInfoClick} />
         )}

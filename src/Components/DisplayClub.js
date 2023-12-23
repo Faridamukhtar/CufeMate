@@ -19,11 +19,11 @@ const DisplayClub = ({ Club , adminID}) => {
   };
 
   const InfoTextBox = ({ message }) => {
-    console.log(message);
+    console.log("ana message",message);
     return (
       <div className="info-textbox">
-        <p>Email: {message[0].email}</p>
-        <p>Password: {message[0].passw}</p>
+        <p>Email: {message.email}</p>
+        <p>Password: {message.passw}</p>
       </div>
     );
   };
