@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import './login_signup.css';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
 
 const LoginSignup = () => {
-
+  const navigate = useNavigate(); // Initialize the navigate hook
   useEffect(() => {
     const fetchMajors = async () => {
       try {
@@ -34,7 +34,6 @@ const LoginSignup = () => {
   const [signupMajor, setSignupMajor] = useState('');
   const [signupClass, setSignupClass] = useState('');
   const [majorOptions, setMajorOptions] = useState([]);
-  const [studentID, setstudentID] = useState(''); //to be used in dashboard
   const handleLogin = async (email, password) => {
     try {
       // Construct the URL with actual values for email and password
@@ -44,8 +43,13 @@ const LoginSignup = () => {
           const response = await fetch(url); 
           const result = await response.json();
           // Handle the login result as needed
-          console.log(result);
-          setstudentID(result.std_id);
+          console.log(result.user);
+          console.log("Login clicked");
+          if(response.ok)
+          {
+            console.log(result.user);
+            navigate(`/student/${result.user}`);
+          }
           if(result.message ==='Invalid username or password')
           {
               alert("Invalid username or password");
