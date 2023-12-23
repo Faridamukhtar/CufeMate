@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import './LoginSignupClub.css';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
 
 const LoginSignupClub = () => {
-  
+  const navigate = useNavigate(); // Initialize the navigate hook
     // State for login form
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
@@ -165,6 +165,12 @@ const LoginSignupClub = () => {
             const result = await response.json();
             // Handle the login result as needed
             console.log(result);
+            console.log("Login clicked");
+          if(response.ok)
+          {
+            console.log(result.user);
+            navigate(`/StudentClubStatistics/${result.user}`);
+          }
             if(result.message ==='Login failed')
           {
             alert("1- Invalid username or password OR 2- request is not approved yet OR 3-request rejected OR 4- Club Banned");

@@ -40,9 +40,15 @@ function App() {
       <div className='App'>
       <Router>
           <Routes>
-            <Route path="/student" element={<StudentDashboard DashboardType='student' />} />
+
+            <Route path="/" element={<LoginSignup/>} />
+            <Route path="/Club" element={<LoginSignupClub />} />
+            <Route path="/Admin" element={<LoginAdmin />} />
+
+            <Route path="/student/:student" element={<StudentDashboard DashboardType='student' />} />
+            <Route path="/StudentClubStatistics/:club" element={<StudentClubStats/>} />
+            
             <Route path="/complaints" element={<ComplaintDashboard/>} />
-            <Route path="/StudentClubStatistics" element={<StudentClubStats/>} />
             <Route path="/rep" element={<RepDashboard DashboardType='studentRep'/>} />
             <Route path="/StudentSettings" element={<StudentSetting DashboardType='studentsettings' />} />
             <Route path="/StudentClubSettings" element={<StudentSetting DashboardType='studentclubsettings' />} />
@@ -52,21 +58,15 @@ function App() {
 
             <Route path="/reps_contacts" element={<RepsContactsDashboard/>} />
 
-            <Route path="/" element={<LoginSignup/>} />
-
-            <Route path="/Club" element={<LoginSignupClub />} />
-            <Route path="/Admin" element={<LoginAdmin />} />
             <Route path="/AdminDashboard/:admin_id" element={<AdminDashboard />} />
             <Route path="/Admin/add/:admin_id" element={<AddAdmin />} />
             <Route path="/Admin/requests/:admin_id" element={<AdminRequests/>} />
+            <Route path="/Admin/stats/:admin_id" element={<AdminStats />} />
 
             <Route path="/repsviewcomplaints" element ={<RepsComplaintsDashboard />} />
             <Route path="/writepost" element ={<WritePostDashboard/>} />
             <Route path="/reqwritepost" element={<ReqToWritePostDashboard/>}/>
             <Route path="/viewpostreq" element={<ViewPostReqDashboard/>}/>
-
-
-            <Route path="/Admin/stats/:admin_id" element={<AdminStats />} />
             <Route path="/StudentClub/Forms" element={<StudentClubForms DashboardType='StudentClubForms'/>} />
 
           </Routes>
