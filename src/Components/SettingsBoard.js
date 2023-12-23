@@ -2,6 +2,7 @@ import React, { useState , useEffect ,useRef  } from 'react';
 import ChooseHeader from "./Header.js";
 import './SettingsBoard.css';
 import TextInput from './TextInput';
+import StudentSubject from "./StudentSubjects.js"
 
 
 const UpdatePassword = ({ message }) => {
@@ -10,6 +11,7 @@ const UpdatePassword = ({ message }) => {
   const [conpass, setconpass] = useState('');
   const [currentPassFromApi, setCurrentPassFromApi] = useState('');
 
+  
   useEffect(() => {
     const fetchPass = async (ID) => {
       try {
@@ -364,6 +366,10 @@ function StudentBody(props)
             return (
                 <ApplyRep/>
             );
+        case 'Button3':
+            return (
+                <StudentSubject/>
+            );
         
         default:
             return null;
@@ -387,12 +393,20 @@ function StudentBody(props)
             <span className={selectedButton === 'Button1' ? 'label-clicked' : 'label'}> Change Password</span>
             </button>
 
-            {/* Button two (Delete acc)*/}
+            {/* Button two (Apply rep)*/}
             <button
             className={selectedButton === 'Button2' ? 'button-clicked' : 'button'}
             onClick={() => handleButtonClick('Button2')}
              >
             <span className={selectedButton === 'Button2' ? 'label-clicked' : 'label'}>Apply to be rep</span>
+            </button>
+
+             {/* Button three (Update Subjects)*/}
+             <button
+            className={selectedButton === 'Button3' ? 'button-clicked' : 'button'}
+            onClick={() => handleButtonClick('Button3')}
+             >
+            <span className={selectedButton === 'Button3' ? 'label-clicked' : 'label'}>Subjects taken </span>
             </button>
     
             {/* Border line*/}

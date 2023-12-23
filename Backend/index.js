@@ -34,6 +34,9 @@ import { logo } from './database/logo.js';
 import { stats_router } from './database/stats.js';
 import { requests_router } from './database/requests.js';
 import { Updatelogo_router } from './database/UpdateLogo.js';
+import { GetAllSub } from './database/GetSubjectsPerDep.js';
+import { Subjectbystudent } from './database/GetSubjectsPerDep.js';
+
 
 import {reps_view_complaints_router} from './database/RepsViewComplaints.js';
 import { mark_read_router } from './database/MarkRead.js';
@@ -72,6 +75,9 @@ app.use(
     app.use('/', admin_router);
     app.use('/', club_router);
     app.use('/', logo);
+    app.use('/', GetAllSub);
+    app.use('/', Subjectbystudent);
+
 
     app.use('/', reps_contacts_router );
 
