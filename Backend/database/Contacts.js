@@ -1,8 +1,8 @@
 import express from "express";
-import { db } from "./connection.js";
+import { dbInstance } from "./connection.js";
 
 const reps_contacts_router=express.Router();
-const dbInstance = await db();
+
 
 reps_contacts_router.get("/api/repscontacts/:major/:classs", async (req,res) =>
 {
