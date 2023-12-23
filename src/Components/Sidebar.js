@@ -51,11 +51,11 @@ function Sidebar(props)
 
 
     //Renders Student Sidebar content
-    function StudentSidebar()
+    function StudentSidebar(props)
     {
         return(
             <div className='options'>
-                <div className="SidebarOption" id="Home" onClick={()=>navigate('/student/')}>
+                <div className="SidebarOption" id="Home" onClick={()=>navigate(`/student/${props.studentData.std_id}/${props.studentData.major_id}/${props.studentData.fname}/${props.studentData.lname}/${props.studentData.class}/`)}>
                     <div className="SidebarIcon">
                         <HomeSVG/>
                     </div>
@@ -65,7 +65,7 @@ function Sidebar(props)
                         </h5>
                     </div>
                 </div>
-                <div className="SidebarOption" id="StudentClubs" onClick={()=>navigate('/student/studentclubs/')}>
+                <div className="SidebarOption" id="StudentClubs" onClick={()=>navigate(`/student/studentclubs/${props.studentData.std_id}/${props.studentData.major_id}/${props.studentData.fname}/${props.studentData.lname}/${props.studentData.class}/`)}>
                 <div className="SidebarIcon">
                         <StudentClubsSVG/>
                     </div>
@@ -75,7 +75,7 @@ function Sidebar(props)
                         </h5>
                     </div>
                 </div>
-                <div className="SidebarOption" id="FileAComplaint" onClick={()=>navigate('/complaints/')}>
+                <div className="SidebarOption" id="FileAComplaint" onClick={()=>navigate(`/complaints/${props.studentData.std_id}/${props.studentData.major_id}/${props.studentData.fname}/${props.studentData.lname}/${props.studentData.class}`)}>
                     <div className="SidebarIcon">
                             <FileAComplaintSVG/>
                         </div>
@@ -85,7 +85,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                     </div>
-                <div className="SidebarOption" id="FReqToWritePost" onClick={()=>navigate('/reqwritepost')}>
+                <div className="SidebarOption" id="FReqToWritePost" onClick={()=>navigate(`/reqwritepost/${props.studentData.std_id}/${props.studentData.major_id}/${props.studentData.fname}/${props.studentData.lname}/${props.studentData.class}`)}>
                     <div className="SidebarIcon">
                             <FileAComplaintSVG/>
                         </div>
@@ -95,7 +95,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                     </div>
-                <div className="SidebarOption" id="RepsContacts" onClick={()=>navigate('/reps_contacts')}>
+                <div className="SidebarOption" id="RepsContacts" onClick={()=>navigate(`/reps_contacts/${props.studentData.std_id}/${props.studentData.major_id}/${props.studentData.fname}/${props.studentData.lname}/${props.studentData.class}`)}>
                     <div className="SidebarIcon">
                             <RepsContactsSVG/>
                         </div>
@@ -105,7 +105,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                     </div>
-                <div className="SidebarOption" id="Settings" onClick={()=>navigate('/StudentSettings/')}>
+                <div className="SidebarOption" id="Settings" onClick={()=>navigate(`/StudentSettings/${props.studentData.std_id}/${props.studentData.major_id}/${props.studentData.fname}/${props.studentData.lname}/${props.studentData.class}`)}>
                 <div className="SidebarIcon">
                         <SettingsSVG/>
                     </div>
@@ -198,7 +198,7 @@ function Sidebar(props)
         {
             return (
                 <>
-                    <StudentSidebar/>
+                    <StudentSidebar studentData={props.studentData}/>
                 </>
             );
         }
@@ -206,7 +206,7 @@ function Sidebar(props)
         {
             return (
                 <>
-                    <StudentRepSidebar/>
+                    <StudentRepSidebar studentData={props.studentData}/>
                 </>
             );
         }
@@ -214,7 +214,7 @@ function Sidebar(props)
         {
             return (
                 <>
-                    <StudentClubsSidebar/>
+                    <StudentClubsSidebar />
                 </>
             );
         }
@@ -229,7 +229,7 @@ function Sidebar(props)
                 </h2>
             </div>
             <div className="nav-options">
-                <ChooseSidebar SidebarType={props.SidebarType}/>
+                <ChooseSidebar studentData={props.studentData} SidebarType={props.SidebarType}/>
             </div>
         </div>
     )

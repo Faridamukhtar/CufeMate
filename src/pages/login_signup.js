@@ -47,8 +47,9 @@ const LoginSignup = () => {
           console.log("Login clicked");
           if(response.ok)
           {
-            console.log(result.user);
-            navigate(`/student/${result.user}`);
+
+            navigate(`/student/${result.user.std_id}/${result.user.major_id}/${result.user.fname}/${result.user.lname}/${result.user.class}/`);
+            
           }
           if(result.message ==='Invalid username or password')
           {
