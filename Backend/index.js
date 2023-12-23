@@ -35,7 +35,8 @@ import { stats_router } from './database/stats.js';
 import { requests_router } from './database/requests.js';
 import { Updatelogo_router } from './database/UpdateLogo.js';
 import { GetAllSub } from './database/GetSubjectsPerDep.js';
-import { Subjectbystudent } from './database/GetSubjectsPerDep.js';
+import { Subjectbystudent } from './database/GetSubjectsTakenBystudent.js';
+import { EnrollSub } from './database/Enrollsub.js';
 
 
 import {reps_view_complaints_router} from './database/RepsViewComplaints.js';
@@ -77,6 +78,7 @@ app.use(
     app.use('/', logo);
     app.use('/', GetAllSub);
     app.use('/', Subjectbystudent);
+    app.use('/', EnrollSub);
 
 
     app.use('/', reps_contacts_router );

@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import ClubMemberTable from "./ClubMemberTable.js"
+import Table from "./Table.js"
 
 
 const CourseTable= ({ data }) => {
@@ -24,65 +24,74 @@ const CourseTable= ({ data }) => {
   };
 
 
-/*const  SubjectsTable=()=>
-{   
-    
-    const [Subjects, setSubject] = useState([]);
-
-      /////////////////////////////////////TO BE REMOVED WHEN ACTUAL LINKING OCCUR//////////////////////
-      let id = 0;
-
-    useEffect(() => {
-        const fetchMembers = async (id) => {
-            try {
-                let url = `http://localhost:8080/api/GetAllSub/?id=${id}`;
-                const response = await fetch(url);
-                console.log(url);
-                const data = await response.json();
-                setSubject(data);
-                console.log(data);
-                // Update outputArray after setting the state
-                const outputArray = data.map((item) => ({
-                    id: item.course_id ,
-                    course_name: item.course_name,
-            }));
-            setMembers(outputArray);
-            } catch (error) {
-                 console.error('Error fetching Members:', error);
-            }
-         };
-
-        fetchMembers(id);
-    }, []);
-
+  const SubjectsTable = () => {
+    const [getAllSub, setGetAllSub] = useState([]);
     const [subjects, setSubjects] = useState([]);
-    console.log('Output',subjects)
-
-   // const handleRemoveMemberfromclub = async (id) => {
-     //   const yr = new Date().getFullYear();
-     //   const url = `http://localhost:8080/api/RemoveMember/?id=${id}&std_club_id=${std_clb_id}&year=${yr}`;
-     //   console.log(url)
-     //   const response = await fetch(url);
-   // }
-
-    
-      const handleRemoveMember = (id) => {
-        const updatedSubject = subjects.filter((member) => member.id !== id);
-        setSubjects(updatedSubject);
-        handleRemoveMemberfromclub(id,std_clb_id)
+  
+    useEffect(() => {
+      const fetchSubjects = async (std_id) => {
+        try {
+          let url = `http://localhost:8080/api/GetAllSub/?id=${std_id}`;
+          const response = await fetch(url);
+          console.log(url);
+          const data = await response.json();
+          setGetAllSub(data);
+          console.log(data);
+          const outputArray = data.map((item) => ({
+            id: item.course_id,
+            course_name: item.course_name,
+          }));
+          setSubjects(outputArray);
+        } catch (error) {
+          console.error('Error fetching Members:', error);
+        }
       };
-    
-      const tableTitles = ['course_name']; //Lazm yba nfs el maktob gamb el id fy el use state fo2
-      
+  
+      fetchSubjects(0);
+    }, []);
+  
+    const handleenrollement = async (std_id,club_id) =>
+    {
+       try {
+         // Construct the URL with actual values for email and password
+         let url = `http://localhost:8080/api/GetAllSub/?std_id=${std_id}&course_id=${club_id}`;
+     
+         // Make a GET request to the constructed URL
+             const response = await fetch(url); 
+             const result = await response.json();
+             // Handle the login result as needed
+             console.log(result);
+           } 
+           catch (error) {
+             console.error('Error during login:', error);
+           }
+           console.log("submit clicked");
+     };
 
+
+     const handleUnenroll = async (std_id, course_id) => {
+        try {
+            const response = await fetch(`http://localhost:8080/api/unenroll/${encodeURIComponent(std_id)}/${encodeURIComponent(course_id)}`);
+            const result = await response.json();
+            console.log(result.data);
+        } catch (error) {
+            console.error('Error unenrolling:', error);
+        }
+    };
+
+    ///el course id yba byt5ad hasab el zror 
+    //check el fetching w el back bta3 both
+
+  
+    const tableTitles = ['course_name'];
+  
     return (
-            <div>
-                <ClubMemberTable titles={tableTitles} members={subjects} onRemoveMember={handleRemoveMember} />
-
-            </div>
+      <div>
+        <Table titles={tableTitles} members={subjects} enroll={handleenrollement} unenroll={()=> handleUnenroll(123, 'CMPS202')}/>
+      </div>
     );
-}*/
-
+  };
+  
 const TablesSubjectsTaken = () => {
     const [tableData, setTableData] = useState(null);
     const fetchDataForTable = async (id) => {
@@ -102,7 +111,10 @@ const TablesSubjectsTaken = () => {
   return (
     <div>
         <div className="Titles">Courses Taken</div> 
-   {tableData && <CourseTable data={tableData} />}
+         {tableData && <CourseTable data={tableData} />}
+         <div> 
+        <SubjectsTable/>
+         </div>
     </div>
   );
 };
