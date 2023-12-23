@@ -46,7 +46,7 @@ const UpdatePassword = ({ message }) => {
     }
     else if (message==='studentclub')
     {
-       id =1212;
+       id =12;
     }
     else if (message==='admin')
     {
@@ -108,7 +108,7 @@ const UpdatePassword = ({ message }) => {
                 }
                 else if (message==='studentclub')
                 {
-                  id =1212;
+                  id =12;
                 }
                 else if (message==='admin')
                 {
@@ -204,7 +204,7 @@ const UpdateInfo =() =>
   const ChangeAbout =() => 
   {
     ///TO BE REMOVED LATER ON WHEN EMAIL IS ACTUALLY SAVED
-    let id =1212
+    let id =12;
     handleAboutUpdate(id, inputValue);
   }
   const handleUpdateimage = async (id, logo) => {
@@ -223,7 +223,7 @@ const UpdateInfo =() =>
   };
   const ChangeLogo=()=>{
      ///TO BE REMOVED LATER ON WHEN EMAIL IS ACTUALLY SAVED
-     let id =1212
+     let id =12;
      handleUpdateimage(id, selectedImage);
      console.log('')
   }

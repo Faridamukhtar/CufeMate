@@ -45,18 +45,18 @@ function App() {
             <Route path="/Club" element={<LoginSignupClub />} />
             <Route path="/Admin" element={<LoginAdmin />} />
 
-            <Route path="/student/:student" element={<StudentDashboard DashboardType='student' />} />
+            <Route path="/student/:std_id/:major_id/:fname/:lname/:class" element={<StudentDashboard DashboardType='student'/>} />
             <Route path="/StudentClubStatistics/:club" element={<StudentClubStats/>} />
             
-            <Route path="/complaints" element={<ComplaintDashboard/>} />
-            <Route path="/rep" element={<RepDashboard DashboardType='studentRep'/>} />
-            <Route path="/StudentSettings" element={<StudentSetting DashboardType='studentsettings' />} />
+            <Route path="/complaints/:std_id/:major_id/:fname/:lname/:class" element={<ComplaintDashboard/>} />
+            <Route path="/rep/:std_id/:major_id/:fname/:lname/:class" element={<RepDashboard DashboardType='studentRep'/>} />
+            <Route path="/StudentSettings/:std_id/:major_id/:fname/:lname/:class" element={<StudentSetting DashboardType='studentsettings' />} />
             <Route path="/StudentClubSettings" element={<StudentSetting DashboardType='studentclubsettings' />} />
             <Route path="/AdminsSettings" element={<StudentSetting DashboardType='adminsettings' />} />
-            <Route path="/student/studentclubs" element={<StudentDashboard DashboardType='viewstudentclubs' />} />
-            <Route path="/rep/studentclubs" element={<RepDashboard DashboardType='viewstudentclubs' />} />
+            <Route path="/student/studentclubs/:std_id/:major_id/:fname/:lname/:class/" element={<StudentDashboard DashboardType='viewstudentclubs' />} />
+            <Route path="/rep/studentclubs/:std_id/:major_id/:fname/:lname/:class" element={<RepDashboard DashboardType='viewstudentclubs' />} />
 
-            <Route path="/reps_contacts" element={<RepsContactsDashboard/>} />
+            <Route path="/reps_contacts/:std_id/:major_id/:fname/:lname/:class/" element={<RepsContactsDashboard/>} />
 
             <Route path="/AdminDashboard/:admin_id" element={<AdminDashboard />} />
             <Route path="/Admin/add/:admin_id" element={<AddAdmin />} />
@@ -64,9 +64,9 @@ function App() {
             <Route path="/Admin/stats/:admin_id" element={<AdminStats />} />
 
             <Route path="/repsviewcomplaints" element ={<RepsComplaintsDashboard />} />
-            <Route path="/writepost" element ={<WritePostDashboard/>} />
-            <Route path="/reqwritepost" element={<ReqToWritePostDashboard/>}/>
-            <Route path="/viewpostreq" element={<ViewPostReqDashboard/>}/>
+            <Route path="/writepost/:std_id/:major_id/:fname/:lname/:class" element ={<WritePostDashboard/>} />
+            <Route path="/reqwritepost/:std_id/:major_id/:fname/:lname/:class" element={<ReqToWritePostDashboard/>}/>
+            <Route path="/viewpostreq/:std_id/:major_id/:fname/:lname/:class" element={<ViewPostReqDashboard/>}/>
             <Route path="/StudentClub/Forms" element={<StudentClubForms DashboardType='StudentClubForms'/>} />
 
           </Routes>

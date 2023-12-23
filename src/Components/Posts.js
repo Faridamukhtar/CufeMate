@@ -3,8 +3,6 @@ import './Posts.css';
 import {getposts,fetchStudentCourses, fetchMajorAuthors, Like, Unlike, DidLike, NoLikes} from "../CustomHooks/PostsHooks.js";
 import {LikeSVG} from "../svg/SvgFiles.js"
 
-const studentData = {fname:"Ahmed", major_id:'CCEC', std_id:1, class:'2026'}; //get logged in student data
-
 function HandleLikes(props)
 {
     const [liked, setliked]=useState(false);
@@ -14,7 +12,7 @@ function HandleLikes(props)
     {
         const onMount = async()=>
         {
-            const didLike=await DidLike(props.post_id, studentData.std_id);
+            const didLike=await DidLike(props.post_id, props.studentData.std_id);
             const Likes=await NoLikes(props.post_id);
             if (didLike?.length>0 && didLike[0]!==undefined)
             {
@@ -45,11 +43,11 @@ function HandleLikes(props)
             console.log('liked');
             setLikeCounts((prev) => {
                 if (liked) {
-                    Unlike(props.post_id, studentData.std_id);
+                    Unlike(props.post_id, props.studentData.std_id);
                     setliked(false);
                     return prev - 1;
                 } else {
-                    Like(props.post_id, studentData.std_id);
+                    Like(props.post_id, props.studentData.std_id);
                     setliked(true);
                     return prev + 1;
                 }
@@ -98,7 +96,7 @@ function Post(props)
                     {props.Content} 
                 </h5>   
             </div>
-            <HandleLikes post_id={props.post_id}/>
+            <HandleLikes post_id={props.post_id} studentData={props.studentData}/>
         </div>
     );
 }
@@ -192,7 +190,7 @@ function DisplayPosts(props)
 {
     if (props?.postArray[0]?.post_id>0)
     {
-        const listItems = props.postArray.map((post) => <li key={post.post_id}><Post post_id={post.post_id} Major={post.major_id} Content={post.content} Course={post.course_name} FAuthor={post.fname} LAuthor={post.lname}/></li>);
+        const listItems = props.postArray.map((post) => <li key={post.post_id}><Post post_id={post.post_id} Major={post.major_id} Content={post.content} Course={post.course_name} FAuthor={post.fname} LAuthor={post.lname} studentData={props.studentData}/></li>);
         return listItems;
     }
     else
@@ -215,7 +213,7 @@ function PostSection(props)
     {
         const FilterByCourseandAuthor = async (Course,Author) =>
         { 
-            const data = await getposts(`${Author}`, `${studentData.major_id}` , `${Course}`, `${studentData.std_id}`);
+            const data = await getposts(`${Author}`, `${props.studentData.major_id}` , `${Course}`, `${props.studentData.std_id}`);
             setPostsContent(data);
         }
 
@@ -225,13 +223,13 @@ function PostSection(props)
 
     useEffect(()=>
     {
-        fetchStudentCourses(studentData.std_id).then((courses)=>
+        fetchStudentCourses(props.studentData.std_id).then((courses)=>
         {
             console.log('courses', courses);
             setStudentCourses(courses);
         })
 
-        fetchMajorAuthors(studentData.major_id).then((authors)=>
+        fetchMajorAuthors(props.studentData.major_id).then((authors)=>
         {
             console.log('authors', authors);
             setAuthors(authors);
@@ -272,7 +270,7 @@ function PostSection(props)
                 <Filters courses={StudentCourses} authors={Authors}/>
             </div>
             <div className="Posts">
-                <ul><DisplayPosts postArray={postsContent}/></ul>
+                <ul><DisplayPosts studentData={props.studentData} postArray={postsContent}/></ul>
             </div>
         </div>
     );

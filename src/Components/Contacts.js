@@ -31,7 +31,7 @@ const getContacts = async (fname="", lname="", email="") =>
 function Contact(props)
 {
    return(
-       <div className="Container">
+       <div className="ContactsContainer">
         <div>
             <h5 className="Name">
                 {props.fname} {props.lname}

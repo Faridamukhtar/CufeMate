@@ -3,7 +3,6 @@ import './ViewStudentClubs.css';
 import { getStudentClubForms, Apply_To_Club, Withdraw_Application, ApplicantStatus, Rate_Club, getRateStatus } from "../CustomHooks/StudentClubsHooks.js";
 import {InfoSVG, StarSVGFilled, StarSVGUnfilled} from "../svg/SvgFiles.js"
 
-const studentData = {fname:"Ahmed", lname:"Mohamed", major_id:'CCEC', std_id:123, class:2026}; //get logged in student data
 function Stars(props) {
     return (
       <>
@@ -36,7 +35,7 @@ function StudentClubDetails(props)
         const setRating = async()=>
         {
          console.log('Rating:', RatingN);
-         await Rate_Club(RatingN, studentData.std_id, props.std_club_id)
+         await Rate_Club(RatingN, props.studentData.std_id, props.std_club_id)
         }
         if (RatingN!==0)
         {
@@ -49,7 +48,7 @@ function StudentClubDetails(props)
     {
        const onMount = async()=>
        {    
-            const data = await getRateStatus(studentData.std_id, props.std_club_id);
+            const data = await getRateStatus(props.studentData.std_id, props.std_club_id);
             if (data!==undefined && data!==null)
             {
                 setRatingN(parseInt(data))
@@ -157,7 +156,7 @@ function StudentClubForm(props)
     {
        const onMount = async()=>
        {    
-            const data = await ApplicantStatus(props.form_id, studentData.std_id)
+            const data = await ApplicantStatus(props.form_id, props.studentData.std_id)
             if (data!==undefined && data!==null)
             {
                 setApplied(parseInt(data));
@@ -184,12 +183,12 @@ useEffect(()=>
             {
                 if (applied==0)
                 {
-                    await Apply_To_Club(props.form_id, studentData.std_id);
+                    await Apply_To_Club(props.form_id, props.studentData.std_id);
                     setInsertedApply(0);
                 }
                 if (applied ==-1)
                 {
-                    await Withdraw_Application(props.form_id, studentData.std_id);
+                    await Withdraw_Application(props.form_id,props.studentData.std_id);
                     setInsertedApply(-1);
                 }
             }
@@ -234,7 +233,7 @@ useEffect(()=>
                 </div>
             </div>
                 <div className="studentClubDetails" hidden={InfoHidden}>
-                    <StudentClubDetails std_club_name={props.std_club_name} about={props.about} logo={props.logo} std_club_id={props.std_club_id}/>
+                    <StudentClubDetails std_club_name={props.std_club_name} about={props.about} logo={props.logo} std_club_id={props.std_club_id} studentData={props.studentData}/>
                 </div>
         </div>
     );
@@ -273,7 +272,7 @@ function Displayforms(props)
 {
     if (props?.formArray[0]?.form_id>0)
     {
-        const listItems = props.formArray.map((form) => <li><StudentClubForm form_title={form.form_title} std_club_id={form.std_club_id} std_club_name={form.std_club_name} requirements={form.requirements} email= {form.email} form_id={form.form_id} about={form.about} logo={form.logo} chosenStudentClub={props.chosenStudentClub}/></li>);
+        const listItems = props.formArray.map((form) => <li><StudentClubForm form_title={form.form_title} std_club_id={form.std_club_id} std_club_name={form.std_club_name} requirements={form.requirements} email= {form.email} form_id={form.form_id} about={form.about} logo={form.logo} chosenStudentClub={props.chosenStudentClub} studentData={props.studentData}/></li>);
         return listItems;
     }
     else
@@ -284,7 +283,7 @@ function Displayforms(props)
 }
 
 //Fetch Posts
-function FormsSection()
+function FormsSection(props)
 {
     const [formsContent, setFormsContent] = useState([{std_club_id:0, std_club_name:"", email:"", about:"", logo:"",form_id:0, form_title:'', requirements:'', form_date:''}])
     const [chosenStudentClub, setChosenStudentClub] = useState(" ");
@@ -351,7 +350,7 @@ function FormsSection()
                 <Filters options={StudentClubs}/>
             </div>
             <div className="forms">
-                <ul><Displayforms formArray={formsContent} chosenStudentClub={chosenStudentClub}/></ul>
+                <ul><Displayforms studentData={props.studentData} formArray={formsContent} chosenStudentClub={chosenStudentClub}/></ul>
             </div>
         </div>
     );
