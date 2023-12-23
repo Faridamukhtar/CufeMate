@@ -11,7 +11,7 @@ const UpdatePassword = ({ message }) => {
   const [currentPassFromApi, setCurrentPassFromApi] = useState('');
 
   useEffect(() => {
-    const fetchPass = async (email) => {
+    const fetchPass = async (ID) => {
       try {
         let path
         if (message==='student')
@@ -79,6 +79,8 @@ const UpdatePassword = ({ message }) => {
       const response = await fetch(url);
       const result = await response.json();
       console.log(result)
+      alert("Password Updated");
+
     } catch (error) {
       console.error('Error during password update:', error);
     }

@@ -33,7 +33,7 @@ const BarStats = ({ startYear }) => {
     };
   
     useEffect(() => {
-      getData(12, startYear, 2023);
+      getData(1, startYear, 2023);
     }, [startYear]); // To run whenever startYear changes
   
     return (
@@ -48,7 +48,7 @@ const  MembersTable=()=>
 {   
     const [getMembers, setGetMembers] = useState([]);
       /////////////////////////////////////TO BE REMOVED WHEN ACTUAL LINKING OCCUR//////////////////////
-      let std_clb_id = 12;
+      let std_clb_id = 1;
 
     useEffect(() => {
         const fetchMembers = async (std_clb_id) => {
