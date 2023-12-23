@@ -169,7 +169,7 @@ const LoginSignupClub = () => {
           if(response.ok)
           {
             console.log(result.user);
-            navigate(`/StudentClubStatistics/${result.user}`);
+            navigate(`/StudentClubStatistics/${result.user.std_club_id}`);
           }
             if(result.message ==='Login failed')
           {
