@@ -134,7 +134,7 @@ const LoginSignupClub = () => {
       console.log('Response:', response);
 
       const result = await response.json();
-      if(result.message ==='user already exists')
+      if(result.message ==='User already exists')
           {
               alert("user already exists, try logging in");
           }
@@ -165,9 +165,9 @@ const LoginSignupClub = () => {
             const result = await response.json();
             // Handle the login result as needed
             console.log(result);
-            if(result.message ==='Invalid username or password')
+            if(result.message ==='Login failed')
           {
-            alert("1. Invalid username or password or 2.pending or rejected request -> contact the admin for more info");
+            alert("1- Invalid username or password OR 2- request is not approved yet OR 3-request rejected OR 4- Club Banned");
           }
           } 
           catch (error) {

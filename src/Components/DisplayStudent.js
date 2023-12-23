@@ -23,20 +23,20 @@ const DisplayStudent = ({ student,adminID }) => {
   };
 
   const InfoTextBox = ({ message }) => {
-    console.log(message);
+    console.log("ana message",message);
     return (
       <div className="info-textbox">
-        <p>Email: {message[0].email}</p>
-        <p>Password: {message[0].passw}</p>
-        <p>Major: {message[0].major_id}</p>
-        <p>Class: {message[0].class} </p>
+        <p>Email: {message.email}</p>
+        <p>Password: {message.passw}</p>
+        <p>Major: {message.major_id}</p>
+        <p>Class: {message.class} </p>
       </div>
     );
   };
 
-  const handleBanClick = async (studentId,decision,adminID) => {
+  const handleBanClick = async (studentId,decision) => {
     try {
-      const url = `http://localhost:8080/api/admin/banRep/${studentId}/${decision}/${adminID}`; // Assuming 2 is the decision for banning
+      const url = `http://localhost:8080/api/admin/banRep/${studentId}/${decision}`; // Assuming 2 is the decision for banning
       const response = await fetch(url, { method: 'PUT' });
       const data = await response.json();
       // Handle the ban response as needed
@@ -47,10 +47,10 @@ const DisplayStudent = ({ student,adminID }) => {
     }
   };
 
-  const handleUnbanClick = async (studentId,decision,adminID) => {
+  const handleUnbanClick = async (studentId,decision) => {
     console.log(studentId);
     try {
-      const url = `http://localhost:8080/api/admin/banRep/${studentId}/${decision}/${adminID}`; // Assuming 1 is the decision for unbanning
+      const url = `http://localhost:8080/api/admin/banRep/${studentId}/${decision}`; // Assuming 1 is the decision for unbanning
       const response = await fetch(url, { method: 'PUT' });
       const data = await response.json();
       // Handle the unban response as needed
@@ -80,7 +80,7 @@ const DisplayStudent = ({ student,adminID }) => {
         <div>
           <div className='buttons'>
             <div className='decisionButtons'>
-          <button onClick={() => handleBanClick(student.std_id,2,adminID)}>Ban</button>
+          <button onClick={() => handleBanClick(student.std_id,2)}>Ban</button>
           </div>
           <div className='infoButtons'>
           <button onClick={() => handleInfoClick(student.std_id)}>Show Info</button>
@@ -93,7 +93,7 @@ const DisplayStudent = ({ student,adminID }) => {
         <div>
           <div className='buttons'>
           <div className='decisionButtons'>
-          <button onClick={() => handleUnbanClick(student.std_id,1,adminID)}>Unban</button>
+          <button onClick={() => handleUnbanClick(student.std_id,1)}>Unban</button>
           </div>
           <div className='infoButtons'>
           <button onClick={() => handleInfoClick(student.std_id)}>Show Info</button>

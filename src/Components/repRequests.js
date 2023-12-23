@@ -52,10 +52,10 @@ const RepRequests = ({ rep, adminID }) => {
     console.log(message);
     return (
       <div className="info-textbox">
-        <p>Email: {message[0].email}</p>
-        <p>Password: {message[0].passw}</p>
-        <p>Major: {message[0].major_id}</p>
-        <p>Class: {message[0].class} </p>
+        <p>Email: {message.email}</p>
+        <p>Password: {message.passw}</p>
+        <p>Major: {message.major}</p>
+        <p>Class: {message.class} </p>
       </div>
     );
   };
