@@ -15,7 +15,8 @@ club_router.get('/api/login/student_club/:email/:password', async (req, res) => 
     if (result.rows.length === 1) {
       res.json({ success: true, user: result.rows[0],message: 'Login successful' });
     } else {
-      res.status(401).json({ success: false, message: 'Invalid username or password or request is not approved yet' });
+      //1- Invalid username or password OR 2- request is not approved yet OR 3-request rejected OR 4- Club Banned
+      res.status(401).json({ success: false, message: 'Login failed' });
     }
   } catch (error) {
     console.error(error);

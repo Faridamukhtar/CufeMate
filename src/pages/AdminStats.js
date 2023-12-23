@@ -86,7 +86,7 @@ const fetchDataForPie2 = async () => {
     try {
         const response = await fetch('http://localhost:8080/api/stats/StudentsInClasses');
         const result = await response.json();
-        console.log("ana fl fetch");
+        console.log("ana fl fetch classes");
         console.log(result.data);
         setChartData2(result.data);
     } catch (error) {
