@@ -44,7 +44,14 @@ function Sidebar(props)
                             </h5>
                         </div>
                     </div>
-                </div>
+                    <div className="SidebarOption" id="Logout">
+                        <Link to="/" >
+                        <div className="SidebarLabel">
+                            <h5>Logout</h5>  
+                        </div>
+                        </Link>
+                    </div>
+            </div>
         </>);
     }
 
@@ -114,6 +121,13 @@ function Sidebar(props)
                             Settings
                         </h5>
                     </div>
+                </div>
+                <div className="SidebarOption" id="Logout">
+                    <Link to="/" >
+                    <div className="SidebarLabel">
+                        <h5>Logout</h5>  
+                    </div>
+                    </Link>
                 </div>
             </div>
         );
@@ -186,6 +200,13 @@ function Sidebar(props)
                                 Settings
                             </h5>
                         </div>
+                    </div>
+                    <div className="SidebarOption" id="Logout">
+                        <Link to="/" >
+                        <div className="SidebarLabel">
+                            <h5>Logout</h5>  
+                        </div>
+                        </Link>
                     </div>
                 </div>
         </>);
