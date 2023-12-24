@@ -22,13 +22,13 @@ const CourseTable = ({ data }) => (
 );
 
 
-  const SubjectsTable = () => {
+  const SubjectsTable = ({Std_ID}) => {
     const [getAllSub, setGetAllSub] = useState([]);
     const [subjects, setSubjects] = useState([]);
     const [tableData, setTableData] = useState(null);
-    const fetchDataForTable = async (id) => {
+    const fetchDataForTable = async () => {
         try {
-            let url= `http://localhost:8080/api/student/courses/${encodeURIComponent(id)}`
+            let url= `http://localhost:8080/api/student/courses/${encodeURIComponent(Std_ID)}`
             const response = await fetch(url);
             console.log(url)
             const result = await response.json();
@@ -38,9 +38,9 @@ const CourseTable = ({ data }) => (
         }
     };
     
-      const fetchSubjects = async (std_id) => {
+      const fetchSubjects = async () => {
         try {
-          let url = `http://localhost:8080/api/GetAllSub/?id=${std_id}`;
+          let url = `http://localhost:8080/api/GetAllSub/?id=${Std_ID}`;
           const response = await fetch(url);
           const data = await response.json();
           setGetAllSub(data);
@@ -55,16 +55,16 @@ const CourseTable = ({ data }) => (
         }
       };
       useEffect(() => {
-        fetchDataForTable(0);
-        fetchSubjects(0);
+        fetchDataForTable();
+        fetchSubjects();
 
     }, []);
   
-    const handleenrollement = async (std_id,club_id) =>
+    const handleenrollement = async (course_id) =>
     {
        try {
          // Construct the URL with actual values for email and password
-            let url = `http://localhost:8080/api/EnrollSubject/?std_id=${std_id}&course_id=${club_id}`;
+            let url = `http://localhost:8080/api/EnrollSubject/?std_id=${Std_ID}&course_id=${course_id}`;
              const response = await fetch(url); 
              const result = await response.json();   
              console.log('enrolled succesfully') 
@@ -77,9 +77,9 @@ const CourseTable = ({ data }) => (
      };
 
 
-     const handleUnenroll = async (std_id, course_id) => {
+     const handleUnenroll = async (course_id) => {
         try {
-            let url=`http://localhost:8080/api/unenroll/${encodeURIComponent(std_id)}/${encodeURIComponent(course_id)}`
+            let url=`http://localhost:8080/api/unenroll/${encodeURIComponent(Std_ID)}/${encodeURIComponent(course_id)}`
             const response = await fetch(url);
             const result = await response.json();
             console.log('unenrolled succesfully') 
@@ -90,19 +90,13 @@ const CourseTable = ({ data }) => (
         }
     };
 
-    const handleunenrollclick = (course_id,id) => {
-      id=0;
-      handleUnenroll(id,course_id)
+    const handleunenrollclick = (course_id) => {
+      handleUnenroll(course_id)
     };
 
-    const handleenrollclick = (course_id,id) => {
-      id=0;
-      handleenrollement(id,course_id)
+    const handleenrollclick = (course_id) => {
+      handleenrollement(course_id)
     };
-
-    ///el course id yba byt5ad hasab el zror 
-    //check el fetching w el back bta3 both
-
   
     const tableTitles = ['course_name'];
   
@@ -116,14 +110,6 @@ const CourseTable = ({ data }) => (
   };
   
 
-const TablesSubjectsTaken = () => {
-   
 
-  return (
-    <div>        
-        <SubjectsTable/>
-    </div>
-  );
-};
 
-export default TablesSubjectsTaken;
+export default SubjectsTable;
