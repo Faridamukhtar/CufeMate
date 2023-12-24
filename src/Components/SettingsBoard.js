@@ -5,16 +5,15 @@ import TextInput from './TextInput';
 import StudentSubject from "./StudentSubjects.js"
 import { useParams } from 'react-router-dom';
 
-const UpdatePassword = ({ message }) => {
+const UpdatePassword = ({ message , Std_ID}) => {
   const { admin_id } = useParams();
   const [Cpass, setCpass] = useState('');
   const [Npass, setNpass] = useState('');
   const [conpass, setconpass] = useState('');
   const [currentPassFromApi, setCurrentPassFromApi] = useState('');
-
   
   useEffect(() => {
-    const fetchPass = async (id) => {
+    const fetchPass = async () => {
       try {
         let path
         if (message==='student')
@@ -44,7 +43,7 @@ const UpdatePassword = ({ message }) => {
     let id 
     if (message==='student')
     {
-       id = 1234; 
+       id = Std_ID; 
 
     }
     else if (message==='studentclub')
@@ -106,7 +105,7 @@ const UpdatePassword = ({ message }) => {
                   let id
                   if (message==='student')
                 {
-                  id = 1234; // Replace with your dynamic email logic
+                  id = Std_ID; // Replace with your dynamic email logic
 
                 }
                 else if (message==='studentclub')
@@ -276,18 +275,16 @@ const UpdateInfo =() =>
   )
 }
 
-const ApplyRep =() => {
+const ApplyRep =({Std_ID}) => {
   const [CurrentstatFromApi, setCurrentstatFromApi] = useState('');
-  const [id, setId] = useState('70');
-
    //get if he applied before and what is the status if he did 
    useEffect(() => {
-    const fetchPass = async (std_id) => {
+    const fetchPass = async () => {
       try {
       
-        let url = `http://localhost:8080/api/get_rep_req_stat?std_id=${std_id}`;
+        let url = `http://localhost:8080/api/get_rep_req_stat?std_id=${Std_ID}`;
+        console.log(url)
         const response = await fetch(url);
-        console.log(url);
         const data = await response.json();
         const stat = data.length > 0 ? data[0].stat : '';
         if (stat===0)
@@ -313,16 +310,15 @@ const ApplyRep =() => {
       }
     };
     /////////////////////////////////////TO BE REMOVED WHEN ACTUAL LINKING OCCUR//////////////////////
-    fetchPass(id);
+    fetchPass();
   }, []); 
   //send request to apply if he didn't 
 
   const handleClick = async () => {
       try {
       
-        let url = `http://localhost:8080/api/Makenewrepreq?std_id=${id}`;
+        let url = `http://localhost:8080/api/Makenewrepreq?std_id=${Std_ID}`;
         const response = await fetch(url);
-        console.log(url);
         const data = await response.json();
         setCurrentstatFromApi("Pending")
       } catch (error) {
@@ -347,6 +343,7 @@ const ApplyRep =() => {
 
 function StudentBody(props)
 {
+
    //To determine which button is selected so which components will I render
    const [selectedButton, setSelectedButton] = useState('Button1');
    
@@ -360,16 +357,16 @@ function StudentBody(props)
         switch (selectedButton) {
         case 'Button1':
             return (
-                <UpdatePassword message='student'/>
+                <UpdatePassword message='student' Std_ID={props.studentData.std_id}/>
             );
 
         case 'Button2':
             return (
-                <ApplyRep/>
+                <ApplyRep Std_ID={props.studentData.std_id}/>
             );
         case 'Button3':
             return (
-                <StudentSubject/>
+                <StudentSubject Std_ID={props.studentData.std_id}/>
             );
         
         default:
@@ -521,11 +518,12 @@ function Studentclubbody(props)
 
 function Body(props)
 {
+
     if (props.DashboardType==='studentsettings')
     {
         return (
             <>
-                <StudentBody DashboardType={props.DashboardType}/>
+                <StudentBody DashboardType={props.DashboardType} studentData={props.studentData} />
             </>
         );
     }
@@ -556,7 +554,7 @@ function SettingsBoard(props)
                 <ChooseHeader DashboardType={props.DashboardType}/>
             </div>
             <div className="DashboardBody">
-               <Body DashboardType={props.DashboardType}/>
+               <Body DashboardType={props.DashboardType} studentData={props.studentData} />
             </div>
         </div>
     );
