@@ -1,17 +1,16 @@
 import React from 'react';
 
-const Table = ({ titles, members, onRemoveMember }) => {
+const Table = ({ titles, members, enroll,unenroll }) => {
   return (
     <div style={{ backgroundColor: 'white', padding: '10px', width: '100%' }}>
       <table style={{ width: '100%', borderCollapse: 'collapse' }}>
         <thead>
-          <tr style={{ borderBottom: '2px solid black' }}>        
-              <th  style={{ padding: '10px' }}>
-                First Name
+          <tr style={{ borderBottom: '2px solid black' }}>
+            {titles.map((title, index) => (
+              <th key={index} style={{ padding: '10px' }}>
+                Course Name
               </th>
-              <th  style={{ padding: '10px' }}>
-                Last Name
-              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
@@ -23,8 +22,13 @@ const Table = ({ titles, members, onRemoveMember }) => {
                 </td>
               ))}
               <td style={{ padding: '10px' }}>
-              <button style={{width:'auto' , backgroundColor: '#222537' }}onClick={() => onRemoveMember(member.id)}>
-                  Remove
+              <button style={{width:'auto' , backgroundColor: '#222537' }}onClick={() => enroll(member.id)}>
+                  Enroll
+                </button>
+              </td>
+              <td style={{ padding: '10px' }}>
+              <button style={{width:'auto' , backgroundColor: '#222537' }}onClick={() => unenroll(member.id)}>
+                  Unenroll
                 </button>
               </td>
             </tr>
@@ -36,5 +40,3 @@ const Table = ({ titles, members, onRemoveMember }) => {
 };
 
 export default Table;
-
-
