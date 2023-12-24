@@ -1,8 +1,6 @@
 import React, {useState} from "react";
 import Sidebar from "../Components/Sidebar";
 import Dashboard from "../Components/Dashboard";
-import { useParams } from 'react-router-dom';
-
 import './StudentDashboard.css'
 import { useParams } from 'react-router-dom';
 

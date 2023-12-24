@@ -9,7 +9,7 @@ const StudentClubStatistics =({DashboardType})=>
     return (
         <div className="StudentPage">
             <div className="sidebar">
-                <Sidebar SidebarType='student'/>
+                <Sidebar SidebarType='StudentClubForms'/>
             </div>
             <div className="Dashboard">
                 <Clubstat DashboardType={DashboardType}/>

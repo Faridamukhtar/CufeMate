@@ -34,7 +34,7 @@ function HandleLikes(props)
 
         onMount();
 
-    },[liked])
+    },[])
 
 
     const handleLiked=()=>

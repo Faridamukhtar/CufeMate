@@ -44,7 +44,7 @@ function RepsContactsBody(props)
 {
     return (
         <div className='RepsContactsBody'>
-            <Contacts DashboardType={props.DashboardType}/>
+            <Contacts DashboardType={props.DashboardType} studentData={props.studentData}/>
         </div>
 
     );
@@ -54,7 +54,7 @@ function StudentClubFormsBody (props)
 {
     return (
         <div className='ViewStudentClubsBody'>
-            <StudentClubForms studentType={props.studentType}/>
+            <StudentClubForms studentType={props.studentType} />
        </div>
     );
 }
@@ -68,7 +68,7 @@ function ComplaintBody(props)
                 <WriteComplaint Dashboard={props.DashboardType}/>
             </div>
             <div className = 'PreviousComplaints'>
-                <PreviousComplaints Dashboard={props.DashboardType}/>
+                <PreviousComplaints Dashboard={props.DashboardType} studentData={props.studentData}/>
             </div>
         </div>
 
@@ -110,7 +110,7 @@ function ReqWritePostBody(props)
             </div>
             
              <div className="ViewPreviousReqPosts">
-                <ViewPreviousReqPosts Dashboard={props.DashboardType}/>
+                <ViewPreviousReqPosts Dashboard={props.DashboardType} studentData={props.studentData}/>
              </div>
         </div>
     );
@@ -120,7 +120,7 @@ function ViewPostReqBody(props)
 {
     return (
             <div className='ViewPostReqBody'>
-                <ViewPostReq Dashboard={props.DashboardType}/>
+                <ViewPostReq Dashboard={props.DashboardType} />
             </div>
     );
 }
