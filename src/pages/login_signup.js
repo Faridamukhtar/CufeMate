@@ -150,7 +150,9 @@ const LoginSignup = () => {
             <Link to='/student'>
           <button onClick={() => handleLogin(loginEmail, loginPassword)}>Login</button>
           </Link>
-          <button>Forgot Password</button>
+          <Link to='/ForgotPass'>
+            <button>Forgot Password</button>
+          </Link>
         </div>
       </div>
       <div className="right">

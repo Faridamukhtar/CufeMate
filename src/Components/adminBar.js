@@ -49,7 +49,7 @@ const AdminBar = ({ props }) => {
                             </h5>
                         </div>
         </div>
-        <div className='option' onClick={()=> navigate(`/Admin/settings/${adminID}`)}>
+        <div className='option' onClick={()=> navigate(`/AdminsSettings/${adminID}`)}>
             <div className="SidebarIcon">
                 <SettingsSVG/>
             </div>

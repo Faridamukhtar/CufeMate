@@ -30,7 +30,7 @@ const AdminDashboard = () => {
             <div className="bar">
                 <AdminBar props={admin_id}/>
             </div> 
-        <div className="Dashboard">
+        <div className="adminDashboard">
         <div className="MainTitle2">All Users Window</div>
         <div className="Dashboard2">
             <div className="students">

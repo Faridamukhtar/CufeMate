@@ -2,16 +2,17 @@ import React, { useState , useEffect ,useRef  } from 'react';
 import ChooseHeader from "./Header.js";
 import './SettingsBoard.css';
 import TextInput from './TextInput';
-
+import { useParams } from 'react-router-dom';
 
 const UpdatePassword = ({ message }) => {
+  const { admin_id } = useParams();
   const [Cpass, setCpass] = useState('');
   const [Npass, setNpass] = useState('');
   const [conpass, setconpass] = useState('');
   const [currentPassFromApi, setCurrentPassFromApi] = useState('');
 
   useEffect(() => {
-    const fetchPass = async (ID) => {
+    const fetchPass = async (id) => {
       try {
         let path
         if (message==='student')
@@ -50,7 +51,7 @@ const UpdatePassword = ({ message }) => {
     }
     else if (message==='admin')
     {
-       id =1210200;
+       id =admin_id;
     }
 
     fetchPass(id);
@@ -112,7 +113,7 @@ const UpdatePassword = ({ message }) => {
                 }
                 else if (message==='admin')
                 {
-                   id =1210200
+                   id =admin_id
                 }
             
 
