@@ -10,7 +10,7 @@ EnrollSub.use(bodyParser.json());
 // Get rep request status api 
 
 EnrollSub.get('/api/EnrollSubject/', async (req, res) => {
-  const {std_id,course_id} = req.query;
+  const {course_id,std_id} = req.query;
 
   try {
     ////////////////////////////////////////////QUERY//////////////////////////////////////

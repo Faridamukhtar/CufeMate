@@ -5,12 +5,13 @@ const Table = ({ titles, members, onRemoveMember }) => {
     <div style={{ backgroundColor: 'white', padding: '10px', width: '100%' }}>
       <table style={{ width: '100%', borderCollapse: 'collapse' }}>
         <thead>
-          <tr style={{ borderBottom: '2px solid black' }}>
-            {titles.map((title, index) => (
-              <th key={index} style={{ padding: '10px' }}>
-                {title}
+          <tr style={{ borderBottom: '2px solid black' }}>        
+              <th  style={{ padding: '10px' }}>
+                First Name
               </th>
-            ))}
+              <th  style={{ padding: '10px' }}>
+                Last Name
+              </th>
           </tr>
         </thead>
         <tbody>

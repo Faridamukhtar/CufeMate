@@ -8,7 +8,7 @@ const Table = ({ titles, members, enroll,unenroll }) => {
           <tr style={{ borderBottom: '2px solid black' }}>
             {titles.map((title, index) => (
               <th key={index} style={{ padding: '10px' }}>
-                {title}
+                Course Name
               </th>
             ))}
           </tr>

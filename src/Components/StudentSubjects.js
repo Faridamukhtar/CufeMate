@@ -1,39 +1,47 @@
 import React, { useState,useEffect } from 'react';
 import Table from "./Table.js"
+import './StudentSubject.css';
 
-
-const CourseTable= ({ data }) => {
-    return (
-      <table>
-        <thead>
-          <tr>
-            <th>Course ID</th>
-            <th>Course Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((row, index) => (
-            <tr key={index}>
-              <td>{row.course_id}</td>
-               <td>{row.course_name}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    );
-  };
+const CourseTable = ({ data }) => (
+  <table className="course-table">
+    <thead>
+      <tr>
+        <th>Course ID</th>
+        <th>Course Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {data.map(({ course_id, course_name }, index) => (
+        <tr key={index}>
+          <td>{course_id}</td>
+          <td>{course_name}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+);
 
 
   const SubjectsTable = () => {
     const [getAllSub, setGetAllSub] = useState([]);
     const [subjects, setSubjects] = useState([]);
-  
-    useEffect(() => {
+    const [tableData, setTableData] = useState(null);
+    const fetchDataForTable = async (id) => {
+        try {
+            let url= `http://localhost:8080/api/student/courses/${encodeURIComponent(id)}`
+            const response = await fetch(url);
+            console.log(url)
+            const result = await response.json();
+            setTableData(result.data);
+        } catch (error) {
+            console.error('Error fetching data for table:', error);
+        }
+    };
+    
       const fetchSubjects = async (std_id) => {
         try {
           let url = `http://localhost:8080/api/GetAllSub/?id=${std_id}`;
           const response = await fetch(url);
-          console.log(url);
           const data = await response.json();
           setGetAllSub(data);
           console.log(data);
@@ -46,37 +54,50 @@ const CourseTable= ({ data }) => {
           console.error('Error fetching Members:', error);
         }
       };
-  
-      fetchSubjects(0);
-    }, []);
+      useEffect(() => {
+        fetchDataForTable(0);
+        fetchSubjects(0);
+
+    }, []);
   
     const handleenrollement = async (std_id,club_id) =>
     {
        try {
          // Construct the URL with actual values for email and password
-         let url = `http://localhost:8080/api/GetAllSub/?std_id=${std_id}&course_id=${club_id}`;
-     
-         // Make a GET request to the constructed URL
+            let url = `http://localhost:8080/api/EnrollSubject/?std_id=${std_id}&course_id=${club_id}`;
              const response = await fetch(url); 
-             const result = await response.json();
-             // Handle the login result as needed
-             console.log(result);
+             const result = await response.json();   
+             console.log('enrolled succesfully') 
+             fetchDataForTable(0);
+
            } 
            catch (error) {
-             console.error('Error during login:', error);
+             console.error('Error enrolling :', error);
            }
-           console.log("submit clicked");
      };
 
 
      const handleUnenroll = async (std_id, course_id) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/unenroll/${encodeURIComponent(std_id)}/${encodeURIComponent(course_id)}`);
+            let url=`http://localhost:8080/api/unenroll/${encodeURIComponent(std_id)}/${encodeURIComponent(course_id)}`
+            const response = await fetch(url);
             const result = await response.json();
-            console.log(result.data);
+            console.log('unenrolled succesfully') 
+            fetchDataForTable(0);
+
         } catch (error) {
             console.error('Error unenrolling:', error);
         }
+    };
+
+    const handleunenrollclick = (course_id,id) => {
+      id=0;
+      handleUnenroll(id,course_id)
+    };
+
+    const handleenrollclick = (course_id,id) => {
+      id=0;
+      handleenrollement(id,course_id)
     };
 
     ///el course id yba byt5ad hasab el zror 
@@ -87,34 +108,20 @@ const CourseTable= ({ data }) => {
   
     return (
       <div>
-        <Table titles={tableTitles} members={subjects} enroll={handleenrollement} unenroll={()=> handleUnenroll(123, 'CMPS202')}/>
+        <div className="Titles">Courses Taken</div> 
+         {tableData && <CourseTable data={tableData} />}
+        <Table titles={tableTitles} members={subjects} enroll={handleenrollclick} unenroll={handleunenrollclick}/>
       </div>
     );
   };
   
+
 const TablesSubjectsTaken = () => {
-    const [tableData, setTableData] = useState(null);
-    const fetchDataForTable = async (id) => {
-        try {
-            const response = await fetch(`http://localhost:8080/api/student/courses/${encodeURIComponent(id)}`);
-            const result = await response.json();
-            console.log(result.data);
-            setTableData(result.data);
-        } catch (error) {
-            console.error('Error fetching data for table:', error);
-        }
-    };
-    useEffect(() => {
-        fetchDataForTable(123);
-    }, []);
+   
 
   return (
-    <div>
-        <div className="Titles">Courses Taken</div> 
-         {tableData && <CourseTable data={tableData} />}
-         <div> 
+    <div>        
         <SubjectsTable/>
-         </div>
     </div>
   );
 };
