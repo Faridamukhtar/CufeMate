@@ -180,7 +180,7 @@ export const GetStudentApplicants = async (req, res) =>
   const form_id = req.params.form_id
   let Query =
   `
-    SELECT * 
+    SELECT fname, lname, major_id, a.std_id, class, stat
     FROM applied a 
     INNER JOIN student s 
       on s.std_id = a.std_id AND a.form_id = ${form_id}
