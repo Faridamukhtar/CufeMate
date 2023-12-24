@@ -213,7 +213,9 @@ const LoginSignupClub = () => {
               onChange={(e) => setLoginPassword(e.target.value)}
             />
             <button onClick={() => handleLogin(loginEmail, loginPassword)}>Login</button>
+            <Link to='/ForgotPass'>
             <button>Forgot Password</button>
+            </Link>
           </div>
         </div>
         <div className="right">

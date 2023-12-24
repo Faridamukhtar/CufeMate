@@ -49,7 +49,7 @@ import { post_requests_router } from './database/ViewPostReq.js';
 import { mark_accept_router } from './database/MarkAccept.js';
 import { mark_reject_router } from './database/MarkReject.js';
 
-
+import { forgotPass } from './database/ForgotPass.js';
 
 const port = 8080;
 const app = express();
@@ -72,6 +72,7 @@ app.use(
 //////////////////// AMIRA ROUTERS /////////////////
     app.use('/', signup_router);
     app.use('/', login_router);
+    app.use('/', forgotPass);
     app.use('/', major_router);
     app.use('/', admin_router);
     app.use('/', club_router);

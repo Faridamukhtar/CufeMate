@@ -28,7 +28,7 @@ const DisplayStudent = ({ student,adminID }) => {
       <div className="info-textbox">
         <p>Email: {message.email}</p>
         <p>Password: {message.passw}</p>
-        <p>Major: {message.major_id}</p>
+        <p>Major: {message.major}</p>
         <p>Class: {message.class} </p>
       </div>
     );
