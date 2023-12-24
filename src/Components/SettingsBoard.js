@@ -2,6 +2,7 @@ import React, { useState , useEffect ,useRef  } from 'react';
 import ChooseHeader from "./Header.js";
 import './SettingsBoard.css';
 import TextInput from './TextInput';
+import StudentSubject from "./StudentSubjects.js"
 import { useParams } from 'react-router-dom';
 
 const UpdatePassword = ({ message }) => {
@@ -11,6 +12,7 @@ const UpdatePassword = ({ message }) => {
   const [conpass, setconpass] = useState('');
   const [currentPassFromApi, setCurrentPassFromApi] = useState('');
 
+  
   useEffect(() => {
     const fetchPass = async (id) => {
       try {
@@ -47,7 +49,7 @@ const UpdatePassword = ({ message }) => {
     }
     else if (message==='studentclub')
     {
-       id =1212;
+       id =12;
     }
     else if (message==='admin')
     {
@@ -109,7 +111,7 @@ const UpdatePassword = ({ message }) => {
                 }
                 else if (message==='studentclub')
                 {
-                  id =1212;
+                  id =12;
                 }
                 else if (message==='admin')
                 {
@@ -205,7 +207,7 @@ const UpdateInfo =() =>
   const ChangeAbout =() => 
   {
     ///TO BE REMOVED LATER ON WHEN EMAIL IS ACTUALLY SAVED
-    let id =1212
+    let id =12;
     handleAboutUpdate(id, inputValue);
   }
   const handleUpdateimage = async (id, logo) => {
@@ -224,7 +226,7 @@ const UpdateInfo =() =>
   };
   const ChangeLogo=()=>{
      ///TO BE REMOVED LATER ON WHEN EMAIL IS ACTUALLY SAVED
-     let id =1212
+     let id =12;
      handleUpdateimage(id, selectedImage);
      console.log('')
   }
@@ -365,6 +367,10 @@ function StudentBody(props)
             return (
                 <ApplyRep/>
             );
+        case 'Button3':
+            return (
+                <StudentSubject/>
+            );
         
         default:
             return null;
@@ -388,12 +394,20 @@ function StudentBody(props)
             <span className={selectedButton === 'Button1' ? 'label-clicked' : 'label'}> Change Password</span>
             </button>
 
-            {/* Button two (Delete acc)*/}
+            {/* Button two (Apply rep)*/}
             <button
             className={selectedButton === 'Button2' ? 'button-clicked' : 'button'}
             onClick={() => handleButtonClick('Button2')}
              >
             <span className={selectedButton === 'Button2' ? 'label-clicked' : 'label'}>Apply to be rep</span>
+            </button>
+
+             {/* Button three (Update Subjects)*/}
+             <button
+            className={selectedButton === 'Button3' ? 'button-clicked' : 'button'}
+            onClick={() => handleButtonClick('Button3')}
+             >
+            <span className={selectedButton === 'Button3' ? 'label-clicked' : 'label'}>Subjects taken </span>
             </button>
     
             {/* Border line*/}

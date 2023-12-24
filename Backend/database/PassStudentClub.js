@@ -11,7 +11,7 @@ ChangeClubPass_router.get('/api/GetStudentClubPass', async (req, res) => {
     const { id} = req.query;
 
   try {
-    const result = await dbInstance.query('SELECT passw FROM student_club WHERE std_club_id= $1', [id]);
+    const result = await dbInstance.query('SELECT get_stdclub_pass($1) AS passw;', [id]);
     res.json(result.rows);
   } catch (error) {
     console.error(error);

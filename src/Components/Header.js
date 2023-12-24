@@ -2,7 +2,6 @@ import React from "react";
 import './Header.css';
 import ViewPostReqDashboard from "../pages/ViewPostReqDashboard";
 
-const studentData = {fname:"Ahmed", lname:"Mohamed", major_id:'CCE', std_id:1, class:'2026'}; //get logged in student data
 const SCData = {std_club_name:"CU Eco-Racing team", std_club_id:1, email:'CUERT@gmail.com'}; //get logged in student data
 
 function ViewStudentClubsHeader(props)
@@ -19,10 +18,10 @@ function ViewStudentClubsHeader(props)
             </div>
             <div className="Info">
                 <h4 className='StudentName'>
-                    {studentData.fname} {studentData.lname}
+                    {props.studentData.fname} {props.studentData.lname}
                 </h4>
                 <h4>
-                    Class of {props.studentType=='student' ? studentData.class : studentData.class + ' Rep'}
+                    Class of {props.studentType=='student' ? props.studentData.class : props.studentData.class + ' Rep'}
                 </h4>
             </div>
         </div>
@@ -44,10 +43,10 @@ function StudentHeader(props)
             </div>
             <div className="Info">
                 <h4 className='StudentName'>
-                    {studentData.fname} {studentData.lname}
+                    {props.studentData.fname} {props.studentData.lname}
                 </h4>
                 <h4>
-                    Class of {props.studentType=='student' ? studentData.class : studentData.class + ' Rep'}
+                    Class of {props.studentType=='student' ? props.studentData.class : props.studentData.class + ' Rep'}
                 </h4>
             </div>
         </div>
@@ -289,7 +288,7 @@ function ChooseHeader(props)
     {
         return (
             <>
-                <StudentHeader studentType={props.studentType}/>
+                <StudentHeader studentType={props.studentType} studentData={props.studentData}/>
             </>
         );
     }
@@ -305,7 +304,7 @@ function ChooseHeader(props)
     {
         return (
             <>
-                <ViewStudentClubsHeader studentType={props.studentType}/>
+                <ViewStudentClubsHeader studentType={props.studentType} studentData={props.studentData}/>
             </>
         );
     }

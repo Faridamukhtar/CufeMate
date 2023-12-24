@@ -52,8 +52,8 @@ const LoginSignup = () => {
           }
           else if(response.ok)
           {
-            console.log("ana fl login_signup",result.user);
-            navigate(`/student/${result.user.std_id}`);
+            console.log("ana fl login_signup w ana student",result.user);
+             navigate(`/student/${result.user.std_id}/${result.user.major_id}/${result.user.fname}/${result.user.lname}/${result.user.class}/`);
           }
           if(result.message ==='Invalid username or password')
           {
