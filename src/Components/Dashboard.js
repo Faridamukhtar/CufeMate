@@ -106,7 +106,7 @@ function ReqWritePostBody(props)
     return (
         <div className="ReqWritePostBody">
             <div className="ChooseCourse">
-                <ChooseCourseReq Dashboard={props.DashboardType}/>
+                <ChooseCourseReq Dashboard={props.DashboardType} studentData={props.studentData}/>
             </div>
             
              <div className="ViewPreviousReqPosts">

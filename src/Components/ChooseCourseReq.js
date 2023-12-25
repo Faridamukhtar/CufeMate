@@ -2,20 +2,21 @@ import React, { useState, useEffect } from 'react';
 import WriteTextPostMajor from './WriteTextPostMajor.js';
 import WriteTextPostCourse from './WriteTextPostCourse.js';
 
-const DropdownMenu = () =>
+const DropdownMenu = (props) =>
  {
   const [CoursesDropDown, setCoursesDropDown] = useState([]);
    // State to manage the selected value
   const [selectedValue, setSelectedValue] = useState('');
   const [selectedOption, setSelectedOption]= useState('');
-
+  const major_id=props.studentData.major_id;
+  console.log(major_id);
     useEffect(() =>
-     {
-      const fetchCourses = async () =>
+     {  
+      const fetchCourses = async (major_id) =>
        {
         try
          {
-          const response = await fetch('http://localhost:8080/api/choosecourse/:major_id'); 
+          const response = await fetch(`http://localhost:8080/api/choosecourse/${encodeURIComponent(major_id)}`); 
           const coursesData = await response.json();
           console.log(coursesData);
           const options = coursesData.map((course) => (<option value={course.course_id}>{course.course_name}</option>));
