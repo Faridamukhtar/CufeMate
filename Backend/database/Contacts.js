@@ -4,16 +4,16 @@ import { dbInstance } from "./connection.js";
 const reps_contacts_router=express.Router();
 
 
-reps_contacts_router.get("/api/repscontacts/:major/:classs", async (req,res) =>
+reps_contacts_router.get("/api/repscontacts/:major_id/:classs", async (req,res) =>
 {
     //const {std_id}=req.params;
     //const {std_major}=req.params;
-    const {major,classs}= req.params;
+    const {major_id,classs}= req.params;
     //const major='MEE';
     //const classs=2026;
     try 
     {
-        const result =await dbInstance.query ('SELECT fname, lname, email FROM student WHERE major_id=$1 AND class=$2 AND rep_flag= 1;',[major,classs]);
+        const result =await dbInstance.query ('SELECT fname, lname, email FROM student WHERE major_id=$1 AND class=$2 AND rep_flag= 1;',[major_id,classs]);
         res.json(result.rows);
     }
     catch (error)

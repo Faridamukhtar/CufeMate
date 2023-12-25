@@ -72,7 +72,7 @@ function DisplayComplaints(props)
 }
 
 
-function PreviousComplaints({props}) 
+function PreviousComplaints(props) 
 {  
   const [ComplaintsData, setComplaintsData]=useState([{title:"",complaint_date:"",stat:""}]);
     
@@ -80,7 +80,7 @@ function PreviousComplaints({props})
     {
         const setComplaints= async () =>
         {
-            const data = await getComplaints(props.std_id,'', '', '');
+            const data = await getComplaints(props.studentData.std_id,'', '', '');
             console.log(data);
             setComplaintsData(data);
         }

@@ -6,8 +6,10 @@ import { useParams } from "react-router-dom";
 
 const RepsContactsDashboard =()=>
 {
-    let student={std_id:0, fname:'', lname:'', class:2026}
+    let student={std_id:0, major_id:'', fname:'', lname:'', class:''}
     student = useParams();
+    
+    console.log(student.fname);
 
     return (
         <div className="RepsContactsPage">

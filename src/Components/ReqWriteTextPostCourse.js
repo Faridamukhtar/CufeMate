@@ -3,17 +3,17 @@ import './ReqWriteTextPost.css';
 import PostInputText from "./PostInputText.js";
 
 
-function ReqWriteTextPostCourse({selectedCourse})
+function ReqWriteTextPostCourse({selectedCourse}, props)
 
 {    
     
     const [Conttent, setContent] = useState('');
 
-    const handleSubmit = async (Conttent, selectedCourse) =>
+    const handleSubmit = async (Conttent, selectedCourse, std_id) =>
      {
         try {
           // Construct the URL with actual values for email and password
-          const url = `http://localhost:8080/api/reqwritepostcourse/${encodeURIComponent(Conttent)}/${encodeURIComponent(selectedCourse)}`;
+          const url = `http://localhost:8080/api/reqwritepostcourse/${encodeURIComponent(Conttent)}/${encodeURIComponent(selectedCourse)}/${encodeURIComponent(std_id)}`;
       
           // Make a GET request to the constructed URL
               const response = await fetch(url); 
@@ -44,7 +44,7 @@ function ReqWriteTextPostCourse({selectedCourse})
             <div className="CharacterCount">
                 <p > {Conttent.length} : 2000  </p>
             </div>
-            <button className="PostSubmitButton" onClick={() => handleSubmit(Conttent, selectedCourse)}> <h5 className="PostSubmitText">Submit</h5></button>
+            <button className="PostSubmitButton" onClick={() => handleSubmit(Conttent, selectedCourse, props.studentData.std_id)}> <h5 className="PostSubmitText">Submit</h5></button>
         
            </div>        
        </div>
