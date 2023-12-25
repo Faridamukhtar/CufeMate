@@ -42,9 +42,9 @@ function App() {
             
             <Route path="/complaints/:std_id/:major_id/:fname/:lname/:class" element={<ComplaintDashboard/>} />
             <Route path="/rep/:std_id/:major_id/:fname/:lname/:class" element={<RepDashboard DashboardType='studentRep'/>} />
-            <Route path="/StudentSettings/:std_id/:major_id/:fname/:lname/:class" element={<StudentSetting DashboardType='studentsettings' />} />
-            <Route path="/StudentClubSettings" element={<StudentSetting DashboardType='studentclubsettings' />} />
-            <Route path="/AdminsSettings" element={<StudentSetting DashboardType='adminsettings' />} />
+            <Route path="/StudentSettings/:std_id/:major_id/:fname/:lname/:class" element={<StudentSetting DashboardType='studentsettings'  Type='Student'/>} />
+            <Route path="/StudentClubSettings" element={<StudentSetting DashboardType='studentclubsettings' Type='StudentClub' />} />
+            <Route path="/AdminsSettings" element={<StudentSetting DashboardType='adminsettings' Type='Admin' />} />
             <Route path="/student/studentclubs/:std_id/:major_id/:fname/:lname/:class/" element={<StudentDashboard DashboardType='viewstudentclubs' />} />
             <Route path="/rep/studentclubs/:std_id/:major_id/:fname/:lname/:class" element={<RepDashboard DashboardType='viewstudentclubs' />} />
 

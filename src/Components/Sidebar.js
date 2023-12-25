@@ -34,7 +34,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                     </div>
-                    <div className="SidebarOption" id="Settings">
+                    <div className="SidebarOption" id="Settings" onClick={()=>navigate('/StudentClubSettings')}>
                         <div className="SidebarIcon">
                             <SettingsSVG/>
                         </div>
