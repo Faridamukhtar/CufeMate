@@ -24,7 +24,7 @@ const RepRequests = ({ rep, adminID }) => {
   const handleRejectClick = async (repId,decision,adminID) => {
     console.log(adminID);
     try {
-      const url = `http://localhost:8080/api/requests/student/approve_decline/${decision}/${repId}/${adminID}`; // Assuming 2 is the decision for banning
+      const url = `http://localhost:8080/api/requests/rep/approve_decline/${decision}/${repId}/${adminID}`; // Assuming 2 is the decision for banning
       const response = await fetch(url, { method: 'PUT' });
       const data = await response.json();
       // Handle the ban response as needed
