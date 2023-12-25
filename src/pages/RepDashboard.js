@@ -1,10 +1,14 @@
-import React, {useState} from "react";
+import React from "react";
 import Sidebar from "../Components/Sidebar";
 import Dashboard from "../Components/Dashboard";
 import './StudentDashboard.css'
+import { useParams } from 'react-router-dom';
 
 const RepDashboard =(props)=>
 {
+    let rep={std_id:0, fname:'', lname:'', class:2026}
+    rep = useParams();
+    console.log('Ana rep fager', rep);
 
     return (
         <div className="StudentPage">

@@ -48,12 +48,12 @@ const LoginSignup = () => {
           if(response.ok && result.user.rep_flag === 1)
           {
             console.log("ana rep w raye7 dashboard",result.user);
-            navigate(`/rep/${result.user}`);
+            navigate(`/rep/${result.user.std_id}/${result.user.major_id}/${result.user.fname}/${result.user.lname}/${result.user.class}`);
           }
           else if(response.ok)
           {
             console.log("ana fl login_signup w ana student",result.user);
-             navigate(`/student/${result.user.std_id}/${result.user.major_id}/${result.user.fname}/${result.user.lname}/${result.user.class}/`);
+             navigate(`/student/${result.user.std_id}/${result.user.major_id}/${result.user.fname}/${result.user.lname}/${result.user.class}`);
           }
           if(result.message ==='Invalid username or password')
           {
