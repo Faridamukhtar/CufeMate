@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 const StudentDashboard =(props)=>
 {
 
-    let student={std_id:0, fname:'', lname:'', class:2026}
+    let student={std_id:0, major_id:0, fname:'', lname:'', class:2026}
     student = useParams();
 
     console.log('Ana john cina', student)
