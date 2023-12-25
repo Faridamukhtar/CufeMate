@@ -8,10 +8,10 @@ const DropdownMenu = (props) =>
    // State to manage the selected value
   const [selectedValue, setSelectedValue] = useState('');
   const [selectedOption, setSelectedOption]= useState('');
-  const major_id=props.studentData.major_id;
+  const major_id=props.repData.major_id;
     useEffect(() =>
      {
-      const fetchCourses = async () =>
+      const fetchCourses = async (major_id) =>
        {
         try
          {
@@ -26,7 +26,7 @@ const DropdownMenu = (props) =>
           console.error('Error fetching courses:', error);
          }
       };
-      fetchCourses();
+      fetchCourses(major_id);
   
     }, []);
 

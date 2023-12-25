@@ -20,6 +20,7 @@ function WriteTextPostCourse({selectedCourse}, props)
               const result = await response.json();
               // Handle the login result as needed
               console.log(result);
+              alert("Posted successfully");
             } 
             catch (error) {
               console.error('Error during login:', error);
@@ -44,7 +45,7 @@ function WriteTextPostCourse({selectedCourse}, props)
             <div className="CharacterCount">
                 <p > {Conttent.length} : 2000  </p>
             </div>
-            <button className="PostSubmitButton" onClick={() => handleSubmit(Conttent, selectedCourse, props.studentData.std_id)}> <h5 className="PostSubmitText">Submit</h5></button>
+            <button className="PostSubmitButton" onClick={() => {if (Conttent.length>0) { handleSubmit(Conttent, selectedCourse, props.studentData.std_id)}else {alert("No post was written")}}}> <h5 className="PostSubmitText">Submit</h5></button>
         
            </div>        
        </div>

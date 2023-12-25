@@ -98,7 +98,7 @@ function ComplaintHeader(props)
             </div>
             <div className="Info">
                 <h4 className='StudentName'>
-                    Name
+                {props.studentData.fname} {props.studentData.lname}
                 </h4>
                 <h4>
                     Class of  {props.studentData.class}
@@ -167,10 +167,10 @@ function RepsViewComplaintsHeader(props)
         </div>
         <div className="Info">
             <h4 className='StudentName'>
-                Name
+            {props.repData.lname} {props.repData.fname}
             </h4>
             <h4>
-                Class of  {props.studentData.class}
+                Class of  {props.repData.class}
             </h4>
         </div>
     </div>
@@ -190,10 +190,10 @@ function WritePostHeader(props)
             </div>
             <div className="Info">
                 <h4 className='StudentName'>
-                    Name
+                {props.repData.fname} {props.repData.lname}
                 </h4>
                 <h4>
-                    Class of  {props.studentData.class}
+                    Class of  {props.repData.class}
                 </h4>
             </div>
         </div>
@@ -212,7 +212,7 @@ function ReqWritePostHeader(props)
             </div>
             <div className="Info">
                 <h4 className='StudentName'>
-                    Name
+                {props.studentData.fname} {props.studentData.lname}
                 </h4>
                 <h4>
                     Class of  {props.studentData.class}
@@ -234,10 +234,10 @@ function ViewPostReqHeader(props)
             </div>
             <div className="Info">
                 <h4 className='StudentName'>
-                    Name
+                    {props.repData.fname} {props.repData.lname}
                 </h4>
                 <h4>
-                    Class of  {props.studentData.class}
+                    Class of  {props.repData.class}
                 </h4>
             </div>
         </div>
@@ -343,7 +343,7 @@ function ChooseHeader(props)
     {
         return (
             <>
-               <RepsViewComplaintsHeader studentData={props.studentData}/>
+               <RepsViewComplaintsHeader repData = {props.repData}/>
             </>
         )
     }
@@ -353,7 +353,7 @@ function ChooseHeader(props)
     {
         return (
              <>
-                <WritePostHeader studentData={props.studentData} />
+                <WritePostHeader repData = {props.repData} />
              </>
         );
     }
@@ -369,7 +369,7 @@ function ChooseHeader(props)
     {
         return (
             <>
-               <ViewPostReqHeader studentData={props.studentData} />
+               <ViewPostReqHeader repData = {props.repData} />
             </>
         );
     }

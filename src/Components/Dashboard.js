@@ -79,7 +79,7 @@ function RepsViewComplaintsBody(props)
 {
     return (
         <div className='RepsViewComplaintsBody'>
-             <RepsViewComplaints repData = {props.repData} DashboardType={props.DashboardType}/>
+             <RepsViewComplaints  DashboardType={props.DashboardType}  repData = {props.repData}/>
         </div>
 
     );
@@ -90,11 +90,11 @@ function WritePostBody(props)
     return(
         <div className="WritePostBody">
             <div className="ChooseCourse">
-                <ChooseCourse repData = {props.repData} Dashboard={props.DashboardType}/>
+                <ChooseCourse Dashboard={props.DashboardType} repData = {props.repData} />
             </div>
             
              <div className="ViewPreviousPosts">
-                <ViewPreviousPosts repData = {props.repData} Dashboard={props.DashboardType}/>
+                <ViewPreviousPosts  Dashboard={props.DashboardType}  repData = {props.repData}/>
              </div>
         </div>
 
@@ -120,10 +120,15 @@ function ViewPostReqBody(props)
 {
     return (
             <div className='ViewPostReqBody'>
-                <ViewPostReq repData = {props.repData} Dashboard={props.DashboardType} />
+                <ViewPostReq  Dashboard={props.DashboardType} repData = {props.repData} />
             </div>
     );
 }
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 function DashboardBody(props)
