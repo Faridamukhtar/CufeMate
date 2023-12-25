@@ -1,22 +1,20 @@
 import React from "react";
-import Sidebar from "../Components/Sidebar";
 import AdminBar from "../Components/adminBar";
 import './StudentSetting.css'
 import SettingsBoard from "../Components/SettingsBoard";
-
-
+import { useParams } from 'react-router-dom';
 
 const AdminSetting =({DashboardType,Type})=>
 {
-    
+    const { admin_id } = useParams();//pass AdminID to the component
     console.log({DashboardType})
     return (
         <div className="StudentPage">
-            <div className="sidebar">
-            <AdminBar/>
+            <div className="bar">
+            <AdminBar props={admin_id}/>
             </div>
             <div className="Dashboard">
-                <SettingsBoard SCData={Data} DashboardType={DashboardType} studentData={Data}/>
+                <SettingsBoard DashboardType={DashboardType} />
             </div>
         </div>
     );

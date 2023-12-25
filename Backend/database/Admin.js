@@ -158,13 +158,13 @@ admin_router.get('/api/admin/getAllClubs', async (req,res) => {
 });
 
 //ban/unban club
-admin_router.put('/api/admin/banClub/:id/:decision', async (req, res) => {
-  const {decision,id} = req.params;
+admin_router.put('/api/admin/banClub/:clubid/:decision/:adminid', async (req, res) => {
+  const {decision,clubid,adminid} = req.params;
   // stat: 0-> pending , 1-> approved club, 2-> banned/rejected club
   // decision: 2-> ban, 1-> unban
   try {
     //accepted clubs only
-    const result = await dbInstance.query('UPDATE request_std_club SET stat = $1 WHERE std_club_id=$2;', [decision, id]);
+    const result = await dbInstance.query('UPDATE request_std_club SET stat = $1, admin_id=$2 WHERE std_club_id=$3;', [decision, adminid, clubid]);
     res.json({ success: true,user: result.rows[0], message: 'status updated successfully' });
   } catch (error) {
     console.error(error);

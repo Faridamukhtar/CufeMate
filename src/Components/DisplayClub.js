@@ -39,8 +39,13 @@ const DisplayClub = ({ Club , adminID}) => {
       const data = await response.json();
       // Handle the ban response as needed
       console.log(data);
+      if(response.ok)
+      {
+        alert("successful ban, refresh to get updated status");
+      }
     } catch (error) {
-      console.error('Error banning student:', error);
+      console.error('Error banning club:', error);
+      alert("Error banning club");
     }
   };
 
@@ -51,8 +56,13 @@ const DisplayClub = ({ Club , adminID}) => {
       const data = await response.json();
       // Handle the unban response as needed
       console.log(data);
+      if(response.ok)
+      {
+        alert("successful unban, refresh to get updated status");
+      }
     } catch (error) {
-      console.error('Error unbanning student:', error);
+      console.error('Error unbanning club:', error);
+      alert("Error unbanning club");
     }
   };
 
