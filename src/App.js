@@ -22,6 +22,7 @@ import ViewPostReqDashboard from './pages/ViewPostReqDashboard.js';
 import AdminStats from './pages/AdminStats.js';
 import StudentClubForms from './pages/StudentClubForms.js';
 import ForgotPass from './Components/ForgotPass.js';
+import AdminSetting from './pages/AdminSetting.js';
 
 
 function App() {
@@ -54,7 +55,7 @@ function App() {
             <Route path="/Admin/add/:admin_id" element={<AddAdmin />} />
             <Route path="/Admin/requests/:admin_id" element={<AdminRequests/>} />
             <Route path="/Admin/stats/:admin_id" element={<AdminStats />} />
-            <Route path="/AdminsSettings/:admin_id" element={<StudentSetting DashboardType='adminsettings' />} />
+            <Route path="/AdminsSettings/:admin_id" element={<AdminSetting DashboardType='adminsettings' />} />
 
             <Route path="/repsviewcomplaints" element ={<RepsComplaintsDashboard />} />
             <Route path="/writepost/:std_id/:major_id/:fname/:lname/:class" element ={<WritePostDashboard/>} />
