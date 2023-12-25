@@ -38,13 +38,13 @@ function App() {
             <Route path="/ForgotPass" element={<ForgotPass/>}/>
 
             <Route path="/student/:std_id/:major_id/:fname/:lname/:class" element={<StudentDashboard DashboardType='student'/>} />
-            <Route path="/StudentClubStatistics/:club" element={<StudentClubStats/>} />
+            <Route path="/StudentClubStatistics/:std_club_id/:std_club_name/:email/" element={<StudentClubStats/>} />
             
             <Route path="/complaints/:std_id/:major_id/:fname/:lname/:class" element={<ComplaintDashboard/>} />
             <Route path="/rep/:std_id/:major_id/:fname/:lname/:class" element={<RepDashboard DashboardType='studentRep'/>} />
-            <Route path="/StudentSettings/:std_id/:major_id/:fname/:lname/:class" element={<StudentSetting DashboardType='studentsettings' />} />
-            <Route path="/StudentClubSettings" element={<StudentSetting DashboardType='studentclubsettings' />} />
-            <Route path="/AdminsSettings" element={<StudentSetting DashboardType='adminsettings' />} />
+            <Route path="/StudentSettings/:std_id/:major_id/:fname/:lname/:class" element={<StudentSetting DashboardType='studentsettings'  Type='Student'/>} />
+            <Route path="/StudentClubSettings/:std_club_id/:std_club_name/:email/" element={<StudentSetting DashboardType='studentclubsettings' Type='StudentClub' />} />
+            <Route path="/AdminsSettings" element={<StudentSetting DashboardType='adminsettings' Type='Admin' />} />
             <Route path="/student/studentclubs/:std_id/:major_id/:fname/:lname/:class/" element={<StudentDashboard DashboardType='viewstudentclubs' />} />
             <Route path="/rep/studentclubs/:std_id/:major_id/:fname/:lname/:class" element={<RepDashboard DashboardType='viewstudentclubs' />} />
 
@@ -60,7 +60,7 @@ function App() {
             <Route path="/writepost/:std_id/:major_id/:fname/:lname/:class" element ={<WritePostDashboard/>} />
             <Route path="/reqwritepost/:std_id/:major_id/:fname/:lname/:class" element={<ReqToWritePostDashboard/>}/>
             <Route path="/viewpostreq/:std_id/:major_id/:fname/:lname/:class" element={<ViewPostReqDashboard/>}/>
-            <Route path="/StudentClub/Forms" element={<StudentClubForms DashboardType='StudentClubForms'/>} />
+            <Route path="/StudentClub/Forms/:std_club_id/:std_club_name/:email/" element={<StudentClubForms DashboardType='StudentClubForms'/>} />
 
           </Routes>
 

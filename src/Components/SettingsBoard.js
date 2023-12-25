@@ -5,7 +5,7 @@ import TextInput from './TextInput';
 import StudentSubject from "./StudentSubjects.js"
 import { useParams } from 'react-router-dom';
 
-const UpdatePassword = ({ message , Std_ID}) => {
+const UpdatePassword = ({ message , Std_ID , Club_ID}) => {
   const { admin_id } = useParams();
   const [Cpass, setCpass] = useState('');
   const [Npass, setNpass] = useState('');
@@ -48,7 +48,7 @@ const UpdatePassword = ({ message , Std_ID}) => {
     }
     else if (message==='studentclub')
     {
-       id =12;
+       id =Club_ID;
     }
     else if (message==='admin')
     {
@@ -110,7 +110,7 @@ const UpdatePassword = ({ message , Std_ID}) => {
                 }
                 else if (message==='studentclub')
                 {
-                  id =12;
+                  id =Club_ID;
                 }
                 else if (message==='admin')
                 {
@@ -152,7 +152,8 @@ const UpdatePassword = ({ message , Std_ID}) => {
   );
 };
 
-const UpdateInfo =() => 
+////////////////////////////////////////////////MA7TAGA EL CLUB_ID//////////////////////////////////////////////
+const UpdateInfo =({Club_ID}) => 
 {
   const [inputValue, setInputValue] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
@@ -190,10 +191,10 @@ const UpdateInfo =() =>
     setInputValue(event.target.value);
   };
 
-  const handleAboutUpdate = async (id, inputValue) => {
+  const handleAboutUpdate = async (inputValue) => {
 
       try {
-        const url = `http://localhost:8080/api/UpdateAbout/${id}/${encodeURIComponent(inputValue)}`;
+        const url = `http://localhost:8080/api/UpdateAbout/${Club_ID}/${encodeURIComponent(inputValue)}`;
         const response = await fetch(url);
         const result = await response.json();
         console.log(result)
@@ -205,14 +206,12 @@ const UpdateInfo =() =>
 
   const ChangeAbout =() => 
   {
-    ///TO BE REMOVED LATER ON WHEN EMAIL IS ACTUALLY SAVED
-    let id =12;
-    handleAboutUpdate(id, inputValue);
+    handleAboutUpdate(Club_ID, inputValue);
   }
-  const handleUpdateimage = async (id, logo) => {
+  const handleUpdateimage = async (logo) => {
 
     try {
-      const url = `http://localhost:8080/api/Updatelogo/${id}/${encodeURIComponent(logo)}`;
+      const url = `http://localhost:8080/api/Updatelogo/${Club_ID}/${encodeURIComponent(logo)}`;
       console.log('logo url', logo);
       console.log('Fetch url', url);
 
@@ -224,9 +223,7 @@ const UpdateInfo =() =>
     }
   };
   const ChangeLogo=()=>{
-     ///TO BE REMOVED LATER ON WHEN EMAIL IS ACTUALLY SAVED
-     let id =12;
-     handleUpdateimage(id, selectedImage);
+     handleUpdateimage(Club_ID, selectedImage);
      console.log('')
   }
 
@@ -551,10 +548,10 @@ function SettingsBoard(props)
     return (
         <div className="SettingsWrapper">
             <div className="DashboardHeader">
-                <ChooseHeader DashboardType={props.DashboardType}/>
+                <ChooseHeader SCData={props.SCData} DashboardType={props.DashboardType}/>
             </div>
             <div className="DashboardBody">
-               <Body DashboardType={props.DashboardType} studentData={props.studentData} />
+               <Body DashboardType={props.DashboardType} SCData={props.SCData} studentData={props.studentData} />
             </div>
         </div>
     );
