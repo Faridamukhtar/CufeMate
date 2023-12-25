@@ -17,7 +17,7 @@ const Sidebars =(props)=>
     {
         return (
             <>
-                <Sidebar SidebarType='student' studentData={props.student}/>
+                <Sidebar SidebarType='student' studentData={props.studentData}/>
             </>
         );
     }
@@ -25,7 +25,7 @@ const Sidebars =(props)=>
     {
         return (
             <>
-                <Sidebar SidebarType='StudentClubForms'/>
+                <Sidebar SidebarType='StudentClubForms' SCData={props.SCData} />
             </>
         );
     }
@@ -33,7 +33,7 @@ const Sidebars =(props)=>
     {
         return (
             <>
-                <AdminBar/>
+                 <AdminBar/>
             </>
         );
     }

@@ -19,7 +19,7 @@
 {
     position:relative;
     flex-direction: row;
-    width: 1060px;
+    width: 100%;
     height: 127px;
     flex-shrink: 0;
     border-radius: 16px;

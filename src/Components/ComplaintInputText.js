@@ -17,7 +17,7 @@ const ComplaintInputText = ({placeholderText, setInputValue , inputValue}) =>
           value={inputValue}
           onChange={handleInputChange}
           placeholder={placeholderText}
-          className='ComplaintContent'
+          className='ComplaintContent2'
         />
       </div>
     );

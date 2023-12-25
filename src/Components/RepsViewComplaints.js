@@ -3,12 +3,12 @@ import "./RepsViewComplaints.css";
 
   
 
-const getComplaints = async (title="" , content="", id="", date="") => 
+const getComplaints = async (major_id, classs,title="" , content="", id="", date="") => 
 {
     try 
     {
       // Construct the URL with actual values for email and password
-        const url = `http://localhost:8080/api/repsviewcomplaints/`;
+        const url = `http://localhost:8080/api/repsviewcomplaints/${encodeURIComponent(major_id)}/${encodeURIComponent(classs)}`;
   
       // Make a GET request to the constructed URL
           const response = await fetch(url); 
@@ -94,7 +94,7 @@ function DisplayComplaints(props)
 }
 
 
-function Complaints() 
+function Complaints(props) 
 {  
   const [ComplaintsData, setComplaintsData]=useState([{title:"" , content:"", id:"" , date:""}]);
     
@@ -102,7 +102,7 @@ function Complaints()
     {
         const setComplaints= async () =>
         {
-            const data = await getComplaints('', '', '', '');
+            const data = await getComplaints(props.studentData.major_id, props.studentData.class,'', '', '', '');
             console.log(data);
             setComplaintsData(data);
         }
@@ -115,7 +115,7 @@ function Complaints()
   return (
      <div>
         <ul>
-        <DisplayComplaints compArray={ComplaintsData}/>
+        <DisplayComplaints compArray={ComplaintsData} student={props.studentData}/>
         </ul>
         
      </div>

@@ -2,20 +2,22 @@ import React, { useState, useEffect } from 'react';
 import WriteTextPostMajor from './WriteTextPostMajor.js';
 import WriteTextPostCourse from './WriteTextPostCourse.js';
 
-const DropdownMenu = () =>
+const DropdownMenu = (props) =>
  {
   const [CoursesDropDown, setCoursesDropDown] = useState([]);
    // State to manage the selected value
   const [selectedValue, setSelectedValue] = useState('');
   const [selectedOption, setSelectedOption]= useState('');
-
+  const major_id=props.studentData.major_id;
+  console.log("ana fo2",major_id);
     useEffect(() =>
-     {
-      const fetchCourses = async () =>
+     {  
+      const fetchCourses = async (major_id) =>
        {
         try
          {
-          const response = await fetch('http://localhost:8080/api/choosecourse/:major_id'); 
+          console.log("ana major",major_id);
+          const response = await fetch(`http://localhost:8080/api/choosecourse/${encodeURIComponent(major_id)}`); 
           const coursesData = await response.json();
           console.log(coursesData);
           const options = coursesData.map((course) => (<option value={course.course_id}>{course.course_name}</option>));
@@ -26,7 +28,7 @@ const DropdownMenu = () =>
           console.error('Error fetching courses:', error);
          }
       };
-      fetchCourses();
+      fetchCourses(major_id);
   
     }, []);
 
@@ -55,7 +57,7 @@ const DropdownMenu = () =>
         <option value="">-- Select --</option>
         {CoursesDropDown}
       </select>
-
+      <br/>
       <label htmlFor="optionDropdown">Select Option:</label>
       <select id="optionDropdown" value={selectedOption} onChange={handleOptionChange}>
         <option value="">-- Select --</option>

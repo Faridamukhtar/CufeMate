@@ -148,9 +148,11 @@ const LoginSignupClub = () => {
         alert("Request will be sent and Signup successful");
       } else {
         console.error('Signup failed:', result.message);
+        alert("Error during signup, check all data fields are entered and with correct format")
       }
     } catch (error) {
       console.error('Error during signup:', error);
+      alert("Error during signup, check all data fields are entered and with correct format")
     }
   };
 

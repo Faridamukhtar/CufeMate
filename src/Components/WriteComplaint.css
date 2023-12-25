@@ -19,7 +19,7 @@
 
 .ComplaintBox
 {
-    width: 1093px;
+    width: auto;
     height: 300px;
     border-radius: 16px 16px 0px 0px;
     border: 1px solid #FFF;
@@ -43,7 +43,7 @@
 
 .ComplaintUpperLine
 {
-    width: 1080px;
+    width: 900px;
     border-top: 3px solid #5030E5;
     height: 0px;
     transform: rotate(0.167deg);
@@ -55,7 +55,7 @@
 
 .ComplaintLowerLine
 {
-    width: 1080px;
+    width: 900px;
     border-top: 3px solid #5030E5;
     height: 0px;
     transform: rotate(0.167deg);

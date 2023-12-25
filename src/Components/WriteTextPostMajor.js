@@ -3,17 +3,17 @@ import './WriteTextPost.css';
 import PostInputText from "./PostInputText.js";
 
 
-function WriteTextPostMajor({selectedCourse})
+function WriteTextPostMajor({selectedCourse}, props)
 
 {    
     
     const [Conttent, setContent] = useState('');
 
-    const handleSubmit = async (Conttent, selectedCourse) =>
+    const handleSubmit = async (Conttent, major_id, std_id) =>
      {
         try {
           // Construct the URL with actual values for email and password
-          const url = `http://localhost:8080/api/writepostmajor/${encodeURIComponent(Conttent)}/${encodeURIComponent(selectedCourse)}`;
+          const url = `http://localhost:8080/api/writepostmajor/${encodeURIComponent(Conttent)}/${encodeURIComponent(major_id)}/${encodeURIComponent(std_id)}`;
       
           // Make a GET request to the constructed URL
               const response = await fetch(url); 
@@ -44,7 +44,7 @@ function WriteTextPostMajor({selectedCourse})
             <div className="CharacterCount">
                 <p > {Conttent.length} : 2000  </p>
             </div>
-            <button className="PostSubmitButton" onClick={() => handleSubmit(Conttent, selectedCourse)}> <h5 className="PostSubmitText">Submit</h5></button>
+            <button className="PostSubmitButton" onClick={() => handleSubmit(Conttent, props.studentData.major_id, props.studentData.std_id)}> <h5 className="PostSubmitText">Submit</h5></button>
         
            </div>        
        </div>

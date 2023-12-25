@@ -12,7 +12,7 @@ function HandleLikes(props)
     {
         const onMount = async()=>
         {
-            const didLike=await DidLike(props.post_id, props.studentData.std_id);
+            const didLike=await DidLike(props.post_id, props.std_id);
             const Likes=await NoLikes(props.post_id);
             if (didLike?.length>0 && didLike[0]!==undefined)
             {
@@ -96,7 +96,7 @@ function Post(props)
                     {props.Content} 
                 </h5>   
             </div>
-            <HandleLikes post_id={props.post_id} studentData={props.studentData}/>
+            <HandleLikes post_id={props.post_id} std_id={props.std_id}/>
         </div>
     );
 }
@@ -115,7 +115,7 @@ function WriteType(props)
             </button>
         )
     }
-    else
+    /*else
     {
         return (
             <button className="WritePost">
@@ -124,7 +124,7 @@ function WriteType(props)
                 </h5>            
             </button>
         )
-    }
+    }*/
 }
 
 
@@ -190,7 +190,7 @@ function DisplayPosts(props)
 {
     if (props?.postArray[0]?.post_id>0)
     {
-        const listItems = props.postArray.map((post) => <li key={post.post_id}><Post post_id={post.post_id} Major={post.major_id} Content={post.content} Course={post.course_name} FAuthor={post.fname} LAuthor={post.lname} studentData={props.studentData}/></li>);
+        const listItems = props.postArray.map((post) => <li key={post.post_id}><Post post_id={post.post_id} Major={post.major_id} Content={post.content} Course={post.course_name} FAuthor={post.fname} LAuthor={post.lname} std_id={props.std_id}/></li>);
         return listItems;
     }
     else
@@ -209,11 +209,14 @@ function PostSection(props)
     const [ChosenAuthor, setChosenAuthor] = useState('');
     const [ChosenCourse, setChosenCourse] = useState('');
 
+    const std_major = props.studentData.major_id;
+    const std_id = props.studentData.std_id;
+    
     useEffect(()=>
     {
         const FilterByCourseandAuthor = async (Course,Author) =>
         { 
-            const data = await getposts(`${Author}`, `${props.studentData.major_id}` , `${Course}`, `${props.studentData.std_id}`);
+            const data = await getposts(`${Author}`, `${std_major}` , `${Course}`, `${std_id}`);
             setPostsContent(data);
         }
 
@@ -223,13 +226,13 @@ function PostSection(props)
 
     useEffect(()=>
     {
-        fetchStudentCourses(props.studentData.std_id).then((courses)=>
+        fetchStudentCourses(std_id).then((courses)=>
         {
             console.log('courses', courses);
             setStudentCourses(courses);
         })
 
-        fetchMajorAuthors(props.studentData.major_id).then((authors)=>
+        fetchMajorAuthors(std_major).then((authors)=>
         {
             console.log('authors', authors);
             setAuthors(authors);
@@ -270,7 +273,7 @@ function PostSection(props)
                 <Filters courses={StudentCourses} authors={Authors}/>
             </div>
             <div className="Posts">
-                <ul><DisplayPosts studentData={props.studentData} postArray={postsContent}/></ul>
+                <ul><DisplayPosts std_id={std_id} postArray={postsContent}/></ul>
             </div>
         </div>
     );

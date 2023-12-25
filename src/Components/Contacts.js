@@ -1,16 +1,17 @@
 import React, {useState, useEffect} from "react";
 import "./Contacts.css";
+import { useParams } from "react-router-dom";
 
   
 
-const getContacts = async (fname="", lname="", email="") => 
+const getContacts = async ( classs,major_id, fname="", lname="", email="") => 
 {
     try 
     {
-        const major='MEE';
-        const classs='2026';
+       // const major='CCEC';
+      //  const classs='2026';
       // Construct the URL with actual values for email and password
-        const url = `http://localhost:8080/api/repscontacts/${encodeURIComponent(major)}/${encodeURIComponent(classs)}`;
+        const url = `http://localhost:8080/api/repscontacts/${encodeURIComponent(major_id)}/${encodeURIComponent(classs)}`;
   
       // Make a GET request to the constructed URL
           const response = await fetch(url); 
@@ -63,15 +64,17 @@ function DisplayContacts(props)
 }
 
 
-function Contacts() 
+function Contacts(props) 
 {  
   const [ContactsData, setContactsData]=useState([{fname:"",lname:"",email:""}]);
+  console.log(props.studentData.class);
+  console.log(props.studentData.major_id);
     
     useEffect(()=>
     {
         const setContacts= async () =>
         {
-            const data = await getContacts('', '', '');
+            const data = await getContacts( props.studentData.class,props.studentData.major_id,'', '', '');
             console.log(data);
             setContactsData(data);
         }

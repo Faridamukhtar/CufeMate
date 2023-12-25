@@ -34,7 +34,7 @@ function Post(props)
     const StatusText=props.stat==='0'?  'Rejected' : props.stat === '1' ? 'Accepted' :'Pending';
   
    return(
-        <div className="PostRect">
+        <div className="PostRect2">
             <div className="CourseRect">
               <div>
                <h3 className="CourseText">
@@ -49,7 +49,7 @@ function Post(props)
                </h3>
                </div>
             </div>   
-            <div className="DateRect">
+            <div className="DateRect2">
               <h4 className="Date">
                 {props.post_date}
               </h4>

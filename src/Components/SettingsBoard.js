@@ -13,7 +13,7 @@ const UpdatePassword = ({ message , Std_ID , Club_ID}) => {
   const [currentPassFromApi, setCurrentPassFromApi] = useState('');
   
   useEffect(() => {
-    const fetchPass = async () => {
+    const fetchPass = async (id) => {
       try {
         let path
         if (message==='student')
@@ -157,8 +157,6 @@ const UpdateInfo =({Club_ID}) =>
 {
   const [inputValue, setInputValue] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
-  
-
   const handleImageChange = (e) => {
     const file = e.target.files[0];
 
@@ -194,6 +192,7 @@ const UpdateInfo =({Club_ID}) =>
   const handleAboutUpdate = async (inputValue) => {
 
       try {
+        console.log('data', inputValue)
         const url = `http://localhost:8080/api/UpdateAbout/${Club_ID}/${encodeURIComponent(inputValue)}`;
         const response = await fetch(url);
         const result = await response.json();
@@ -206,7 +205,7 @@ const UpdateInfo =({Club_ID}) =>
 
   const ChangeAbout =() => 
   {
-    handleAboutUpdate(Club_ID, inputValue);
+    handleAboutUpdate(inputValue);
   }
   const handleUpdateimage = async (logo) => {
 
@@ -466,12 +465,12 @@ function Studentclubbody(props)
         switch (selectedButton) {
         case 'Button1':
             return (
-                <UpdatePassword message='studentclub'/>
+                <UpdatePassword message='studentclub' Club_ID={props.SCData.std_club_id}/>
             );
 
         case 'Button2':
             return (
-                <UpdateInfo/>
+                <UpdateInfo SCData={props.SCData} Club_ID={props.SCData.std_club_id}/>
             );
         
         default:
@@ -528,7 +527,7 @@ function Body(props)
     {
         return (
             <>
-                <Studentclubbody DashboardType={props.DashboardType}/>
+                <Studentclubbody DashboardType={props.DashboardType} SCData={props.SCData}/>
             </>
         );
     }
