@@ -63,7 +63,7 @@ function Sidebar(props)
     {
         return(
             <div className='options'>
-                <div className="SidebarOption" id="Home" onClick={()=>navigate(`/student/${props.repData.std_id}/${props.repData.major_id}/${props.repData.fname}/${props.repData.lname}/${props.repData.class}/`)}>
+                <div className="SidebarOption" id="Home" onClick={()=>navigate(`/student/${props.studentData.std_id}/${props.studentData.major_id}/${props.studentData.fname}/${props.studentData.lname}/${props.studentData.class}/`)}>
                     <div className="SidebarIcon">
                         <HomeSVG/>
                     </div>
