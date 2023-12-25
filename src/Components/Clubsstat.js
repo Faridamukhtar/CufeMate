@@ -6,7 +6,7 @@ import TextInput from './TextInput';
 import './Clubstat.css';
 
 
-const BarStats = ({ startYear }) => {
+const BarStats = ({ startYear , Club_ID}) => {
     const [data, setMemberData] = useState([]); // Stores X values
     const [labels, setLabels] = useState([]); // Stores Y values
      startYear = parseInt(startYear, 10); //convert to number
@@ -33,7 +33,8 @@ const BarStats = ({ startYear }) => {
     };
   
     useEffect(() => {
-      getData(1, startYear, 2023);
+      console.log(Club_ID)
+      getData(Club_ID, startYear, 2023);
     }, [startYear]); // To run whenever startYear changes
   
     return (
@@ -44,11 +45,11 @@ const BarStats = ({ startYear }) => {
   };
 
 //Table 
-const  MembersTable=()=>
+const  MembersTable=(props)=>
 {   
     const [getMembers, setGetMembers] = useState([]);
       /////////////////////////////////////TO BE REMOVED WHEN ACTUAL LINKING OCCUR//////////////////////
-      let std_clb_id = 1;
+      const std_clb_id =props.SCData.std_club_id;
 
     useEffect(() => {
         const fetchMembers = async (std_clb_id) => {
@@ -146,10 +147,10 @@ function PageBody(props)
                     </div>
                  </div>
                 </div>
-                <BarStats startYear={startYear} />
+                <BarStats startYear={startYear} Club_ID={props.SCData.std_club_id} />
 
               </div>
-            <MembersTable />
+            <MembersTable SCData = {props.SCData}/>
             </div>
         </div>
     );
