@@ -55,7 +55,7 @@ const AddAdmin = () => {
           <div className="bar">
                 <AdminBar props={admin_id}/>
             </div> 
-            <div className="Dashboard">
+            <div className="DashboardAdmin2">
             <div className="MainTitle">Add Admin Form</div> 
             <input
             type="text"
@@ -87,7 +87,7 @@ const AddAdmin = () => {
             value={passw}
             onChange={(e) => setPassw(e.target.value)}
           />
-          <button onClick={handleSignup}>Signup</button>
+          <button onClick={handleSignup}>Add Admin</button>
         </div>
         </div>
     );

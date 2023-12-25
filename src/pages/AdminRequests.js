@@ -30,7 +30,7 @@ const AdminRequests = () => {
                 <AdminBar props={admin_id}/>
             </div> 
             <div className="Dashboard">
-            <div className="MainTitle">Requests Window</div> 
+            <div className="MainTitle2">Requests Window</div> 
             <div className="requests">
                 <div className="reps">
                     <div className="Titles2">Reps</div>
