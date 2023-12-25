@@ -86,26 +86,29 @@ const LoginSignup = () => {
         },
         body: JSON.stringify(data),
       });
-  
+      const result = await response.json();
+      if(result.message ==='user already exists')
+          {
+              alert("user already exists, try logging in");
+          }
       if (!response.ok) {
         // Handle non-successful response
         const errorResponse = await response.json();
         console.error('Error during signup:', errorResponse);
         // You might want to show a user-friendly error message here
+        alert("error during signup");
         return;
       }
-  
-      const result = await response.json();
       // Handle the signup result as needed
       console.log(result);
-      if(result.message ==='user already exists')
-          {
-              alert("user already exists, try logging in");
-          }
       if(result.message ==='Internal Server Error')
           {
               alert("some data may be missing or of incorrect format");
           }
+      if (result.message==='Signup successful')
+      {
+        alert("Signup Successful");
+      }
     } catch (error) {
       console.error('Error during signup:', error);
       // Handle unexpected client-side errors
