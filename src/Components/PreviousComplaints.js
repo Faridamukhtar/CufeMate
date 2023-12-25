@@ -3,11 +3,11 @@ import "./PreviousComplaints.css";
 
   
 
-const getComplaints = async (title="",complaint_date="", stat="") => 
+const getComplaints = async (std_id,title="",complaint_date="", stat="") => 
 {
     try 
     {
-       const std_id=5;
+       //const std_id=5;
       // Construct the URL with actual values for email and password
       const url = `http://localhost:8080/api/previouscomplaints/${encodeURIComponent(std_id)}`;
   
@@ -72,7 +72,7 @@ function DisplayComplaints(props)
 }
 
 
-function PreviousComplaints() 
+function PreviousComplaints({props}) 
 {  
   const [ComplaintsData, setComplaintsData]=useState([{title:"",complaint_date:"",stat:""}]);
     
@@ -80,7 +80,7 @@ function PreviousComplaints()
     {
         const setComplaints= async () =>
         {
-            const data = await getComplaints('', '', '');
+            const data = await getComplaints(props.std_id,'', '', '');
             console.log(data);
             setComplaintsData(data);
         }

@@ -3,12 +3,12 @@ import "./Contacts.css";
 
   
 
-const getContacts = async (fname="", lname="", email="") => 
+const getContacts = async (major, classs, fname="", lname="", email="") => 
 {
     try 
     {
-        const major='MEE';
-        const classs='2026';
+        //const major='MEE';
+      //  const classs='2026';
       // Construct the URL with actual values for email and password
         const url = `http://localhost:8080/api/repscontacts/${encodeURIComponent(major)}/${encodeURIComponent(classs)}`;
   
@@ -63,7 +63,7 @@ function DisplayContacts(props)
 }
 
 
-function Contacts() 
+function Contacts({props}) 
 {  
   const [ContactsData, setContactsData]=useState([{fname:"",lname:"",email:""}]);
     
@@ -71,7 +71,7 @@ function Contacts()
     {
         const setContacts= async () =>
         {
-            const data = await getContacts('', '', '');
+            const data = await getContacts(props.major, props.class,'', '', '');
             console.log(data);
             setContactsData(data);
         }

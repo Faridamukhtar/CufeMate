@@ -4,7 +4,7 @@ import ComplaintTitleText from "./ComplaintTitleText.js";
 import ComplaintInputText from "./ComplaintInputText.js";
 
 
-function WriteComplaint(props)
+function WriteComplaint({props})
 
 {    
     const [Tittle, setTitle] = useState('');
