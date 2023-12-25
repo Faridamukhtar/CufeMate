@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import WriteTextPost from './WriteTextPost.js';
+import WriteTextPostMajor from './WriteTextPostMajor.js';
+import WriteTextPostCourse from './WriteTextPostCourse.js';
 
 const DropdownMenu = () =>
  {
   const [CoursesDropDown, setCoursesDropDown] = useState([]);
    // State to manage the selected value
   const [selectedValue, setSelectedValue] = useState('');
+  const [selectedOption, setSelectedOption]= useState('');
 
     useEffect(() =>
      {
@@ -37,6 +39,11 @@ const DropdownMenu = () =>
     setSelectedValue(event.target.value);
   };
 
+  
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
   <select
     value={selectedValue}
     onChange={(e) => setSelectedValue(e.target.value)}
@@ -48,7 +55,17 @@ const DropdownMenu = () =>
         <option value="">-- Select --</option>
         {CoursesDropDown}
       </select>
-      <WriteTextPost selectedCourse={selectedValue} />
+      <br/>
+      <label htmlFor="optionDropdown">Select Option:</label>
+      <select id="optionDropdown" value={selectedOption} onChange={handleOptionChange}>
+        <option value="">-- Select --</option>
+        <option value="PerMajor">Announcement per Major</option>
+        <option value="PerCourse">Announcement per Course</option>
+
+      </select>
+      {selectedOption === 'PerMajor' && <WriteTextPostMajor selectedCourse={selectedValue} />}
+      {selectedOption === 'PerCourse' && <WriteTextPostCourse selectedCourse={selectedValue} />}
+
     </div>
   );
 };

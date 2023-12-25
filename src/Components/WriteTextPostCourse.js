@@ -3,7 +3,7 @@ import './WriteTextPost.css';
 import PostInputText from "./PostInputText.js";
 
 
-function WriteTextPost({selectedCourse})
+function WriteTextPostCourse({selectedCourse})
 
 {    
     
@@ -13,7 +13,7 @@ function WriteTextPost({selectedCourse})
      {
         try {
           // Construct the URL with actual values for email and password
-          const url = `http://localhost:8080/api/writepost/${encodeURIComponent(Conttent)}/${encodeURIComponent(selectedCourse)}`;
+          const url = `http://localhost:8080/api/writepostcourse/${encodeURIComponent(Conttent)}/${encodeURIComponent(selectedCourse)}`;
       
           // Make a GET request to the constructed URL
               const response = await fetch(url); 
@@ -51,4 +51,4 @@ function WriteTextPost({selectedCourse})
     );
 }
 
-export default WriteTextPost ;
+export default WriteTextPostCourse ;

@@ -37,10 +37,12 @@ import { Updatelogo_router } from './database/UpdateLogo.js';
 
 import {reps_view_complaints_router} from './database/RepsViewComplaints.js';
 import { mark_read_router } from './database/MarkRead.js';
-import { write_post_router} from './database/WriteTextPost.js';
+import { write_post_major_router} from './database/WriteTextPostMajor.js';
+import { write_post_course_router} from './database/WriteTextPostCourse.js';
 import { choose_course_router } from './database/ChooseCourse.js';
 import { previous_posts_router } from './database/viewPreviousPost.js';
-import { req_write_post_router } from './database/ReqWriteTextPost.js';
+import { req_write_post_major_router } from './database/ReqWriteTextPostMajor.js';
+import { req_write_post_course_router } from './database/ReqWriteTextPostCourse.js';
 import { post_requests_router } from './database/ViewPostReq.js';
 import { mark_accept_router } from './database/MarkAccept.js';
 import { mark_reject_router } from './database/MarkReject.js';
@@ -96,8 +98,10 @@ app.use(
     app.use('/', mark_read_router);
     app.use('/', previous_posts_router );
     app.use('/', choose_course_router );
-    app.use('/', write_post_router );
-    app.use('/', req_write_post_router);
+    app.use('/', write_post_major_router );
+    app.use('/', write_post_course_router );
+    app.use('/', req_write_post_major_router);
+    app.use('/', req_write_post_course_router);
     app.use('/' , post_requests_router);
     app.use('/',  mark_accept_router);
     app.use('/', mark_reject_router);

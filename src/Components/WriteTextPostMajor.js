@@ -1,9 +1,9 @@
 import React,{useState} from "react";
-import './ReqWriteTextPost.css';
+import './WriteTextPost.css';
 import PostInputText from "./PostInputText.js";
 
 
-function ReqWriteTextPost({selectedCourse})
+function WriteTextPostMajor({selectedCourse})
 
 {    
     
@@ -13,7 +13,7 @@ function ReqWriteTextPost({selectedCourse})
      {
         try {
           // Construct the URL with actual values for email and password
-          const url = `http://localhost:8080/api/reqwritepost/${encodeURIComponent(Conttent)}/${encodeURIComponent(selectedCourse)}`;
+          const url = `http://localhost:8080/api/writepostmajor/${encodeURIComponent(Conttent)}/${encodeURIComponent(selectedCourse)}`;
       
           // Make a GET request to the constructed URL
               const response = await fetch(url); 
@@ -51,4 +51,4 @@ function ReqWriteTextPost({selectedCourse})
     );
 }
 
-export default ReqWriteTextPost ;
+export default WriteTextPostMajor ;
