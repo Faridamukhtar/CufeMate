@@ -42,17 +42,29 @@ const Sidebars =(props)=>
 
 const Setting =({DashboardType,Type})=>
 {
-    let student={std_id:0, fname:'', lname:'', class:2026}
-    student = useParams();
+    let Data={};
+
+    if (Type==='StudentClub')
+    {
+        Data={std_club_id:0, std_club_name:"", email:''};
+    }
+    else
+    {
+        Data={std_id:0, fname:'', lname:'', class:2026};
+    }
+
+    Data=useParams();
+
+
 
     console.log({DashboardType})
     return (
         <div className="StudentPage">
             <div className="sidebar">
-                <Sidebars Type={Type} studentData={student}/>
+                <Sidebars Type={Type} studentData={Data} SCData={Data}/>
             </div>
             <div className="Dashboard">
-                <SettingsBoard DashboardType={DashboardType} studentData={student}/>
+                <SettingsBoard SCData={Data} DashboardType={DashboardType} studentData={Data}/>
             </div>
         </div>
     );

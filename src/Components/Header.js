@@ -2,7 +2,6 @@ import React from "react";
 import './Header.css';
 import ViewPostReqDashboard from "../pages/ViewPostReqDashboard";
 
-const SCData = {std_club_name:"CU Eco-Racing team", std_club_id:1, email:'CUERT@gmail.com'}; //get logged in student data
 
 function ViewStudentClubsHeader(props)
 {
@@ -53,7 +52,7 @@ function StudentHeader(props)
     );
 }
 
-function StudentSettingsHeader()
+function StudentSettingsHeader(props)
 {
     return (
         <div className="StudentHeader">
@@ -73,7 +72,7 @@ function StudentSettingsHeader()
         </div>
     );
 }
-function StudentClubSettingsHeader()
+function StudentClubSettingsHeader(props)
 {
     return (
         <div className="StudentHeader">
@@ -84,9 +83,11 @@ function StudentClubSettingsHeader()
             </div>
             <div className="Info">
                 <h4 className='StudentName'>
-                   Club Name
+                    {props.SCData.std_club_name}
                 </h4>
-                
+                <h4>
+                    {props.SCData.email}
+                </h4>
             </div>
         </div>
     );
@@ -115,7 +116,7 @@ function ComplaintHeader()
 
     );
 }
-function StudentClub()
+function StudentClub(props)
 {
     return (
         <div className="StudentHeader">
@@ -126,7 +127,10 @@ function StudentClub()
             </div>
             <div className="Info">
                 <h4 className='StudentName'>
-                    Club Name
+                    {props.SCData.std_club_name}
+                </h4>
+                <h4>
+                    {props.SCData.email}
                 </h4>
             </div>
         </div>
@@ -135,7 +139,7 @@ function StudentClub()
 }
 
 
-function StudentClubFormsHeader()
+function StudentClubFormsHeader(props)
 {
     return (
         <div className="StudentHeader">
@@ -149,10 +153,10 @@ function StudentClubFormsHeader()
             </div>
             <div className="Info">
                 <h4 className='StudentName'>
-                    {SCData.std_club_name}
+                    {props.SCData.std_club_name}
                 </h4>
                 <h4>
-                    {SCData.email}
+                    {props.SCData.email}
                 </h4>
             </div>
         </div>
@@ -330,7 +334,7 @@ function ChooseHeader(props)
     {
         return (
             <>
-                <StudentClub/>
+                <StudentClub SCData={props.SCData}/>
             </>
         );
     }
@@ -338,7 +342,7 @@ function ChooseHeader(props)
     {
         return (
             <>
-                <StudentClubSettingsHeader/>
+                <StudentClubSettingsHeader SCData={props.SCData}/>
             </>
         );
     }
@@ -382,7 +386,7 @@ function ChooseHeader(props)
     {
         return (
             <>
-               <StudentClubFormsHeader/>
+               <StudentClubFormsHeader SCData={props.SCData}/>
             </>
         )
     }

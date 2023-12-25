@@ -162,10 +162,10 @@ function Clubstat(props)
     return (
         <div className="SettingsWrapper">
             <div className="DashboardHeader">
-                <ChooseHeader DashboardType='StudentClub'/>
+                <ChooseHeader SCData = {props.SCData} DashboardType='StudentClub'/>
             </div>
             <div className="DashboardBody">
-               <PageBody DashboardType={props.DashboardType}/>
+               <PageBody SCData = {props.SCData} DashboardType={props.DashboardType}/>
             </div>
         </div>
     );

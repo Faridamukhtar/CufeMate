@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { HomeSVG, StudentClubsSVG,StudentPendingPosts, StudentComplaintsSVG, FileAComplaintSVG,RepsContactsSVG, SettingsSVG  } from "../svg/SvgFiles"; 
 import React,{ useEffect, useState } from 'react';
 import {Routes, Route, useNavigate} from 'react-router-dom';
+import PreviousPosts from './ViewPreviousPosts';
 //Sidebar component
 function Sidebar(props)
 {
@@ -14,7 +15,7 @@ function Sidebar(props)
         return (
         <>
             <div className='options'>
-                    <div className="SidebarOption" id="SCHome" >
+                    <div className="SidebarOption" id="SCHome" onClick={()=>navigate(`/StudentClubStatistics/${props.SCData.std_club_id}/${props.SCData.std_club_name}/${props.SCData.email}/`)}>
                         <div className="SidebarIcon">
                             <HomeSVG/>
                         </div>
@@ -24,7 +25,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                     </div>
-                    <div className="SidebarOption" id="StudentClubs" onClick={()=>navigate('/StudentClub/Forms/')}>
+                    <div className="SidebarOption" id="StudentClubs" onClick={()=>navigate(`/StudentClub/Forms/${props.SCData.std_club_id}/${props.SCData.std_club_name}/${props.SCData.email}/`)}>
                         <div className="SidebarIcon">
                             <StudentClubsSVG/>
                         </div>
@@ -34,7 +35,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                     </div>
-                    <div className="SidebarOption" id="Settings" onClick={()=>navigate('/StudentClubSettings')}>
+                    <div className="SidebarOption" id="Settings" onClick={()=>navigate(`/StudentClubSettings/${props.SCData.std_club_id}/${props.SCData.std_club_name}/${props.SCData.email}/`)}>
                         <div className="SidebarIcon">
                             <SettingsSVG/>
                         </div>
@@ -235,7 +236,7 @@ function Sidebar(props)
         {
             return (
                 <>
-                    <StudentClubsSidebar />
+                    <StudentClubsSidebar SCData={props.SCData}/>
                 </>
             );
         }
