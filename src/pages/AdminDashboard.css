@@ -9,7 +9,11 @@
     display: flex;
     flex-direction: row;
 }
-
+.adminDashboard{
+    display: flex;
+    flex-direction:column;
+    margin: auto;
+}
 .students
 .clubs{
     width: 95%;

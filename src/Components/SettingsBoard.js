@@ -2,16 +2,18 @@ import React, { useState , useEffect ,useRef  } from 'react';
 import ChooseHeader from "./Header.js";
 import './SettingsBoard.css';
 import TextInput from './TextInput';
+import StudentSubject from "./StudentSubjects.js"
+import { useParams } from 'react-router-dom';
 
-
-const UpdatePassword = ({ message }) => {
+const UpdatePassword = ({ message , Std_ID}) => {
+  const { admin_id } = useParams();
   const [Cpass, setCpass] = useState('');
   const [Npass, setNpass] = useState('');
   const [conpass, setconpass] = useState('');
   const [currentPassFromApi, setCurrentPassFromApi] = useState('');
-
+  
   useEffect(() => {
-    const fetchPass = async (ID) => {
+    const fetchPass = async () => {
       try {
         let path
         if (message==='student')
@@ -41,16 +43,16 @@ const UpdatePassword = ({ message }) => {
     let id 
     if (message==='student')
     {
-       id = 1234; 
+       id = Std_ID; 
 
     }
     else if (message==='studentclub')
     {
-       id =1212;
+       id =12;
     }
     else if (message==='admin')
     {
-       id =1210200;
+       id =admin_id;
     }
 
     fetchPass(id);
@@ -103,16 +105,16 @@ const UpdatePassword = ({ message }) => {
                   let id
                   if (message==='student')
                 {
-                  id = 1234; // Replace with your dynamic email logic
+                  id = Std_ID; // Replace with your dynamic email logic
 
                 }
                 else if (message==='studentclub')
                 {
-                  id =1212;
+                  id =12;
                 }
                 else if (message==='admin')
                 {
-                   id =1210200
+                   id =admin_id
                 }
             
 
@@ -204,7 +206,7 @@ const UpdateInfo =() =>
   const ChangeAbout =() => 
   {
     ///TO BE REMOVED LATER ON WHEN EMAIL IS ACTUALLY SAVED
-    let id =1212
+    let id =12;
     handleAboutUpdate(id, inputValue);
   }
   const handleUpdateimage = async (id, logo) => {
@@ -223,7 +225,7 @@ const UpdateInfo =() =>
   };
   const ChangeLogo=()=>{
      ///TO BE REMOVED LATER ON WHEN EMAIL IS ACTUALLY SAVED
-     let id =1212
+     let id =12;
      handleUpdateimage(id, selectedImage);
      console.log('')
   }
@@ -273,18 +275,16 @@ const UpdateInfo =() =>
   )
 }
 
-const ApplyRep =() => {
+const ApplyRep =({Std_ID}) => {
   const [CurrentstatFromApi, setCurrentstatFromApi] = useState('');
-  const [id, setId] = useState('70');
-
    //get if he applied before and what is the status if he did 
    useEffect(() => {
-    const fetchPass = async (std_id) => {
+    const fetchPass = async () => {
       try {
       
-        let url = `http://localhost:8080/api/get_rep_req_stat?std_id=${std_id}`;
+        let url = `http://localhost:8080/api/get_rep_req_stat?std_id=${Std_ID}`;
+        console.log(url)
         const response = await fetch(url);
-        console.log(url);
         const data = await response.json();
         const stat = data.length > 0 ? data[0].stat : '';
         if (stat===0)
@@ -310,16 +310,15 @@ const ApplyRep =() => {
       }
     };
     /////////////////////////////////////TO BE REMOVED WHEN ACTUAL LINKING OCCUR//////////////////////
-    fetchPass(id);
+    fetchPass();
   }, []); 
   //send request to apply if he didn't 
 
   const handleClick = async () => {
       try {
       
-        let url = `http://localhost:8080/api/Makenewrepreq?std_id=${id}`;
+        let url = `http://localhost:8080/api/Makenewrepreq?std_id=${Std_ID}`;
         const response = await fetch(url);
-        console.log(url);
         const data = await response.json();
         setCurrentstatFromApi("Pending")
       } catch (error) {
@@ -344,6 +343,7 @@ const ApplyRep =() => {
 
 function StudentBody(props)
 {
+
    //To determine which button is selected so which components will I render
    const [selectedButton, setSelectedButton] = useState('Button1');
    
@@ -357,12 +357,16 @@ function StudentBody(props)
         switch (selectedButton) {
         case 'Button1':
             return (
-                <UpdatePassword message='student'/>
+                <UpdatePassword message='student' Std_ID={props.studentData.std_id}/>
             );
 
         case 'Button2':
             return (
-                <ApplyRep/>
+                <ApplyRep Std_ID={props.studentData.std_id}/>
+            );
+        case 'Button3':
+            return (
+                <StudentSubject Std_ID={props.studentData.std_id}/>
             );
         
         default:
@@ -387,12 +391,20 @@ function StudentBody(props)
             <span className={selectedButton === 'Button1' ? 'label-clicked' : 'label'}> Change Password</span>
             </button>
 
-            {/* Button two (Delete acc)*/}
+            {/* Button two (Apply rep)*/}
             <button
             className={selectedButton === 'Button2' ? 'button-clicked' : 'button'}
             onClick={() => handleButtonClick('Button2')}
              >
             <span className={selectedButton === 'Button2' ? 'label-clicked' : 'label'}>Apply to be rep</span>
+            </button>
+
+             {/* Button three (Update Subjects)*/}
+             <button
+            className={selectedButton === 'Button3' ? 'button-clicked' : 'button'}
+            onClick={() => handleButtonClick('Button3')}
+             >
+            <span className={selectedButton === 'Button3' ? 'label-clicked' : 'label'}>Subjects taken </span>
             </button>
     
             {/* Border line*/}
@@ -506,11 +518,12 @@ function Studentclubbody(props)
 
 function Body(props)
 {
+
     if (props.DashboardType==='studentsettings')
     {
         return (
             <>
-                <StudentBody DashboardType={props.DashboardType}/>
+                <StudentBody DashboardType={props.DashboardType} studentData={props.studentData} />
             </>
         );
     }
@@ -541,7 +554,7 @@ function SettingsBoard(props)
                 <ChooseHeader DashboardType={props.DashboardType}/>
             </div>
             <div className="DashboardBody">
-               <Body DashboardType={props.DashboardType}/>
+               <Body DashboardType={props.DashboardType} studentData={props.studentData} />
             </div>
         </div>
     );

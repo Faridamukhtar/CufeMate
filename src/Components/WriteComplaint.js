@@ -10,6 +10,7 @@ function WriteComplaint(props)
     const [Tittle, setTitle] = useState('');
     const [Conttent, setContent] = useState('');
 
+    
     const handleSubmit = async (Tittle, Conttent) =>
      {
         try {

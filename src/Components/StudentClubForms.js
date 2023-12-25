@@ -44,16 +44,17 @@ function ApplicantsList(props)
         {
              if (status!=props.applicant.stat)
              {
-                await updateApplicantStatus(status, props.applicant.form_id, props.applicant.std_id);
+                await updateApplicantStatus(status, props.formid, props.applicant.std_id);
                 if (status===1) 
                 {
-                    await AddMember(props.applicant.form_id, props.applicant.std_id);
+                    await AddMember(props.formid, props.applicant.std_id);
                 }
              }
         }
  
         OnChangeStatus();
-    },[status])
+        
+    },[status, props.applicant])
 
     return(
         <div className="SingleApplicantWrapper">
@@ -78,9 +79,9 @@ function ApplicantsList(props)
 
 function DisplayApplicants(props)
 {
-    if (props?.Applicants[0]?.std_id>0)
+    if (props?.Applicants[0]?.std_id>-1)
     {
-        const listItems = props.Applicants.map((applicant) => <li><ApplicantsList applicant ={applicant}/></li>);
+        const listItems = props.Applicants.map((applicant) => <li key={applicant.std_id+props.formid}><ApplicantsList applicant ={applicant} formid={props.formid}/></li>);
         return listItems;
     }
     else
@@ -136,7 +137,7 @@ function Applicants(props)
             </h4> 
         </div>
         <div className='DisplayApplicants'>
-            <DisplayApplicants Applicants={ApplicantsContent}/>
+            <DisplayApplicants Applicants={ApplicantsContent} formid={props.formid}/>
         </div>
     </div>
 
@@ -271,7 +272,7 @@ function Displayforms(props)
 {
     if (props?.formArray[0]?.form_id>0)
     {
-        const listItems = props.formArray.map((form) => <li><StudentClubForm form_title={form.form_title} std_club_id={form.std_club_id} std_club_name={form.std_club_name} requirements={form.requirements} email= {form.email} form_id={form.form_id} about={form.about} logo={form.logo} setSelectedFormId={(formid)=>props.setSelectedFormId(formid)}/></li>);
+        const listItems = props.formArray.map((form) => <li key={form.form_id}><StudentClubForm form_title={form.form_title} std_club_id={form.std_club_id} std_club_name={form.std_club_name} requirements={form.requirements} email= {form.email} form_id={form.form_id} about={form.about} logo={form.logo} setSelectedFormId={(formid)=>props.setSelectedFormId(formid)}/></li>);
         return listItems;
     }
     else
@@ -285,7 +286,7 @@ function Displayforms(props)
 function StudentClubForms()
 {
     const [formsContent, setFormsContent] = useState([{std_club_id:0, std_club_name:"", email:"", about:"", logo:"",form_id:0, form_title:'', requirements:'', form_date:''}])
-    const [SelectedFormID, setSelectedFormId] = useState(0);
+    const [SelectedFormID, setSelectedFormId] = useState(-1);
     const [newform,setnew]=useState(false);
 
     useEffect(()=>
