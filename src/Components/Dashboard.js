@@ -54,7 +54,7 @@ function StudentClubFormsBody (props)
 {
     return (
         <div className='ViewStudentClubsBody'>
-            <StudentClubForms studentType={props.studentType} />
+            <StudentClubForms studentType={props.studentType} SCData={props.SCData}/>
        </div>
     );
 }
@@ -203,7 +203,7 @@ function DashboardBody(props)
     {
         return (
             <>
-              <StudentClubFormsBody DashboardType={props.DashboardType} studentData={props.studentData}/>
+              <StudentClubFormsBody SCData={props.SCData} DashboardType={props.DashboardType} studentData={props.studentData}/>
 
             </>
         );
@@ -217,10 +217,10 @@ function Dashboard(props)
     return (
         <div className="DashboardPage">
             <div className="DashboardHeader">
-                <ChooseHeader studentData={props.studentData} DashboardType={props.DashboardType} studentType={props.studentType}/>
+                <ChooseHeader SCData={props.SCData} studentData={props.studentData} DashboardType={props.DashboardType} studentType={props.studentType}/>
             </div>
             <div className="DashboardBody">
-                <DashboardBody studentData={props.studentData} DashboardType={props.DashboardType}/>
+                <DashboardBody SCData={props.SCData} studentData={props.studentData} DashboardType={props.DashboardType}/>
             </div>
         </div>
     );

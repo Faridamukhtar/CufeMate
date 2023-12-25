@@ -2,9 +2,6 @@ import React, {useState, useEffect, Image} from "react";
 import './StudentClubForms.css';
 import { getStudentClubForms, getStudentApplicants, updateApplicantStatus, SubmitFormChanges, DeleteForm, AddMember} from "../CustomHooks/StudentClubsHooks.js";
 
-const SCData = {std_club_name:"CU Eco-Racing team", std_club_id:1, email:'CUERT@gmail.com'}; //get logged in student data
-
-
 function ApplicationStatus(props)
 {
     if (props?.status!==0)
@@ -169,12 +166,7 @@ function WriteForm(props)
     {
         const submitform = async()=>
         {
-            await SubmitFormChanges(props?.form_id, SCData.std_club_id, forminfo.requirements,forminfo.form_title);
-        }
-
-        const newForm = async()=>
-        {
-            await SubmitFormChanges(0, SCData.std_club_id, forminfo.requirements,forminfo.form_title);
+            await SubmitFormChanges(props?.form_id, props.std_club_id, forminfo.requirements,forminfo.form_title);
         }
         
 
@@ -283,8 +275,9 @@ function Displayforms(props)
 }
 
 //Fetch Posts
-function StudentClubForms()
+function StudentClubForms(props)
 {
+    const std_club_id=props.SCData.std_club_id;
     const [formsContent, setFormsContent] = useState([{std_club_id:0, std_club_name:"", email:"", about:"", logo:"",form_id:0, form_title:'', requirements:'', form_date:''}])
     const [SelectedFormID, setSelectedFormId] = useState(-1);
     const [newform,setnew]=useState(false);
@@ -293,7 +286,7 @@ function StudentClubForms()
     {
        const onMount = async()=>
        {
-            const data = await getStudentClubForms(SCData.std_club_id);
+            const data = await getStudentClubForms(props.SCData.std_club_id);
             if (data?.length>0)
                 setFormsContent(data);
        }
@@ -319,7 +312,7 @@ function StudentClubForms()
                 <div className="forms">
                     <div className="ClubformWrapper" hidden={!newform} setnew={setnew}>
                         <div className="form">
-                        <WriteForm form_id={0}/>     
+                        <WriteForm form_id={0} std_club_id={std_club_id}/>     
                         </div>           
                     </div>
                     <ul><Displayforms formArray={formsContent} setSelectedFormId={setSelectedFormId}/></ul>

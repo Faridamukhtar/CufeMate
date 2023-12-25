@@ -548,10 +548,10 @@ function SettingsBoard(props)
     return (
         <div className="SettingsWrapper">
             <div className="DashboardHeader">
-                <ChooseHeader DashboardType={props.DashboardType}/>
+                <ChooseHeader SCData={props.SCData} DashboardType={props.DashboardType}/>
             </div>
             <div className="DashboardBody">
-               <Body DashboardType={props.DashboardType} studentData={props.studentData} />
+               <Body DashboardType={props.DashboardType} SCData={props.SCData} studentData={props.studentData} />
             </div>
         </div>
     );
