@@ -9,13 +9,14 @@ const DropdownMenu = (props) =>
   const [selectedValue, setSelectedValue] = useState('');
   const [selectedOption, setSelectedOption]= useState('');
   const major_id=props.studentData.major_id;
-  console.log(major_id);
+  console.log("ana fo2",major_id);
     useEffect(() =>
      {  
       const fetchCourses = async (major_id) =>
        {
         try
          {
+          console.log("ana major",major_id);
           const response = await fetch(`http://localhost:8080/api/choosecourse/${encodeURIComponent(major_id)}`); 
           const coursesData = await response.json();
           console.log(coursesData);
@@ -27,7 +28,7 @@ const DropdownMenu = (props) =>
           console.error('Error fetching courses:', error);
          }
       };
-      fetchCourses();
+      fetchCourses(major_id);
   
     }, []);
 
@@ -56,7 +57,7 @@ const DropdownMenu = (props) =>
         <option value="">-- Select --</option>
         {CoursesDropDown}
       </select>
-
+      <br/>
       <label htmlFor="optionDropdown">Select Option:</label>
       <select id="optionDropdown" value={selectedOption} onChange={handleOptionChange}>
         <option value="">-- Select --</option>

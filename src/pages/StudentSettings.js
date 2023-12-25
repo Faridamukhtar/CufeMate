@@ -33,7 +33,7 @@ const Sidebars =(props)=>
     {
         return (
             <>
-                <AdminBar/>
+                 <AdminBar/>
             </>
         );
     }

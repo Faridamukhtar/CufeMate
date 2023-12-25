@@ -43,11 +43,14 @@ const AddAdmin = () => {
               }
           if (response.ok) {
             console.log('adding admin successful:', result);
+            alert("adding admin successful");
           } else {
             console.error('adding admin failed:', result.message);
+            alert("adding admin failed");
           }
         } catch (error) {
           console.error('Error during adding admin:', error);
+          alert("adding admin failed");
         }
       };
     return (

@@ -15,7 +15,7 @@ signup_router.post('/api/signup/student', async (req, res) => {
     try {
       // Check if the username or email is already taken
       const existingUser = await dbInstance.query('SELECT * FROM student WHERE std_id = $1 Union SELECT * FROM student WHERE email = $2',[Std_ID , Email]);
-  
+      console.log("signup", existingUser.rows);
       if (existingUser.rows.length > 0) {
         return res.status(400).json({ success: false, message: 'user already exists' });
       }

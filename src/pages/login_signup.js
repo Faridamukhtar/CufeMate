@@ -45,23 +45,27 @@ const LoginSignup = () => {
           // Handle the login result as needed
           console.log(result.user);
           console.log("Login clicked");
+          if(result.message ==='Invalid username or password')
+          {
+              alert("Invalid username or password");
+              return;
+          }
           if(response.ok && result.user.rep_flag === 1)
           {
             console.log("ana rep w raye7 dashboard",result.user);
             navigate(`/rep/${result.user.std_id}/${result.user.major_id}/${result.user.fname}/${result.user.lname}/${result.user.class}`);
+            return;
           }
           else if(response.ok)
           {
             console.log("ana fl login_signup w ana student",result.user);
              navigate(`/student/${result.user.std_id}/${result.user.major_id}/${result.user.fname}/${result.user.lname}/${result.user.class}`);
-          }
-          if(result.message ==='Invalid username or password')
-          {
-              alert("Invalid username or password");
+             return;
           }
         } 
         catch (error) {
           console.error('Error during login:', error);
+          alert("error during login");
         }
         console.log("Login clicked");
   };
@@ -113,6 +117,7 @@ const LoginSignup = () => {
       console.error('Error during signup:', error);
       // Handle unexpected client-side errors
       // You might want to show a user-friendly error message here
+      alert("some data may be missing or of incorrect format");
     }
     console.log("Signup clicked");
   };
@@ -150,9 +155,7 @@ const LoginSignup = () => {
             value={loginPassword}
             onChange={(e) => setLoginPassword(e.target.value)}
           />
-            <Link to='/student'>
           <button onClick={() => handleLogin(loginEmail, loginPassword)}>Login</button>
-          </Link>
           <Link to='/ForgotPass'>
             <button>Forgot Password</button>
           </Link>

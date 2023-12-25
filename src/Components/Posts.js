@@ -115,7 +115,7 @@ function WriteType(props)
             </button>
         )
     }
-    else
+    /*else
     {
         return (
             <button className="WritePost">
@@ -124,7 +124,7 @@ function WriteType(props)
                 </h5>            
             </button>
         )
-    }
+    }*/
 }
 
 

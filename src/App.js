@@ -44,7 +44,6 @@ function App() {
             <Route path="/rep/:std_id/:major_id/:fname/:lname/:class" element={<RepDashboard DashboardType='studentRep'/>} />
             <Route path="/StudentSettings/:std_id/:major_id/:fname/:lname/:class" element={<StudentSetting DashboardType='studentsettings'  Type='Student'/>} />
             <Route path="/StudentClubSettings/:std_club_id/:std_club_name/:email/" element={<StudentSetting DashboardType='studentclubsettings' Type='StudentClub' />} />
-            <Route path="/AdminsSettings" element={<StudentSetting DashboardType='adminsettings' Type='Admin' />} />
             <Route path="/student/studentclubs/:std_id/:major_id/:fname/:lname/:class/" element={<StudentDashboard DashboardType='viewstudentclubs' />} />
             <Route path="/rep/studentclubs/:std_id/:major_id/:fname/:lname/:class" element={<RepDashboard DashboardType='viewstudentclubs' />} />
 
@@ -54,7 +53,7 @@ function App() {
             <Route path="/Admin/add/:admin_id" element={<AddAdmin />} />
             <Route path="/Admin/requests/:admin_id" element={<AdminRequests/>} />
             <Route path="/Admin/stats/:admin_id" element={<AdminStats />} />
-            <Route path="/AdminsSettings/:admin_id" element={<StudentSetting DashboardType='adminsettings' />} />
+            <Route path="/AdminsSettings/:admin_id" element={<StudentSetting DashboardType='adminsettings' Type='Admin'/>} />
 
             <Route path="/repsviewcomplaints" element ={<RepsComplaintsDashboard />} />
             <Route path="/writepost/:std_id/:major_id/:fname/:lname/:class" element ={<WritePostDashboard/>} />

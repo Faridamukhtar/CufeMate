@@ -61,14 +61,6 @@ function StudentSettingsHeader(props)
                     Settings
                 </h1>
             </div>
-            <div className="Info">
-                <h4 className='StudentName'>
-                    Name
-                </h4>
-                <h4>
-                    Class of XXXX
-                </h4>
-            </div>
         </div>
     );
 }

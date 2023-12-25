@@ -5,7 +5,7 @@ const write_complaint_router=express.Router();
 
 write_complaint_router.get("/api/writecomplaint/:title/:content/:std_id", async (req,res) =>{
     const {title,content, std_id}=req.params;
-    const complaint_id=12;
+    const complaint_id=25;
     const stat=0;
     const today=new Date();
     const complaint_date=today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate();
