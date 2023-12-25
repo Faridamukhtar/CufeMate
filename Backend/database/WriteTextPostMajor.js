@@ -4,13 +4,13 @@ import { dbInstance } from "./connection.js";
 const write_post_major_router=express.Router();
 // el mafroud el post id yeb2a auto generated w auto incremented 
 // el mafroud el student id wel major id yeb2ou ma3aya ml login 
-write_post_major_router.get("/api/writepostmajor/:content/:course_id", async (req,res) =>{
-    const {content, course_id}=req.params;
+write_post_major_router.get("/api/writepostmajor/:content/:major_id/:std_id", async (req,res) =>{
+    const {content, major_id, std_id}=req.params;
     const post_id=111;
     const today=new Date();
     const post_date=today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate();
-    const std_id=5;
-    const major_id='CCEC';
+    //const std_id=5;
+    //const major_id='CCEC';
     try 
     {
         const result1=await dbInstance.query ("INSERT INTO post(post_id, content, post_date) VALUES ($1, $2,$3);",[post_id, content, post_date]);

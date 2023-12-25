@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 const ComplaintDashboard =()=>
 {
-    let student={std_id:0, fname:'', lname:'', class:2026}
+    let student={std_id:0, major_id:'' ,fname:'', lname:'', class:''}
     student = useParams();
     return (
         <div className="ComplaintPage">

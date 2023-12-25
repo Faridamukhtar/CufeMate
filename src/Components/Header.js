@@ -95,7 +95,7 @@ function StudentClubSettingsHeader(props)
 
 
 
-function ComplaintHeader()
+function ComplaintHeader(props)
 {
     return (
         <div className="StudentHeader">
@@ -109,7 +109,7 @@ function ComplaintHeader()
                     Name
                 </h4>
                 <h4>
-                    Class of XXXX
+                    Class of  {props.studentData.class}
                 </h4>
             </div>
         </div>
@@ -164,7 +164,7 @@ function StudentClubFormsHeader(props)
     );
 }
 
-function RepsViewComplaintsHeader()
+function RepsViewComplaintsHeader(props)
 {
     return (
         <div className="StudentHeader">
@@ -178,7 +178,7 @@ function RepsViewComplaintsHeader()
                 Name
             </h4>
             <h4>
-                Class of XXXX
+                Class of  {props.studentData.class}
             </h4>
         </div>
     </div>
@@ -187,7 +187,7 @@ function RepsViewComplaintsHeader()
     );
 }
 
-function WritePostHeader()
+function WritePostHeader(props)
 {
     return (
         <div className="StudentHeader">
@@ -201,7 +201,7 @@ function WritePostHeader()
                     Name
                 </h4>
                 <h4>
-                    Class of XXXX
+                    Class of  {props.studentData.class}
                 </h4>
             </div>
         </div>
@@ -209,7 +209,7 @@ function WritePostHeader()
     );
 }
 
-function ReqWritePostHeader()
+function ReqWritePostHeader(props)
 {
     return (
         <div className="StudentHeader">
@@ -223,7 +223,7 @@ function ReqWritePostHeader()
                     Name
                 </h4>
                 <h4>
-                    Class of XXXX
+                    Class of  {props.studentData.class}
                 </h4>
             </div>
         </div>
@@ -231,7 +231,7 @@ function ReqWritePostHeader()
     ); 
 }
 
-function ViewPostReqHeader()
+function ViewPostReqHeader(props)
 {
     return (
         <div className="StudentHeader">
@@ -245,7 +245,7 @@ function ViewPostReqHeader()
                     Name
                 </h4>
                 <h4>
-                    Class of XXXX
+                    Class of  {props.studentData.class}
                 </h4>
             </div>
         </div>
@@ -257,7 +257,7 @@ function ViewPostReqHeader()
 
 
 
-function RepsContactsHeader()
+function RepsContactsHeader(props)
 
 {
     return (
@@ -267,15 +267,15 @@ function RepsContactsHeader()
                     Contacts
                 </h1>
                 <h3>
-                    Reps of class 2026, major MEE.
+                    Reps of class {props.studentData.class}, major {props.studentData.major_id}.
                 </h3>
             </div>
             <div className="Info">
                 <h4 className='StudentName'>
-                    Name
+                    {props.studentData.fname} {props.studentData.lname}
                 </h4>
                 <h4>
-                    Class of XXXX
+                    Class of {props.studentData.class}
                 </h4>
             </div>
         </div>
@@ -317,7 +317,7 @@ function ChooseHeader(props)
     {
         return (
             <>
-              <RepsContactsHeader/>
+              <RepsContactsHeader studentData={props.studentData}/>
              </>
           );
      }
@@ -326,7 +326,7 @@ function ChooseHeader(props)
     {
         return (
             <>
-                <ComplaintHeader/>
+                <ComplaintHeader studentData={props.studentData} />
             </>
         );
     }
@@ -351,7 +351,7 @@ function ChooseHeader(props)
     {
         return (
             <>
-               <RepsViewComplaintsHeader/>
+               <RepsViewComplaintsHeader studentData={props.studentData}/>
             </>
         )
     }
@@ -361,7 +361,7 @@ function ChooseHeader(props)
     {
         return (
              <>
-                <WritePostHeader/>
+                <WritePostHeader studentData={props.studentData} />
              </>
         );
     }
@@ -369,7 +369,7 @@ function ChooseHeader(props)
     {
         return (
            <>
-               <ReqWritePostHeader/>
+               <ReqWritePostHeader studentData={props.studentData} />
            </>
         );
     }
@@ -377,7 +377,7 @@ function ChooseHeader(props)
     {
         return (
             <>
-               <ViewPostReqHeader/>
+               <ViewPostReqHeader studentData={props.studentData} />
             </>
         );
     }

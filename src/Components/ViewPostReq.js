@@ -3,13 +3,13 @@ import "./ViewPostReq.css";
 
   
 
-const getPosts = async (post_date="", content="", Course="", id="") => 
+const getPosts = async (major_id,post_date="", content="", Course="", id="") => 
 {
     try 
     {
        
       // Construct the URL with actual values for email and password
-      const url = `http://localhost:8080/api/viewpostreq`;
+      const url = `http://localhost:8080/api/viewpostreq/${encodeURIComponent(major_id)}`;
   
       // Make a GET request to the constructed URL
           const response = await fetch(url); 
@@ -123,7 +123,7 @@ function DisplayPosts(props)
 }
 
 
-function PostRequests() 
+function PostRequests(props) 
 {  
   const [PostsData, setPostsData]=useState([{post_date:"",content:"", course:"", id:""}]);
     
@@ -131,7 +131,7 @@ function PostRequests()
     {
         const setPosts= async () =>
         {
-            const data = await getPosts('','','','');
+            const data = await getPosts(props.studentData.major_id,'','','','');
             console.log(data);
             setPostsData(data);
         }

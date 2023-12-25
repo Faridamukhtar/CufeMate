@@ -65,7 +65,7 @@ function ComplaintBody(props)
     return (
         <div className='ComplaintBody'>
             <div className = 'WriteComplaint'>
-                <WriteComplaint Dashboard={props.DashboardType}/>
+                <WriteComplaint Dashboard={props.DashboardType} studentData={props.studentData}/>
             </div>
             <div className = 'PreviousComplaints'>
                 <PreviousComplaints Dashboard={props.DashboardType} studentData={props.studentData}/>
@@ -106,7 +106,7 @@ function ReqWritePostBody(props)
     return (
         <div className="ReqWritePostBody">
             <div className="ChooseCourse">
-                <ChooseCourseReq Dashboard={props.DashboardType}/>
+                <ChooseCourseReq Dashboard={props.DashboardType} studentData={props.studentData}/>
             </div>
             
              <div className="ViewPreviousReqPosts">
