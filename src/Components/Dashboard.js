@@ -79,7 +79,7 @@ function RepsViewComplaintsBody(props)
 {
     return (
         <div className='RepsViewComplaintsBody'>
-             <RepsViewComplaints DashboardType={props.DashboardType}/>
+             <RepsViewComplaints repData = {props.repData} DashboardType={props.DashboardType}/>
         </div>
 
     );
@@ -90,11 +90,11 @@ function WritePostBody(props)
     return(
         <div className="WritePostBody">
             <div className="ChooseCourse">
-                <ChooseCourse Dashboard={props.DashboardType}/>
+                <ChooseCourse repData = {props.repData} Dashboard={props.DashboardType}/>
             </div>
             
              <div className="ViewPreviousPosts">
-                <ViewPreviousPosts Dashboard={props.DashboardType}/>
+                <ViewPreviousPosts repData = {props.repData} Dashboard={props.DashboardType}/>
              </div>
         </div>
 
@@ -120,7 +120,7 @@ function ViewPostReqBody(props)
 {
     return (
             <div className='ViewPostReqBody'>
-                <ViewPostReq Dashboard={props.DashboardType} />
+                <ViewPostReq repData = {props.repData} Dashboard={props.DashboardType} />
             </div>
     );
 }
@@ -132,7 +132,7 @@ function DashboardBody(props)
     {
         return (
             <>
-                <StudentBody DashboardType={props.DashboardType} studentData={props.studentData}/>
+                <StudentBody DashboardType={props.DashboardType} studentData={props.DashboardType==='student' ? props.studentData : props.repData}/>
             </>
         );
     }
@@ -151,7 +151,7 @@ function DashboardBody(props)
     {
         return (
             <>
-                <ViewStudentClubsBody DashboardType={props.DashboardType} studentData={props.studentData}/>
+                <ViewStudentClubsBody DashboardType={props.DashboardType} studentData={props.studentType==='student' ? props.studentData : props.repData}/>
             </>
         );
     }
@@ -168,7 +168,7 @@ function DashboardBody(props)
     {
         return (
             <>
-              <RepsViewComplaintsBody DashboardType={props.DashboardType} studentData={props.studentData}/>
+              <RepsViewComplaintsBody DashboardType={props.DashboardType} repData={props.repData}/>
             </>
         );
     }
@@ -177,7 +177,7 @@ function DashboardBody(props)
     {
         return (
             <>
-               <WritePostBody DashboardType={props.DashboardType} studentData={props.studentData}/>
+               <WritePostBody DashboardType={props.DashboardType} repData={props.repData}/>
             </>
         );
     }
@@ -194,7 +194,7 @@ function DashboardBody(props)
     {
         return (
             <>
-               <ViewPostReqBody DashboardType={props.DashboardType} studentData={props.studentData}/>
+               <ViewPostReqBody DashboardType={props.DashboardType} repData={props.repData}/>
             </>
         );
     }
@@ -217,10 +217,10 @@ function Dashboard(props)
     return (
         <div className="DashboardPage">
             <div className="DashboardHeader">
-                <ChooseHeader SCData={props.SCData} studentData={props.studentData} DashboardType={props.DashboardType} studentType={props.studentType}/>
+                <ChooseHeader repData={props.repData} SCData={props.SCData} studentData={props.studentData} DashboardType={props.DashboardType} studentType={props.studentType}/>
             </div>
             <div className="DashboardBody">
-                <DashboardBody SCData={props.SCData} studentData={props.studentData} DashboardType={props.DashboardType}/>
+                <DashboardBody repData={props.repData} SCData={props.SCData} studentData={props.studentData} DashboardType={props.DashboardType}/>
             </div>
         </div>
     );

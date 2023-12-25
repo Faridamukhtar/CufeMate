@@ -292,7 +292,7 @@ function ChooseHeader(props)
     {
         return (
             <>
-                <StudentHeader studentType={props.studentType} studentData={props.studentData}/>
+                <StudentHeader studentType={props.studentType} studentData={props.DashboardType==='student' ? props.studentData : props.repData}/>
             </>
         );
     }
@@ -308,7 +308,7 @@ function ChooseHeader(props)
     {
         return (
             <>
-                <ViewStudentClubsHeader studentType={props.studentType} studentData={props.studentData}/>
+                <ViewStudentClubsHeader studentType={props.studentType} studentData={props.studentType==='student' ? props.studentData : props.repData}/>
             </>
         );
     }
