@@ -13,10 +13,10 @@ const RepDashboard =(props)=>
     return (
         <div className="StudentPage">
             <div className="sidebar">
-                <Sidebar repData={rep} SidebarType='studentRep'/>
+                <Sidebar studentData={rep} SidebarType='studentRep'/>
             </div>
             <div className="Dashboard">
-                <Dashboard DashboardType={props.DashboardType} studentType='studentRep' repData={rep}/>
+                <Dashboard DashboardType={props.DashboardType} studentType='studentRep' studentData={rep}/>
             </div>
         </div>
     );
