@@ -20,7 +20,7 @@ function WriteTextPostCourse({selectedCourse}, props)
               const result = await response.json();
               // Handle the login result as needed
               console.log(result);
-              alert("Posted successfully");
+              alert("Posted successfully. Refresh to see it below");
             } 
             catch (error) {
               console.error('Error during login:', error);
