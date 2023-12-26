@@ -6,7 +6,7 @@ import {LikeSVG} from "../svg/SvgFiles.js"
 function HandleLikes(props)
 {
     const [liked, setliked]=useState(false);
-    const [Likes,setLikeCounts]=useState(0);
+    const [Likes,setLikeCounts]=useState('?');
 
     useEffect(()=>
     {
