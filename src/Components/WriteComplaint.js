@@ -7,10 +7,11 @@ import ComplaintInputText from "./ComplaintInputText.js";
 function WriteComplaint(props)
 
 {    
+
     const [Tittle, setTitle] = useState('');
     const [Conttent, setContent] = useState('');
 
-    
+
     const handleSubmit = async (Tittle, Conttent, std_id) =>
      {
         try {
@@ -51,7 +52,7 @@ function WriteComplaint(props)
             <div className="ComplaintCharacterCount">
                 <p > {Conttent.length} : 500  </p>
             </div>
-            <button className="ComplaintSubmitButton" onClick={() =>{ if (Conttent>0 && Tittle >0) {handleSubmit(Tittle, Conttent, props.studentData.std_id)}else{alert("No Content or Title was input")}}}> <h5 className="ComplaintSubmitText">Submit</h5></button>
+            <button className="ComplaintSubmitButton" onClick={() =>{ if (Conttent.length>0 && Tittle.length >0) {handleSubmit(Tittle, Conttent, props.studentData.std_id)}else{alert("No Content or Title was input")}}}> <h5 className="ComplaintSubmitText">Submit</h5></button>
         
            </div>        
        </div>
