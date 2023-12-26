@@ -79,17 +79,17 @@ const DisplayStudent = ({ student,adminID }) => {
       {student.rep_flag === 1 && (
         <div>
           <div className='buttons'>
-            <div className='decisionButtons'>
-          <button onClick={() => handleBanClick(student.std_id,2)}>Ban</button>
-          </div>
           <div className='infoButtons'>
           <button onClick={() => handleInfoClick(student.std_id)}>Show Info</button>
           <button onClick={handleHideInfoClick}>Hide Info</button>
           </div>
+          <div className='decisionButtons'>
+          <button onClick={() => handleBanClick(student.std_id,2)}>Ban</button>
+          </div>
           </div>
         </div>
       )}
-      {student.rep_flag === 2 && (
+      {/*student.rep_flag === 2 && (
         <div>
           <div className='buttons'>
           <div className='decisionButtons'>
@@ -101,7 +101,7 @@ const DisplayStudent = ({ student,adminID }) => {
           </div>
           </div>
         </div>
-      )}
+      )*/}
       {infoVisible && infoMessage && (
           <InfoTextBox message={infoMessage} onClose={handleHideInfoClick} />
         )}
