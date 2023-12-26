@@ -21,6 +21,14 @@ const Sidebars =(props)=>
             </>
         );
     }
+    if (props.Type==='StudentRep')
+    {
+        return (
+            <>
+                <Sidebar SidebarType='studentRep' studentData={props.studentData}/>
+            </>
+        );
+    }
     else if (props.Type==='StudentClub')
     {
         return (

@@ -191,7 +191,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                         </div>
-                    <div className="SidebarOption" id="RSettings" onClick={()=>navigate(`/StudentSettings/${props.studentData.std_id}/${props.studentData.major_id}/${props.studentData.fname}/${props.studentData.lname}/${props.studentData.class}`)}>
+                    <div className="SidebarOption" id="RSettings" onClick={()=>navigate(`/StudentRepSettings/${props.studentData.std_id}/${props.studentData.major_id}/${props.studentData.fname}/${props.studentData.lname}/${props.studentData.class}`)}>
                     <div className="SidebarIcon">
                             <SettingsSVG/>
                         </div>

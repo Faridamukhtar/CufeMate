@@ -44,6 +44,8 @@ function App() {
             <Route path="/complaints/:std_id/:major_id/:fname/:lname/:class" element={<ComplaintDashboard/>} />
             <Route path="/rep/:std_id/:major_id/:fname/:lname/:class" element={<RepDashboard DashboardType='studentRep'/>} />
             <Route path="/StudentSettings/:std_id/:major_id/:fname/:lname/:class" element={<StudentSetting DashboardType='studentsettings'  Type='Student'/>} />
+            <Route path="/StudentRepSettings/:std_id/:major_id/:fname/:lname/:class" element={<StudentSetting DashboardType='studentsettings'  Type='StudentRep'/>} />
+
             <Route path="/StudentClubSettings/:std_club_id/:std_club_name/:email/" element={<StudentSetting DashboardType='studentclubsettings' Type='StudentClub' />} />
             <Route path="/student/studentclubs/:std_id/:major_id/:fname/:lname/:class/" element={<StudentDashboard DashboardType='viewstudentclubs' />} />
             <Route path="/rep/studentclubs/:std_id/:major_id/:fname/:lname/:class" element={<RepDashboard DashboardType='viewstudentclubs' />} />
