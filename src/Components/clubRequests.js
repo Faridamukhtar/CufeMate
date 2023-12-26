@@ -55,6 +55,7 @@ const ClubRequests = ({ club,adminID }) => {
       <div className="info-textbox">
         <p>Email: {message.email}</p>
         <p>Password: {message.passw}</p>
+        <p>About: {message.about}</p>
       </div>
     );
   };
