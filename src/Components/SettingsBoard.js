@@ -158,32 +158,9 @@ const UpdateInfo =({Club_ID}) =>
   const [inputValue, setInputValue] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-
-    if (file) {
-      // Process the file or store it in state, for example:
-      setSelectedImage(file);
-    }
+      setSelectedImage(e.target.value);
   };
 
-  const handleImageUpload = () => {
-    // Use the selectedImage state for further processing or upload to the server.
-    try{
-    if (selectedImage) {
-      // Perform actions with the selected image, such as sending it to the server.
-      console.log('Selected Image:', selectedImage);
-      const fileURL = URL.createObjectURL(selectedImage);
-      console.log('File URL:', fileURL);
-      setSelectedImage(fileURL);
-    } else {
-      console.log('No image selected.');
-    }}
-    catch(error)
-    {
-      console.log('image already uploaded',error);
-      alert("image already uploaded");
-    };
-  };
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -238,19 +215,16 @@ const UpdateInfo =({Club_ID}) =>
       <p className='charmsg'> {inputValue.length} : 2000 Characters </p>
      
       <div style={{  justifyContent: 'space-between', alignItems: 'center'}}>
-          <label > please click upload image before clicking update image <br/></label>
+          <label > Make sure you upload an image <br/></label>
           <div style={{display:'flex' , justifyContent:'space-between' , marginTop:'2%'}}>
-
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            style={{width:'40%'}}
+           <TextInput
+            Title="Update Logo"
+            placeholderText="Make Sure You insert an image url"
+            isPassword={false}
+            setInputValue={setSelectedImage}
+            inputValue={selectedImage}
+            style={{width:'80%'}}
           />
-          
-          <button className="button-clicked" onClick={handleImageUpload}>
-            <span className="label-clicked">Upload Image</span>
-          </button>
           <button className="button-clicked" onClick={ChangeLogo}>
             <span className="label-clicked">Update image</span>
           </button>
