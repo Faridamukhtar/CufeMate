@@ -11,10 +11,10 @@ const WritePostDashboard =()=>
     return (
         <div className="WritePostPage">
             <div className="sidebar">
-                <Sidebar SidebarType='studentRep' repData={rep}/>
+                <Sidebar SidebarType='studentRep' studentData={rep}/>
             </div>
             <div className="WriteDashboard">
-                <Dashboard DashboardType='writepost' repData={rep}/>
+                <Dashboard DashboardType='writepost' studentData={rep}/>
             </div>
         </div>
     );

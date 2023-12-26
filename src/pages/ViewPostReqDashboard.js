@@ -11,10 +11,10 @@ const ViewPostReqDashboard =()=>
     return (
         <div className="ComplaintPage">
             <div className="sidebar">
-                <Sidebar SidebarType='studentRep' repData={rep}/>
+                <Sidebar SidebarType='studentRep' studentData={rep}/>
             </div>
             <div className="Dashboard">
-                <Dashboard DashboardType='viewpostreq' repData={rep}/>
+                <Dashboard DashboardType='viewpostreq' studentData={rep}/>
             </div>
         </div>
     );

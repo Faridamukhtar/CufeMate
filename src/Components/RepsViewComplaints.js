@@ -66,7 +66,7 @@ function Complaint(props)
               </h4>
             </div>
            <div>
-            <button className="Readbutton" onClick={() => handleRead(props.repData.std_id,props.id)}> <h5 className="ReadButtontext">Read</h5></button>
+            <button className="Readbutton" onClick={() => handleRead(props.studentData.std_id,props.id)}> <h5 className="ReadButtontext">Read</h5></button>
            </div>       
            <div className="ComplaintContent">
                <h6>
@@ -102,7 +102,7 @@ function Complaints(props)
     {
         const setComplaints= async () =>
         {
-            const data = await getComplaints(props.repData.major_id, props.repData.class,'', '', '', '');
+            const data = await getComplaints(props.studentData.major_id, props.studentData.class,'', '', '', '');
             console.log(data);
             setComplaintsData(data);
         }

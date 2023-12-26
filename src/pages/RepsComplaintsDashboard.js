@@ -11,10 +11,10 @@ const RepsComplaintsDashboard =()=>
     return (
         <div className="ComplaintPage">
             <div className="sidebar">
-                <Sidebar SidebarType='studentRep' repData={rep}/>
+                <Sidebar SidebarType='studentRep' studentData={rep}/>
             </div>
             <div className="Dashboard">
-                <Dashboard DashboardType='repsviewcomplaints' repData={rep}/>
+                <Dashboard DashboardType='repsviewcomplaints' studentData={rep}/>
             </div>
         </div>
     );

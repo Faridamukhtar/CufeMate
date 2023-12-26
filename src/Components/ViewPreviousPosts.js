@@ -78,7 +78,7 @@ function PreviousPosts(props)
     {
         const setPosts= async () =>
         {
-            const data = await getPosts(props.repData.std_id,'','', '');
+            const data = await getPosts(props.studentData.std_id,'','', '');
             console.log(data);
             setPostsData(data);
         }

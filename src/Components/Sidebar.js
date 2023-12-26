@@ -140,7 +140,7 @@ function Sidebar(props)
         return (
         <>
             <div className='options'>
-                    <div className="SidebarOption" id="RHome" onClick={()=>navigate(`/rep/${props.repData.std_id}/${props.repData.major_id}/${props.repData.fname}/${props.repData.lname}/${props.repData.class}`)}>
+                    <div className="SidebarOption" id="RHome" onClick={()=>navigate(`/rep/${props.studentData.std_id}/${props.studentData.major_id}/${props.studentData.fname}/${props.studentData.lname}/${props.studentData.class}`)}>
                         <div className="SidebarIcon">
                             <HomeSVG/>
                         </div>
@@ -150,7 +150,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                     </div>
-                    <div className="SidebarOption" id="RStudentClubs" onClick={()=>navigate(`/rep/studentclubs/${props.repData.std_id}/${props.repData.major_id}/${props.repData.fname}/${props.repData.lname}/${props.repData.class}`)}>
+                    <div className="SidebarOption" id="RStudentClubs" onClick={()=>navigate(`/rep/studentclubs/${props.studentData.std_id}/${props.studentData.major_id}/${props.studentData.fname}/${props.studentData.lname}/${props.studentData.class}`)}>
                     <div className="SidebarIcon">
                             <StudentClubsSVG/>
                         </div>
@@ -160,7 +160,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                     </div>
-                    <div className="SidebarOption" id="RStudentComplaints" onClick ={()=> navigate(`/repsviewcomplaints/${props.repData.std_id}/${props.repData.major_id}/${props.repData.fname}/${props.repData.lname}/${props.repData.class}`)}>
+                    <div className="SidebarOption" id="RStudentComplaints" onClick ={()=> navigate(`/repsviewcomplaints/${props.studentData.std_id}/${props.studentData.major_id}/${props.studentData.fname}/${props.studentData.lname}/${props.studentData.class}`)}>
                         <div className="SidebarIcon">
                                 <StudentComplaintsSVG/>
                             </div>
@@ -171,7 +171,7 @@ function Sidebar(props)
                             </div>
                         </div>
 
-                    <div className="SidebarOption" id="WritePost" onClick={()=>navigate(`/writepost/${props.repData.std_id}/${props.repData.major_id}/${props.repData.fname}/${props.repData.lname}/${props.repData.class}`)}>
+                    <div className="SidebarOption" id="WritePost" onClick={()=>navigate(`/writepost/${props.studentData.std_id}/${props.studentData.major_id}/${props.studentData.fname}/${props.studentData.lname}/${props.studentData.class}`)}>
                         <div className="SidebarIcon">
                             <FileAComplaintSVG/>
                         </div>
@@ -181,7 +181,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                     </div>    
-                    <div className="SidebarOption" id="StudentPendingPosts" onClick ={()=>navigate(`/viewpostreq/${props.repData.std_id}/${props.repData.major_id}/${props.repData.fname}/${props.repData.lname}/${props.repData.class}`)}>
+                    <div className="SidebarOption" id="StudentPendingPosts" onClick ={()=>navigate(`/viewpostreq/${props.studentData.std_id}/${props.studentData.major_id}/${props.studentData.fname}/${props.studentData.lname}/${props.studentData.class}`)}>
                         <div className="SidebarIcon" >
                             <StudentPendingPosts/>
                         </div>
@@ -191,7 +191,7 @@ function Sidebar(props)
                             </h5>
                         </div>
                         </div>
-                    <div className="SidebarOption" id="RSettings" onClick={()=>navigate(`/StudentSettings/${props.repData.std_id}/${props.repData.major_id}/${props.repData.fname}/${props.repData.lname}/${props.repData.class}`)}>
+                    <div className="SidebarOption" id="RSettings" onClick={()=>navigate(`/StudentSettings/${props.studentData.std_id}/${props.studentData.major_id}/${props.studentData.fname}/${props.studentData.lname}/${props.studentData.class}`)}>
                     <div className="SidebarIcon">
                             <SettingsSVG/>
                         </div>
@@ -227,7 +227,7 @@ function Sidebar(props)
         {
             return (
                 <>
-                    <StudentRepSidebar repData={props.repData}/>
+                    <StudentRepSidebar studentData={props.studentData}/>
                 </>
             );
         }
