@@ -20,7 +20,7 @@ function ReqWriteTextPostMajor({selectedCourse}, props)
               const result = await response.json();
               // Handle the login result as needed
               console.log(result);
-              alert("Submitted to reps successfully");
+              alert("Submitted to reps successfully. Refresh to see it below");
             } 
             catch (error) {
               console.error('Error during login:', error);
