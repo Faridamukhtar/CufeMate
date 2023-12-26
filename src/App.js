@@ -58,7 +58,7 @@ function App() {
             <Route path="/Admin/stats/:admin_id" element={<AdminStats />} />
             <Route path="/AdminsSettings/:admin_id" element={<AdminSetting DashboardType='adminsettings' />} />
 
-            <Route path="/repsviewcomplaints" element ={<RepsComplaintsDashboard />} />
+            <Route path="/repsviewcomplaints/:std_id/:major_id/:fname/:lname/:class/" element ={<RepsComplaintsDashboard />} />
             <Route path="/writepost/:std_id/:major_id/:fname/:lname/:class" element ={<WritePostDashboard/>} />
             <Route path="/reqwritepost/:std_id/:major_id/:fname/:lname/:class" element={<ReqToWritePostDashboard/>}/>
             <Route path="/viewpostreq/:std_id/:major_id/:fname/:lname/:class" element={<ViewPostReqDashboard/>}/>
