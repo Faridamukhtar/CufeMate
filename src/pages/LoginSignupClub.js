@@ -15,16 +15,16 @@ const LoginSignupClub = () => {
     const [about, setAbout] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
 
-  const handleImageChange = (e) => {
+  /*const handleImageChange = (e) => {
     const file = e.target.files[0];
 
     if (file) {
       // Process the file or store it in state, for example:
       setSelectedImage(file);
     }
-  };
+  };*/
 
-  const handleImageUpload = () => {
+  /*const handleImageUpload = () => {
     // Use the selectedImage state for further processing or upload to the server.
     try{
     if (selectedImage) {
@@ -41,7 +41,7 @@ const LoginSignupClub = () => {
       console.log('image already uploaded',error);
       alert("image already uploaded, click signup or choose a different picture");
     };
-  };
+  };*/
 
   
   const sendRequest = async() =>{
@@ -252,7 +252,14 @@ const LoginSignupClub = () => {
             value={passw}
             onChange={(e) => setPassw(e.target.value)}
           />
-          <div className="inputPhoto">
+          <label><br/>insert image link, make sure the link is of an image and not a website<br/></label>
+          <input
+            type="text"
+            placeholder="image"
+            value={selectedImage}
+            onChange={(e) => setSelectedImage(e.target.value)}
+          />
+          {/*<div className="inputPhoto">
           <input
             type="file"
             accept="image/*"
@@ -263,7 +270,7 @@ const LoginSignupClub = () => {
           )}
           </div>
           <label>please click upload before clicking signup <br/></label>
-          <button onClick={handleImageUpload}>Upload Image</button>
+          <button onClick={handleImageUpload}>Upload Image</button>*/}
           <button onClick={handleSignup}>Signup</button>
         </div>
         </div>
