@@ -222,7 +222,7 @@ const UpdateInfo =({Club_ID}) =>
     }
   };
   const ChangeLogo=()=>{
-     handleUpdateimage(Club_ID, selectedImage);
+     handleUpdateimage(selectedImage);
      console.log('')
   }
 
