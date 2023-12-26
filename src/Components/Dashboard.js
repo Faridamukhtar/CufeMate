@@ -156,7 +156,7 @@ function DashboardBody(props)
     {
         return (
             <>
-                <ViewStudentClubsBody DashboardType={props.DashboardType} studentData={props.studentData}/>
+                <ViewStudentClubsBody DashboardType={props.DashboardType} studentData={props.DashboardType==='student' ? props.studentData : props.repData}/>
             </>
         );
     }
