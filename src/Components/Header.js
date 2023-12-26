@@ -98,7 +98,7 @@ function ComplaintHeader(props)
             </div>
             <div className="Info">
                 <h4 className='StudentName'>
-                    Name
+                {props.studentData.fname} {props.studentData.lname}
                 </h4>
                 <h4>
                     Class of  {props.studentData.class}
@@ -167,7 +167,7 @@ function RepsViewComplaintsHeader(props)
         </div>
         <div className="Info">
             <h4 className='StudentName'>
-                Name
+            {props.studentData.lname} {props.studentData.fname}
             </h4>
             <h4>
                 Class of  {props.studentData.class}
@@ -190,7 +190,7 @@ function WritePostHeader(props)
             </div>
             <div className="Info">
                 <h4 className='StudentName'>
-                    Name
+                {props.studentData.fname} {props.studentData.lname}
                 </h4>
                 <h4>
                     Class of  {props.studentData.class}
@@ -212,7 +212,7 @@ function ReqWritePostHeader(props)
             </div>
             <div className="Info">
                 <h4 className='StudentName'>
-                    Name
+                {props.studentData.fname} {props.studentData.lname}
                 </h4>
                 <h4>
                     Class of  {props.studentData.class}
@@ -234,7 +234,7 @@ function ViewPostReqHeader(props)
             </div>
             <div className="Info">
                 <h4 className='StudentName'>
-                    Name
+                    {props.studentData.fname} {props.studentData.lname}
                 </h4>
                 <h4>
                     Class of  {props.studentData.class}
@@ -284,7 +284,7 @@ function ChooseHeader(props)
     {
         return (
             <>
-                <StudentHeader studentType={props.studentType} studentData={props.DashboardType==='student' ? props.studentData : props.repData}/>
+                <StudentHeader studentType={props.studentType} studentData={props.DashboardType==='student' ? props.studentData : props.studentData}/>
             </>
         );
     }
@@ -300,7 +300,7 @@ function ChooseHeader(props)
     {
         return (
             <>
-                <ViewStudentClubsHeader studentType={props.studentType} studentData={props.studentType==='student' ? props.studentData : props.repData}/>
+                <ViewStudentClubsHeader studentType={props.studentType} studentData={props.studentType==='student' ? props.studentData : props.studentData}/>
             </>
         );
     }
@@ -343,7 +343,7 @@ function ChooseHeader(props)
     {
         return (
             <>
-               <RepsViewComplaintsHeader studentData={props.studentData}/>
+               <RepsViewComplaintsHeader studentData = {props.studentData}/>
             </>
         )
     }
@@ -353,7 +353,7 @@ function ChooseHeader(props)
     {
         return (
              <>
-                <WritePostHeader studentData={props.studentData} />
+                <WritePostHeader studentData = {props.studentData} />
              </>
         );
     }
@@ -369,7 +369,7 @@ function ChooseHeader(props)
     {
         return (
             <>
-               <ViewPostReqHeader studentData={props.studentData} />
+               <ViewPostReqHeader studentData = {props.studentData} />
             </>
         );
     }

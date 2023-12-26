@@ -6,15 +6,15 @@ import { useParams } from "react-router-dom";
 
 const ViewPostReqDashboard =()=>
 {
-    let student={std_id:0,major_id:'', fname:'', lname:'', class:''}
-    student = useParams();
+    let rep={std_id:0,major_id:'', fname:'', lname:'', class:''}
+    rep = useParams();
     return (
         <div className="ComplaintPage">
             <div className="sidebar">
-                <Sidebar SidebarType='studentRep' studentData={student}/>
+                <Sidebar SidebarType='studentRep' studentData={rep}/>
             </div>
             <div className="Dashboard">
-                <Dashboard DashboardType='viewpostreq' studentData={student}/>
+                <Dashboard DashboardType='viewpostreq' studentData={rep}/>
             </div>
         </div>
     );

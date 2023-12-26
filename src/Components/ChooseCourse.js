@@ -11,7 +11,7 @@ const DropdownMenu = (props) =>
   const major_id=props.studentData.major_id;
     useEffect(() =>
      {
-      const fetchCourses = async () =>
+      const fetchCourses = async (major_id) =>
        {
         try
          {
@@ -26,7 +26,7 @@ const DropdownMenu = (props) =>
           console.error('Error fetching courses:', error);
          }
       };
-      fetchCourses();
+      fetchCourses(major_id);
   
     }, []);
 

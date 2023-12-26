@@ -3,11 +3,11 @@ import "./ViewPreviousPosts.css";
 
   
 
-const getPosts = async (post_date="", content="", Course="") => 
+const getPosts = async (std_id,post_date="", content="", Course="") => 
 {
     try 
     {
-       const std_id=5;
+       //const std_id=5;
       // Construct the URL with actual values for email and password
       const url = `http://localhost:8080/api/previousposts/${encodeURIComponent(std_id)}`;
   
@@ -70,7 +70,7 @@ function DisplayPosts(props)
 }
 
 
-function PreviousPosts() 
+function PreviousPosts(props) 
 {  
   const [PostsData, setPostsData]=useState([{post_date:"",content:"", course:""}]);
     
@@ -78,7 +78,7 @@ function PreviousPosts()
     {
         const setPosts= async () =>
         {
-            const data = await getPosts( '','', '');
+            const data = await getPosts(props.studentData.std_id,'','', '');
             console.log(data);
             setPostsData(data);
         }

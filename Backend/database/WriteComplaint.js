@@ -11,7 +11,7 @@ write_complaint_router.get("/api/writecomplaint/:title/:content/:std_id", async 
     const complaint_date=today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate();
     try 
     {
-        const result =await dbInstance.query ("INSERT INTO complaint (title, content, complaint_id, std_id, stat, complaint_date) VALUES ($1, $2, $3 ,$4 , $5, $6 )",[title, content, complaint_id, std_id, stat, complaint_date]);
+        const result =await dbInstance.query ("INSERT INTO complaint (title, content, complaint_id, std_id, stat, complaint_date) VALUES ($1, $2, $3 ,$4 , $5, $6 );",[title, content, complaint_id, std_id, stat, complaint_date]);
         res.json(result.rows);
     }
     catch (error)

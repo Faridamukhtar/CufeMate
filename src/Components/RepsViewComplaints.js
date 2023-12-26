@@ -28,15 +28,15 @@ const getComplaints = async (major_id, classs,title="" , content="", id="", date
 
 function Complaint(props)
 {
-    const [StdRepID, setStdRepID] = useState('');
+    //const [StdRepID, setStdRepID] = useState('');
 
-    const handleRead = async (StdRepID, complaint_id) =>
+    const handleRead = async (std_id, complaint_id) =>
      {
         try
          {
-          StdRepID=170;
+          //StdRepID=170;
           // Construct the URL with actual values for email and password
-          const url = `http://localhost:8080/api/markread/${encodeURIComponent(StdRepID)}/${encodeURIComponent(complaint_id)}`;
+          const url = `http://localhost:8080/api/markread/${encodeURIComponent(std_id)}/${encodeURIComponent(complaint_id)}`;
       
           // Make a GET request to the constructed URL
               const response = await fetch(url); 
@@ -66,7 +66,7 @@ function Complaint(props)
               </h4>
             </div>
            <div>
-            <button className="Readbutton" onClick={() => handleRead(StdRepID,props.id)}> <h5 className="ReadButtontext">Read</h5></button>
+            <button className="Readbutton" onClick={() => handleRead(props.studentData.std_id,props.id)}> <h5 className="ReadButtontext">Read</h5></button>
            </div>       
            <div className="ComplaintContent">
                <h6>

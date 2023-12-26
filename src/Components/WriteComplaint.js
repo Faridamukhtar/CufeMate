@@ -22,6 +22,7 @@ function WriteComplaint(props)
               const result = await response.json();
               // Handle the login result as needed
               console.log(result);
+              alert("Submitted to reps successfully");
             } 
             catch (error) {
               console.error('Error during login:', error);
@@ -50,7 +51,7 @@ function WriteComplaint(props)
             <div className="ComplaintCharacterCount">
                 <p > {Conttent.length} : 500  </p>
             </div>
-            <button className="ComplaintSubmitButton" onClick={() => handleSubmit(Tittle, Conttent, props.studentData.std_id)}> <h5 className="ComplaintSubmitText">Submit</h5></button>
+            <button className="ComplaintSubmitButton" onClick={() =>{ if (Conttent>0 && Tittle >0) {handleSubmit(Tittle, Conttent, props.studentData.std_id)}else{alert("No Content or Title was input")}}}> <h5 className="ComplaintSubmitText">Submit</h5></button>
         
            </div>        
        </div>

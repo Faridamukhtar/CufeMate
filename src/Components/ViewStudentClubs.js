@@ -37,6 +37,7 @@ function StudentClubDetails(props)
          console.log('Rating:', RatingN);
          await Rate_Club(RatingN, props.studentData.std_id, props.std_club_id)
         }
+
         if (RatingN!==0)
         {
             setRating();
@@ -61,7 +62,7 @@ function StudentClubDetails(props)
 
        onMount();
 
-    },[]);
+    },[props.std_club_id]);
 
     console.log(props.logo);
     return (
@@ -171,7 +172,7 @@ function StudentClubForm(props)
 
        onMount();
 
-},[props]);
+},[props.form_id]);
 
 useEffect(()=>
 {
@@ -289,6 +290,8 @@ function FormsSection(props)
     const [chosenStudentClub, setChosenStudentClub] = useState(" ");
     const [StudentClubs, setStudentClubs] = useState([{std_club_id:0, std_club_name:""}]);
 
+    const studentData=props.studentData;
+
     useEffect(()=>
     {
        const onMount = async()=>
@@ -350,7 +353,7 @@ function FormsSection(props)
                 <Filters options={StudentClubs}/>
             </div>
             <div className="forms">
-                <ul><Displayforms studentData={props.studentData} formArray={formsContent} chosenStudentClub={chosenStudentClub}/></ul>
+                <ul><Displayforms studentData={studentData} formArray={formsContent} chosenStudentClub={chosenStudentClub}/></ul>
             </div>
         </div>
     );

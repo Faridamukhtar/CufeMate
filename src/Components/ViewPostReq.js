@@ -29,14 +29,12 @@ const getPosts = async (major_id,post_date="", content="", Course="", id="") =>
 
 function Post(props)
 {
-    const [StdRepID, setStdRepID] = useState('');
-
+    //const [StdRepID, setStdRepID] = useState('');
     const handleAccept = async (StdRepID, post_id) =>
      {
         try
          {
-            // student rep id ml login 
-          StdRepID=170;
+          
           // Construct the URL with actual values for email and password
           const url = `http://localhost:8080/api/markaccept/${encodeURIComponent(StdRepID)}/${encodeURIComponent(post_id)}`;
       
@@ -91,10 +89,10 @@ function Post(props)
               </h4>
             </div>
             <div>
-            <button className="Acceptbutton" onClick={() => handleAccept(StdRepID,props.id)}> <h5 className="AcceptButtontext">Accept</h5></button>
+            <button className="Acceptbutton" onClick={() => handleAccept(props.studentData.std_id,props.id)}> <h5 className="AcceptButtontext">Accept</h5></button>
             </div>  
             <div>
-            <button className="Rejectbutton" onClick={() => handleReject(StdRepID,props.id)}> <h5 className="RejectButtontext">Reject</h5></button>
+            <button className="Rejectbutton" onClick={() => handleReject(props.studentData.std_id,props.id)}> <h5 className="RejectButtontext">Reject</h5></button>
            </div>        
             <div className="Content">
                {props.content}
