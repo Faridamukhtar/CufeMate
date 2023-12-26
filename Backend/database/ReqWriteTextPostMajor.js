@@ -12,9 +12,9 @@ req_write_post_major_router.get("/api/reqwritepostmajor/:content/:major_id/:std_
     try 
     {
         const result1=await dbInstance.query ("INSERT INTO post( content, post_date) VALUES ($1, $2);",[ content, post_date]);
-        const post_id=await dbInstance.query ("SELECT COUNT(*) FROM post;");
-        const result2=await dbInstance.query ("INSERT INTO requests_to_write(post_id, std_id, flagstatus) VALUES ($1,$2, 2);", [post_id, std_id]);
-        const result3=await dbInstance.query ("INSERT INTO related_to_major(post_id,major_id) VALUES ($1,$2);",[post_id,major_id]);
+        const post_id = await dbInstance.query ("SELECT MAX(post_id) FROM post;");
+        const result2=await dbInstance.query ("INSERT INTO requests_to_write(post_id, std_id, flagstatus) VALUES ($1,$2, 0);", [post_id.rows[0].max, std_id]);
+        const result3=await dbInstance.query ("INSERT INTO related_to_major(post_id,major_id) VALUES ($1,$2);",[post_id.rows[0].max,major_id]);
         res.json({res1: result1.rows , res2: result2.rows,res3:result3.rows});
     }
     catch (error)
