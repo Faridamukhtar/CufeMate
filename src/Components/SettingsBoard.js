@@ -111,7 +111,7 @@ const UpdatePassword = ({ message , Std_ID , Club_ID}) => {
                   let id
                   if (message==='student')
                 {
-                  id = Std_ID; // Replace with your dynamic email logic
+                  id = Std_ID;
 
                 }
                 else if (message==='studentclub')
@@ -218,36 +218,36 @@ const UpdateInfo =({Club_ID}) =>
         placeholder='About'
         className='AboutText'
       />
+      
+      <div style={{display:'flex' , justifyContent:'space-between' , alignItems: 'center',marginTop:'2%'}}>
       <p className='charmsg'> {inputValue.length} : 2000 Characters </p>
-     
-      <div style={{  justifyContent: 'space-between', alignItems: 'center'}}>
-          <label > Make sure you upload an image <br/></label>
-          <div style={{display:'flex' , justifyContent:'space-between' , marginTop:'2%'}}>
-           <TextInput
-            Title="Update Logo"
-            placeholderText="Make Sure You insert an image url"
-            isPassword={false}
-            setInputValue={setSelectedImage}
-            inputValue={selectedImage}
-            style={{width:'80%'}}
-          />
-          <button className="button-clicked" onClick={ChangeLogo}>
-            <span className="label-clicked">Update image</span>
-          </button>
-          </div>
+      <button className="button-clicked" onClick={ChangeAbout}>
+                <span className="label-clicked">Update About</span>
+              </button>
         </div>
-          <button className="button-clicked" onClick={ChangeAbout}>
-            <span className="label-clicked">Update About</span>
-          </button>
-          {selectedImage && (
-      <div>
-        <img src={selectedImage} alt="Uploaded Logo" style={{ maxWidth: '100%', height: 'auto' }} />
-      </div>
-    )}
-        </div>
+        <label className='TextBox_std_club_logo_label'> Image will automatically render if inserted as image url</label>
+
+                <div style={{marginTop:'2%'}}>
+              <TextInput
+                Title="Update Logo"
+                placeholderText="Make Sure You insert an actual image not a website url"
+                isPassword={false}
+                setInputValue={setSelectedImage}
+                inputValue={selectedImage}
+                style={{width:'80%'}}
+              />
+              
+              </div>
+              <div style={{display:'flex' , justifyContent:'space-between' , alignItems: 'center'}}>
+              <button className="button-clicked" onClick={ChangeLogo}>
+                <span className="label-clicked">Update image</span>
+              </button>
+              <img src={selectedImage} style={{ width:'100px' }} />
+
+              </div>
+
+           </div>
        
-
-
   )
 }
 
