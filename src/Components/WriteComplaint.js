@@ -52,7 +52,7 @@ function WriteComplaint(props)
             <div className="ComplaintCharacterCount">
                 <p > {Conttent.length} : 500  </p>
             </div>
-            <button className="ComplaintSubmitButton" onClick={() =>{ if (Conttent.length>0 && Tittle.length >0) {handleSubmit(Tittle, Conttent, props.studentData.std_id)}else{alert("No Content or Title was input")}}}> <h5 className="ComplaintSubmitText">Submit</h5></button>
+            <button className="ComplaintSubmitButton" onClick={() =>{ if (Conttent.length>500){alert("max number of characters is 500")} else if (Conttent.length>0 && Tittle.length>0) {handleSubmit(Tittle, Conttent, props.studentData.std_id)}else{alert("No Content or Title was input")}}}> <h5 className="ComplaintSubmitText">Submit</h5></button>
         
            </div>        
        </div>
