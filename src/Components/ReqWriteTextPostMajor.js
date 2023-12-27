@@ -3,7 +3,7 @@ import './ReqWriteTextPost.css';
 import PostInputText from "./PostInputText.js";
 
 
-function ReqWriteTextPostMajor({selectedCourse}, props)
+function ReqWriteTextPostMajor(props)
 
 {    
     

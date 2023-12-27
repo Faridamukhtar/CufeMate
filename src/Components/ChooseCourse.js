@@ -63,7 +63,7 @@ const DropdownMenu = (props) =>
         <option value="PerCourse">Announcement per Course</option>
 
       </select>
-      {selectedOption === 'PerMajor' && <WriteTextPostMajor studentData={props.studentData} selectedCourse={selectedValue} />}
+      {selectedOption === 'PerMajor' && <WriteTextPostMajor studentData={props.studentData} />}
       {selectedOption === 'PerCourse' && <WriteTextPostCourse studentData={props.studentData} selectedCourse={selectedValue} />}
 
     </div>
