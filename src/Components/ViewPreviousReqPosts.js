@@ -9,7 +9,7 @@ const getPosts = async (std_id,post_date="", content="", Course="") =>
     {
        //const std_id=5;
       // Construct the URL with actual values for email and password
-      const url = `http://localhost:8080/api/previousposts/${encodeURIComponent(std_id)}`;
+      const url = `http://localhost:8080/api/previouspostsreq/${encodeURIComponent(std_id)}`;
   
       // Make a GET request to the constructed URL
           const response = await fetch(url); 
@@ -29,9 +29,9 @@ const getPosts = async (std_id,post_date="", content="", Course="") =>
 
 function Post(props)
 {
-    const ChooseBoxColor = props.stat === '0' ? 'RejectedPostRect' : props.stat === '1' ? 'AcceptedPostRect' : 'PendingPostRect';
-    const ChooseBoxTextColor=props.stat==='0'? 'RejectedPostText' : props.stat === '1' ? 'AcceptedPostText' : 'PendingPostText' ;
-    const StatusText=props.stat==='0'?  'Rejected' : props.stat === '1' ? 'Accepted' :'Pending';
+    const ChooseBoxColor = props.stat === '0' ? 'PendingPostRect'  : props.stat === '1' ? 'AcceptedPostRect' : 'RejectedPostRect';
+    const ChooseBoxTextColor=props.stat==='0'? 'PendingPostText'  : props.stat === '1' ? 'AcceptedPostText' : 'RejectedPostText' ;
+    const StatusText=props.stat==='0'? 'Pending'  : props.stat === '1' ? 'Accepted' : 'Rejected';
   
    return(
         <div className="PostRect2">

@@ -50,6 +50,7 @@ import { req_write_post_course_router } from './database/ReqWriteTextPostCourse.
 import { post_requests_router } from './database/ViewPostReq.js';
 import { mark_accept_router } from './database/MarkAccept.js';
 import { mark_reject_router } from './database/MarkReject.js';
+import {  previous_posts_req_router } from './database/ViewPreviousPostReq.js'
 
 import { forgotPass } from './database/ForgotPass.js';
 
@@ -82,6 +83,7 @@ app.use(
     app.use('/', GetAllSub);
     app.use('/', Subjectbystudent);
     app.use('/', EnrollSub);
+    app.use('/', previous_posts_req_router);
 
 
     app.use('/', reps_contacts_router );
