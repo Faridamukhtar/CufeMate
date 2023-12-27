@@ -29,9 +29,9 @@ const getPosts = async (std_id,post_date="", content="", Course="") =>
 
 function Post(props)
 {
-    const ChooseBoxColor = props.stat === '0' ? 'PendingPostRect'  : props.stat === '1' ? 'AcceptedPostRect' : 'RejectedPostRect';
-    const ChooseBoxTextColor=props.stat==='0'? 'PendingPostText'  : props.stat === '1' ? 'AcceptedPostText' : 'RejectedPostText' ;
-    const StatusText=props.stat==='0'? 'Pending'  : props.stat === '1' ? 'Accepted' : 'Rejected';
+    const ChooseBoxColor = props.stat === '0' ? 'RejectedPostRect'  : props.stat === '1' ? 'AcceptedPostRect' :  'PendingPostRect';
+    const ChooseBoxTextColor=props.stat==='0'?  'RejectedPostText' : props.stat === '1' ? 'AcceptedPostText' : 'PendingPostText' ;
+    const StatusText=props.stat==='0'? 'Rejected' : props.stat === '1' ? 'Accepted' : 'Pending';
   
    return(
         <div className="PostRect2">
