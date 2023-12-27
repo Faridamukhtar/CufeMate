@@ -11,6 +11,7 @@ function WriteTextPostCourse(props)
 
     const handleSubmit = async (Conttent, selectedCourse, std_id) =>
      {
+      
         try {
           // Construct the URL with actual values for email and password
           const url = `http://localhost:8080/api/writepostcourse/${encodeURIComponent(Conttent)}/${encodeURIComponent(selectedCourse)}/${encodeURIComponent(std_id)}`;
