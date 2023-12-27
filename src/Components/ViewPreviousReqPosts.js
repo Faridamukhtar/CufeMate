@@ -3,7 +3,7 @@ import "./ViewPreviousReqPosts.css";
 
   
 
-const getPosts = async (std_id,post_date="", content="", Course="") => 
+const getPosts = async (std_id,post_date="", content="", Course="", flagstatus="") => 
 {
     try 
     {
@@ -29,9 +29,11 @@ const getPosts = async (std_id,post_date="", content="", Course="") =>
 
 function Post(props)
 {
-    const ChooseBoxColor = props.stat === '0' ? 'RejectedPostRect'  : props.stat === '1' ? 'AcceptedPostRect' :  'PendingPostRect';
-    const ChooseBoxTextColor=props.stat==='0'?  'RejectedPostText' : props.stat === '1' ? 'AcceptedPostText' : 'PendingPostText' ;
-    const StatusText=props.stat==='0'? 'Rejected' : props.stat === '1' ? 'Accepted' : 'Pending';
+  console.log(props);
+    const ChooseBoxColor = props.stat === 0 ? 'PendingPostRect'  : props.stat === 1 ? 'AcceptedPostRect' : 'RejectedPostRect' ;
+    const ChooseBoxTextColor=props.stat===0? 'PendingPostText'  : props.stat === 1 ? 'AcceptedPostText' : 'RejectedPostText' ;
+    const StatusText=props.stat===0? 'Pending' : props.stat === 1 ? 'Accepted' : 'Rejected';
+    console.log(props.stat);
   
    return(
         <div className="PostRect2">
@@ -69,7 +71,7 @@ function DisplayPosts(props)
     if (props?.postArray[0])
     {
         console.log('AAAAA');
-        const listItems = props.postArray.map ( (post) =>{return (<li><Post  post_date={post.post_date} content={post.content} course={post.course_name} /></li>)});
+        const listItems = props.postArray.map ( (post) =>{return (<li><Post  post_date={post.post_date} content={post.content} course={post.course_name} stat={post.flagstatus}/></li>)});
         return listItems;
     }
     else
@@ -82,13 +84,13 @@ function DisplayPosts(props)
 
 function PreviousPosts(props) 
 {  
-  const [PostsData, setPostsData]=useState([{post_date:"",content:"", course:""}]);
+  const [PostsData, setPostsData]=useState([{post_date:"",content:"", course:"", flagstatus:""}]);
     
     useEffect(()=>
     {
         const setPosts= async () =>
         {
-            const data = await getPosts(props.studentData.std_id, '','', '');
+            const data = await getPosts(props.studentData.std_id, '','', '', '');
             console.log(data);
             setPostsData(data);
         }
