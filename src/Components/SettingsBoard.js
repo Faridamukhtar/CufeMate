@@ -90,8 +90,7 @@ const UpdatePassword = ({ message , Std_ID , Club_ID}) => {
 
 
   const handleClick = async () => {
-    const isValidNpass = /^\d+$/.test(Npass);
-    const isValidconpass = /^\d+$/.test(conpass);
+   
     if (!Npass || !conpass)
     {
       alert("enter a new password and its confirmation");
