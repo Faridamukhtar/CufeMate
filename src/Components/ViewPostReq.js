@@ -3,13 +3,13 @@ import "./ViewPostReq.css";
 
   
 
-const getPosts = async (major_id,post_date="", content="", Course="", id="") => 
+const getPosts = async (major_id, classs, post_date="", content="", Course="", id="") => 
 {
     try 
     {
        
       // Construct the URL with actual values for email and password
-      const url = `http://localhost:8080/api/viewpostreq/${encodeURIComponent(major_id)}`;
+      const url = `http://localhost:8080/api/viewpostreq/${encodeURIComponent(major_id)}/${encodeURIComponent(classs)}`;
   
       // Make a GET request to the constructed URL
           const response = await fetch(url); 
@@ -43,6 +43,7 @@ function Post(props)
               const result = await response.json();
               // Handle the login result as needed
               console.log(result);
+              alert("this post has been accepted");
             } 
             catch (error) {
               console.error('Error during login:', error);
@@ -57,7 +58,7 @@ function Post(props)
        {
           try
            {
-            StdRepID=170;
+            
             // Construct the URL with actual values for email and password
             const url = `http://localhost:8080/api/markreject/${encodeURIComponent(StdRepID)}/${encodeURIComponent(post_id)}`;
         
@@ -66,6 +67,7 @@ function Post(props)
                 const result = await response.json();
                 // Handle the login result as needed
                 console.log(result);
+                alert("this post has been rejected");
               } 
               catch (error) {
                 console.error('Error during login:', error);
@@ -109,7 +111,7 @@ function DisplayPosts(props)
     if (props?.postArray[0])
     {
         console.log('AAAAA');
-        const listItems = props.postArray.map ( (post) =>{return (<li><Post  post_date={post.post_date} content={post.content} course={post.course_name} id={post.pst} /></li>)});
+        const listItems = props.postArray.map ( (post) =>{return (<li><Post  post_date={post.post_date} content={post.content} course={post.course_name} id={post.pst} studentData={props.studentData} /></li>)});
         console.log(listItems);
         return listItems;
     }
@@ -129,7 +131,7 @@ function PostRequests(props)
     {
         const setPosts= async () =>
         {
-            const data = await getPosts(props.studentData.major_id,'','','','');
+            const data = await getPosts(props.studentData.major_id,props.studentData.class,'','','','');
             console.log(data);
             setPostsData(data);
         }
@@ -142,7 +144,7 @@ function PostRequests(props)
   return (
      <div>
         <ul>
-        <DisplayPosts postArray={PostsData}/>
+        <DisplayPosts postArray={PostsData} studentData={props.studentData}/>
         </ul>
         
      </div>

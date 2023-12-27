@@ -4,12 +4,12 @@ import { dbInstance } from "./connection.js";
 const post_requests_router=express.Router();
 
 // el mafroud el major id yakhdo ml login 
-post_requests_router.get("/api/viewpostreq/:major_id", async (req,res) =>
+post_requests_router.get("/api/viewpostreq/:major_id/:classs", async (req,res) =>
 {
-    const {major_id}=req.params;
+    const {major_id, classs}=req.params;
     try 
     {
-        const result =await dbInstance.query ("SELECT post_date, content , course_name ,p.post_id AS pst FROM post p JOIN requests_to_write r ON p.post_id=r.post_id JOIN related_to_course c ON c.post_id=p.post_id  JOIN course ON course.course_id=c.course_id JOIN related_to_major m  ON m.post_id=p.post_id  JOIN major ON major.major_id=m.major_id WHERE flagstatus=0 AND m.major_id=$1 ;",[major_id]);
+        const result =await dbInstance.query ("SELECT post_date, content ,course_name, p.post_id AS pst FROM post p JOIN related_to_course rc ON rc.post_id=p.post_id JOIN course c ON c.course_id=rc.course_id JOIN requests_to_write r ON r.post_id=p.post_id JOIN student s ON s.std_id=r.std_id WHERE r.flagstatus=0 AND s.major_id=$1 AND s.class=$2;",[major_id, classs]);
         res.json(result.rows);
     }
     catch (error)

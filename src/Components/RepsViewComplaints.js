@@ -43,6 +43,7 @@ function Complaint(props)
               const result = await response.json();
               // Handle the login result as needed
               console.log(result);
+              alert("the complaint was read and it's no longer pending ");
             } 
             catch (error) {
               console.error('Error during login:', error);
@@ -83,7 +84,7 @@ function DisplayComplaints(props)
     if (props?.compArray[0])
     {
         console.log('AAAAA');
-        const listItems = props.compArray.map ( (complaint) =>{return (<li><Complaint title={complaint.title} content={complaint.content} id={complaint.complaint_id} date={complaint.complaint_date} /></li>)});
+        const listItems = props.compArray.map ( (complaint) =>{return (<li><Complaint title={complaint.title} content={complaint.content} id={complaint.complaint_id} date={complaint.complaint_date}  studentData={props.studentData}/></li>)});
         return listItems;
     }
     else
@@ -115,7 +116,7 @@ function Complaints(props)
   return (
      <div>
         <ul>
-        <DisplayComplaints compArray={ComplaintsData} student={props.studentData}/>
+        <DisplayComplaints compArray={ComplaintsData} studentData={props.studentData}/>
         </ul>
         
      </div>
