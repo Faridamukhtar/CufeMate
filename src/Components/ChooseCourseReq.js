@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import WriteTextPostMajor from './WriteTextPostMajor.js';
-import WriteTextPostCourse from './WriteTextPostCourse.js';
+import ReqWriteTextPostMajor from './ReqWriteTextPostMajor.js';
+import ReqWriteTextPostCourse from './ReqWriteTextPostCourse.js';
 
 const DropdownMenu = (props) =>
  {
@@ -65,8 +65,8 @@ const DropdownMenu = (props) =>
         <option value="PerCourse">Announcement per Course</option>
       </select>
 
-      {selectedOption === 'PerMajor' && <WriteTextPostMajor selectedCourse={selectedValue} />}
-      {selectedOption === 'PerCourse' && <WriteTextPostCourse selectedCourse={selectedValue} />}
+      {selectedOption === 'PerMajor' && <ReqWriteTextPostMajor selectedCourse={selectedValue} studentData={props.studentData}   />}
+      {selectedOption === 'PerCourse' && <ReqWriteTextPostCourse selectedCourse={selectedValue} studentData={props.studentData} />}
 
     </div>
   );

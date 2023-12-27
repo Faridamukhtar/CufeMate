@@ -3,7 +3,7 @@ import './WriteTextPost.css';
 import PostInputText from "./PostInputText.js";
 
 
-function WriteTextPostCourse({selectedCourse}, props)
+function WriteTextPostCourse(props)
 
 {    
     
@@ -11,6 +11,7 @@ function WriteTextPostCourse({selectedCourse}, props)
 
     const handleSubmit = async (Conttent, selectedCourse, std_id) =>
      {
+      
         try {
           // Construct the URL with actual values for email and password
           const url = `http://localhost:8080/api/writepostcourse/${encodeURIComponent(Conttent)}/${encodeURIComponent(selectedCourse)}/${encodeURIComponent(std_id)}`;
@@ -45,7 +46,7 @@ function WriteTextPostCourse({selectedCourse}, props)
             <div className="CharacterCount">
                 <p > {Conttent.length} : 2000  </p>
             </div>
-            <button className="PostSubmitButton" onClick={() => {if (Conttent.length>0) { handleSubmit(Conttent, selectedCourse, props.studentData.std_id)}else {alert("No post was written")}}}> <h5 className="PostSubmitText">Submit</h5></button>
+            <button className="PostSubmitButton" onClick={() => {if (Conttent.length>0) { handleSubmit(Conttent, props.selectedCourse, props.studentData.std_id)}else {alert("No post was written")}}}> <h5 className="PostSubmitText">Submit</h5></button>
         
            </div>        
        </div>

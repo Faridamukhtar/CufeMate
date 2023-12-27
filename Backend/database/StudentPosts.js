@@ -26,7 +26,7 @@ export const getPosts = async (req, res) => {
 
         if (major!=='')
         {
-          CurrentQuery+=`OR rtm.major_id = '${major}' ) ` 
+          CurrentQuery+=` OR rtm.major_id = '${major}' ) ` 
         }
       }
 
@@ -42,13 +42,13 @@ export const getPosts = async (req, res) => {
     const QueryGetPosts=(author, major, course)=>
     {
       return (`
-      SELECT DISTINCT s.Fname, s.Lname, p.post_date, p.content, p.post_id, c.course_name, rtm.major_id
+      SELECT DISTINCT s.Fname, s.Lname, p.post_date, p.content, p.post_id, c.course_name, rtm.major_id, rtw.flagstatus
       FROM post p
       LEFT OUTER JOIN requests_to_write rtw 
           ON p.post_id = rtw.post_id AND rtw.flagstatus=1
       LEFT OUTER JOIN writes w 
           ON p.post_id = w.post_id
-      LEFT OUTER JOIN student s 
+      INNER JOIN student s 
           ON w.std_id = s.std_id OR rtw.std_id = s.std_id
       LEFT OUTER JOIN related_to_course rtc
           ON p.post_id = rtc.post_id
