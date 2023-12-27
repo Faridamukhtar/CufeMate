@@ -3,7 +3,7 @@ import './ComplaintInputText.css'
 
 const ComplaintInputText = ({placeholderText, setInputValue , inputValue}) => 
 {
-
+    const maxChars=500;
     const handleInputChange = (event) => {
       setInputValue(event.target.value);
     };

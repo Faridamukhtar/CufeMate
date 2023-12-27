@@ -45,7 +45,7 @@ function WriteTextPostMajor(props)
             <div className="CharacterCount">
                 <p > {Conttent.length} : 2000  </p>
             </div>
-            <button className="PostSubmitButton" onClick={() =>{if (Conttent.length>0) { handleSubmit(Conttent, props.studentData.major_id, props.studentData.std_id)}else {alert("No post was written")}}}> <h5 className="PostSubmitText">Submit</h5></button>
+            <button className="PostSubmitButton" onClick={() =>{if (Conttent.length >2000) {alert("max number of characters is 2000")} else if (Conttent.length>0) { handleSubmit(Conttent, props.studentData.major_id, props.studentData.std_id)}else {alert("No post was written")}}}> <h5 className="PostSubmitText">Submit</h5></button>
         
            </div>        
        </div>
