@@ -3,7 +3,7 @@ import "./ViewPostReq.css";
 
   
 
-const getPosts = async (major_id, classs, post_date="", content="", Course="", id="") => 
+const getPosts = async (major_id, classs, post_date="", content="", Course="", id="" ) => 
 {
     try 
     {
