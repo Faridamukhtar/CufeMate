@@ -37,13 +37,13 @@ function Post(props)
           
           // Construct the URL with actual values for email and password
           const url = `http://localhost:8080/api/markaccept/${encodeURIComponent(StdRepID)}/${encodeURIComponent(post_id)}`;
-      
+          alert("this post has been accepted");
           // Make a GET request to the constructed URL
               const response = await fetch(url); 
               const result = await response.json();
               // Handle the login result as needed
               console.log(result);
-              alert("this post has been accepted");
+              
             } 
             catch (error) {
               console.error('Error during login:', error);
@@ -61,13 +61,13 @@ function Post(props)
             
             // Construct the URL with actual values for email and password
             const url = `http://localhost:8080/api/markreject/${encodeURIComponent(StdRepID)}/${encodeURIComponent(post_id)}`;
-        
+            alert("this post has been rejected");
             // Make a GET request to the constructed URL
                 const response = await fetch(url); 
                 const result = await response.json();
                 // Handle the login result as needed
                 console.log(result);
-                alert("this post has been rejected");
+                
               } 
               catch (error) {
                 console.error('Error during login:', error);
