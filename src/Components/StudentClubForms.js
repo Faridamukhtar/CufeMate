@@ -44,6 +44,8 @@ function ApplicantsList(props)
                 await updateApplicantStatus(status, props.formid, props.applicant.std_id);
                 if (status===1) 
                 {
+                    console.log(status);
+                    console.log(props.std_club_id)
                     await AddMember(props.std_club_id, props.applicant.std_id);
                 }
              }
@@ -78,7 +80,7 @@ function DisplayApplicants(props)
 {
     if (props?.Applicants[0]?.std_id>-1)
     {
-        const listItems = props.Applicants.map((applicant) => <li key={applicant.std_id+props.formid}><ApplicantsList applicant ={applicant} formid={props.formid}/></li>);
+        const listItems = props.Applicants.map((applicant) => <li key={applicant.std_id+props.formid}><ApplicantsList std_club_id={props.std_club_id} applicant ={applicant} formid={props.formid}/></li>);
         return listItems;
     }
     else
@@ -134,7 +136,7 @@ function Applicants(props)
             </h4> 
         </div>
         <div className='DisplayApplicants'>
-            <DisplayApplicants Applicants={ApplicantsContent} formid={props.formid}/>
+            <DisplayApplicants std_club_id={props.std_club_id} Applicants={ApplicantsContent} formid={props.formid}/>
         </div>
     </div>
 
@@ -320,7 +322,7 @@ function StudentClubForms(props)
             </div>
         </div>
         <div className="ApplicantsWrapper">
-        <Applicants formid={SelectedFormID}/>
+        <Applicants std_club_id={std_club_id} formid={SelectedFormID}/>
         </div>
     </div>
 

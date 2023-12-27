@@ -235,6 +235,7 @@ export const DeleteForm= async (form_id=0) =>
 
 export const AddMember= async (std_club_id, std_id) =>
 {
+  console.log(std_id)
   try 
   {
     const response = await fetch("http://localhost:8080/api/StudentClubs/addmember", {
@@ -244,7 +245,7 @@ export const AddMember= async (std_club_id, std_id) =>
       },
       body: JSON.stringify({
         std_id: std_id || 0,
-        std_club_id: std_club_id || 0,
+        std_club_id: std_club_id || 0
       }),
     });
 
