@@ -121,12 +121,12 @@ const fetchDataForPie2 = async () => {
         if (!barChartData) {
           return [];
         }
-    
+      
         return barChartData.map((item) => ({
-          label: `${item.std_club_name} (${item.std_club_id})`,
-          info: item.avg_rate,
+          label: `${item.std_club_name}`,
+          info: Number(item.avg_rate).toFixed(1), // Convert to number and limit info to 1 decimal place
         }));
-      };
+      };      
 
     useEffect(() => {
         fetchDataForTable();

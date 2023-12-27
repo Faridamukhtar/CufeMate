@@ -31,6 +31,7 @@ const LoginAdmin = () => {
           } 
           catch (error) {
             console.error('Error during login:', error);
+            alert('Error during login');
           }
     };
   
