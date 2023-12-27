@@ -4,7 +4,7 @@ import { dbInstance } from "./connection.js";
 const write_post_course_router=express.Router();
 // el mafroud el post id yeb2a auto generated w auto incremented 
 // el mafroud el student id wel major id yeb2ou ma3aya ml login 
-write_post_course_router.get("/api/writepostcourse/:content/:course_id/:std_id", async (req,res) =>{
+write_post_course_router.get("/apiwritepostcourse/:content/:course_id/:std_/id", async (req,res) =>{
     const {content, course_id, std_id}=req.params;
     //const post_id=111;
     const today=new Date();

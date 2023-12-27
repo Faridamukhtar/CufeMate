@@ -3,7 +3,7 @@ import './WriteTextPost.css';
 import PostInputText from "./PostInputText.js";
 
 
-function WriteTextPostMajor({selectedCourse}, props)
+function WriteTextPostMajor(props)
 
 {    
     
