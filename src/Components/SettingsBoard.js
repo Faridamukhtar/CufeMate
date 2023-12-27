@@ -90,7 +90,13 @@ const UpdatePassword = ({ message , Std_ID , Club_ID}) => {
 
 
   const handleClick = async () => {
-
+    const isValidNpass = /^\d+$/.test(Npass);
+    const isValidconpass = /^\d+$/.test(conpass);
+    if (!Npass || !conpass)
+    {
+      alert("enter a new password and its confirmation");
+      return;
+    }
     if (Npass !== conpass) {
       alert("New password and confirm password don't match.");
       return;
@@ -303,6 +309,7 @@ const ApplyRep =({Std_ID}) => {
     <div>
       <div>
       <p  style={{padding:"1%"}}> Current stats = {CurrentstatFromApi} </p> 
+      <p  style={{padding:"1%"}}> logout and login to see the updated view </p> 
       </div>
       <button className="button-clicked" onClick={handleClick}>
       <span className="label-clicked">Submit application</span>

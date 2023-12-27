@@ -20,9 +20,19 @@ requests_router.get('/api/requests/rep', async (req,res) => {
 
   requests_router.put('/api/requests/rep/approve_decline/:decision/:std_id/:adminID', async (req, res) => {
     const {decision,std_id,adminID} = req.params;
+    let decision2;
+    if (decision==2)
+    {
+      decision2=0;
+    }
+    else
+    {
+      decision2=1;
+    }
     try {
-        const result = await dbInstance.query('UPDATE request_rep SET stat = $1, admin_id =$2 WHERE std_id=$3;', [decision, adminID,std_id]);
-        res.json({ success: true,user: result.rows[0], message: 'status updated successfully' });
+        const result1 = await dbInstance.query('UPDATE request_rep SET stat = $1, admin_id =$2 WHERE std_id=$3;', [decision, adminID,std_id]);
+        const result2 = await dbInstance.query('UPDATE student SET rep_flag = $1 WHERE std_id=$2;', [decision2, std_id]);
+        res.json({ success: true,user1: result1.rows[0],user2: result2.rows[0], message: 'status updated successfully' });
       } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, error: 'Internal Server Error' });

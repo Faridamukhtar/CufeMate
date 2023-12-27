@@ -47,7 +47,7 @@ const DisplayStudent = ({ student,adminID }) => {
     }
   };
 
-  const handleUnbanClick = async (studentId,decision) => {
+  /*const handleUnbanClick = async (studentId,decision) => {
     console.log(studentId);
     try {
       const url = `http://localhost:8080/api/admin/banRep/${studentId}/${decision}`; // Assuming 1 is the decision for unbanning
@@ -59,7 +59,7 @@ const DisplayStudent = ({ student,adminID }) => {
     } catch (error) {
       console.error('Error unbanning student:', error);
     }
-  };
+  };*/
 
   return (
     <div>

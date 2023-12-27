@@ -72,6 +72,16 @@ const LoginSignup = () => {
 
   const handleSignup = async (std_id, fname, lname, email, major_id, password, studentClass) => {
     try {
+      /*const isValidid = /^\d+$/.test(std_id);
+      const isValidfname = /^\d+$/.test(fname);
+      const isValidlname = /^\d+$/.test(lname);
+      const isValidmail = /^\d+$/.test(email);
+      const isValidpass = /^\d+$/.test(password);
+      if(!isValidid || !isValidfname || !isValidlname || !isValidmail  || !isValidpass)
+      {
+        alert("enter all data");
+        return;
+      }*/
       const url = 'http://localhost:8080/api/signup/student';
       const data = {
         Fname: fname,

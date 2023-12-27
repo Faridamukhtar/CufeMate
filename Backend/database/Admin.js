@@ -113,7 +113,6 @@ function parseStudentInfo(str) {
 admin_router.put('/api/admin/banRep/:stdId/:decision', async (req, res) => {
   const {decision, stdId} = req.params;
   let decision2;
-
   if (decision==2)
   {
     decision2=0;
@@ -122,18 +121,19 @@ admin_router.put('/api/admin/banRep/:stdId/:decision', async (req, res) => {
   {
     decision2=1;
   }
-
   // stat: 0-> student , 1-> rep, 2-> banned rep
   // decision: 2-> ban, 1-> unban
   try {
     //exclude students , only banned and unbanned reps 
     const result1 = await dbInstance.query('UPDATE student SET rep_flag = $1 WHERE std_id=$2;', [decision2, stdId]);
-    const result2 = await dbInstance.query('UPDATE request_rep SET stat = $1, admin_id=$2 WHERE std_id=$3;', [decision, adminID, stdId]);
+    if (decision2 ==0) {
+      const result2 = await dbInstance.query('delete from request_rep where std_id = $1;', [stdId]);
+      console.log(result2.rows[0]);
+     }
     console.log(result1.rows[0]);
-    console.log(result2.rows[0]);
     //console.log(result2.rows[0]);
     //, user2:result2.rows[0]
-    res.json({ success: true,user1: result1.rows[0],user2:result2.rows[0], message: 'status updated successfully' });
+    res.json({ success: true,user1: result1.rows[0],message: 'status updated successfully' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -223,7 +223,6 @@ function parseClubInfo(str) {
     logo
   };
 }
-
 
 //accept/reject club
 /*admin_router.put('/api/admin/respondClub/:id/:decision', async (req, res) => {
