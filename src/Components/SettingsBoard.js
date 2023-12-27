@@ -105,7 +105,7 @@ const UpdatePassword = ({ message , Std_ID , Club_ID}) => {
                   let id
                   if (message==='student')
                 {
-                  id = Std_ID; // Replace with your dynamic email logic
+                  id = Std_ID;
 
                 }
                 else if (message==='studentclub')
@@ -219,20 +219,27 @@ const UpdateInfo =({Club_ID}) =>
                 <span className="label-clicked">Update About</span>
               </button>
         </div>
-        <label > Make sure you upload an image <br/></label>
-                <div>
+        <label className='TextBox_std_club_logo_label'> Image will automatically render if inserted as image url</label>
+
+                <div style={{marginTop:'2%'}}>
               <TextInput
                 Title="Update Logo"
-                placeholderText="Make Sure You insert an image url"
+                placeholderText="Make Sure You insert an actual image not a website url"
                 isPassword={false}
                 setInputValue={setSelectedImage}
                 inputValue={selectedImage}
                 style={{width:'80%'}}
               />
+              
               </div>
+              <div style={{display:'flex' , justifyContent:'space-between' , alignItems: 'center'}}>
               <button className="button-clicked" onClick={ChangeLogo}>
                 <span className="label-clicked">Update image</span>
               </button>
+              <img src={selectedImage} style={{ width:'100px' }} />
+
+              </div>
+
            </div>
        
   )
