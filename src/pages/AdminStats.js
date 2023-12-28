@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from "react";
 import AdminBar from "../Components/adminBar.js";
-import ReportTable from '../Components/ReportTable';
+import ReportTable from '../Components/ReportTable.js';
+import ReportTable2 from '../Components/ReportTable2.js';
 import PieChartComponent from '../Components/PieChart.js';
 import BarChartComponent from '../Components/BarChartComponent.js'; 
 import { useParams } from 'react-router-dom';
@@ -9,6 +10,7 @@ import './AdminStats.css';
 const AdminStats = () => {
     const { admin_id } = useParams();//pass AdminID to the component
     const [tableData, setTableData] = useState(null);
+    const [tableData2, setTableData2] = useState(null);
     const [chartData, setChartData] = useState(''); //for pie
     const [chartData2, setChartData2] = useState(''); //for pie
     const [barChartData, setBarChartData] = useState(null);
@@ -127,8 +129,20 @@ const fetchDataForPie2 = async () => {
           info: Number(item.avg_rate).toFixed(1), // Convert to number and limit info to 1 decimal place
         }));
       };      
-
+      
+      const fetchDataForTable2 = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/api/stats/clubs/membersInClubs');
+            const result = await response.json();
+            console.log("ana new table");
+            console.log(result.data);
+            setTableData2(result.data);
+        } catch (error) {
+            console.error('Error fetching data for table:', error);
+        }
+    };
     useEffect(() => {
+        fetchDataForTable2();
         fetchDataForTable();
         fetchDataForPie();
         fetchDataForPie2();
@@ -186,6 +200,8 @@ const fetchDataForPie2 = async () => {
                     </div> 
                     <div className="Titles">Posts By Reps (Detailed Report)</div> 
                     {tableData && <ReportTable data={tableData} />} 
+                    <div className="Titles">Members in Clubs (Detailed Report)</div> 
+                    {tableData2 && <ReportTable2 data={tableData2} />} 
                 </div> 
             </div>
         </div>   

@@ -5,16 +5,16 @@ const stats_router = express.Router();
 
 /////////////////////////////////// CLUBS /////////////////////////////////
 // detailed query
-/*stats_router.get('/api/stats/clubs/membersInClubs', async (req,res) => {
+stats_router.get('/api/stats/clubs/membersInClubs', async (req,res) => {
   try {
-    const result = await dbInstance.query('select s.fname , s.lname , d.std_club_name, COUNT(*)  from (student s NATURAL JOIN ismember b) JOIN student_club d ON b.std_club_id = d.std_club_id GROUP BY d.std_club_name, b.yr ORDER BY d.std_club_name,s.fname,s.lname;');
-    res.json(result.rows);
+    const result = await dbInstance.query('select d.std_club_name,d.std_club_id,s.fname,s.lname,b.yr from (student s NATURAL JOIN ismember b) JOIN student_club d on b.std_club_id= d.std_club_id ORDER BY std_club_name,yr,fname,lname ;');
+    res.json({data:result.rows});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
   
-});*/
+});
 
 // detailed stored proc
 /*stats_router.get('/api/stats/clubs/membersInClubs', async (req, res) => {
