@@ -5,7 +5,7 @@ const ReportTable2 = ({ data }) => {
         <thead>
           <tr>
             <th>Club Name</th>
-            <th>Club Name</th>
+            <th>Club ID</th>
             <th>Member First Name</th>
             <th>Member Last Name</th>
             <th>Year</th>
